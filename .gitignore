@@ -1,0 +1,19 @@
+# Build output
+dist/
+*.zip
+
+# Downloaded competition data, wheels and local runs (large, not ours to redistribute)
+data/
+vendor/
+results/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+.ipynb_checkpoints/
