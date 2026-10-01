@@ -1,0 +1,25 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+____________ ERROR collecting tests/test_router_include_context.py _____________
+ImportError while importing test module '/tmp/swegemma_sandbox_c99658d0-5fc_5gmmmq13/workspace/tests/test_router_include_context.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_router_include_context.py:4: in <module>
+    from fastapi import APIRouter, Body, Depends, FastAPI, Request
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:5: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+=========================== short test summary info ============================
+ERROR tests/test_router_include_context.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.49s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

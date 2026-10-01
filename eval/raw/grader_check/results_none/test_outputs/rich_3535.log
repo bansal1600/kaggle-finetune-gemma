@@ -1,0 +1,28 @@
+STDOUT:
+.......F                                                                 [100%]
+=================================== FAILURES ===================================
+__________________________ test_is_single_cell_widths __________________________
+
+    def test_is_single_cell_widths() -> None:
+        # Check _is_single_cell_widths reports correctly
+        for character in string.printable:
+            if ord(character) >= 32:
+>               assert _is_single_cell_widths(character)
+E               AssertionError: assert None
+E                +  where None = _is_single_cell_widths('p')
+
+tests/test_cells.py:70: AssertionError
+=============================== warnings summary ===============================
+../../scorer_env/_pytest/config/__init__.py:1464
+  /tmp/scorer_env/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_cells.py::test_is_single_cell_widths - AssertionError: asse...
+1 failed, 7 passed, 1 warning in 0.15s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

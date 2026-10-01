@@ -1,0 +1,85 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_________ ERROR collecting tests/test_strict_content_type_app_level.py _________
+ImportError while importing test module '/tmp/swegemma_sandbox_7d1e30c2-e10_7ufym9dw/workspace/tests/test_strict_content_type_app_level.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_strict_content_type_app_level.py:1: in <module>
+    from fastapi import FastAPI
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:9: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+__________ ERROR collecting tests/test_strict_content_type_nested.py ___________
+ImportError while importing test module '/tmp/swegemma_sandbox_7d1e30c2-e10_7ufym9dw/workspace/tests/test_strict_content_type_nested.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_strict_content_type_nested.py:1: in <module>
+    from fastapi import APIRouter, FastAPI
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:9: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+_______ ERROR collecting tests/test_strict_content_type_router_level.py ________
+ImportError while importing test module '/tmp/swegemma_sandbox_7d1e30c2-e10_7ufym9dw/workspace/tests/test_strict_content_type_router_level.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_strict_content_type_router_level.py:1: in <module>
+    from fastapi import APIRouter, FastAPI
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:9: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+______ ERROR collecting tests/test_tutorial/test_body/test_tutorial001.py ______
+ImportError while importing test module '/tmp/swegemma_sandbox_7d1e30c2-e10_7ufym9dw/workspace/tests/test_tutorial/test_body/test_tutorial001.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_body/test_tutorial001.py:5: in <module>
+    from fastapi.testclient import TestClient
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:9: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+_ ERROR collecting tests/test_tutorial/test_strict_content_type/test_tutorial001.py _
+ImportError while importing test module '/tmp/swegemma_sandbox_7d1e30c2-e10_7ufym9dw/workspace/tests/test_tutorial/test_strict_content_type/test_tutorial001.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_strict_content_type/test_tutorial001.py:4: in <module>
+    from fastapi.testclient import TestClient
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:9: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+=========================== short test summary info ============================
+ERROR tests/test_strict_content_type_app_level.py
+ERROR tests/test_strict_content_type_nested.py
+ERROR tests/test_strict_content_type_router_level.py
+ERROR tests/test_tutorial/test_body/test_tutorial001.py
+ERROR tests/test_tutorial/test_strict_content_type/test_tutorial001.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 5 errors during collection !!!!!!!!!!!!!!!!!!!!
+5 errors in 0.94s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

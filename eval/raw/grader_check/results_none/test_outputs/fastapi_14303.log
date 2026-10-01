@@ -1,0 +1,21 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+______________ ERROR collecting tests/test_forms_single_model.py _______________
+ImportError while importing test module '/tmp/swegemma_sandbox_888b5f1b-651_uyppzyfk/workspace/tests/test_forms_single_model.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_forms_single_model.py:3: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+=========================== short test summary info ============================
+ERROR tests/test_forms_single_model.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.32s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

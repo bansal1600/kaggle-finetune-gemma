@@ -1,0 +1,55 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+____________ ERROR collecting tests/test_dependency_yield_scope.py _____________
+ImportError while importing test module '/tmp/swegemma_sandbox_a2237ed8-18b_21pp9rfp/workspace/tests/test_dependency_yield_scope.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_dependency_yield_scope.py:5: in <module>
+    from fastapi import Depends, FastAPI
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+_______ ERROR collecting tests/test_dependency_yield_scope_websockets.py _______
+ImportError while importing test module '/tmp/swegemma_sandbox_a2237ed8-18b_21pp9rfp/workspace/tests/test_dependency_yield_scope_websockets.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_dependency_yield_scope_websockets.py:5: in <module>
+    from fastapi import Depends, FastAPI, WebSocket
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+_ ERROR collecting tests/test_tutorial/test_dependencies/test_tutorial008e.py __
+ImportError while importing test module '/tmp/swegemma_sandbox_a2237ed8-18b_21pp9rfp/workspace/tests/test_tutorial/test_dependencies/test_tutorial008e.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_dependencies/test_tutorial008e.py:4: in <module>
+    from fastapi.testclient import TestClient
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+=========================== short test summary info ============================
+ERROR tests/test_dependency_yield_scope.py
+ERROR tests/test_dependency_yield_scope_websockets.py
+ERROR tests/test_tutorial/test_dependencies/test_tutorial008e.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 3 errors during collection !!!!!!!!!!!!!!!!!!!!
+3 errors in 0.64s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

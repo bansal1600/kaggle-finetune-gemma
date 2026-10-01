@@ -1,0 +1,70 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_____________ ERROR collecting tests/test_deprecated_responses.py ______________
+ImportError while importing test module '/tmp/swegemma_sandbox_1f4988d6-ab3_7o0dmeds/workspace/tests/test_deprecated_responses.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_deprecated_responses.py:4: in <module>
+    from fastapi import FastAPI
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:9: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+_____________ ERROR collecting tests/test_orjson_response_class.py _____________
+ImportError while importing test module '/tmp/swegemma_sandbox_1f4988d6-ab3_7o0dmeds/workspace/tests/test_orjson_response_class.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_orjson_response_class.py:3: in <module>
+    from fastapi import FastAPI
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:9: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+_ ERROR collecting tests/test_tutorial/test_custom_response/test_tutorial001.py _
+ImportError while importing test module '/tmp/swegemma_sandbox_1f4988d6-ab3_7o0dmeds/workspace/tests/test_tutorial/test_custom_response/test_tutorial001.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_custom_response/test_tutorial001.py:4: in <module>
+    from fastapi.testclient import TestClient
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:9: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+_ ERROR collecting tests/test_tutorial/test_custom_response/test_tutorial001b.py _
+ImportError while importing test module '/tmp/swegemma_sandbox_1f4988d6-ab3_7o0dmeds/workspace/tests/test_tutorial/test_custom_response/test_tutorial001b.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_custom_response/test_tutorial001b.py:4: in <module>
+    from fastapi.exceptions import FastAPIDeprecationWarning
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:9: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+=========================== short test summary info ============================
+ERROR tests/test_deprecated_responses.py
+ERROR tests/test_orjson_response_class.py
+ERROR tests/test_tutorial/test_custom_response/test_tutorial001.py
+ERROR tests/test_tutorial/test_custom_response/test_tutorial001b.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 4 errors during collection !!!!!!!!!!!!!!!!!!!!
+4 errors in 0.67s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

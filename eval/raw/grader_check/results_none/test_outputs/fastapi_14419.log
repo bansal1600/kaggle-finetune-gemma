@@ -1,0 +1,40 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+________________ ERROR collecting tests/test_security_scopes.py ________________
+ImportError while importing test module '/tmp/swegemma_sandbox_619ca81d-6f0_4siyn03y/workspace/tests/test_security_scopes.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_scopes.py:4: in <module>
+    from fastapi import Depends, FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+________ ERROR collecting tests/test_security_scopes_sub_dependency.py _________
+ImportError while importing test module '/tmp/swegemma_sandbox_619ca81d-6f0_4siyn03y/workspace/tests/test_security_scopes_sub_dependency.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_scopes_sub_dependency.py:6: in <module>
+    from fastapi import Depends, FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+=========================== short test summary info ============================
+ERROR tests/test_security_scopes.py
+ERROR tests/test_security_scopes_sub_dependency.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 errors in 0.50s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

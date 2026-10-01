@@ -1,0 +1,7 @@
+STDOUT:
+........................                                                 [100%]
+24 passed in 0.17s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

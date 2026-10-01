@@ -9,7 +9,8 @@
   "enable_tpu": false,
   "enable_internet": false,
   "dataset_sources": [
-    "metric/gemma-4-developer-agent-wheelhouse"
+    "metric/gemma-4-developer-agent-wheelhouse",
+    "guaravbansal/gemma-agent-extra-wheels"
   ],
   "competition_sources": [
     "gemma-4-developer-agent"

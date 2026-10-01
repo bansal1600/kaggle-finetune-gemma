@@ -1,0 +1,261 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+____________ ERROR collecting tests/test_security_api_key_cookie.py ____________
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_api_key_cookie.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_api_key_cookie.py:1: in <module>
+    from fastapi import Depends, FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+______ ERROR collecting tests/test_security_api_key_cookie_description.py ______
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_api_key_cookie_description.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_api_key_cookie_description.py:1: in <module>
+    from fastapi import Depends, FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+____________ ERROR collecting tests/test_security_api_key_header.py ____________
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_api_key_header.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_api_key_header.py:1: in <module>
+    from fastapi import Depends, FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+______ ERROR collecting tests/test_security_api_key_header_description.py ______
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_api_key_header_description.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_api_key_header_description.py:1: in <module>
+    from fastapi import Depends, FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+____________ ERROR collecting tests/test_security_api_key_query.py _____________
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_api_key_query.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_api_key_query.py:1: in <module>
+    from fastapi import Depends, FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+______ ERROR collecting tests/test_security_api_key_query_description.py _______
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_api_key_query_description.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_api_key_query_description.py:1: in <module>
+    from fastapi import Depends, FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+______________ ERROR collecting tests/test_security_http_base.py _______________
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_http_base.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_http_base.py:1: in <module>
+    from fastapi import FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+________ ERROR collecting tests/test_security_http_base_description.py _________
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_http_base_description.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_http_base_description.py:1: in <module>
+    from fastapi import FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+_________ ERROR collecting tests/test_security_http_basic_optional.py __________
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_http_basic_optional.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_http_basic_optional.py:4: in <module>
+    from fastapi import FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+___________ ERROR collecting tests/test_security_http_basic_realm.py ___________
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_http_basic_realm.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_http_basic_realm.py:3: in <module>
+    from fastapi import FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+_____ ERROR collecting tests/test_security_http_basic_realm_description.py _____
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_http_basic_realm_description.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_http_basic_realm_description.py:3: in <module>
+    from fastapi import FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+_____________ ERROR collecting tests/test_security_http_bearer.py ______________
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_http_bearer.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_http_bearer.py:1: in <module>
+    from fastapi import FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+_______ ERROR collecting tests/test_security_http_bearer_description.py ________
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_http_bearer_description.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_http_bearer_description.py:1: in <module>
+    from fastapi import FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+_____________ ERROR collecting tests/test_security_http_digest.py ______________
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_http_digest.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_http_digest.py:1: in <module>
+    from fastapi import FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+_______ ERROR collecting tests/test_security_http_digest_description.py ________
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_http_digest_description.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_http_digest_description.py:1: in <module>
+    from fastapi import FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+________________ ERROR collecting tests/test_security_oauth2.py ________________
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_oauth2.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_oauth2.py:2: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+____________ ERROR collecting tests/test_security_openid_connect.py ____________
+ImportError while importing test module '/tmp/swegemma_sandbox_711fdbf2-ce6_fu5ez5l5/workspace/tests/test_security_openid_connect.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_openid_connect.py:1: in <module>
+    from fastapi import Depends, FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+=========================== short test summary info ============================
+ERROR tests/test_security_api_key_cookie.py
+ERROR tests/test_security_api_key_cookie_description.py
+ERROR tests/test_security_api_key_header.py
+ERROR tests/test_security_api_key_header_description.py
+ERROR tests/test_security_api_key_query.py
+ERROR tests/test_security_api_key_query_description.py
+ERROR tests/test_security_http_base.py
+ERROR tests/test_security_http_base_description.py
+ERROR tests/test_security_http_basic_optional.py
+ERROR tests/test_security_http_basic_realm.py
+ERROR tests/test_security_http_basic_realm_description.py
+ERROR tests/test_security_http_bearer.py
+ERROR tests/test_security_http_bearer_description.py
+ERROR tests/test_security_http_digest.py
+ERROR tests/test_security_http_digest_description.py
+ERROR tests/test_security_oauth2.py
+ERROR tests/test_security_openid_connect.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 17 errors during collection !!!!!!!!!!!!!!!!!!!
+17 errors in 2.69s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

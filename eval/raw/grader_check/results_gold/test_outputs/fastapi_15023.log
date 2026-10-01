@@ -1,0 +1,25 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+__ ERROR collecting tests/test_tutorial/test_stream_data/test_tutorial002.py ___
+ImportError while importing test module '/tmp/swegemma_sandbox_e7f55694-7f0_kw_xjwg6/workspace/tests/test_tutorial/test_stream_data/test_tutorial002.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_stream_data/test_tutorial002.py:4: in <module>
+    from fastapi.testclient import TestClient
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:9: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+=========================== short test summary info ============================
+ERROR tests/test_tutorial/test_stream_data/test_tutorial002.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.41s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

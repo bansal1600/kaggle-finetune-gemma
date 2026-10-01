@@ -1,0 +1,25 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+________________ ERROR collecting tests/test_prepare_release.py ________________
+ImportError while importing test module '/tmp/swegemma_sandbox_935cc9fa-cb2_ynlciwml/workspace/tests/test_prepare_release.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_prepare_release.py:5: in <module>
+    from typer.testing import CliRunner
+/tmp/scorer_env/typer/__init__.py:22: in <module>
+    from .main import Typer as Typer
+/tmp/scorer_env/typer/main.py:18: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+=========================== short test summary info ============================
+ERROR tests/test_prepare_release.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.37s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

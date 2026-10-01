@@ -1,0 +1,25 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_____ ERROR collecting tests/test_top_level_security_scheme_in_openapi.py ______
+ImportError while importing test module '/tmp/swegemma_sandbox_38098ec0-2a1_z5ne3r0m/workspace/tests/test_top_level_security_scheme_in_openapi.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_top_level_security_scheme_in_openapi.py:4: in <module>
+    from fastapi import Depends, FastAPI
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+=========================== short test summary info ============================
+ERROR tests/test_top_level_security_scheme_in_openapi.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.67s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

@@ -32,6 +32,7 @@ from pathlib import Path
 DATA_DIR = Path(os.environ.get("DATA_DIR", "/kaggle/input/competitions/gemma-4-developer-agent"))
 WHEELHOUSE = Path(os.environ.get("WHEELHOUSE", "/kaggle/input/datasets/metric/gemma-4-developer-agent-wheelhouse"))
 OUT_DIR = Path(os.environ.get("OUT_DIR", "/kaggle/working"))
+EXTRA_WHEELS = Path(os.environ.get("EXTRA_WHEELS", "/kaggle/input/datasets/guaravbansal/gemma-agent-extra-wheels"))
 TASK_IDS = [t for t in os.environ.get("TASK_IDS", "").split(",") if t]
 CONCURRENCY = int(os.environ.get("CONCURRENCY", "4"))
 
@@ -40,7 +41,7 @@ from kaggle_common import install_harness, use_scorer_environment  # inlined by 
 
 def main() -> None:
     install_harness(WHEELHOUSE, gpu=False)
-    use_scorer_environment(DATA_DIR / "wheels", Path(os.environ.get("SCORER_ENV", "/tmp/scorer_env")))
+    use_scorer_environment(DATA_DIR / "wheels", Path(os.environ.get("SCORER_ENV", "/tmp/scorer_env")), EXTRA_WHEELS)
 
     from adk_submission import ModelRegistry
     from adk_eval_core.tracing import SessionTrace

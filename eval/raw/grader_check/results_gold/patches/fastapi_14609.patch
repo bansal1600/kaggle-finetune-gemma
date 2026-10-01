@@ -1,0 +1,2814 @@
+--- a/docs_src/request_form_models/tutorial002_pv1_an_py39.py
++++ b/docs_src/request_form_models/tutorial002_pv1_an_py39.py
+@@ -1,20 +0,0 @@
+-from typing import Annotated
+-
+-from fastapi import FastAPI
+-from fastapi.temp_pydantic_v1_params import Form
+-from pydantic.v1 import BaseModel
+-
+-app = FastAPI()
+-
+-
+-class FormData(BaseModel):
+-    username: str
+-    password: str
+-
+-    class Config:
+-        extra = "forbid"
+-
+-
+-@app.post("/login/")
+-async def login(data: Annotated[FormData, Form()]):
+-    return data
+--- a/docs_src/request_form_models/tutorial002_pv1_py39.py
++++ b/docs_src/request_form_models/tutorial002_pv1_py39.py
+@@ -1,18 +0,0 @@
+-from fastapi import FastAPI
+-from fastapi.temp_pydantic_v1_params import Form
+-from pydantic.v1 import BaseModel
+-
+-app = FastAPI()
+-
+-
+-class FormData(BaseModel):
+-    username: str
+-    password: str
+-
+-    class Config:
+-        extra = "forbid"
+-
+-
+-@app.post("/login/")
+-async def login(data: FormData = Form()):
+-    return data
+--- a/fastapi/_compat/__init__.py
++++ b/fastapi/_compat/__init__.py
+@@ -1,43 +1,9 @@
+-from .main import BaseConfig as BaseConfig
+-from .main import PydanticSchemaGenerationError as PydanticSchemaGenerationError
+-from .main import RequiredParam as RequiredParam
+-from .main import Undefined as Undefined
+-from .main import UndefinedType as UndefinedType
+-from .main import Url as Url
+-from .main import Validator as Validator
+-from .main import _get_model_config as _get_model_config
+-from .main import _is_error_wrapper as _is_error_wrapper
+-from .main import _is_model_class as _is_model_class
+-from .main import _is_model_field as _is_model_field
+-from .main import _is_undefined as _is_undefined
+-from .main import _model_dump as _model_dump
+-from .main import copy_field_info as copy_field_info
+-from .main import create_body_model as create_body_model
+-from .main import evaluate_forwardref as evaluate_forwardref
+-from .main import get_annotation_from_field_info as get_annotation_from_field_info
+-from .main import get_cached_model_fields as get_cached_model_fields
+-from .main import get_compat_model_name_map as get_compat_model_name_map
+-from .main import get_definitions as get_definitions
+-from .main import get_missing_field_error as get_missing_field_error
+-from .main import get_schema_from_model_field as get_schema_from_model_field
+-from .main import is_bytes_field as is_bytes_field
+-from .main import is_bytes_sequence_field as is_bytes_sequence_field
+-from .main import is_scalar_field as is_scalar_field
+-from .main import is_scalar_sequence_field as is_scalar_sequence_field
+-from .main import is_sequence_field as is_sequence_field
+-from .main import serialize_sequence_value as serialize_sequence_value
+-from .main import (
+-    with_info_plain_validator_function as with_info_plain_validator_function,
+-)
+-from .may_v1 import CoreSchema as CoreSchema
+-from .may_v1 import GetJsonSchemaHandler as GetJsonSchemaHandler
+-from .may_v1 import JsonSchemaValue as JsonSchemaValue
+-from .may_v1 import _normalize_errors as _normalize_errors
+-from .model_field import ModelField as ModelField
+ from .shared import PYDANTIC_V2 as PYDANTIC_V2
+ from .shared import PYDANTIC_VERSION_MINOR_TUPLE as PYDANTIC_VERSION_MINOR_TUPLE
+ from .shared import annotation_is_pydantic_v1 as annotation_is_pydantic_v1
+ from .shared import field_annotation_is_scalar as field_annotation_is_scalar
++from .shared import is_pydantic_v1_model_class as is_pydantic_v1_model_class
++from .shared import is_pydantic_v1_model_instance as is_pydantic_v1_model_instance
+ from .shared import (
+     is_uploadfile_or_nonable_uploadfile_annotation as is_uploadfile_or_nonable_uploadfile_annotation,
+ )
+@@ -47,3 +13,29 @@
+ from .shared import lenient_issubclass as lenient_issubclass
+ from .shared import sequence_types as sequence_types
+ from .shared import value_is_sequence as value_is_sequence
++from .v2 import BaseConfig as BaseConfig
++from .v2 import ModelField as ModelField
++from .v2 import PydanticSchemaGenerationError as PydanticSchemaGenerationError
++from .v2 import RequiredParam as RequiredParam
++from .v2 import Undefined as Undefined
++from .v2 import UndefinedType as UndefinedType
++from .v2 import Url as Url
++from .v2 import Validator as Validator
++from .v2 import _regenerate_error_with_loc as _regenerate_error_with_loc
++from .v2 import copy_field_info as copy_field_info
++from .v2 import create_body_model as create_body_model
++from .v2 import evaluate_forwardref as evaluate_forwardref
++from .v2 import get_cached_model_fields as get_cached_model_fields
++from .v2 import get_compat_model_name_map as get_compat_model_name_map
++from .v2 import get_definitions as get_definitions
++from .v2 import get_missing_field_error as get_missing_field_error
++from .v2 import get_schema_from_model_field as get_schema_from_model_field
++from .v2 import is_bytes_field as is_bytes_field
++from .v2 import is_bytes_sequence_field as is_bytes_sequence_field
++from .v2 import is_scalar_field as is_scalar_field
++from .v2 import is_scalar_sequence_field as is_scalar_sequence_field
++from .v2 import is_sequence_field as is_sequence_field
++from .v2 import serialize_sequence_value as serialize_sequence_value
++from .v2 import (
++    with_info_plain_validator_function as with_info_plain_validator_function,
++)
+--- a/fastapi/_compat/main.py
++++ b/fastapi/_compat/main.py
+@@ -1,264 +0,0 @@
+-import sys
+-from collections.abc import Sequence
+-from functools import lru_cache
+-from typing import (
+-    Any,
+-)
+-
+-from fastapi._compat import may_v1
+-from fastapi._compat.shared import lenient_issubclass
+-from fastapi.types import ModelNameMap
+-from pydantic import BaseModel
+-from typing_extensions import Literal
+-
+-from . import v2
+-from .model_field import ModelField
+-from .v2 import BaseConfig as BaseConfig
+-from .v2 import FieldInfo as FieldInfo
+-from .v2 import PydanticSchemaGenerationError as PydanticSchemaGenerationError
+-from .v2 import RequiredParam as RequiredParam
+-from .v2 import Undefined as Undefined
+-from .v2 import UndefinedType as UndefinedType
+-from .v2 import Url as Url
+-from .v2 import Validator as Validator
+-from .v2 import evaluate_forwardref as evaluate_forwardref
+-from .v2 import get_missing_field_error as get_missing_field_error
+-from .v2 import (
+-    with_info_plain_validator_function as with_info_plain_validator_function,
+-)
+-
+-
+-@lru_cache
+-def get_cached_model_fields(model: type[BaseModel]) -> list[ModelField]:
+-    if lenient_issubclass(model, may_v1.BaseModel):
+-        from fastapi._compat import v1
+-
+-        return v1.get_model_fields(model)  # type: ignore[arg-type,return-value]
+-    else:
+-        from . import v2
+-
+-        return v2.get_model_fields(model)  # type: ignore[return-value]
+-
+-
+-def _is_undefined(value: object) -> bool:
+-    if isinstance(value, may_v1.UndefinedType):
+-        return True
+-
+-    return isinstance(value, v2.UndefinedType)
+-
+-
+-def _get_model_config(model: BaseModel) -> Any:
+-    if isinstance(model, may_v1.BaseModel):
+-        from fastapi._compat import v1
+-
+-        return v1._get_model_config(model)
+-
+-    return v2._get_model_config(model)
+-
+-
+-def _model_dump(
+-    model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
+-) -> Any:
+-    if isinstance(model, may_v1.BaseModel):
+-        from fastapi._compat import v1
+-
+-        return v1._model_dump(model, mode=mode, **kwargs)
+-
+-    return v2._model_dump(model, mode=mode, **kwargs)
+-
+-
+-def _is_error_wrapper(exc: Exception) -> bool:
+-    if isinstance(exc, may_v1.ErrorWrapper):
+-        return True
+-
+-    return isinstance(exc, v2.ErrorWrapper)
+-
+-
+-def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
+-    if isinstance(field_info, may_v1.FieldInfo):
+-        from fastapi._compat import v1
+-
+-        return v1.copy_field_info(field_info=field_info, annotation=annotation)
+-
+-    return v2.copy_field_info(field_info=field_info, annotation=annotation)
+-
+-
+-def create_body_model(
+-    *, fields: Sequence[ModelField], model_name: str
+-) -> type[BaseModel]:
+-    if fields and isinstance(fields[0], may_v1.ModelField):
+-        from fastapi._compat import v1
+-
+-        return v1.create_body_model(fields=fields, model_name=model_name)
+-
+-    return v2.create_body_model(fields=fields, model_name=model_name)  # type: ignore[arg-type]
+-
+-
+-def get_annotation_from_field_info(
+-    annotation: Any, field_info: FieldInfo, field_name: str
+-) -> Any:
+-    if isinstance(field_info, may_v1.FieldInfo):
+-        from fastapi._compat import v1
+-
+-        return v1.get_annotation_from_field_info(
+-            annotation=annotation, field_info=field_info, field_name=field_name
+-        )
+-
+-    return v2.get_annotation_from_field_info(
+-        annotation=annotation, field_info=field_info, field_name=field_name
+-    )
+-
+-
+-def is_bytes_field(field: ModelField) -> bool:
+-    if isinstance(field, may_v1.ModelField):
+-        from fastapi._compat import v1
+-
+-        return v1.is_bytes_field(field)
+-
+-    return v2.is_bytes_field(field)  # type: ignore[arg-type]
+-
+-
+-def is_bytes_sequence_field(field: ModelField) -> bool:
+-    if isinstance(field, may_v1.ModelField):
+-        from fastapi._compat import v1
+-
+-        return v1.is_bytes_sequence_field(field)
+-
+-    return v2.is_bytes_sequence_field(field)  # type: ignore[arg-type]
+-
+-
+-def is_scalar_field(field: ModelField) -> bool:
+-    if isinstance(field, may_v1.ModelField):
+-        from fastapi._compat import v1
+-
+-        return v1.is_scalar_field(field)
+-
+-    return v2.is_scalar_field(field)  # type: ignore[arg-type]
+-
+-
+-def is_scalar_sequence_field(field: ModelField) -> bool:
+-    return v2.is_scalar_sequence_field(field)  # type: ignore[arg-type]
+-
+-
+-def is_sequence_field(field: ModelField) -> bool:
+-    if isinstance(field, may_v1.ModelField):
+-        from fastapi._compat import v1
+-
+-        return v1.is_sequence_field(field)
+-
+-    return v2.is_sequence_field(field)  # type: ignore[arg-type]
+-
+-
+-def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
+-    if isinstance(field, may_v1.ModelField):
+-        from fastapi._compat import v1
+-
+-        return v1.serialize_sequence_value(field=field, value=value)
+-
+-    return v2.serialize_sequence_value(field=field, value=value)  # type: ignore[arg-type]
+-
+-
+-def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
+-    v1_model_fields = [
+-        field for field in fields if isinstance(field, may_v1.ModelField)
+-    ]
+-    if v1_model_fields:
+-        from fastapi._compat import v1
+-
+-        v1_flat_models = v1.get_flat_models_from_fields(
+-            v1_model_fields,  # type: ignore[arg-type]
+-            known_models=set(),
+-        )
+-        all_flat_models = v1_flat_models
+-    else:
+-        all_flat_models = set()
+-
+-    v2_model_fields = [field for field in fields if isinstance(field, v2.ModelField)]
+-    v2_flat_models = v2.get_flat_models_from_fields(v2_model_fields, known_models=set())
+-    all_flat_models = all_flat_models.union(v2_flat_models)  # type: ignore[arg-type]
+-
+-    model_name_map = v2.get_model_name_map(all_flat_models)  # type: ignore[arg-type]
+-    return model_name_map
+-
+-
+-def get_definitions(
+-    *,
+-    fields: list[ModelField],
+-    model_name_map: ModelNameMap,
+-    separate_input_output_schemas: bool = True,
+-) -> tuple[
+-    dict[
+-        tuple[ModelField, Literal["validation", "serialization"]],
+-        may_v1.JsonSchemaValue,
+-    ],
+-    dict[str, dict[str, Any]],
+-]:
+-    if sys.version_info < (3, 14):
+-        v1_fields = [field for field in fields if isinstance(field, may_v1.ModelField)]
+-        v1_field_maps, v1_definitions = may_v1.get_definitions(
+-            fields=v1_fields,  # type: ignore[arg-type]
+-            model_name_map=model_name_map,
+-            separate_input_output_schemas=separate_input_output_schemas,
+-        )
+-
+-        v2_fields = [field for field in fields if isinstance(field, v2.ModelField)]
+-        v2_field_maps, v2_definitions = v2.get_definitions(
+-            fields=v2_fields,
+-            model_name_map=model_name_map,
+-            separate_input_output_schemas=separate_input_output_schemas,
+-        )
+-        all_definitions = {**v1_definitions, **v2_definitions}
+-        all_field_maps = {**v1_field_maps, **v2_field_maps}  # type: ignore[misc]
+-        return all_field_maps, all_definitions
+-
+-    # Pydantic v1 is not supported since Python 3.14
+-    else:
+-        v2_fields = [field for field in fields if isinstance(field, v2.ModelField)]
+-        v2_field_maps, v2_definitions = v2.get_definitions(
+-            fields=v2_fields,
+-            model_name_map=model_name_map,
+-            separate_input_output_schemas=separate_input_output_schemas,
+-        )
+-        return v2_field_maps, v2_definitions
+-
+-
+-def get_schema_from_model_field(
+-    *,
+-    field: ModelField,
+-    model_name_map: ModelNameMap,
+-    field_mapping: dict[
+-        tuple[ModelField, Literal["validation", "serialization"]],
+-        may_v1.JsonSchemaValue,
+-    ],
+-    separate_input_output_schemas: bool = True,
+-) -> dict[str, Any]:
+-    if isinstance(field, may_v1.ModelField):
+-        from fastapi._compat import v1
+-
+-        return v1.get_schema_from_model_field(
+-            field=field,
+-            model_name_map=model_name_map,
+-            field_mapping=field_mapping,
+-            separate_input_output_schemas=separate_input_output_schemas,
+-        )
+-
+-    return v2.get_schema_from_model_field(
+-        field=field,  # type: ignore[arg-type]
+-        model_name_map=model_name_map,
+-        field_mapping=field_mapping,  # type: ignore[arg-type]
+-        separate_input_output_schemas=separate_input_output_schemas,
+-    )
+-
+-
+-def _is_model_field(value: Any) -> bool:
+-    if isinstance(value, may_v1.ModelField):
+-        return True
+-
+-    return isinstance(value, v2.ModelField)
+-
+-
+-def _is_model_class(value: Any) -> bool:
+-    if lenient_issubclass(value, may_v1.BaseModel):
+-        return True
+-
+-    return lenient_issubclass(value, v2.BaseModel)  # type: ignore[attr-defined]
+--- a/fastapi/_compat/may_v1.py
++++ b/fastapi/_compat/may_v1.py
+@@ -1,124 +0,0 @@
+-import sys
+-from collections.abc import Sequence
+-from typing import Any, Literal, Union
+-
+-from fastapi.types import ModelNameMap
+-
+-if sys.version_info >= (3, 14):
+-
+-    class AnyUrl:
+-        pass
+-
+-    class BaseConfig:
+-        pass
+-
+-    class BaseModel:
+-        pass
+-
+-    class Color:
+-        pass
+-
+-    class CoreSchema:
+-        pass
+-
+-    class ErrorWrapper:
+-        pass
+-
+-    class FieldInfo:
+-        pass
+-
+-    class GetJsonSchemaHandler:
+-        pass
+-
+-    class JsonSchemaValue:
+-        pass
+-
+-    class ModelField:
+-        pass
+-
+-    class NameEmail:
+-        pass
+-
+-    class RequiredParam:
+-        pass
+-
+-    class SecretBytes:
+-        pass
+-
+-    class SecretStr:
+-        pass
+-
+-    class Undefined:
+-        pass
+-
+-    class UndefinedType:
+-        pass
+-
+-    class Url:
+-        pass
+-
+-    from .v2 import ValidationError, create_model
+-
+-    def get_definitions(
+-        *,
+-        fields: list[ModelField],
+-        model_name_map: ModelNameMap,
+-        separate_input_output_schemas: bool = True,
+-    ) -> tuple[
+-        dict[
+-            tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+-        ],
+-        dict[str, dict[str, Any]],
+-    ]:
+-        return {}, {}  # pragma: no cover
+-
+-
+-else:
+-    from .v1 import AnyUrl as AnyUrl
+-    from .v1 import BaseConfig as BaseConfig
+-    from .v1 import BaseModel as BaseModel
+-    from .v1 import Color as Color
+-    from .v1 import CoreSchema as CoreSchema
+-    from .v1 import ErrorWrapper as ErrorWrapper
+-    from .v1 import FieldInfo as FieldInfo
+-    from .v1 import GetJsonSchemaHandler as GetJsonSchemaHandler
+-    from .v1 import JsonSchemaValue as JsonSchemaValue
+-    from .v1 import ModelField as ModelField
+-    from .v1 import NameEmail as NameEmail
+-    from .v1 import RequiredParam as RequiredParam
+-    from .v1 import SecretBytes as SecretBytes
+-    from .v1 import SecretStr as SecretStr
+-    from .v1 import Undefined as Undefined
+-    from .v1 import UndefinedType as UndefinedType
+-    from .v1 import Url as Url
+-    from .v1 import ValidationError, create_model
+-    from .v1 import get_definitions as get_definitions
+-
+-
+-RequestErrorModel: type[BaseModel] = create_model("Request")
+-
+-
+-def _normalize_errors(errors: Sequence[Any]) -> list[dict[str, Any]]:
+-    use_errors: list[Any] = []
+-    for error in errors:
+-        if isinstance(error, ErrorWrapper):
+-            new_errors = ValidationError(
+-                errors=[error], model=RequestErrorModel
+-            ).errors()
+-            use_errors.extend(new_errors)
+-        elif isinstance(error, list):
+-            use_errors.extend(_normalize_errors(error))
+-        else:
+-            use_errors.append(error)
+-    return use_errors
+-
+-
+-def _regenerate_error_with_loc(
+-    *, errors: Sequence[Any], loc_prefix: tuple[Union[str, int], ...]
+-) -> list[dict[str, Any]]:
+-    updated_loc_errors: list[Any] = [
+-        {**err, "loc": loc_prefix + err.get("loc", ())}
+-        for err in _normalize_errors(errors)
+-    ]
+-
+-    return updated_loc_errors
+--- a/fastapi/_compat/model_field.py
++++ b/fastapi/_compat/model_field.py
+@@ -1,50 +0,0 @@
+-from typing import (
+-    Any,
+-    Union,
+-)
+-
+-from fastapi.types import IncEx
+-from pydantic.fields import FieldInfo
+-from typing_extensions import Literal, Protocol
+-
+-
+-class ModelField(Protocol):
+-    field_info: "FieldInfo"
+-    name: str
+-    mode: Literal["validation", "serialization"] = "validation"
+-    _version: Literal["v1", "v2"] = "v1"
+-
+-    @property
+-    def alias(self) -> str: ...
+-
+-    @property
+-    def required(self) -> bool: ...
+-
+-    @property
+-    def default(self) -> Any: ...
+-
+-    @property
+-    def type_(self) -> Any: ...
+-
+-    def get_default(self) -> Any: ...
+-
+-    def validate(
+-        self,
+-        value: Any,
+-        values: dict[str, Any] = {},  # noqa: B006
+-        *,
+-        loc: tuple[Union[int, str], ...] = (),
+-    ) -> tuple[Any, Union[list[dict[str, Any]], None]]: ...
+-
+-    def serialize(
+-        self,
+-        value: Any,
+-        *,
+-        mode: Literal["json", "python"] = "json",
+-        include: Union[IncEx, None] = None,
+-        exclude: Union[IncEx, None] = None,
+-        by_alias: bool = True,
+-        exclude_unset: bool = False,
+-        exclude_defaults: bool = False,
+-        exclude_none: bool = False,
+-    ) -> Any: ...
+--- a/fastapi/_compat/shared.py
++++ b/fastapi/_compat/shared.py
+@@ -1,6 +1,7 @@
+ import sys
+ import types
+ import typing
++import warnings
+ from collections import deque
+ from collections.abc import Mapping, Sequence
+ from dataclasses import is_dataclass
+@@ -10,7 +11,6 @@
+     Union,
+ )
+ 
+-from fastapi._compat import may_v1
+ from fastapi.types import UnionType
+ from pydantic import BaseModel
+ from pydantic.version import VERSION as PYDANTIC_VERSION
+@@ -81,9 +81,7 @@ def value_is_sequence(value: Any) -> bool:
+ 
+ def _annotation_is_complex(annotation: Union[type[Any], None]) -> bool:
+     return (
+-        lenient_issubclass(
+-            annotation, (BaseModel, may_v1.BaseModel, Mapping, UploadFile)
+-        )
++        lenient_issubclass(annotation, (BaseModel, Mapping, UploadFile))
+         or _annotation_is_sequence(annotation)
+         or is_dataclass(annotation)
+     )
+@@ -179,13 +177,27 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
+     )
+ 
+ 
++def is_pydantic_v1_model_instance(obj: Any) -> bool:
++    with warnings.catch_warnings():
++        warnings.simplefilter("ignore", UserWarning)
++        from pydantic import v1
++    return isinstance(obj, v1.BaseModel)
++
++
++def is_pydantic_v1_model_class(cls: Any) -> bool:
++    with warnings.catch_warnings():
++        warnings.simplefilter("ignore", UserWarning)
++        from pydantic import v1
++    return lenient_issubclass(cls, v1.BaseModel)
++
++
+ def annotation_is_pydantic_v1(annotation: Any) -> bool:
+-    if lenient_issubclass(annotation, may_v1.BaseModel):
++    if is_pydantic_v1_model_class(annotation):
+         return True
+     origin = get_origin(annotation)
+     if origin is Union or origin is UnionType:
+         for arg in get_args(annotation):
+-            if lenient_issubclass(arg, may_v1.BaseModel):
++            if is_pydantic_v1_model_class(arg):
+                 return True
+     if field_annotation_is_sequence(annotation):
+         for sub_annotation in get_args(annotation):
+--- a/fastapi/_compat/v1.py
++++ b/fastapi/_compat/v1.py
+@@ -1,222 +0,0 @@
+-from collections.abc import Sequence
+-from copy import copy
+-from dataclasses import dataclass, is_dataclass
+-from enum import Enum
+-from typing import (
+-    Any,
+-    Callable,
+-    Union,
+-)
+-
+-from fastapi._compat import shared
+-from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
+-from fastapi.types import ModelNameMap
+-from pydantic.v1 import BaseConfig as BaseConfig
+-from pydantic.v1 import BaseModel as BaseModel
+-from pydantic.v1 import ValidationError as ValidationError
+-from pydantic.v1 import create_model as create_model
+-from pydantic.v1.class_validators import Validator as Validator
+-from pydantic.v1.color import Color as Color
+-from pydantic.v1.error_wrappers import ErrorWrapper as ErrorWrapper
+-from pydantic.v1.fields import (
+-    SHAPE_FROZENSET,
+-    SHAPE_LIST,
+-    SHAPE_SEQUENCE,
+-    SHAPE_SET,
+-    SHAPE_SINGLETON,
+-    SHAPE_TUPLE,
+-    SHAPE_TUPLE_ELLIPSIS,
+-)
+-from pydantic.v1.fields import FieldInfo as FieldInfo
+-from pydantic.v1.fields import ModelField as ModelField
+-from pydantic.v1.fields import Undefined as Undefined
+-from pydantic.v1.fields import UndefinedType as UndefinedType
+-from pydantic.v1.networks import AnyUrl as AnyUrl
+-from pydantic.v1.networks import NameEmail as NameEmail
+-from pydantic.v1.schema import TypeModelSet as TypeModelSet
+-from pydantic.v1.schema import field_schema, model_process_schema
+-from pydantic.v1.schema import (
+-    get_annotation_from_field_info as get_annotation_from_field_info,
+-)
+-from pydantic.v1.schema import (
+-    get_flat_models_from_field as get_flat_models_from_field,
+-)
+-from pydantic.v1.schema import (
+-    get_flat_models_from_fields as get_flat_models_from_fields,
+-)
+-from pydantic.v1.schema import get_model_name_map as get_model_name_map
+-from pydantic.v1.types import SecretBytes as SecretBytes
+-from pydantic.v1.types import SecretStr as SecretStr
+-from pydantic.v1.typing import evaluate_forwardref as evaluate_forwardref
+-from pydantic.v1.utils import lenient_issubclass as lenient_issubclass
+-from pydantic.version import VERSION as PYDANTIC_VERSION
+-from typing_extensions import Literal
+-
+-PYDANTIC_VERSION_MINOR_TUPLE = tuple(int(x) for x in PYDANTIC_VERSION.split(".")[:2])
+-PYDANTIC_V2 = PYDANTIC_VERSION_MINOR_TUPLE[0] == 2
+-# Keeping old "Required" functionality from Pydantic V1, without
+-# shadowing typing.Required.
+-RequiredParam: Any = Ellipsis
+-
+-
+-GetJsonSchemaHandler = Any
+-JsonSchemaValue = dict[str, Any]
+-CoreSchema = Any
+-Url = AnyUrl
+-
+-sequence_shapes = {
+-    SHAPE_LIST,
+-    SHAPE_SET,
+-    SHAPE_FROZENSET,
+-    SHAPE_TUPLE,
+-    SHAPE_SEQUENCE,
+-    SHAPE_TUPLE_ELLIPSIS,
+-}
+-sequence_shape_to_type = {
+-    SHAPE_LIST: list,
+-    SHAPE_SET: set,
+-    SHAPE_TUPLE: tuple,
+-    SHAPE_SEQUENCE: list,
+-    SHAPE_TUPLE_ELLIPSIS: list,
+-}
+-
+-
+-@dataclass
+-class GenerateJsonSchema:
+-    ref_template: str
+-
+-
+-class PydanticSchemaGenerationError(Exception):
+-    pass
+-
+-
+-RequestErrorModel: type[BaseModel] = create_model("Request")
+-
+-
+-def with_info_plain_validator_function(
+-    function: Callable[..., Any],
+-    *,
+-    ref: Union[str, None] = None,
+-    metadata: Any = None,
+-    serialization: Any = None,
+-) -> Any:
+-    return {}
+-
+-
+-def get_model_definitions(
+-    *,
+-    flat_models: set[Union[type[BaseModel], type[Enum]]],
+-    model_name_map: dict[Union[type[BaseModel], type[Enum]], str],
+-) -> dict[str, Any]:
+-    definitions: dict[str, dict[str, Any]] = {}
+-    for model in flat_models:
+-        m_schema, m_definitions, m_nested_models = model_process_schema(
+-            model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+-        )
+-        definitions.update(m_definitions)
+-        model_name = model_name_map[model]
+-        definitions[model_name] = m_schema
+-    for m_schema in definitions.values():
+-        if "description" in m_schema:
+-            m_schema["description"] = m_schema["description"].split("\f")[0]
+-    return definitions
+-
+-
+-def is_pv1_scalar_field(field: ModelField) -> bool:
+-    from fastapi import params
+-
+-    field_info = field.field_info
+-    if not (
+-        field.shape == SHAPE_SINGLETON
+-        and not lenient_issubclass(field.type_, BaseModel)
+-        and not lenient_issubclass(field.type_, dict)
+-        and not shared.field_annotation_is_sequence(field.type_)
+-        and not is_dataclass(field.type_)
+-        and not isinstance(field_info, params.Body)
+-    ):
+-        return False
+-    if field.sub_fields:
+-        if not all(is_pv1_scalar_field(f) for f in field.sub_fields):
+-            return False
+-    return True
+-
+-
+-def _model_dump(
+-    model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
+-) -> Any:
+-    return model.dict(**kwargs)
+-
+-
+-def _get_model_config(model: BaseModel) -> Any:
+-    return model.__config__
+-
+-
+-def get_schema_from_model_field(
+-    *,
+-    field: ModelField,
+-    model_name_map: ModelNameMap,
+-    field_mapping: dict[
+-        tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+-    ],
+-    separate_input_output_schemas: bool = True,
+-) -> dict[str, Any]:
+-    return field_schema(
+-        field,
+-        model_name_map=model_name_map,  # type: ignore[arg-type]
+-        ref_prefix=REF_PREFIX,
+-    )[0]
+-
+-
+-# def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
+-#     models = get_flat_models_from_fields(fields, known_models=set())
+-#     return get_model_name_map(models)  # type: ignore[no-any-return]
+-
+-
+-def get_definitions(
+-    *,
+-    fields: list[ModelField],
+-    model_name_map: ModelNameMap,
+-    separate_input_output_schemas: bool = True,
+-) -> tuple[
+-    dict[tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue],
+-    dict[str, dict[str, Any]],
+-]:
+-    models = get_flat_models_from_fields(fields, known_models=set())
+-    return {}, get_model_definitions(flat_models=models, model_name_map=model_name_map)  # type: ignore[arg-type]
+-
+-
+-def is_scalar_field(field: ModelField) -> bool:
+-    return is_pv1_scalar_field(field)
+-
+-
+-def is_sequence_field(field: ModelField) -> bool:
+-    return field.shape in sequence_shapes or shared._annotation_is_sequence(field.type_)
+-
+-
+-def is_bytes_field(field: ModelField) -> bool:
+-    return lenient_issubclass(field.type_, bytes)
+-
+-
+-def is_bytes_sequence_field(field: ModelField) -> bool:
+-    return field.shape in sequence_shapes and lenient_issubclass(field.type_, bytes)
+-
+-
+-def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
+-    return copy(field_info)
+-
+-
+-def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
+-    return sequence_shape_to_type[field.shape](value)  # type: ignore[no-any-return]
+-
+-
+-def create_body_model(
+-    *, fields: Sequence[ModelField], model_name: str
+-) -> type[BaseModel]:
+-    BodyModel = create_model(model_name)
+-    for f in fields:
+-        BodyModel.__fields__[f.name] = f
+-    return BodyModel
+-
+-
+-def get_model_fields(model: type[BaseModel]) -> list[ModelField]:
+-    return list(model.__fields__.values())
+--- a/fastapi/_compat/v2.py
++++ b/fastapi/_compat/v2.py
+@@ -4,14 +4,15 @@
+ from copy import copy, deepcopy
+ from dataclasses import dataclass, is_dataclass
+ from enum import Enum
++from functools import lru_cache
+ from typing import (
+     Annotated,
+     Any,
+     Union,
+     cast,
+ )
+ 
+-from fastapi._compat import may_v1, shared
++from fastapi._compat import shared
+ from fastapi.openapi.constants import REF_TEMPLATE
+ from fastapi.types import IncEx, ModelNameMap, UnionType
+ from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, create_model
+@@ -175,7 +176,7 @@ def validate(
+                 None,
+             )
+         except ValidationError as exc:
+-            return None, may_v1._regenerate_error_with_loc(
++            return None, _regenerate_error_with_loc(
+                 errors=exc.errors(include_url=False), loc_prefix=loc
+             )
+ 
+@@ -210,22 +211,6 @@ def __hash__(self) -> int:
+         return id(self)
+ 
+ 
+-def get_annotation_from_field_info(
+-    annotation: Any, field_info: FieldInfo, field_name: str
+-) -> Any:
+-    return annotation
+-
+-
+-def _model_dump(
+-    model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
+-) -> Any:
+-    return model.model_dump(mode=mode, **kwargs)
+-
+-
+-def _get_model_config(model: BaseModel) -> Any:
+-    return model.model_config
+-
+-
+ def _has_computed_fields(field: ModelField) -> bool:
+     computed_fields = field._type_adapter.core_schema.get("schema", {}).get(
+         "computed_fields", []
+@@ -490,6 +475,11 @@ def get_model_fields(model: type[BaseModel]) -> list[ModelField]:
+     return model_fields
+ 
+ 
++@lru_cache
++def get_cached_model_fields(model: type[BaseModel]) -> list[ModelField]:
++    return get_model_fields(model)  # type: ignore[return-value]
++
++
+ # Duplicate of several schema functions from Pydantic v1 to make them compatible with
+ # Pydantic v2 and allow mixing the models
+ 
+@@ -503,22 +493,23 @@ def normalize_name(name: str) -> str:
+ 
+ def get_model_name_map(unique_models: TypeModelSet) -> dict[TypeModelOrEnum, str]:
+     name_model_map = {}
+-    conflicting_names: set[str] = set()
+     for model in unique_models:
+         model_name = normalize_name(model.__name__)
+-        if model_name in conflicting_names:
+-            model_name = get_long_model_name(model)
+-            name_model_map[model_name] = model
+-        elif model_name in name_model_map:
+-            conflicting_names.add(model_name)
+-            conflicting_model = name_model_map.pop(model_name)
+-            name_model_map[get_long_model_name(conflicting_model)] = conflicting_model
+-            name_model_map[get_long_model_name(model)] = model
+-        else:
+-            name_model_map[model_name] = model
++        name_model_map[model_name] = model
+     return {v: k for k, v in name_model_map.items()}
+ 
+ 
++def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
++    all_flat_models = set()
++
++    v2_model_fields = [field for field in fields if isinstance(field, ModelField)]
++    v2_flat_models = get_flat_models_from_fields(v2_model_fields, known_models=set())
++    all_flat_models = all_flat_models.union(v2_flat_models)  # type: ignore[arg-type]
++
++    model_name_map = get_model_name_map(all_flat_models)  # type: ignore[arg-type]
++    return model_name_map
++
++
+ def get_flat_models_from_model(
+     model: type["BaseModel"], known_models: Union[TypeModelSet, None] = None
+ ) -> TypeModelSet:
+@@ -567,5 +558,11 @@ def get_flat_models_from_fields(
+     return known_models
+ 
+ 
+-def get_long_model_name(model: TypeModelOrEnum) -> str:
+-    return f"{model.__module__}__{model.__qualname__}".replace(".", "__")
++def _regenerate_error_with_loc(
++    *, errors: Sequence[Any], loc_prefix: tuple[Union[str, int], ...]
++) -> list[dict[str, Any]]:
++    updated_loc_errors: list[Any] = [
++        {**err, "loc": loc_prefix + err.get("loc", ())} for err in errors
++    ]
++
++    return updated_loc_errors
+--- a/fastapi/datastructures.py
++++ b/fastapi/datastructures.py
+@@ -1,3 +1,4 @@
++from collections.abc import Mapping
+ from typing import (
+     Annotated,
+     Any,
+@@ -9,11 +10,7 @@
+ )
+ 
+ from annotated_doc import Doc
+-from fastapi._compat import (
+-    CoreSchema,
+-    GetJsonSchemaHandler,
+-    JsonSchemaValue,
+-)
++from pydantic import GetJsonSchemaHandler
+ from starlette.datastructures import URL as URL  # noqa: F401
+ from starlette.datastructures import Address as Address  # noqa: F401
+ from starlette.datastructures import FormData as FormData  # noqa: F401
+@@ -142,14 +139,14 @@ def _validate(cls, __input_value: Any, _: Any) -> "UploadFile":
+ 
+     @classmethod
+     def __get_pydantic_json_schema__(
+-        cls, core_schema: CoreSchema, handler: GetJsonSchemaHandler
+-    ) -> JsonSchemaValue:
++        cls, core_schema: Mapping[str, Any], handler: GetJsonSchemaHandler
++    ) -> dict[str, Any]:
+         return {"type": "string", "format": "binary"}
+ 
+     @classmethod
+     def __get_pydantic_core_schema__(
+-        cls, source: type[Any], handler: Callable[[Any], CoreSchema]
+-    ) -> CoreSchema:
++        cls, source: type[Any], handler: Callable[[Any], Mapping[str, Any]]
++    ) -> Mapping[str, Any]:
+         from ._compat.v2 import with_info_plain_validator_function
+ 
+         return with_info_plain_validator_function(cls._validate)
+--- a/fastapi/dependencies/utils.py
++++ b/fastapi/dependencies/utils.py
+@@ -1,7 +1,6 @@
+ import dataclasses
+ import inspect
+ import sys
+-import warnings
+ from collections.abc import Coroutine, Mapping, Sequence
+ from contextlib import AsyncExitStack, contextmanager
+ from copy import copy, deepcopy
+@@ -22,13 +21,11 @@
+     ModelField,
+     RequiredParam,
+     Undefined,
+-    _is_error_wrapper,
+-    _is_model_class,
++    _regenerate_error_with_loc,
+     copy_field_info,
+     create_body_model,
+     evaluate_forwardref,
+     field_annotation_is_scalar,
+-    get_annotation_from_field_info,
+     get_cached_model_fields,
+     get_missing_field_error,
+     is_bytes_field,
+@@ -39,19 +36,17 @@
+     is_uploadfile_or_nonable_uploadfile_annotation,
+     is_uploadfile_sequence_annotation,
+     lenient_issubclass,
+-    may_v1,
+     sequence_types,
+     serialize_sequence_value,
+     value_is_sequence,
+ )
+-from fastapi._compat.shared import annotation_is_pydantic_v1
+ from fastapi.background import BackgroundTasks
+ from fastapi.concurrency import (
+     asynccontextmanager,
+     contextmanager_in_threadpool,
+ )
+ from fastapi.dependencies.models import Dependant
+-from fastapi.exceptions import DependencyScopeError, FastAPIDeprecationWarning
++from fastapi.exceptions import DependencyScopeError
+ from fastapi.logger import logger
+ from fastapi.security.oauth2 import SecurityScopes
+ from fastapi.types import DependencyCacheKey
+@@ -72,8 +67,6 @@
+ from starlette.websockets import WebSocket
+ from typing_extensions import Literal, get_args, get_origin
+ 
+-from .. import temp_pydantic_v1_params
+-
+ multipart_not_installed_error = (
+     'Form data requires "python-multipart" to be installed. \n'
+     'You can install "python-multipart" with: \n\n'
+@@ -189,7 +182,7 @@ def _get_flat_fields_from_params(fields: list[ModelField]) -> list[ModelField]:
+     if not fields:
+         return fields
+     first_field = fields[0]
+-    if len(fields) == 1 and _is_model_class(first_field.type_):
++    if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
+         fields_to_extract = get_cached_model_fields(first_field.type_)
+         return fields_to_extract
+     return fields
+@@ -323,16 +316,7 @@ def get_dependant(
+             )
+             continue
+         assert param_details.field is not None
+-        if isinstance(param_details.field, may_v1.ModelField):
+-            warnings.warn(
+-                "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
+-                f" Please update the param {param_name}: {param_details.type_annotation!r}.",
+-                category=FastAPIDeprecationWarning,
+-                stacklevel=5,
+-            )
+-        if isinstance(
+-            param_details.field.field_info, (params.Body, temp_pydantic_v1_params.Body)
+-        ):
++        if isinstance(param_details.field.field_info, params.Body):
+             dependant.body_params.append(param_details.field)
+         else:
+             add_param_to_fields(field=param_details.field, dependant=dependant)
+@@ -391,7 +375,7 @@ def analyze_param(
+         fastapi_annotations = [
+             arg
+             for arg in annotated_args[1:]
+-            if isinstance(arg, (FieldInfo, may_v1.FieldInfo, params.Depends))
++            if isinstance(arg, (FieldInfo, params.Depends))
+         ]
+         fastapi_specific_annotations = [
+             arg
+@@ -400,30 +384,27 @@ def analyze_param(
+                 arg,
+                 (
+                     params.Param,
+-                    temp_pydantic_v1_params.Param,
+                     params.Body,
+-                    temp_pydantic_v1_params.Body,
+                     params.Depends,
+                 ),
+             )
+         ]
+         if fastapi_specific_annotations:
+-            fastapi_annotation: Union[
+-                FieldInfo, may_v1.FieldInfo, params.Depends, None
+-            ] = fastapi_specific_annotations[-1]
++            fastapi_annotation: Union[FieldInfo, params.Depends, None] = (
++                fastapi_specific_annotations[-1]
++            )
+         else:
+             fastapi_annotation = None
+         # Set default for Annotated FieldInfo
+-        if isinstance(fastapi_annotation, (FieldInfo, may_v1.FieldInfo)):
++        if isinstance(fastapi_annotation, FieldInfo):
+             # Copy `field_info` because we mutate `field_info.default` below.
+             field_info = copy_field_info(
+                 field_info=fastapi_annotation,  # type: ignore[arg-type]
+                 annotation=use_annotation,
+             )
+-            assert field_info.default in {
+-                Undefined,
+-                may_v1.Undefined,
+-            } or field_info.default in {RequiredParam, may_v1.RequiredParam}, (
++            assert (
++                field_info.default == Undefined or field_info.default == RequiredParam
++            ), (
+                 f"`{field_info.__class__.__name__}` default value cannot be set in"
+                 f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
+             )
+@@ -447,7 +428,7 @@ def analyze_param(
+         )
+         depends = value
+     # Get FieldInfo from default value
+-    elif isinstance(value, (FieldInfo, may_v1.FieldInfo)):
++    elif isinstance(value, FieldInfo):
+         assert field_info is None, (
+             "Cannot specify FastAPI annotations in `Annotated` and default value"
+             f" together for {param_name!r}"
+@@ -491,14 +472,7 @@ def analyze_param(
+         ) or is_uploadfile_sequence_annotation(type_annotation):
+             field_info = params.File(annotation=use_annotation, default=default_value)
+         elif not field_annotation_is_scalar(annotation=type_annotation):
+-            if annotation_is_pydantic_v1(use_annotation):
+-                field_info = temp_pydantic_v1_params.Body(  # type: ignore[assignment]
+-                    annotation=use_annotation, default=default_value
+-                )
+-            else:
+-                field_info = params.Body(
+-                    annotation=use_annotation, default=default_value
+-                )
++            field_info = params.Body(annotation=use_annotation, default=default_value)
+         else:
+             field_info = params.Query(annotation=use_annotation, default=default_value)
+ 
+@@ -507,23 +481,17 @@ def analyze_param(
+     if field_info is not None:
+         # Handle field_info.in_
+         if is_path_param:
+-            assert isinstance(
+-                field_info, (params.Path, temp_pydantic_v1_params.Path)
+-            ), (
++            assert isinstance(field_info, params.Path), (
+                 f"Cannot use `{field_info.__class__.__name__}` for path param"
+                 f" {param_name!r}"
+             )
+         elif (
+-            isinstance(field_info, (params.Param, temp_pydantic_v1_params.Param))
++            isinstance(field_info, params.Param)
+             and getattr(field_info, "in_", None) is None
+         ):
+             field_info.in_ = params.ParamTypes.query
+-        use_annotation_from_field_info = get_annotation_from_field_info(
+-            use_annotation,
+-            field_info,
+-            param_name,
+-        )
+-        if isinstance(field_info, (params.Form, temp_pydantic_v1_params.Form)):
++        use_annotation_from_field_info = use_annotation
++        if isinstance(field_info, params.Form):
+             ensure_multipart_is_installed()
+         if not field_info.alias and getattr(field_info, "convert_underscores", None):
+             alias = param_name.replace("_", "-")
+@@ -535,20 +503,19 @@ def analyze_param(
+             type_=use_annotation_from_field_info,
+             default=field_info.default,
+             alias=alias,
+-            required=field_info.default
+-            in (RequiredParam, may_v1.RequiredParam, Undefined),
++            required=field_info.default in (RequiredParam, Undefined),
+             field_info=field_info,
+         )
+         if is_path_param:
+             assert is_scalar_field(field=field), (
+                 "Path params must be of one of the supported types"
+             )
+-        elif isinstance(field_info, (params.Query, temp_pydantic_v1_params.Query)):
++        elif isinstance(field_info, params.Query):
+             assert (
+                 is_scalar_field(field)
+                 or is_scalar_sequence_field(field)
+                 or (
+-                    _is_model_class(field.type_)
++                    lenient_issubclass(field.type_, BaseModel)
+                     # For Pydantic v1
+                     and getattr(field, "shape", 1) == 1
+                 )
+@@ -742,10 +709,8 @@ def _validate_value_with_model_field(
+         else:
+             return deepcopy(field.default), []
+     v_, errors_ = field.validate(value, values, loc=loc)
+-    if _is_error_wrapper(errors_):  # type: ignore[arg-type]
+-        return None, [errors_]
+-    elif isinstance(errors_, list):
+-        new_errors = may_v1._regenerate_error_with_loc(errors=errors_, loc_prefix=())
++    if isinstance(errors_, list):
++        new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
+         return None, new_errors
+     else:
+         return v_, []
+@@ -762,7 +727,7 @@ def _get_multidict_value(
+     if (
+         value is None
+         or (
+-            isinstance(field.field_info, (params.Form, temp_pydantic_v1_params.Form))
++            isinstance(field.field_info, params.Form)
+             and isinstance(value, str)  # For type checks
+             and value == ""
+         )
+@@ -832,7 +797,7 @@ def request_params_to_args(
+ 
+     if single_not_embedded_field:
+         field_info = first_field.field_info
+-        assert isinstance(field_info, (params.Param, temp_pydantic_v1_params.Param)), (
++        assert isinstance(field_info, params.Param), (
+             "Params must be subclasses of Param"
+         )
+         loc: tuple[str, ...] = (field_info.in_.value,)
+@@ -844,7 +809,7 @@ def request_params_to_args(
+     for field in fields:
+         value = _get_multidict_value(field, received_params)
+         field_info = field.field_info
+-        assert isinstance(field_info, (params.Param, temp_pydantic_v1_params.Param)), (
++        assert isinstance(field_info, params.Param), (
+             "Params must be subclasses of Param"
+         )
+         loc = (field_info.in_.value, get_validation_alias(field))
+@@ -871,7 +836,7 @@ def is_union_of_base_models(field_type: Any) -> bool:
+     union_args = get_args(field_type)
+ 
+     for arg in union_args:
+-        if not _is_model_class(arg):
++        if not lenient_issubclass(arg, BaseModel):
+             return False
+ 
+     return True
+@@ -893,8 +858,8 @@ def _should_embed_body_fields(fields: list[ModelField]) -> bool:
+     # If it's a Form (or File) field, it has to be a BaseModel (or a union of BaseModels) to be top level
+     # otherwise it has to be embedded, so that the key value pair can be extracted
+     if (
+-        isinstance(first_field.field_info, (params.Form, temp_pydantic_v1_params.Form))
+-        and not _is_model_class(first_field.type_)
++        isinstance(first_field.field_info, params.Form)
++        and not lenient_issubclass(first_field.type_, BaseModel)
+         and not is_union_of_base_models(first_field.type_)
+     ):
+         return True
+@@ -911,14 +876,14 @@ async def _extract_form_body(
+         value = _get_multidict_value(field, received_body)
+         field_info = field.field_info
+         if (
+-            isinstance(field_info, (params.File, temp_pydantic_v1_params.File))
++            isinstance(field_info, params.File)
+             and is_bytes_field(field)
+             and isinstance(value, UploadFile)
+         ):
+             value = await value.read()
+         elif (
+             is_bytes_sequence_field(field)
+-            and isinstance(field_info, (params.File, temp_pydantic_v1_params.File))
++            and isinstance(field_info, params.File)
+             and value_is_sequence(value)
+         ):
+             # For types
+@@ -964,7 +929,7 @@ async def request_body_to_args(
+ 
+     if (
+         single_not_embedded_field
+-        and _is_model_class(first_field.type_)
++        and lenient_issubclass(first_field.type_, BaseModel)
+         and isinstance(received_body, FormData)
+     ):
+         fields_to_extract = get_cached_model_fields(first_field.type_)
+@@ -1029,28 +994,15 @@ def get_body_field(
+         BodyFieldInfo_kwargs["default"] = None
+     if any(isinstance(f.field_info, params.File) for f in flat_dependant.body_params):
+         BodyFieldInfo: type[params.Body] = params.File
+-    elif any(
+-        isinstance(f.field_info, temp_pydantic_v1_params.File)
+-        for f in flat_dependant.body_params
+-    ):
+-        BodyFieldInfo: type[temp_pydantic_v1_params.Body] = temp_pydantic_v1_params.File  # type: ignore[no-redef]
+     elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
+         BodyFieldInfo = params.Form
+-    elif any(
+-        isinstance(f.field_info, temp_pydantic_v1_params.Form)
+-        for f in flat_dependant.body_params
+-    ):
+-        BodyFieldInfo = temp_pydantic_v1_params.Form  # type: ignore[assignment]
+     else:
+-        if annotation_is_pydantic_v1(BodyModel):
+-            BodyFieldInfo = temp_pydantic_v1_params.Body  # type: ignore[assignment]
+-        else:
+-            BodyFieldInfo = params.Body
++        BodyFieldInfo = params.Body
+ 
+         body_param_media_types = [
+             f.field_info.media_type
+             for f in flat_dependant.body_params
+-            if isinstance(f.field_info, (params.Body, temp_pydantic_v1_params.Body))
++            if isinstance(f.field_info, params.Body)
+         ]
+         if len(set(body_param_media_types)) == 1:
+             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
+--- a/fastapi/encoders.py
++++ b/fastapi/encoders.py
+@@ -18,14 +18,18 @@
+ from uuid import UUID
+ 
+ from annotated_doc import Doc
+-from fastapi._compat import may_v1
++from fastapi.exceptions import PydanticV1NotSupportedError
+ from fastapi.types import IncEx
+ from pydantic import BaseModel
+ from pydantic.color import Color
+ from pydantic.networks import AnyUrl, NameEmail
+ from pydantic.types import SecretBytes, SecretStr
++from pydantic_core import PydanticUndefinedType
+ 
+-from ._compat import Url, _is_undefined, _model_dump
++from ._compat import (
++    Url,
++    is_pydantic_v1_model_instance,
++)
+ 
+ 
+ # Taken from Pydantic v1 as is
+@@ -63,7 +67,6 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
+ ENCODERS_BY_TYPE: dict[type[Any], Callable[[Any], Any]] = {
+     bytes: lambda o: o.decode(),
+     Color: str,
+-    may_v1.Color: str,
+     datetime.date: isoformat,
+     datetime.datetime: isoformat,
+     datetime.time: isoformat,
+@@ -80,19 +83,14 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
+     IPv6Interface: str,
+     IPv6Network: str,
+     NameEmail: str,
+-    may_v1.NameEmail: str,
+     Path: str,
+     Pattern: lambda o: o.pattern,
+     SecretBytes: str,
+-    may_v1.SecretBytes: str,
+     SecretStr: str,
+-    may_v1.SecretStr: str,
+     set: list,
+     UUID: str,
+     Url: str,
+-    may_v1.Url: str,
+     AnyUrl: str,
+-    may_v1.AnyUrl: str,
+ }
+ 
+ 
+@@ -224,15 +222,8 @@ def jsonable_encoder(
+         include = set(include)
+     if exclude is not None and not isinstance(exclude, (set, dict)):
+         exclude = set(exclude)
+-    if isinstance(obj, (BaseModel, may_v1.BaseModel)):
+-        # TODO: remove when deprecating Pydantic v1
+-        encoders: dict[Any, Any] = {}
+-        if isinstance(obj, may_v1.BaseModel):
+-            encoders = getattr(obj.__config__, "json_encoders", {})
+-            if custom_encoder:
+-                encoders = {**encoders, **custom_encoder}
+-        obj_dict = _model_dump(
+-            obj,  # type: ignore[arg-type]
++    if isinstance(obj, BaseModel):
++        obj_dict = obj.model_dump(
+             mode="json",
+             include=include,
+             exclude=exclude,
+@@ -241,14 +232,10 @@ def jsonable_encoder(
+             exclude_none=exclude_none,
+             exclude_defaults=exclude_defaults,
+         )
+-        if "__root__" in obj_dict:
+-            obj_dict = obj_dict["__root__"]
+         return jsonable_encoder(
+             obj_dict,
+             exclude_none=exclude_none,
+             exclude_defaults=exclude_defaults,
+-            # TODO: remove when deprecating Pydantic v1
+-            custom_encoder=encoders,
+             sqlalchemy_safe=sqlalchemy_safe,
+         )
+     if dataclasses.is_dataclass(obj):
+@@ -271,7 +258,7 @@ def jsonable_encoder(
+         return str(obj)
+     if isinstance(obj, (str, int, float, type(None))):
+         return obj
+-    if _is_undefined(obj):
++    if isinstance(obj, PydanticUndefinedType):
+         return None
+     if isinstance(obj, dict):
+         encoded_dict = {}
+@@ -331,7 +318,11 @@ def jsonable_encoder(
+     for encoder, classes_tuple in encoders_by_class_tuples.items():
+         if isinstance(obj, classes_tuple):
+             return encoder(obj)
+-
++    if is_pydantic_v1_model_instance(obj):
++        raise PydanticV1NotSupportedError(
++            "pydantic.v1 models are no longer supported by FastAPI."
++            f" Please update the model {obj!r}."
++        )
+     try:
+         data = dict(obj)
+     except Exception as e:
+--- a/fastapi/exceptions.py
++++ b/fastapi/exceptions.py
+@@ -233,6 +233,12 @@ def __init__(
+         self.body = body
+ 
+ 
++class PydanticV1NotSupportedError(FastAPIError):
++    """
++    A pydantic.v1 model is used, which is no longer supported.
++    """
++
++
+ class FastAPIDeprecationWarning(UserWarning):
+     """
+     A custom deprecation warning as DeprecationWarning is ignored
+--- a/fastapi/openapi/models.py
++++ b/fastapi/openapi/models.py
+@@ -1,15 +1,15 @@
+-from collections.abc import Iterable
++from collections.abc import Iterable, Mapping
+ from enum import Enum
+ from typing import Annotated, Any, Callable, Optional, Union
+ 
+-from fastapi._compat import (
+-    CoreSchema,
++from fastapi._compat import with_info_plain_validator_function
++from fastapi.logger import logger
++from pydantic import (
++    AnyUrl,
++    BaseModel,
++    Field,
+     GetJsonSchemaHandler,
+-    JsonSchemaValue,
+-    with_info_plain_validator_function,
+ )
+-from fastapi.logger import logger
+-from pydantic import AnyUrl, BaseModel, Field
+ from typing_extensions import Literal, TypedDict
+ from typing_extensions import deprecated as typing_deprecated
+ 
+@@ -43,14 +43,14 @@ def _validate(cls, __input_value: Any, _: Any) -> str:
+ 
+         @classmethod
+         def __get_pydantic_json_schema__(
+-            cls, core_schema: CoreSchema, handler: GetJsonSchemaHandler
+-        ) -> JsonSchemaValue:
++            cls, core_schema: Mapping[str, Any], handler: GetJsonSchemaHandler
++        ) -> dict[str, Any]:
+             return {"type": "string", "format": "email"}
+ 
+         @classmethod
+         def __get_pydantic_core_schema__(
+-            cls, source: type[Any], handler: Callable[[Any], CoreSchema]
+-        ) -> CoreSchema:
++            cls, source: type[Any], handler: Callable[[Any], Mapping[str, Any]]
++        ) -> Mapping[str, Any]:
+             return with_info_plain_validator_function(cls._validate)
+ 
+ 
+--- a/fastapi/openapi/utils.py
++++ b/fastapi/openapi/utils.py
+@@ -6,7 +6,6 @@
+ 
+ from fastapi import routing
+ from fastapi._compat import (
+-    JsonSchemaValue,
+     ModelField,
+     Undefined,
+     get_compat_model_name_map,
+@@ -39,8 +38,6 @@
+ from starlette.routing import BaseRoute
+ from typing_extensions import Literal
+ 
+-from .._compat import _is_model_field
+-
+ validation_error_definition = {
+     "title": "ValidationError",
+     "type": "object",
+@@ -109,7 +106,7 @@ def _get_openapi_operation_parameters(
+     dependant: Dependant,
+     model_name_map: ModelNameMap,
+     field_mapping: dict[
+-        tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
++        tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
+     ],
+     separate_input_output_schemas: bool = True,
+ ) -> list[dict[str, Any]]:
+@@ -182,13 +179,13 @@ def get_openapi_operation_request_body(
+     body_field: Optional[ModelField],
+     model_name_map: ModelNameMap,
+     field_mapping: dict[
+-        tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
++        tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
+     ],
+     separate_input_output_schemas: bool = True,
+ ) -> Optional[dict[str, Any]]:
+     if not body_field:
+         return None
+-    assert _is_model_field(body_field)
++    assert isinstance(body_field, ModelField)
+     body_schema = get_schema_from_model_field(
+         field=body_field,
+         model_name_map=model_name_map,
+@@ -265,7 +262,7 @@ def get_openapi_path(
+     operation_ids: set[str],
+     model_name_map: ModelNameMap,
+     field_mapping: dict[
+-        tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
++        tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
+     ],
+     separate_input_output_schemas: bool = True,
+ ) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+@@ -457,7 +454,7 @@ def get_fields_from_routes(
+             route, routing.APIRoute
+         ):
+             if route.body_field:
+-                assert _is_model_field(route.body_field), (
++                assert isinstance(route.body_field, ModelField), (
+                     "A request body must be a Pydantic Field"
+                 )
+                 body_fields_from_routes.append(route.body_field)
+--- a/fastapi/param_functions.py
++++ b/fastapi/param_functions.py
+@@ -5,6 +5,7 @@
+ from fastapi import params
+ from fastapi._compat import Undefined
+ from fastapi.openapi.models import Example
++from pydantic import AliasChoices, AliasPath
+ from typing_extensions import Literal, deprecated
+ 
+ _Unset: Any = Undefined
+@@ -54,10 +55,8 @@ def Path(  # noqa: N802
+             """
+         ),
+     ] = _Unset,
+-    # TODO: update when deprecating Pydantic v1, import these types
+-    # validation_alias: str | AliasPath | AliasChoices | None
+     validation_alias: Annotated[
+-        Union[str, None],
++        Union[str, AliasPath, AliasChoices, None],
+         Doc(
+             """
+             'Whitelist' validation step. The parameter field will be the single one
+@@ -379,10 +378,8 @@ def Query(  # noqa: N802
+             """
+         ),
+     ] = _Unset,
+-    # TODO: update when deprecating Pydantic v1, import these types
+-    # validation_alias: str | AliasPath | AliasChoices | None
+     validation_alias: Annotated[
+-        Union[str, None],
++        Union[str, AliasPath, AliasChoices, None],
+         Doc(
+             """
+             'Whitelist' validation step. The parameter field will be the single one
+@@ -683,10 +680,8 @@ def Header(  # noqa: N802
+             """
+         ),
+     ] = _Unset,
+-    # TODO: update when deprecating Pydantic v1, import these types
+-    # validation_alias: str | AliasPath | AliasChoices | None
+     validation_alias: Annotated[
+-        Union[str, None],
++        Union[str, AliasPath, AliasChoices, None],
+         Doc(
+             """
+             'Whitelist' validation step. The parameter field will be the single one
+@@ -999,10 +994,8 @@ def Cookie(  # noqa: N802
+             """
+         ),
+     ] = _Unset,
+-    # TODO: update when deprecating Pydantic v1, import these types
+-    # validation_alias: str | AliasPath | AliasChoices | None
+     validation_alias: Annotated[
+-        Union[str, None],
++        Union[str, AliasPath, AliasChoices, None],
+         Doc(
+             """
+             'Whitelist' validation step. The parameter field will be the single one
+@@ -1326,10 +1319,8 @@ def Body(  # noqa: N802
+             """
+         ),
+     ] = _Unset,
+-    # TODO: update when deprecating Pydantic v1, import these types
+-    # validation_alias: str | AliasPath | AliasChoices | None
+     validation_alias: Annotated[
+-        Union[str, None],
++        Union[str, AliasPath, AliasChoices, None],
+         Doc(
+             """
+             'Whitelist' validation step. The parameter field will be the single one
+@@ -1641,10 +1632,8 @@ def Form(  # noqa: N802
+             """
+         ),
+     ] = _Unset,
+-    # TODO: update when deprecating Pydantic v1, import these types
+-    # validation_alias: str | AliasPath | AliasChoices | None
+     validation_alias: Annotated[
+-        Union[str, None],
++        Union[str, AliasPath, AliasChoices, None],
+         Doc(
+             """
+             'Whitelist' validation step. The parameter field will be the single one
+@@ -1955,10 +1944,8 @@ def File(  # noqa: N802
+             """
+         ),
+     ] = _Unset,
+-    # TODO: update when deprecating Pydantic v1, import these types
+-    # validation_alias: str | AliasPath | AliasChoices | None
+     validation_alias: Annotated[
+-        Union[str, None],
++        Union[str, AliasPath, AliasChoices, None],
+         Doc(
+             """
+             'Whitelist' validation step. The parameter field will be the single one
+--- a/fastapi/params.py
++++ b/fastapi/params.py
+@@ -6,6 +6,7 @@
+ 
+ from fastapi.exceptions import FastAPIDeprecationWarning
+ from fastapi.openapi.models import Example
++from pydantic import AliasChoices, AliasPath
+ from pydantic.fields import FieldInfo
+ from typing_extensions import Literal, deprecated
+ 
+@@ -34,9 +35,7 @@ def __init__(
+         annotation: Optional[Any] = None,
+         alias: Optional[str] = None,
+         alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
++        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
+         serialization_alias: Union[str, None] = None,
+         title: Optional[str] = None,
+         description: Optional[str] = None,
+@@ -147,9 +146,7 @@ def __init__(
+         annotation: Optional[Any] = None,
+         alias: Optional[str] = None,
+         alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
++        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
+         serialization_alias: Union[str, None] = None,
+         title: Optional[str] = None,
+         description: Optional[str] = None,
+@@ -233,9 +230,7 @@ def __init__(
+         annotation: Optional[Any] = None,
+         alias: Optional[str] = None,
+         alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
++        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
+         serialization_alias: Union[str, None] = None,
+         title: Optional[str] = None,
+         description: Optional[str] = None,
+@@ -317,9 +312,7 @@ def __init__(
+         annotation: Optional[Any] = None,
+         alias: Optional[str] = None,
+         alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
++        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
+         serialization_alias: Union[str, None] = None,
+         convert_underscores: bool = True,
+         title: Optional[str] = None,
+@@ -403,9 +396,7 @@ def __init__(
+         annotation: Optional[Any] = None,
+         alias: Optional[str] = None,
+         alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
++        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
+         serialization_alias: Union[str, None] = None,
+         title: Optional[str] = None,
+         description: Optional[str] = None,
+@@ -487,9 +478,7 @@ def __init__(
+         media_type: str = "application/json",
+         alias: Optional[str] = None,
+         alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
++        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
+         serialization_alias: Union[str, None] = None,
+         title: Optional[str] = None,
+         description: Optional[str] = None,
+@@ -600,9 +589,7 @@ def __init__(
+         media_type: str = "application/x-www-form-urlencoded",
+         alias: Optional[str] = None,
+         alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
++        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
+         serialization_alias: Union[str, None] = None,
+         title: Optional[str] = None,
+         description: Optional[str] = None,
+@@ -684,9 +671,7 @@ def __init__(
+         media_type: str = "multipart/form-data",
+         alias: Optional[str] = None,
+         alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
++        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
+         serialization_alias: Union[str, None] = None,
+         title: Optional[str] = None,
+         description: Optional[str] = None,
+--- a/fastapi/routing.py
++++ b/fastapi/routing.py
+@@ -2,7 +2,6 @@
+ import functools
+ import inspect
+ import json
+-import warnings
+ from collections.abc import (
+     AsyncIterator,
+     Awaitable,
+@@ -22,16 +21,12 @@
+ )
+ 
+ from annotated_doc import Doc
+-from fastapi import params, temp_pydantic_v1_params
++from fastapi import params
+ from fastapi._compat import (
+     ModelField,
+     Undefined,
+-    _get_model_config,
+-    _model_dump,
+-    _normalize_errors,
+     annotation_is_pydantic_v1,
+     lenient_issubclass,
+-    may_v1,
+ )
+ from fastapi.datastructures import Default, DefaultPlaceholder
+ from fastapi.dependencies.models import Dependant
+@@ -47,8 +42,8 @@
+ from fastapi.encoders import jsonable_encoder
+ from fastapi.exceptions import (
+     EndpointContext,
+-    FastAPIDeprecationWarning,
+     FastAPIError,
++    PydanticV1NotSupportedError,
+     RequestValidationError,
+     ResponseValidationError,
+     WebSocketRequestValidationError,
+@@ -148,51 +143,6 @@ async def app(scope: Scope, receive: Receive, send: Send) -> None:
+     return app
+ 
+ 
+-def _prepare_response_content(
+-    res: Any,
+-    *,
+-    exclude_unset: bool,
+-    exclude_defaults: bool = False,
+-    exclude_none: bool = False,
+-) -> Any:
+-    if isinstance(res, may_v1.BaseModel):
+-        read_with_orm_mode = getattr(_get_model_config(res), "read_with_orm_mode", None)  # type: ignore[arg-type]
+-        if read_with_orm_mode:
+-            # Let from_orm extract the data from this model instead of converting
+-            # it now to a dict.
+-            # Otherwise, there's no way to extract lazy data that requires attribute
+-            # access instead of dict iteration, e.g. lazy relationships.
+-            return res
+-        return _model_dump(
+-            res,  # type: ignore[arg-type]
+-            by_alias=True,
+-            exclude_unset=exclude_unset,
+-            exclude_defaults=exclude_defaults,
+-            exclude_none=exclude_none,
+-        )
+-    elif isinstance(res, list):
+-        return [
+-            _prepare_response_content(
+-                item,
+-                exclude_unset=exclude_unset,
+-                exclude_defaults=exclude_defaults,
+-                exclude_none=exclude_none,
+-            )
+-            for item in res
+-        ]
+-    elif isinstance(res, dict):
+-        return {
+-            k: _prepare_response_content(
+-                v,
+-                exclude_unset=exclude_unset,
+-                exclude_defaults=exclude_defaults,
+-                exclude_none=exclude_none,
+-            )
+-            for k, v in res.items()
+-        }
+-    return res
+-
+-
+ def _merge_lifespan_context(
+     original_context: Lifespan[Any], nested_context: Lifespan[Any]
+ ) -> Lifespan[Any]:
+@@ -252,14 +202,6 @@ async def serialize_response(
+ ) -> Any:
+     if field:
+         errors = []
+-        if not hasattr(field, "serialize"):
+-            # pydantic v1
+-            response_content = _prepare_response_content(
+-                response_content,
+-                exclude_unset=exclude_unset,
+-                exclude_defaults=exclude_defaults,
+-                exclude_none=exclude_none,
+-            )
+         if is_coroutine:
+             value, errors_ = field.validate(response_content, {}, loc=("response",))
+         else:
+@@ -268,28 +210,15 @@ async def serialize_response(
+             )
+         if isinstance(errors_, list):
+             errors.extend(errors_)
+-        elif errors_:
+-            errors.append(errors_)
+         if errors:
+             ctx = endpoint_ctx or EndpointContext()
+             raise ResponseValidationError(
+-                errors=_normalize_errors(errors),
++                errors=errors,
+                 body=response_content,
+                 endpoint_ctx=ctx,
+             )
+ 
+-        if hasattr(field, "serialize"):
+-            return field.serialize(
+-                value,
+-                include=include,
+-                exclude=exclude,
+-                by_alias=by_alias,
+-                exclude_unset=exclude_unset,
+-                exclude_defaults=exclude_defaults,
+-                exclude_none=exclude_none,
+-            )
+-
+-        return jsonable_encoder(
++        return field.serialize(
+             value,
+             include=include,
+             exclude=exclude,
+@@ -298,6 +227,7 @@ async def serialize_response(
+             exclude_defaults=exclude_defaults,
+             exclude_none=exclude_none,
+         )
++
+     else:
+         return jsonable_encoder(response_content)
+ 
+@@ -332,9 +262,7 @@ def get_request_handler(
+ ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
+     assert dependant.call is not None, "dependant.call must be a function"
+     is_coroutine = dependant.is_coroutine_callable
+-    is_body_form = body_field and isinstance(
+-        body_field.field_info, (params.Form, temp_pydantic_v1_params.Form)
+-    )
++    is_body_form = body_field and isinstance(body_field.field_info, params.Form)
+     if isinstance(response_class, DefaultPlaceholder):
+         actual_response_class: type[Response] = response_class.value
+     else:
+@@ -464,7 +392,7 @@ async def app(request: Request) -> Response:
+                 response.headers.raw.extend(solved_result.response.headers.raw)
+         if errors:
+             validation_error = RequestValidationError(
+-                _normalize_errors(errors), body=body, endpoint_ctx=endpoint_ctx
++                errors, body=body, endpoint_ctx=endpoint_ctx
+             )
+             raise validation_error
+ 
+@@ -503,7 +431,7 @@ async def app(websocket: WebSocket) -> None:
+         )
+         if solved_result.errors:
+             raise WebSocketRequestValidationError(
+-                _normalize_errors(solved_result.errors),
++                solved_result.errors,
+                 endpoint_ctx=endpoint_ctx,
+             )
+         assert dependant.call is not None, "dependant.call must be a function"
+@@ -638,11 +566,9 @@ def __init__(
+             )
+             response_name = "Response_" + self.unique_id
+             if annotation_is_pydantic_v1(self.response_model):
+-                warnings.warn(
+-                    "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
+-                    f" Please update the response model {self.response_model!r}.",
+-                    category=FastAPIDeprecationWarning,
+-                    stacklevel=4,
++                raise PydanticV1NotSupportedError(
++                    "pydantic.v1 models are no longer supported by FastAPI."
++                    f" Please update the response model {self.response_model!r}."
+                 )
+             self.response_field = create_model_field(
+                 name=response_name,
+@@ -678,11 +604,9 @@ def __init__(
+                 )
+                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
+                 if annotation_is_pydantic_v1(model):
+-                    warnings.warn(
+-                        "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
+-                        f" In responses={{}}, please update {model}.",
+-                        category=FastAPIDeprecationWarning,
+-                        stacklevel=4,
++                    raise PydanticV1NotSupportedError(
++                        "pydantic.v1 models are no longer supported by FastAPI."
++                        f" In responses={{}}, please update {model}."
+                     )
+                 response_field = create_model_field(
+                     name=response_name, type_=model, mode="serialization"
+--- a/fastapi/temp_pydantic_v1_params.py
++++ b/fastapi/temp_pydantic_v1_params.py
+@@ -1,718 +0,0 @@
+-import warnings
+-from typing import Annotated, Any, Callable, Optional, Union
+-
+-from fastapi.exceptions import FastAPIDeprecationWarning
+-from fastapi.openapi.models import Example
+-from fastapi.params import ParamTypes
+-from typing_extensions import deprecated
+-
+-from ._compat.may_v1 import FieldInfo, Undefined
+-
+-_Unset: Any = Undefined
+-
+-
+-class Param(FieldInfo):
+-    in_: ParamTypes
+-
+-    def __init__(
+-        self,
+-        default: Any = Undefined,
+-        *,
+-        default_factory: Union[Callable[[], Any], None] = _Unset,
+-        annotation: Optional[Any] = None,
+-        alias: Optional[str] = None,
+-        alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
+-        serialization_alias: Union[str, None] = None,
+-        title: Optional[str] = None,
+-        description: Optional[str] = None,
+-        gt: Optional[float] = None,
+-        ge: Optional[float] = None,
+-        lt: Optional[float] = None,
+-        le: Optional[float] = None,
+-        min_length: Optional[int] = None,
+-        max_length: Optional[int] = None,
+-        pattern: Optional[str] = None,
+-        regex: Annotated[
+-            Optional[str],
+-            deprecated(
+-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+-            ),
+-        ] = None,
+-        discriminator: Union[str, None] = None,
+-        strict: Union[bool, None] = _Unset,
+-        multiple_of: Union[float, None] = _Unset,
+-        allow_inf_nan: Union[bool, None] = _Unset,
+-        max_digits: Union[int, None] = _Unset,
+-        decimal_places: Union[int, None] = _Unset,
+-        examples: Optional[list[Any]] = None,
+-        example: Annotated[
+-            Optional[Any],
+-            deprecated(
+-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+-                "although still supported. Use examples instead."
+-            ),
+-        ] = _Unset,
+-        openapi_examples: Optional[dict[str, Example]] = None,
+-        deprecated: Union[deprecated, str, bool, None] = None,
+-        include_in_schema: bool = True,
+-        json_schema_extra: Union[dict[str, Any], None] = None,
+-        **extra: Any,
+-    ):
+-        if example is not _Unset:
+-            warnings.warn(
+-                "`example` has been deprecated, please use `examples` instead",
+-                category=FastAPIDeprecationWarning,
+-                stacklevel=4,
+-            )
+-        self.example = example
+-        self.include_in_schema = include_in_schema
+-        self.openapi_examples = openapi_examples
+-        kwargs = dict(
+-            default=default,
+-            default_factory=default_factory,
+-            alias=alias,
+-            title=title,
+-            description=description,
+-            gt=gt,
+-            ge=ge,
+-            lt=lt,
+-            le=le,
+-            min_length=min_length,
+-            max_length=max_length,
+-            discriminator=discriminator,
+-            multiple_of=multiple_of,
+-            allow_inf_nan=allow_inf_nan,
+-            max_digits=max_digits,
+-            decimal_places=decimal_places,
+-            **extra,
+-        )
+-        if examples is not None:
+-            kwargs["examples"] = examples
+-        if regex is not None:
+-            warnings.warn(
+-                "`regex` has been deprecated, please use `pattern` instead",
+-                category=FastAPIDeprecationWarning,
+-                stacklevel=4,
+-            )
+-        current_json_schema_extra = json_schema_extra or extra
+-        kwargs["deprecated"] = deprecated
+-        kwargs["regex"] = pattern or regex
+-        kwargs.update(**current_json_schema_extra)
+-        use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
+-
+-        super().__init__(**use_kwargs)
+-
+-    def __repr__(self) -> str:
+-        return f"{self.__class__.__name__}({self.default})"
+-
+-
+-class Path(Param):
+-    in_ = ParamTypes.path
+-
+-    def __init__(
+-        self,
+-        default: Any = ...,
+-        *,
+-        default_factory: Union[Callable[[], Any], None] = _Unset,
+-        annotation: Optional[Any] = None,
+-        alias: Optional[str] = None,
+-        alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
+-        serialization_alias: Union[str, None] = None,
+-        title: Optional[str] = None,
+-        description: Optional[str] = None,
+-        gt: Optional[float] = None,
+-        ge: Optional[float] = None,
+-        lt: Optional[float] = None,
+-        le: Optional[float] = None,
+-        min_length: Optional[int] = None,
+-        max_length: Optional[int] = None,
+-        pattern: Optional[str] = None,
+-        regex: Annotated[
+-            Optional[str],
+-            deprecated(
+-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+-            ),
+-        ] = None,
+-        discriminator: Union[str, None] = None,
+-        strict: Union[bool, None] = _Unset,
+-        multiple_of: Union[float, None] = _Unset,
+-        allow_inf_nan: Union[bool, None] = _Unset,
+-        max_digits: Union[int, None] = _Unset,
+-        decimal_places: Union[int, None] = _Unset,
+-        examples: Optional[list[Any]] = None,
+-        example: Annotated[
+-            Optional[Any],
+-            deprecated(
+-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+-                "although still supported. Use examples instead."
+-            ),
+-        ] = _Unset,
+-        openapi_examples: Optional[dict[str, Example]] = None,
+-        deprecated: Union[deprecated, str, bool, None] = None,
+-        include_in_schema: bool = True,
+-        json_schema_extra: Union[dict[str, Any], None] = None,
+-        **extra: Any,
+-    ):
+-        assert default is ..., "Path parameters cannot have a default value"
+-        self.in_ = self.in_
+-        super().__init__(
+-            default=default,
+-            default_factory=default_factory,
+-            annotation=annotation,
+-            alias=alias,
+-            alias_priority=alias_priority,
+-            validation_alias=validation_alias,
+-            serialization_alias=serialization_alias,
+-            title=title,
+-            description=description,
+-            gt=gt,
+-            ge=ge,
+-            lt=lt,
+-            le=le,
+-            min_length=min_length,
+-            max_length=max_length,
+-            pattern=pattern,
+-            regex=regex,
+-            discriminator=discriminator,
+-            strict=strict,
+-            multiple_of=multiple_of,
+-            allow_inf_nan=allow_inf_nan,
+-            max_digits=max_digits,
+-            decimal_places=decimal_places,
+-            deprecated=deprecated,
+-            example=example,
+-            examples=examples,
+-            openapi_examples=openapi_examples,
+-            include_in_schema=include_in_schema,
+-            json_schema_extra=json_schema_extra,
+-            **extra,
+-        )
+-
+-
+-class Query(Param):
+-    in_ = ParamTypes.query
+-
+-    def __init__(
+-        self,
+-        default: Any = Undefined,
+-        *,
+-        default_factory: Union[Callable[[], Any], None] = _Unset,
+-        annotation: Optional[Any] = None,
+-        alias: Optional[str] = None,
+-        alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
+-        serialization_alias: Union[str, None] = None,
+-        title: Optional[str] = None,
+-        description: Optional[str] = None,
+-        gt: Optional[float] = None,
+-        ge: Optional[float] = None,
+-        lt: Optional[float] = None,
+-        le: Optional[float] = None,
+-        min_length: Optional[int] = None,
+-        max_length: Optional[int] = None,
+-        pattern: Optional[str] = None,
+-        regex: Annotated[
+-            Optional[str],
+-            deprecated(
+-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+-            ),
+-        ] = None,
+-        discriminator: Union[str, None] = None,
+-        strict: Union[bool, None] = _Unset,
+-        multiple_of: Union[float, None] = _Unset,
+-        allow_inf_nan: Union[bool, None] = _Unset,
+-        max_digits: Union[int, None] = _Unset,
+-        decimal_places: Union[int, None] = _Unset,
+-        examples: Optional[list[Any]] = None,
+-        example: Annotated[
+-            Optional[Any],
+-            deprecated(
+-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+-                "although still supported. Use examples instead."
+-            ),
+-        ] = _Unset,
+-        openapi_examples: Optional[dict[str, Example]] = None,
+-        deprecated: Union[deprecated, str, bool, None] = None,
+-        include_in_schema: bool = True,
+-        json_schema_extra: Union[dict[str, Any], None] = None,
+-        **extra: Any,
+-    ):
+-        super().__init__(
+-            default=default,
+-            default_factory=default_factory,
+-            annotation=annotation,
+-            alias=alias,
+-            alias_priority=alias_priority,
+-            validation_alias=validation_alias,
+-            serialization_alias=serialization_alias,
+-            title=title,
+-            description=description,
+-            gt=gt,
+-            ge=ge,
+-            lt=lt,
+-            le=le,
+-            min_length=min_length,
+-            max_length=max_length,
+-            pattern=pattern,
+-            regex=regex,
+-            discriminator=discriminator,
+-            strict=strict,
+-            multiple_of=multiple_of,
+-            allow_inf_nan=allow_inf_nan,
+-            max_digits=max_digits,
+-            decimal_places=decimal_places,
+-            deprecated=deprecated,
+-            example=example,
+-            examples=examples,
+-            openapi_examples=openapi_examples,
+-            include_in_schema=include_in_schema,
+-            json_schema_extra=json_schema_extra,
+-            **extra,
+-        )
+-
+-
+-class Header(Param):
+-    in_ = ParamTypes.header
+-
+-    def __init__(
+-        self,
+-        default: Any = Undefined,
+-        *,
+-        default_factory: Union[Callable[[], Any], None] = _Unset,
+-        annotation: Optional[Any] = None,
+-        alias: Optional[str] = None,
+-        alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
+-        serialization_alias: Union[str, None] = None,
+-        convert_underscores: bool = True,
+-        title: Optional[str] = None,
+-        description: Optional[str] = None,
+-        gt: Optional[float] = None,
+-        ge: Optional[float] = None,
+-        lt: Optional[float] = None,
+-        le: Optional[float] = None,
+-        min_length: Optional[int] = None,
+-        max_length: Optional[int] = None,
+-        pattern: Optional[str] = None,
+-        regex: Annotated[
+-            Optional[str],
+-            deprecated(
+-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+-            ),
+-        ] = None,
+-        discriminator: Union[str, None] = None,
+-        strict: Union[bool, None] = _Unset,
+-        multiple_of: Union[float, None] = _Unset,
+-        allow_inf_nan: Union[bool, None] = _Unset,
+-        max_digits: Union[int, None] = _Unset,
+-        decimal_places: Union[int, None] = _Unset,
+-        examples: Optional[list[Any]] = None,
+-        example: Annotated[
+-            Optional[Any],
+-            deprecated(
+-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+-                "although still supported. Use examples instead."
+-            ),
+-        ] = _Unset,
+-        openapi_examples: Optional[dict[str, Example]] = None,
+-        deprecated: Union[deprecated, str, bool, None] = None,
+-        include_in_schema: bool = True,
+-        json_schema_extra: Union[dict[str, Any], None] = None,
+-        **extra: Any,
+-    ):
+-        self.convert_underscores = convert_underscores
+-        super().__init__(
+-            default=default,
+-            default_factory=default_factory,
+-            annotation=annotation,
+-            alias=alias,
+-            alias_priority=alias_priority,
+-            validation_alias=validation_alias,
+-            serialization_alias=serialization_alias,
+-            title=title,
+-            description=description,
+-            gt=gt,
+-            ge=ge,
+-            lt=lt,
+-            le=le,
+-            min_length=min_length,
+-            max_length=max_length,
+-            pattern=pattern,
+-            regex=regex,
+-            discriminator=discriminator,
+-            strict=strict,
+-            multiple_of=multiple_of,
+-            allow_inf_nan=allow_inf_nan,
+-            max_digits=max_digits,
+-            decimal_places=decimal_places,
+-            deprecated=deprecated,
+-            example=example,
+-            examples=examples,
+-            openapi_examples=openapi_examples,
+-            include_in_schema=include_in_schema,
+-            json_schema_extra=json_schema_extra,
+-            **extra,
+-        )
+-
+-
+-class Cookie(Param):
+-    in_ = ParamTypes.cookie
+-
+-    def __init__(
+-        self,
+-        default: Any = Undefined,
+-        *,
+-        default_factory: Union[Callable[[], Any], None] = _Unset,
+-        annotation: Optional[Any] = None,
+-        alias: Optional[str] = None,
+-        alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
+-        serialization_alias: Union[str, None] = None,
+-        title: Optional[str] = None,
+-        description: Optional[str] = None,
+-        gt: Optional[float] = None,
+-        ge: Optional[float] = None,
+-        lt: Optional[float] = None,
+-        le: Optional[float] = None,
+-        min_length: Optional[int] = None,
+-        max_length: Optional[int] = None,
+-        pattern: Optional[str] = None,
+-        regex: Annotated[
+-            Optional[str],
+-            deprecated(
+-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+-            ),
+-        ] = None,
+-        discriminator: Union[str, None] = None,
+-        strict: Union[bool, None] = _Unset,
+-        multiple_of: Union[float, None] = _Unset,
+-        allow_inf_nan: Union[bool, None] = _Unset,
+-        max_digits: Union[int, None] = _Unset,
+-        decimal_places: Union[int, None] = _Unset,
+-        examples: Optional[list[Any]] = None,
+-        example: Annotated[
+-            Optional[Any],
+-            deprecated(
+-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+-                "although still supported. Use examples instead."
+-            ),
+-        ] = _Unset,
+-        openapi_examples: Optional[dict[str, Example]] = None,
+-        deprecated: Union[deprecated, str, bool, None] = None,
+-        include_in_schema: bool = True,
+-        json_schema_extra: Union[dict[str, Any], None] = None,
+-        **extra: Any,
+-    ):
+-        super().__init__(
+-            default=default,
+-            default_factory=default_factory,
+-            annotation=annotation,
+-            alias=alias,
+-            alias_priority=alias_priority,
+-            validation_alias=validation_alias,
+-            serialization_alias=serialization_alias,
+-            title=title,
+-            description=description,
+-            gt=gt,
+-            ge=ge,
+-            lt=lt,
+-            le=le,
+-            min_length=min_length,
+-            max_length=max_length,
+-            pattern=pattern,
+-            regex=regex,
+-            discriminator=discriminator,
+-            strict=strict,
+-            multiple_of=multiple_of,
+-            allow_inf_nan=allow_inf_nan,
+-            max_digits=max_digits,
+-            decimal_places=decimal_places,
+-            deprecated=deprecated,
+-            example=example,
+-            examples=examples,
+-            openapi_examples=openapi_examples,
+-            include_in_schema=include_in_schema,
+-            json_schema_extra=json_schema_extra,
+-            **extra,
+-        )
+-
+-
+-class Body(FieldInfo):
+-    def __init__(
+-        self,
+-        default: Any = Undefined,
+-        *,
+-        default_factory: Union[Callable[[], Any], None] = _Unset,
+-        annotation: Optional[Any] = None,
+-        embed: Union[bool, None] = None,
+-        media_type: str = "application/json",
+-        alias: Optional[str] = None,
+-        alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
+-        serialization_alias: Union[str, None] = None,
+-        title: Optional[str] = None,
+-        description: Optional[str] = None,
+-        gt: Optional[float] = None,
+-        ge: Optional[float] = None,
+-        lt: Optional[float] = None,
+-        le: Optional[float] = None,
+-        min_length: Optional[int] = None,
+-        max_length: Optional[int] = None,
+-        pattern: Optional[str] = None,
+-        regex: Annotated[
+-            Optional[str],
+-            deprecated(
+-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+-            ),
+-        ] = None,
+-        discriminator: Union[str, None] = None,
+-        strict: Union[bool, None] = _Unset,
+-        multiple_of: Union[float, None] = _Unset,
+-        allow_inf_nan: Union[bool, None] = _Unset,
+-        max_digits: Union[int, None] = _Unset,
+-        decimal_places: Union[int, None] = _Unset,
+-        examples: Optional[list[Any]] = None,
+-        example: Annotated[
+-            Optional[Any],
+-            deprecated(
+-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+-                "although still supported. Use examples instead."
+-            ),
+-        ] = _Unset,
+-        openapi_examples: Optional[dict[str, Example]] = None,
+-        deprecated: Union[deprecated, str, bool, None] = None,
+-        include_in_schema: bool = True,
+-        json_schema_extra: Union[dict[str, Any], None] = None,
+-        **extra: Any,
+-    ):
+-        self.embed = embed
+-        self.media_type = media_type
+-        if example is not _Unset:
+-            warnings.warn(
+-                "`example` has been deprecated, please use `examples` instead",
+-                category=FastAPIDeprecationWarning,
+-                stacklevel=4,
+-            )
+-        self.example = example
+-        self.include_in_schema = include_in_schema
+-        self.openapi_examples = openapi_examples
+-        kwargs = dict(
+-            default=default,
+-            default_factory=default_factory,
+-            alias=alias,
+-            title=title,
+-            description=description,
+-            gt=gt,
+-            ge=ge,
+-            lt=lt,
+-            le=le,
+-            min_length=min_length,
+-            max_length=max_length,
+-            discriminator=discriminator,
+-            multiple_of=multiple_of,
+-            allow_inf_nan=allow_inf_nan,
+-            max_digits=max_digits,
+-            decimal_places=decimal_places,
+-            **extra,
+-        )
+-        if examples is not None:
+-            kwargs["examples"] = examples
+-        if regex is not None:
+-            warnings.warn(
+-                "`regex` has been deprecated, please use `pattern` instead",
+-                category=FastAPIDeprecationWarning,
+-                stacklevel=4,
+-            )
+-        current_json_schema_extra = json_schema_extra or extra
+-        kwargs["deprecated"] = deprecated
+-        kwargs["regex"] = pattern or regex
+-        kwargs.update(**current_json_schema_extra)
+-
+-        use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
+-
+-        super().__init__(**use_kwargs)
+-
+-    def __repr__(self) -> str:
+-        return f"{self.__class__.__name__}({self.default})"
+-
+-
+-class Form(Body):
+-    def __init__(
+-        self,
+-        default: Any = Undefined,
+-        *,
+-        default_factory: Union[Callable[[], Any], None] = _Unset,
+-        annotation: Optional[Any] = None,
+-        media_type: str = "application/x-www-form-urlencoded",
+-        alias: Optional[str] = None,
+-        alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
+-        serialization_alias: Union[str, None] = None,
+-        title: Optional[str] = None,
+-        description: Optional[str] = None,
+-        gt: Optional[float] = None,
+-        ge: Optional[float] = None,
+-        lt: Optional[float] = None,
+-        le: Optional[float] = None,
+-        min_length: Optional[int] = None,
+-        max_length: Optional[int] = None,
+-        pattern: Optional[str] = None,
+-        regex: Annotated[
+-            Optional[str],
+-            deprecated(
+-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+-            ),
+-        ] = None,
+-        discriminator: Union[str, None] = None,
+-        strict: Union[bool, None] = _Unset,
+-        multiple_of: Union[float, None] = _Unset,
+-        allow_inf_nan: Union[bool, None] = _Unset,
+-        max_digits: Union[int, None] = _Unset,
+-        decimal_places: Union[int, None] = _Unset,
+-        examples: Optional[list[Any]] = None,
+-        example: Annotated[
+-            Optional[Any],
+-            deprecated(
+-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+-                "although still supported. Use examples instead."
+-            ),
+-        ] = _Unset,
+-        openapi_examples: Optional[dict[str, Example]] = None,
+-        deprecated: Union[deprecated, str, bool, None] = None,
+-        include_in_schema: bool = True,
+-        json_schema_extra: Union[dict[str, Any], None] = None,
+-        **extra: Any,
+-    ):
+-        super().__init__(
+-            default=default,
+-            default_factory=default_factory,
+-            annotation=annotation,
+-            media_type=media_type,
+-            alias=alias,
+-            alias_priority=alias_priority,
+-            validation_alias=validation_alias,
+-            serialization_alias=serialization_alias,
+-            title=title,
+-            description=description,
+-            gt=gt,
+-            ge=ge,
+-            lt=lt,
+-            le=le,
+-            min_length=min_length,
+-            max_length=max_length,
+-            pattern=pattern,
+-            regex=regex,
+-            discriminator=discriminator,
+-            strict=strict,
+-            multiple_of=multiple_of,
+-            allow_inf_nan=allow_inf_nan,
+-            max_digits=max_digits,
+-            decimal_places=decimal_places,
+-            deprecated=deprecated,
+-            example=example,
+-            examples=examples,
+-            openapi_examples=openapi_examples,
+-            include_in_schema=include_in_schema,
+-            json_schema_extra=json_schema_extra,
+-            **extra,
+-        )
+-
+-
+-class File(Form):
+-    def __init__(
+-        self,
+-        default: Any = Undefined,
+-        *,
+-        default_factory: Union[Callable[[], Any], None] = _Unset,
+-        annotation: Optional[Any] = None,
+-        media_type: str = "multipart/form-data",
+-        alias: Optional[str] = None,
+-        alias_priority: Union[int, None] = _Unset,
+-        # TODO: update when deprecating Pydantic v1, import these types
+-        # validation_alias: str | AliasPath | AliasChoices | None
+-        validation_alias: Union[str, None] = None,
+-        serialization_alias: Union[str, None] = None,
+-        title: Optional[str] = None,
+-        description: Optional[str] = None,
+-        gt: Optional[float] = None,
+-        ge: Optional[float] = None,
+-        lt: Optional[float] = None,
+-        le: Optional[float] = None,
+-        min_length: Optional[int] = None,
+-        max_length: Optional[int] = None,
+-        pattern: Optional[str] = None,
+-        regex: Annotated[
+-            Optional[str],
+-            deprecated(
+-                "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
+-            ),
+-        ] = None,
+-        discriminator: Union[str, None] = None,
+-        strict: Union[bool, None] = _Unset,
+-        multiple_of: Union[float, None] = _Unset,
+-        allow_inf_nan: Union[bool, None] = _Unset,
+-        max_digits: Union[int, None] = _Unset,
+-        decimal_places: Union[int, None] = _Unset,
+-        examples: Optional[list[Any]] = None,
+-        example: Annotated[
+-            Optional[Any],
+-            deprecated(
+-                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+-                "although still supported. Use examples instead."
+-            ),
+-        ] = _Unset,
+-        openapi_examples: Optional[dict[str, Example]] = None,
+-        deprecated: Union[deprecated, str, bool, None] = None,
+-        include_in_schema: bool = True,
+-        json_schema_extra: Union[dict[str, Any], None] = None,
+-        **extra: Any,
+-    ):
+-        super().__init__(
+-            default=default,
+-            default_factory=default_factory,
+-            annotation=annotation,
+-            media_type=media_type,
+-            alias=alias,
+-            alias_priority=alias_priority,
+-            validation_alias=validation_alias,
+-            serialization_alias=serialization_alias,
+-            title=title,
+-            description=description,
+-            gt=gt,
+-            ge=ge,
+-            lt=lt,
+-            le=le,
+-            min_length=min_length,
+-            max_length=max_length,
+-            pattern=pattern,
+-            regex=regex,
+-            discriminator=discriminator,
+-            strict=strict,
+-            multiple_of=multiple_of,
+-            allow_inf_nan=allow_inf_nan,
+-            max_digits=max_digits,
+-            decimal_places=decimal_places,
+-            deprecated=deprecated,
+-            example=example,
+-            examples=examples,
+-            openapi_examples=openapi_examples,
+-            include_in_schema=include_in_schema,
+-            json_schema_extra=json_schema_extra,
+-            **extra,
+-        )
+--- a/fastapi/utils.py
++++ b/fastapi/utils.py
+@@ -6,7 +6,6 @@
+     Any,
+     Optional,
+     Union,
+-    cast,
+ )
+ from weakref import WeakKeyDictionary
+ 
+@@ -19,11 +18,9 @@
+     UndefinedType,
+     Validator,
+     annotation_is_pydantic_v1,
+-    lenient_issubclass,
+-    may_v1,
+ )
+ from fastapi.datastructures import DefaultPlaceholder, DefaultType
+-from fastapi.exceptions import FastAPIDeprecationWarning
++from fastapi.exceptions import FastAPIDeprecationWarning, PydanticV1NotSupportedError
+ from pydantic import BaseModel
+ from pydantic.fields import FieldInfo
+ from typing_extensions import Literal
+@@ -83,52 +80,18 @@ def create_model_field(
+     mode: Literal["validation", "serialization"] = "validation",
+     version: Literal["1", "auto"] = "auto",
+ ) -> ModelField:
+-    class_validators = class_validators or {}
+-
+-    v1_model_config = may_v1.BaseConfig
+-    v1_field_info = field_info or may_v1.FieldInfo()
+-    v1_kwargs = {
+-        "name": name,
+-        "field_info": v1_field_info,
+-        "type_": type_,
+-        "class_validators": class_validators,
+-        "default": default,
+-        "required": required,
+-        "model_config": v1_model_config,
+-        "alias": alias,
+-    }
+-
+-    if (
+-        annotation_is_pydantic_v1(type_)
+-        or isinstance(field_info, may_v1.FieldInfo)
+-        or version == "1"
+-    ):
+-        from fastapi._compat import v1
+-
+-        try:
+-            return v1.ModelField(**v1_kwargs)  # type: ignore[return-value]
+-        except RuntimeError:
+-            raise fastapi.exceptions.FastAPIError(
+-                _invalid_args_message.format(type_=type_)
+-            ) from None
+-    else:
+-        field_info = field_info or FieldInfo(
+-            annotation=type_, default=default, alias=alias
++    if annotation_is_pydantic_v1(type_):
++        raise PydanticV1NotSupportedError(
++            "pydantic.v1 models are no longer supported by FastAPI."
++            f" Please update the response model {type_!r}."
+         )
+-        kwargs = {"mode": mode, "name": name, "field_info": field_info}
+-        try:
+-            return v2.ModelField(**kwargs)  # type: ignore[return-value,arg-type]
+-        except PydanticSchemaGenerationError:
+-            raise fastapi.exceptions.FastAPIError(
+-                _invalid_args_message.format(type_=type_)
+-            ) from None
+-    # Pydantic v2 is not installed, but it's not a Pydantic v1 ModelField, it could be
+-    # a Pydantic v1 type, like a constrained int
+-    from fastapi._compat import v1
++    class_validators = class_validators or {}
+ 
++    field_info = field_info or FieldInfo(annotation=type_, default=default, alias=alias)
++    kwargs = {"mode": mode, "name": name, "field_info": field_info}
+     try:
+-        return v1.ModelField(**v1_kwargs)
+-    except RuntimeError:
++        return v2.ModelField(**kwargs)  # type: ignore[return-value,arg-type]
++    except PydanticSchemaGenerationError:
+         raise fastapi.exceptions.FastAPIError(
+             _invalid_args_message.format(type_=type_)
+         ) from None
+@@ -139,57 +102,7 @@ def create_cloned_field(
+     *,
+     cloned_types: Optional[MutableMapping[type[BaseModel], type[BaseModel]]] = None,
+ ) -> ModelField:
+-    if isinstance(field, v2.ModelField):
+-        return field
+-
+-    from fastapi._compat import v1
+-
+-    # cloned_types caches already cloned types to support recursive models and improve
+-    # performance by avoiding unnecessary cloning
+-    if cloned_types is None:
+-        cloned_types = _CLONED_TYPES_CACHE
+-
+-    original_type = field.type_
+-    use_type = original_type
+-    if lenient_issubclass(original_type, v1.BaseModel):
+-        original_type = cast(type[v1.BaseModel], original_type)
+-        use_type = cloned_types.get(original_type)
+-        if use_type is None:
+-            use_type = v1.create_model(original_type.__name__, __base__=original_type)
+-            cloned_types[original_type] = use_type
+-            for f in original_type.__fields__.values():
+-                use_type.__fields__[f.name] = create_cloned_field(
+-                    f,
+-                    cloned_types=cloned_types,
+-                )
+-    new_field = create_model_field(name=field.name, type_=use_type, version="1")
+-    new_field.has_alias = field.has_alias  # type: ignore[attr-defined]
+-    new_field.alias = field.alias  # type: ignore[misc]
+-    new_field.class_validators = field.class_validators  # type: ignore[attr-defined]
+-    new_field.default = field.default  # type: ignore[misc]
+-    new_field.default_factory = field.default_factory  # type: ignore[attr-defined]
+-    new_field.required = field.required  # type: ignore[misc]
+-    new_field.model_config = field.model_config  # type: ignore[attr-defined]
+-    new_field.field_info = field.field_info
+-    new_field.allow_none = field.allow_none  # type: ignore[attr-defined]
+-    new_field.validate_always = field.validate_always  # type: ignore[attr-defined]
+-    if field.sub_fields:  # type: ignore[attr-defined]
+-        new_field.sub_fields = [  # type: ignore[attr-defined]
+-            create_cloned_field(sub_field, cloned_types=cloned_types)
+-            for sub_field in field.sub_fields  # type: ignore[attr-defined]
+-        ]
+-    if field.key_field:  # type: ignore[attr-defined]
+-        new_field.key_field = create_cloned_field(  # type: ignore[attr-defined]
+-            field.key_field,  # type: ignore[attr-defined]
+-            cloned_types=cloned_types,
+-        )
+-    new_field.validators = field.validators  # type: ignore[attr-defined]
+-    new_field.pre_validators = field.pre_validators  # type: ignore[attr-defined]
+-    new_field.post_validators = field.post_validators  # type: ignore[attr-defined]
+-    new_field.parse_json = field.parse_json  # type: ignore[attr-defined]
+-    new_field.shape = field.shape  # type: ignore[attr-defined]
+-    new_field.populate_validators()  # type: ignore[attr-defined]
+-    return new_field
++    return field
+ 
+ 
+ def generate_operation_id_for_path(

@@ -1,0 +1,202 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_________ ERROR collecting tests/test_dependency_after_yield_raise.py __________
+ImportError while importing test module '/tmp/swegemma_sandbox_576f3b27-e8a_c1pe8tqk/workspace/tests/test_dependency_after_yield_raise.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_dependency_after_yield_raise.py:4: in <module>
+    from fastapi import Depends, FastAPI, HTTPException
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from fastapi import routing
+fastapi/routing.py:25: in <module>
+    from fastapi import params
+fastapi/params.py:5: in <module>
+    from fastapi.openapi.models import Example
+fastapi/openapi/models.py:4: in <module>
+    from fastapi._compat import (
+fastapi/_compat.py:22: in <module>
+    from fastapi.exceptions import RequestErrorModel
+fastapi/exceptions.py:3: in <module>
+    from pydantic import BaseModel, create_model
+/tmp/scorer_env/pydantic/__init__.py:422: in <module>
+    _getattr_migration = getattr_migration(__name__)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/scorer_env/pydantic/_migration.py:262: in getattr_migration
+    from .errors import PydanticImportError
+/tmp/scorer_env/pydantic/errors.py:9: in <module>
+    from typing_inspection.introspection import Qualifier
+E   ModuleNotFoundError: No module named 'typing_inspection'
+_______ ERROR collecting tests/test_dependency_after_yield_streaming.py ________
+ImportError while importing test module '/tmp/swegemma_sandbox_576f3b27-e8a_c1pe8tqk/workspace/tests/test_dependency_after_yield_streaming.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_dependency_after_yield_streaming.py:5: in <module>
+    from fastapi import Depends, FastAPI
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from fastapi import routing
+fastapi/routing.py:25: in <module>
+    from fastapi import params
+fastapi/params.py:5: in <module>
+    from fastapi.openapi.models import Example
+fastapi/openapi/models.py:4: in <module>
+    from fastapi._compat import (
+fastapi/_compat.py:22: in <module>
+    from fastapi.exceptions import RequestErrorModel
+fastapi/exceptions.py:3: in <module>
+    from pydantic import BaseModel, create_model
+/tmp/scorer_env/pydantic/__init__.py:422: in <module>
+    _getattr_migration = getattr_migration(__name__)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/scorer_env/pydantic/_migration.py:262: in getattr_migration
+    from .errors import PydanticImportError
+/tmp/scorer_env/pydantic/errors.py:9: in <module>
+    from typing_inspection.introspection import Qualifier
+E   ModuleNotFoundError: No module named 'typing_inspection'
+_______ ERROR collecting tests/test_dependency_after_yield_websockets.py _______
+ImportError while importing test module '/tmp/swegemma_sandbox_576f3b27-e8a_c1pe8tqk/workspace/tests/test_dependency_after_yield_websockets.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_dependency_after_yield_websockets.py:5: in <module>
+    from fastapi import Depends, FastAPI, WebSocket
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from fastapi import routing
+fastapi/routing.py:25: in <module>
+    from fastapi import params
+fastapi/params.py:5: in <module>
+    from fastapi.openapi.models import Example
+fastapi/openapi/models.py:4: in <module>
+    from fastapi._compat import (
+fastapi/_compat.py:22: in <module>
+    from fastapi.exceptions import RequestErrorModel
+fastapi/exceptions.py:3: in <module>
+    from pydantic import BaseModel, create_model
+/tmp/scorer_env/pydantic/__init__.py:422: in <module>
+    _getattr_migration = getattr_migration(__name__)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/scorer_env/pydantic/_migration.py:262: in getattr_migration
+    from .errors import PydanticImportError
+/tmp/scorer_env/pydantic/errors.py:9: in <module>
+    from typing_inspection.introspection import Qualifier
+E   ModuleNotFoundError: No module named 'typing_inspection'
+___________ ERROR collecting tests/test_dependency_contextmanager.py ___________
+ImportError while importing test module '/tmp/swegemma_sandbox_576f3b27-e8a_c1pe8tqk/workspace/tests/test_dependency_contextmanager.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_dependency_contextmanager.py:5: in <module>
+    from fastapi import BackgroundTasks, Depends, FastAPI
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from fastapi import routing
+fastapi/routing.py:25: in <module>
+    from fastapi import params
+fastapi/params.py:5: in <module>
+    from fastapi.openapi.models import Example
+fastapi/openapi/models.py:4: in <module>
+    from fastapi._compat import (
+fastapi/_compat.py:22: in <module>
+    from fastapi.exceptions import RequestErrorModel
+fastapi/exceptions.py:3: in <module>
+    from pydantic import BaseModel, create_model
+/tmp/scorer_env/pydantic/__init__.py:422: in <module>
+    _getattr_migration = getattr_migration(__name__)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/scorer_env/pydantic/_migration.py:262: in getattr_migration
+    from .errors import PydanticImportError
+/tmp/scorer_env/pydantic/errors.py:9: in <module>
+    from typing_inspection.introspection import Qualifier
+E   ModuleNotFoundError: No module named 'typing_inspection'
+__________________ ERROR collecting tests/test_route_scope.py __________________
+ImportError while importing test module '/tmp/swegemma_sandbox_576f3b27-e8a_c1pe8tqk/workspace/tests/test_route_scope.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_route_scope.py:2: in <module>
+    from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from fastapi import routing
+fastapi/routing.py:25: in <module>
+    from fastapi import params
+fastapi/params.py:5: in <module>
+    from fastapi.openapi.models import Example
+fastapi/openapi/models.py:4: in <module>
+    from fastapi._compat import (
+fastapi/_compat.py:22: in <module>
+    from fastapi.exceptions import RequestErrorModel
+fastapi/exceptions.py:3: in <module>
+    from pydantic import BaseModel, create_model
+/tmp/scorer_env/pydantic/__init__.py:422: in <module>
+    _getattr_migration = getattr_migration(__name__)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/scorer_env/pydantic/_migration.py:262: in getattr_migration
+    from .errors import PydanticImportError
+/tmp/scorer_env/pydantic/errors.py:9: in <module>
+    from typing_inspection.introspection import Qualifier
+E   ModuleNotFoundError: No module named 'typing_inspection'
+_ ERROR collecting tests/test_tutorial/test_dependencies/test_tutorial008c.py __
+ImportError while importing test module '/tmp/swegemma_sandbox_576f3b27-e8a_c1pe8tqk/workspace/tests/test_tutorial/test_dependencies/test_tutorial008c.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_dependencies/test_tutorial008c.py:5: in <module>
+    from fastapi.exceptions import FastAPIError
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from fastapi import routing
+fastapi/routing.py:25: in <module>
+    from fastapi import params
+fastapi/params.py:5: in <module>
+    from fastapi.openapi.models import Example
+fastapi/openapi/models.py:4: in <module>
+    from fastapi._compat import (
+fastapi/_compat.py:22: in <module>
+    from fastapi.exceptions import RequestErrorModel
+fastapi/exceptions.py:3: in <module>
+    from pydantic import BaseModel, create_model
+/tmp/scorer_env/pydantic/__init__.py:422: in <module>
+    _getattr_migration = getattr_migration(__name__)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/scorer_env/pydantic/_migration.py:262: in getattr_migration
+    from .errors import PydanticImportError
+/tmp/scorer_env/pydantic/errors.py:9: in <module>
+    from typing_inspection.introspection import Qualifier
+E   ModuleNotFoundError: No module named 'typing_inspection'
+=========================== short test summary info ============================
+ERROR tests/test_dependency_after_yield_raise.py
+ERROR tests/test_dependency_after_yield_streaming.py
+ERROR tests/test_dependency_after_yield_websockets.py
+ERROR tests/test_dependency_contextmanager.py
+ERROR tests/test_route_scope.py
+ERROR tests/test_tutorial/test_dependencies/test_tutorial008c.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 6 errors during collection !!!!!!!!!!!!!!!!!!!!
+6 errors in 1.98s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

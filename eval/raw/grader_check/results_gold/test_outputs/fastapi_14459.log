@@ -1,0 +1,40 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_ ERROR collecting tests/test_security_oauth2_authorization_code_bearer_scopes_openapi.py _
+ImportError while importing test module '/tmp/swegemma_sandbox_8bc9cd37-494_2aegl37z/workspace/tests/test_security_oauth2_authorization_code_bearer_scopes_openapi.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_oauth2_authorization_code_bearer_scopes_openapi.py:5: in <module>
+    from fastapi import APIRouter, Depends, FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+_ ERROR collecting tests/test_security_oauth2_authorization_code_bearer_scopes_openapi_simple.py _
+ImportError while importing test module '/tmp/swegemma_sandbox_8bc9cd37-494_2aegl37z/workspace/tests/test_security_oauth2_authorization_code_bearer_scopes_openapi_simple.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_oauth2_authorization_code_bearer_scopes_openapi_simple.py:3: in <module>
+    from fastapi import Depends, FastAPI, Security
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+=========================== short test summary info ============================
+ERROR tests/test_security_oauth2_authorization_code_bearer_scopes_openapi.py
+ERROR tests/test_security_oauth2_authorization_code_bearer_scopes_openapi_simple.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 errors in 0.53s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

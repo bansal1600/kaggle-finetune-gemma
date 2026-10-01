@@ -1,0 +1,40 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+______________ ERROR collecting tests/test_custom_route_class.py _______________
+ImportError while importing test module '/tmp/swegemma_sandbox_0694d46c-af7_z359c8ee/workspace/tests/test_custom_route_class.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_custom_route_class.py:2: in <module>
+    from fastapi import APIRouter, FastAPI
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:5: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+____________ ERROR collecting tests/test_router_include_context.py _____________
+ImportError while importing test module '/tmp/swegemma_sandbox_0694d46c-af7_z359c8ee/workspace/tests/test_router_include_context.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_router_include_context.py:4: in <module>
+    from fastapi import APIRouter, Body, Depends, FastAPI, Request
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:5: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+=========================== short test summary info ============================
+ERROR tests/test_custom_route_class.py
+ERROR tests/test_router_include_context.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 errors in 0.47s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

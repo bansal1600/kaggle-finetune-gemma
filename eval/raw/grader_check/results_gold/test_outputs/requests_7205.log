@@ -1,0 +1,10 @@
+STDOUT:
+..s..................................................................... [ 32%]
+........................................................................ [ 65%]
+..........................................................sssssssssss... [ 98%]
+..s                                                                      [100%]
+206 passed, 13 skipped in 0.54s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

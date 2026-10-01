@@ -33,16 +33,34 @@ You can also watch it under *Your Work → Code* on Kaggle.
 ## Matching the scorer's environment
 
 In notebook mode the official harness uses a "subprocess" sandbox: no Docker, one private Python
-environment per task. Out of the box, that sandbox skips the scorer's dependency setup and lets
-tasks import whatever the notebook happens to have installed. `use_scorer_environment()` in
-`kaggle/grader_check/grader_check.py` fixes that:
+environment per task. Out of the box that sandbox skips the scorer's dependency setup, so tests
+import whatever the notebook happens to have. `use_scorer_environment()` in
+`kaggle/common/kaggle_common.py` fixes it in three ways:
 
-1. It installs the scorer's package set: the newest version of each package in the competition's
-   `wheels/` folder (the same rule as the scorer), built for this notebook's Python.
-2. Each task's environment sees only that set, not the notebook's own packages.
-3. The editable install and `sandbox/setup.py` step that the scorer runs, run here too.
+1. **The scorer's package set first.** It installs the newest version of each package in the
+   competition's `wheels/` folder (the scorer's own rule), and puts it first on every task's
+   import path. The notebook's own packages remain only as a last fallback.
+2. **The repo's own pins.** The editable install of each task's repo resolves its declared
+   dependencies from `wheels/` (the scorer passes `--no-deps`). `wheels/` holds 56 starlette
+   versions, so each fastapi snapshot gets one its `pyproject.toml` allows.
+3. **Seven missing packages.** The tests import `annotated_doc`, `dirty_equals`,
+   `typing_inspection`, `inline_snapshot` and `wrapt`, which the public `wheels/` lacks. They come
+   unchanged from PyPI, with dependencies, via our private dataset
+   `guaravbansal/gemma-agent-extra-wheels`, and only fill gaps.
 
-Remaining differences from the scorer: Python 3.12 (scorer: 3.13) and the exact pytest version.
+What the first grader run taught us (2026-10-01): without fixes 2 and 3, **0 of 67** fastapi
+tasks were gradable. With them, a fastapi sample passes. Other teams' audits report 114–119 of
+129 gradable.
+
+Also found: in subprocess mode the harness copies `wheels/` to `/wheels/wheels/`, so `/wheels`
+is empty there. Our code uses the real host path instead. The Docker scorer is not affected.
+
+Deliberately not added: `pytest-httpbin`. Some requests tests need it, but installing it broke
+pytest start-up for every repo, and the scorer's image does not ship it either. Those requests
+tasks stay excluded.
+
+Remaining differences from the scorer: Python 3.12 (scorer: 3.13), the exact pytest version, and
+the dependency resolution in point 2.
 
 ## Local testing before pushing
 

@@ -1,0 +1,40 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+____________________ ERROR collecting tests/test_compat.py _____________________
+ImportError while importing test module '/tmp/swegemma_sandbox_0ba52f86-97e_9a32fmxx/workspace/tests/test_compat.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_compat.py:3: in <module>
+    from fastapi import FastAPI, UploadFile
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+______________ ERROR collecting tests/test_optional_file_list.py _______________
+ImportError while importing test module '/tmp/swegemma_sandbox_0ba52f86-97e_9a32fmxx/workspace/tests/test_optional_file_list.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_optional_file_list.py:3: in <module>
+    from fastapi import FastAPI, File
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+=========================== short test summary info ============================
+ERROR tests/test_compat.py
+ERROR tests/test_optional_file_list.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 errors in 0.57s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

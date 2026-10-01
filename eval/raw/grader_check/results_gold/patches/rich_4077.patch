@@ -1,0 +1,9 @@
+--- a/rich/file_proxy.py
++++ b/rich/file_proxy.py
+@@ -55,3 +55,6 @@ def flush(self) -> None:
+ 
+     def fileno(self) -> int:
+         return self.__file.fileno()
++
++    def isatty(self) -> bool:
++        return self.__file.isatty()

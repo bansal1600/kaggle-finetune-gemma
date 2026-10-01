@@ -1,0 +1,42 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+________________ ERROR collecting tests/test_no_schema_split.py ________________
+ImportError while importing test module '/tmp/swegemma_sandbox_d178b953-755_zoakqw_t/workspace/tests/test_no_schema_split.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_no_schema_split.py:8: in <module>
+    from fastapi import FastAPI
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+____ ERROR collecting tests/test_pydantic_v1_v2_multifile/test_multifile.py ____
+ImportError while importing test module '/tmp/swegemma_sandbox_d178b953-755_zoakqw_t/workspace/tests/test_pydantic_v1_v2_multifile/test_multifile.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_pydantic_v1_v2_multifile/test_multifile.py:3: in <module>
+    from tests.utils import pydantic_snapshot, skip_module_if_py_gte_314
+tests/utils.py:4: in <module>
+    from fastapi._compat import PYDANTIC_V2
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from annotated_doc import Doc
+E   ModuleNotFoundError: No module named 'annotated_doc'
+=========================== short test summary info ============================
+ERROR tests/test_no_schema_split.py
+ERROR tests/test_pydantic_v1_v2_multifile/test_multifile.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 errors in 0.56s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'

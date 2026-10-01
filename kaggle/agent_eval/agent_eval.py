@@ -30,6 +30,7 @@ from pathlib import Path
 DATA_DIR = Path(os.environ.get("DATA_DIR", "/kaggle/input/competitions/gemma-4-developer-agent"))
 WHEELHOUSE = Path(os.environ.get("WHEELHOUSE", "/kaggle/input/datasets/metric/gemma-4-developer-agent-wheelhouse"))
 OUT_DIR = Path(os.environ.get("OUT_DIR", "/kaggle/working"))
+EXTRA_WHEELS = Path(os.environ.get("EXTRA_WHEELS", "/kaggle/input/datasets/guaravbansal/gemma-agent-extra-wheels"))
 MODEL_PATH = Path(os.environ.get("MODEL_PATH", "/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2"))
 MODEL_URL = os.environ.get("MODEL_URL", "")
 TARGET_MODEL = "gemma-4-31b-it-qat-w4a16-ct"
@@ -113,7 +114,7 @@ def main() -> None:
     install_harness(WHEELHOUSE, gpu=not MODEL_URL)
     agent_dir = OUT_DIR / "agent"
     write_agent_config(agent_dir)
-    use_scorer_environment(DATA_DIR / "wheels", Path(os.environ.get("SCORER_ENV", "/tmp/scorer_env")))
+    use_scorer_environment(DATA_DIR / "wheels", Path(os.environ.get("SCORER_ENV", "/tmp/scorer_env")), EXTRA_WHEELS)
 
     import litellm
     import yaml

@@ -1,0 +1,124 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+____________________ ERROR collecting tests/test_compat.py _____________________
+ImportError while importing test module '/tmp/swegemma_sandbox_a6b6dccd-cf1_tnp5ki5v/workspace/tests/test_compat.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_compat.py:3: in <module>
+    from fastapi import FastAPI, UploadFile
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from fastapi import routing
+fastapi/routing.py:27: in <module>
+    from fastapi import params, temp_pydantic_v1_params
+fastapi/params.py:5: in <module>
+    from fastapi.openapi.models import Example
+fastapi/openapi/models.py:4: in <module>
+    from fastapi._compat import (
+fastapi/_compat/__init__.py:1: in <module>
+    from .main import BaseConfig as BaseConfig
+fastapi/_compat/main.py:11: in <module>
+    from fastapi._compat import v1
+fastapi/_compat/v1.py:16: in <module>
+    from fastapi._compat import shared
+fastapi/_compat/shared.py:20: in <module>
+    from fastapi.types import UnionType
+fastapi/types.py:5: in <module>
+    from pydantic import BaseModel
+/tmp/scorer_env/pydantic/__init__.py:422: in <module>
+    _getattr_migration = getattr_migration(__name__)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/scorer_env/pydantic/_migration.py:262: in getattr_migration
+    from .errors import PydanticImportError
+/tmp/scorer_env/pydantic/errors.py:9: in <module>
+    from typing_inspection.introspection import Qualifier
+E   ModuleNotFoundError: No module named 'typing_inspection'
+_____ ERROR collecting tests/test_get_model_definitions_formfeed_escape.py _____
+ImportError while importing test module '/tmp/swegemma_sandbox_a6b6dccd-cf1_tnp5ki5v/workspace/tests/test_get_model_definitions_formfeed_escape.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_get_model_definitions_formfeed_escape.py:3: in <module>
+    import fastapi._compat
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from fastapi import routing
+fastapi/routing.py:27: in <module>
+    from fastapi import params, temp_pydantic_v1_params
+fastapi/params.py:5: in <module>
+    from fastapi.openapi.models import Example
+fastapi/openapi/models.py:4: in <module>
+    from fastapi._compat import (
+fastapi/_compat/__init__.py:1: in <module>
+    from .main import BaseConfig as BaseConfig
+fastapi/_compat/main.py:11: in <module>
+    from fastapi._compat import v1
+fastapi/_compat/v1.py:16: in <module>
+    from fastapi._compat import shared
+fastapi/_compat/shared.py:20: in <module>
+    from fastapi.types import UnionType
+fastapi/types.py:5: in <module>
+    from pydantic import BaseModel
+/tmp/scorer_env/pydantic/__init__.py:422: in <module>
+    _getattr_migration = getattr_migration(__name__)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/scorer_env/pydantic/_migration.py:262: in getattr_migration
+    from .errors import PydanticImportError
+/tmp/scorer_env/pydantic/errors.py:9: in <module>
+    from typing_inspection.introspection import Qualifier
+E   ModuleNotFoundError: No module named 'typing_inspection'
+______ ERROR collecting tests/test_response_model_as_return_annotation.py ______
+ImportError while importing test module '/tmp/swegemma_sandbox_a6b6dccd-cf1_tnp5ki5v/workspace/tests/test_response_model_as_return_annotation.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_response_model_as_return_annotation.py:4: in <module>
+    from fastapi import FastAPI
+fastapi/__init__.py:7: in <module>
+    from .applications import FastAPI as FastAPI
+fastapi/applications.py:16: in <module>
+    from fastapi import routing
+fastapi/routing.py:27: in <module>
+    from fastapi import params, temp_pydantic_v1_params
+fastapi/params.py:5: in <module>
+    from fastapi.openapi.models import Example
+fastapi/openapi/models.py:4: in <module>
+    from fastapi._compat import (
+fastapi/_compat/__init__.py:1: in <module>
+    from .main import BaseConfig as BaseConfig
+fastapi/_compat/main.py:11: in <module>
+    from fastapi._compat import v1
+fastapi/_compat/v1.py:16: in <module>
+    from fastapi._compat import shared
+fastapi/_compat/shared.py:20: in <module>
+    from fastapi.types import UnionType
+fastapi/types.py:5: in <module>
+    from pydantic import BaseModel
+/tmp/scorer_env/pydantic/__init__.py:422: in <module>
+    _getattr_migration = getattr_migration(__name__)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/scorer_env/pydantic/_migration.py:262: in getattr_migration
+    from .errors import PydanticImportError
+/tmp/scorer_env/pydantic/errors.py:9: in <module>
+    from typing_inspection.introspection import Qualifier
+E   ModuleNotFoundError: No module named 'typing_inspection'
+=========================== short test summary info ============================
+ERROR tests/test_compat.py
+ERROR tests/test_get_model_definitions_formfeed_escape.py
+ERROR tests/test_response_model_as_return_annotation.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 3 errors during collection !!!!!!!!!!!!!!!!!!!!
+3 errors in 1.33s
+
+STDERR:
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+ModuleNotFoundError: No module named 'wrapt'
