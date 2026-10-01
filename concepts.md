@@ -53,6 +53,20 @@ How a fix is graded. The hidden `test_patch` adds tests that:
 Our patch goes into a *fresh* container, the hidden tests are added, and `pytest` must exit
 cleanly. Any test files our agent edited are reset first, so editing tests can't game the score.
 
+### Underspecified tasks (why scores are low)
+**Used in:** Step 1 (reading `tasks.jsonl`)
+
+Many issues don't fully say what the hidden test checks. Real example, `fastapi_14258`:
+
+- The issue only says: *"Show a clear error on attempt to include router into itself."*
+- The hidden test requires this **exact** text:
+  `pytest.raises(AssertionError, match="Cannot include the same APIRouter instance into itself. Did you mean to include a different router?")`
+
+A fix that raises a *different* clear error is correct in spirit, but it fails. No agent can
+reliably guess wording like that, which is part of why even the best scores are around 0.15.
+Our prompt's rule "match the exact names and messages in the issue" helps when the issue states
+them; when it doesn't, following the repo's existing message style is the best bet.
+
 ### Resolution rate (the metric)
 **Used in:** Step 1
 

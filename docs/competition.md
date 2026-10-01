@@ -82,7 +82,27 @@ The organizers' sample uses 1 minute / 10 calls. That's only for testing, and it
 
 fastapi 67, rich 48, requests 13, httpx 1. Each task has a repo snapshot (`snapshots/*.tgz`,
 ~20 GB total), a code graph and embeddings, the issue text, the reference patch and the tests.
-No task has hints. The hidden test set comes from **different, private** repos.
+No task has hints. The hidden test set comes from **different, private** repos, and every hidden
+task was checked to be solvable, or nearly solvable, by a larger frontier model.
+
+From our own pass over `tasks.jsonl`: the median issue is 418 characters long (range 42 to
+10,095). The median reference fix touches 1 file (91 of 129 touch exactly 1, 19 touch 3 or more)
+and changes 12 lines. Issues were created between 2023-07 and 2026-06.
+
+In a Kaggle notebook attached to the competition, all of this is mounted read-only at
+`/kaggle/input/competitions/gemma-4-developer-agent/`, with nothing to download. Elsewhere (for
+example on Lightning), download only what a run needs.
+
+## How a submission is ranked
+
+- No human judges for the main track; scoring is fully automatic (see "How it's scored").
+- The public leaderboard shows the score on ~60 tasks. The private score on the other ~60 stays
+  hidden until the end.
+- Before 2026-12-02 we may select **up to 2 final submissions**. The final ranking uses their
+  private scores.
+- Winners must release the submission and the code that produced it under an open-source
+  license (Apache 2.0), and may be asked for a write-up detailed enough to reproduce it.
+- The paper track is a separate competition with human reviewers (deadline 2026-11-12, $35k).
 
 ## Checked directly on Kaggle (2026-10-01)
 
