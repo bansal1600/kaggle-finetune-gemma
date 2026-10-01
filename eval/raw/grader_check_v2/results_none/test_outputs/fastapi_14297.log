@@ -1,0 +1,32 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+____________________ ERROR collecting tests/test_compat.py _____________________
+ImportError while importing test module '/tmp/swegemma_sandbox_1eb201e6-1a6_eltkpp3q/workspace/tests/test_compat.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_compat.py:17: in <module>
+    from .utils import needs_py_lt_314, needs_pydanticv2
+tests/utils.py:5: in <module>
+    from inline_snapshot import Snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+______________ ERROR collecting tests/test_optional_file_list.py _______________
+tests/test_optional_file_list.py:6: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+=========================== short test summary info ============================
+ERROR tests/test_compat.py
+ERROR tests/test_optional_file_list.py - TypeError: Router.__init__() got an ...
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 errors in 0.80s
+
+STDERR:

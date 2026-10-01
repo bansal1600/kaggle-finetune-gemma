@@ -1,0 +1,19 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_________ ERROR collecting tests/test_request_param_model_by_alias.py __________
+ImportError while importing test module '/tmp/swegemma_sandbox_4f003250-3cb_7x18bhe4/workspace/tests/test_request_param_model_by_alias.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_param_model_by_alias.py:1: in <module>
+    from dirty_equals import IsPartialDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+=========================== short test summary info ============================
+ERROR tests/test_request_param_model_by_alias.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.27s
+
+STDERR:

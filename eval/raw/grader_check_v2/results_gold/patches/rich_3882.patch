@@ -1,0 +1,11 @@
+--- a/rich/prompt.py
++++ b/rich/prompt.py
+@@ -262,7 +262,7 @@ def on_validate_error(self, value: str, error: InvalidResponse) -> None:
+             value (str): String entered by user.
+             error (InvalidResponse): Exception instance the initiated the error.
+         """
+-        self.console.print(error)
++        self.console.print(error, markup=True)
+ 
+     def pre_prompt(self) -> None:
+         """Hook to display something before the prompt."""

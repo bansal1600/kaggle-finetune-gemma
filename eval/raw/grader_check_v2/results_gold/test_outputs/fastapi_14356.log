@@ -1,0 +1,30 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+____ ERROR collecting tests/test_query_cookie_header_model_extra_params.py _____
+tests/test_query_cookie_header_model_extra_params.py:6: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_ ERROR collecting tests/test_tutorial/test_header_param_models/test_tutorial003.py _
+ImportError while importing test module '/tmp/swegemma_sandbox_6369e3c4-f81_rghitjt1/workspace/tests/test_tutorial/test_header_param_models/test_tutorial003.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_header_param_models/test_tutorial003.py:4: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+=========================== short test summary info ============================
+ERROR tests/test_query_cookie_header_model_extra_params.py - TypeError: Route...
+ERROR tests/test_tutorial/test_header_param_models/test_tutorial003.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 errors in 0.89s
+
+STDERR:

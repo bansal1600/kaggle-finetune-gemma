@@ -1,0 +1,42 @@
+--- a/rich/live.py
++++ b/rich/live.py
+@@ -166,7 +166,11 @@ def stop(self) -> None:
+                 finally:
+                     self._disable_redirect_io()
+                     self.console.pop_render_hook()
+-                    if not self._alt_screen and self.console.is_terminal:
++                    if (
++                        not self._alt_screen
++                        and self.console.is_terminal
++                        and self._live_render.last_render_height
++                    ):
+                         self.console.line()
+                     self.console.show_cursor(True)
+                     if self._alt_screen:
+--- a/rich/live_render.py
++++ b/rich/live_render.py
+@@ -1,5 +1,4 @@
+-from typing import Optional, Tuple, Literal
+-
++from typing import Literal, Optional, Tuple
+ 
+ from ._loop import loop_last
+ from .console import Console, ConsoleOptions, RenderableType, RenderResult
+@@ -30,6 +29,17 @@ def __init__(
+         self.vertical_overflow = vertical_overflow
+         self._shape: Optional[Tuple[int, int]] = None
+ 
++    @property
++    def last_render_height(self) -> int:
++        """The number of lines in the last render (may be 0 if nothing was rendered).
++
++        Returns:
++            Height in lines
++        """
++        if self._shape is None:
++            return 0
++        return self._shape[1]
++
+     def set_renderable(self, renderable: RenderableType) -> None:
+         """Set a new renderable.
+ 

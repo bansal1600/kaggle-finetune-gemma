@@ -1,0 +1,13 @@
+STDOUT:
+........................................................................ [ 75%]
+........................                                                 [100%]
+=============================== warnings summary ===============================
+../../scorer_env/_pytest/config/__init__.py:1464
+  /tmp/scorer_env/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+96 passed, 1 warning in 0.29s
+
+STDERR:

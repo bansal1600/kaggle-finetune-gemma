@@ -1,0 +1,21 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_ ERROR collecting tests/test_tutorial/test_handling_errors/test_tutorial004.py _
+tests/test_tutorial/test_handling_errors/test_tutorial004.py:3: in <module>
+    from docs_src.handling_errors.tutorial004 import app
+docs_src/handling_errors/tutorial004.py:6: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:932: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:971: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+=========================== short test summary info ============================
+ERROR tests/test_tutorial/test_handling_errors/test_tutorial004.py - TypeErro...
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.95s
+
+STDERR:

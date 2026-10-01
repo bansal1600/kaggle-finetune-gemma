@@ -1,0 +1,43 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+____________ ERROR collecting tests/test_dependency_yield_scope.py _____________
+tests/test_dependency_yield_scope.py:66: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_______ ERROR collecting tests/test_dependency_yield_scope_websockets.py _______
+tests/test_dependency_yield_scope_websockets.py:73: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_ ERROR collecting tests/test_tutorial/test_dependencies/test_tutorial008e.py __
+ImportError while importing test module '/tmp/swegemma_sandbox_8194d04e-619_htciitlw/workspace/tests/test_tutorial/test_dependencies/test_tutorial008e.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_dependencies/test_tutorial008e.py:6: in <module>
+    from ...utils import needs_py39
+tests/utils.py:5: in <module>
+    from inline_snapshot import Snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+=========================== short test summary info ============================
+ERROR tests/test_dependency_yield_scope.py - TypeError: Router.__init__() got...
+ERROR tests/test_dependency_yield_scope_websockets.py - TypeError: Router.__i...
+ERROR tests/test_tutorial/test_dependencies/test_tutorial008e.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 3 errors during collection !!!!!!!!!!!!!!!!!!!!
+3 errors in 1.05s
+
+STDERR:

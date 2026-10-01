@@ -1,0 +1,263 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+______ ERROR collecting tests/test_request_params/test_body/test_list.py _______
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_body/test_list.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_body/test_list.py:4: in <module>
+    from dirty_equals import IsDict, IsOneOf, IsPartialDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+__ ERROR collecting tests/test_request_params/test_body/test_optional_list.py __
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_body/test_optional_list.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_body/test_optional_list.py:4: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+__ ERROR collecting tests/test_request_params/test_body/test_optional_str.py ___
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_body/test_optional_str.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_body/test_optional_str.py:4: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+__ ERROR collecting tests/test_request_params/test_body/test_required_str.py ___
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_body/test_required_str.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_body/test_required_str.py:4: in <module>
+    from dirty_equals import IsDict, IsOneOf
+E   ModuleNotFoundError: No module named 'dirty_equals'
+_ ERROR collecting tests/test_request_params/test_cookie/test_optional_str.py __
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_cookie/test_optional_str.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_cookie/test_optional_str.py:4: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+_ ERROR collecting tests/test_request_params/test_cookie/test_required_str.py __
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_cookie/test_required_str.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_cookie/test_required_str.py:2: in <module>
+    from dirty_equals import IsDict, IsOneOf
+E   ModuleNotFoundError: No module named 'dirty_equals'
+______ ERROR collecting tests/test_request_params/test_file/test_list.py _______
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_file/test_list.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_file/test_list.py:4: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+____ ERROR collecting tests/test_request_params/test_file/test_optional.py _____
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_file/test_optional.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_file/test_optional.py:4: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+__ ERROR collecting tests/test_request_params/test_file/test_optional_list.py __
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_file/test_optional_list.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_file/test_optional_list.py:4: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+____ ERROR collecting tests/test_request_params/test_file/test_required.py _____
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_file/test_required.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_file/test_required.py:2: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+______ ERROR collecting tests/test_request_params/test_form/test_list.py _______
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_form/test_list.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_form/test_list.py:4: in <module>
+    from dirty_equals import IsDict, IsOneOf, IsPartialDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+__ ERROR collecting tests/test_request_params/test_form/test_optional_list.py __
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_form/test_optional_list.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_form/test_optional_list.py:4: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+__ ERROR collecting tests/test_request_params/test_form/test_optional_str.py ___
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_form/test_optional_str.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_form/test_optional_str.py:4: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+__ ERROR collecting tests/test_request_params/test_form/test_required_str.py ___
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_form/test_required_str.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_form/test_required_str.py:2: in <module>
+    from dirty_equals import IsDict, IsOneOf
+E   ModuleNotFoundError: No module named 'dirty_equals'
+_____ ERROR collecting tests/test_request_params/test_header/test_list.py ______
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_header/test_list.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_header/test_list.py:4: in <module>
+    from dirty_equals import AnyThing, IsDict, IsOneOf, IsPartialDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+_ ERROR collecting tests/test_request_params/test_header/test_optional_list.py _
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_header/test_optional_list.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_header/test_optional_list.py:4: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+_ ERROR collecting tests/test_request_params/test_header/test_optional_str.py __
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_header/test_optional_str.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_header/test_optional_str.py:4: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+_ ERROR collecting tests/test_request_params/test_header/test_required_str.py __
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_header/test_required_str.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_header/test_required_str.py:2: in <module>
+    from dirty_equals import AnyThing, IsDict, IsOneOf, IsPartialDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+__ ERROR collecting tests/test_request_params/test_path/test_required_str.py ___
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_path/test_required_str.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_path/test_required_str.py:6: in <module>
+    from tests.utils import needs_pydanticv2
+tests/utils.py:5: in <module>
+    from inline_snapshot import Snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+______ ERROR collecting tests/test_request_params/test_query/test_list.py ______
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_query/test_list.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_query/test_list.py:4: in <module>
+    from dirty_equals import IsDict, IsOneOf
+E   ModuleNotFoundError: No module named 'dirty_equals'
+_ ERROR collecting tests/test_request_params/test_query/test_optional_list.py __
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_query/test_optional_list.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_query/test_optional_list.py:4: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+__ ERROR collecting tests/test_request_params/test_query/test_optional_str.py __
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_query/test_optional_str.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_query/test_optional_str.py:4: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+__ ERROR collecting tests/test_request_params/test_query/test_required_str.py __
+ImportError while importing test module '/tmp/swegemma_sandbox_4a70b93d-b81_xac5uu3k/workspace/tests/test_request_params/test_query/test_required_str.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_request_params/test_query/test_required_str.py:2: in <module>
+    from dirty_equals import IsDict, IsOneOf
+E   ModuleNotFoundError: No module named 'dirty_equals'
+=========================== short test summary info ============================
+ERROR tests/test_request_params/test_body/test_list.py
+ERROR tests/test_request_params/test_body/test_optional_list.py
+ERROR tests/test_request_params/test_body/test_optional_str.py
+ERROR tests/test_request_params/test_body/test_required_str.py
+ERROR tests/test_request_params/test_cookie/test_optional_str.py
+ERROR tests/test_request_params/test_cookie/test_required_str.py
+ERROR tests/test_request_params/test_file/test_list.py
+ERROR tests/test_request_params/test_file/test_optional.py
+ERROR tests/test_request_params/test_file/test_optional_list.py
+ERROR tests/test_request_params/test_file/test_required.py
+ERROR tests/test_request_params/test_form/test_list.py
+ERROR tests/test_request_params/test_form/test_optional_list.py
+ERROR tests/test_request_params/test_form/test_optional_str.py
+ERROR tests/test_request_params/test_form/test_required_str.py
+ERROR tests/test_request_params/test_header/test_list.py
+ERROR tests/test_request_params/test_header/test_optional_list.py
+ERROR tests/test_request_params/test_header/test_optional_str.py
+ERROR tests/test_request_params/test_header/test_required_str.py
+ERROR tests/test_request_params/test_path/test_required_str.py
+ERROR tests/test_request_params/test_query/test_list.py
+ERROR tests/test_request_params/test_query/test_optional_list.py
+ERROR tests/test_request_params/test_query/test_optional_str.py
+ERROR tests/test_request_params/test_query/test_required_str.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 23 errors during collection !!!!!!!!!!!!!!!!!!!
+23 errors in 1.33s
+
+STDERR:

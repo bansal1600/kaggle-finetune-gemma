@@ -1,0 +1,19 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_ ERROR collecting tests/test_security_oauth2_authorization_code_bearer_scopes_openapi.py _
+ImportError while importing test module '/tmp/swegemma_sandbox_53f76a65-043_t2f_hx7t/workspace/tests/test_security_oauth2_authorization_code_bearer_scopes_openapi.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_security_oauth2_authorization_code_bearer_scopes_openapi.py:8: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+=========================== short test summary info ============================
+ERROR tests/test_security_oauth2_authorization_code_bearer_scopes_openapi.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.72s
+
+STDERR:

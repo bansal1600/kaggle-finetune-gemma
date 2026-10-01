@@ -1,0 +1,156 @@
+STDOUT:
+........................................................................ [ 73%]
+.........................F                                               [100%]
+=================================== FAILURES ===================================
+_____________________________ test_brokenpipeerror _____________________________
+
+    @pytest.mark.skipif(sys.platform == "win32", reason="does not run on windows")
+    def test_brokenpipeerror() -> None:
+        """Test BrokenPipe works as expected."""
+        which_py, which_head = (["which", cmd] for cmd in ("python", "head"))
+        rich_cmd = "python -m rich".split()
+        for cmd in [which_py, which_head, rich_cmd]:
+            check = subprocess.run(cmd).returncode
+            if check != 0:
+                return  # Only test on suitable Unix platforms
+        head_cmd = "head -1".split()
+        proc1 = subprocess.Popen(rich_cmd, stdout=subprocess.PIPE)
+        proc2 = subprocess.Popen(head_cmd, stdin=proc1.stdout, stdout=subprocess.PIPE)
+        proc1.stdout.close()
+        output, _ = proc2.communicate()
+        proc1.wait()
+        proc2.wait()
+>       assert proc1.returncode == 1
+E       AssertionError: assert 120 == 1
+E        +  where 120 = <Popen: returncode: 120 args: ['python', '-m', 'rich']>.returncode
+
+tests/test_console.py:1039: AssertionError
+----------------------------- Captured stdout call -----------------------------
+/tmp/swegemma_sandbox_17494307-68f_df5pesge/venv/bin/python
+/usr/bin/head
+                                 Rich features                                  
+                                                                                
+    Colors    ✓ 4-bit color                 ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
+              ✓ 8-bit color                 ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
+              ✓ Truecolor (16.7 million)    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
+              ✓ Dumb terminals              ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
+              ✓ Automatic color conversion  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
+                                                                                
+    Styles    All ansi styles: bold, dim, italic, underline, strikethrough,     
+              reverse, and even blink.                                          
+                                                                                
+     Text     Word wrap text. Justify left, center, right or full.              
+                                                                                
+              Lorem ipsum       Lorem ipsum        Lorem ipsum Lorem      ipsum 
+              dolor sit amet, dolor sit amet,  dolor sit amet, dolor sit  amet, 
+              consectetur       consectetur        consectetur consectetur      
+              adipiscing        adipiscing    adipiscing elit. adipiscing elit. 
+              elit. Quisque    elit. Quisque  Quisque in metus Quisque in metus 
+              in metus sed     in metus sed         sed sapien sed       sapien 
+              sapien              sapien             ultricies ultricies        
+              ultricies          ultricies        pretium a at pretium   a   at 
+              pretium a at     pretium a at    justo. Maecenas justo.  Maecenas 
+              justo. Maecenas justo. Maecenas  luctus velit et luctus velit  et 
+              luctus velit et luctus velit et  auctor maximus. auctor maximus.  
+              auctor maximus. auctor maximus.                                   
+                                                                                
+    Asian     🇨🇳  该库支持中文，日文和韩文文本！                                
+   language   🇯🇵                                                                
+   support    ライブラリは中国語、日本語、韓国語のテキストをサポートしています  
+              🇰🇷  이 라이브러리는 중국어, 일본어 및 한국어 텍스트를 지원합니다  
+                                                                                
+    Markup    Rich supports a simple bbcode-like markup for color, style, and   
+              emoji! 👍 🍎 🐜 🐻 🥖 🚌                                          
+                                                                                
+    Tables     Date           Title         Production Budget       Box Office  
+              ───────────────────────────────────────────────────────────────── 
+               Dec 20, 2019   Star Wars:         $275,000,000     $375,126,118  
+                              The Rise of                                       
+                              Skywalker                                         
+               May 25, 2018   Solo: A            $275,000,000     $393,151,347  
+                              Star Wars                                         
+                              Story                                             
+               Dec 15, 2017   Star Wars          $262,000,000   $1,332,539,889  
+                              Ep. VIII:                                         
+                              The Last                                          
+                              Jedi                                              
+               May 19, 1999   Star Wars          $115,000,000   $1,027,044,677  
+                              Ep. I: The                                        
+                              phantom                                           
+                              Menace                                            
+                                                                                
+    Syntax       1 def iter_last(values: Itera  {                               
+ highlighting    2 │   """Iterate and generate  │   'foo': [                    
+      &          3 │   iter_values = iter(valu  │   │   3.1427,                 
+    pretty       4 │   try:                     │   │   (                       
+   printing      5 │   │   previous_value = ne  │   │   │   'Paul Atreides',    
+                 6 │   except StopIteration:    │   │   │   'Vladimir           
+                 7 │   │   return               Harkonnen',                     
+                 8 │   for value in iter_value  │   │   │   'Thufir Hawat'      
+                 9 │   │   yield False, previo  │   │   )                       
+                10 │   │   previous_value = va  │   ],                          
+                11 │   yield True, previous_va  │   'atomic': (                 
+                                                │   │   False,                  
+                                                │   │   True,                   
+                                                │   │   None                    
+                                                │   )                           
+                                                }                               
+                                                                                
+   Markdown   # Markdown                        ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ 
+                                                ┃          Markdown           ┃ 
+              Supports much of the *markdown*   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ 
+              __syntax__!                                                       
+                                                Supports much of the markdown   
+              - Headers                         syntax!                         
+              - Basic formatting: **bold**,                                     
+              *italic*, `code`                   • Headers                      
+              - Block quotes                     • Basic formatting: bold,      
+              - Lists, and more...                 italic, code                 
+                                                 • Block quotes                 
+                                                 • Lists, and more...           
+                                                                                
+    +more!    Progress bars, columns, styled logging handler, tracebacks,       
+              etc...                                                            
+                                                                                
+rendered in 70.8ms (cold cache)
+rendered in 28.3ms (warm cache)
+╭──────────────────────── Thanks for trying out Rich! ─────────────────────────╮
+│                                                                              │
+│  We hope you enjoy using Rich!   Textualize https://github.com/textualize    │
+│                                                                              │
+│  Rich is maintained with ❤ by       Twitter https://twitter.com/willmcgugan  │
+│  Textualize.io                                                               │
+│                                                                              │
+│  - Will McGugan                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+----------------------------- Captured stderr call -----------------------------
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/tmp/swegemma_sandbox_17494307-68f_df5pesge/workspace/rich/__main__.py", line 264, in <module>
+    console.print(
+  File "/tmp/swegemma_sandbox_17494307-68f_df5pesge/workspace/rich/console.py", line 1676, in print
+    with self:
+         ^^^^
+  File "/tmp/swegemma_sandbox_17494307-68f_df5pesge/workspace/rich/console.py", line 864, in __exit__
+    self._exit_buffer()
+  File "/tmp/swegemma_sandbox_17494307-68f_df5pesge/workspace/rich/console.py", line 822, in _exit_buffer
+    self._check_buffer()
+  File "/tmp/swegemma_sandbox_17494307-68f_df5pesge/workspace/rich/console.py", line 2068, in _check_buffer
+    self.file.flush()
+BrokenPipeError: [Errno 32] Broken pipe
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+=============================== warnings summary ===============================
+../../scorer_env/_pytest/config/__init__.py:1464
+  /tmp/scorer_env/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_console.py::test_brokenpipeerror - AssertionError: assert 1...
+1 failed, 97 passed, 1 warning in 1.29s
+
+STDERR:

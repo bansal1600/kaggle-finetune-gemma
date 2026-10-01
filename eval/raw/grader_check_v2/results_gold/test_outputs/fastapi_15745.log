@@ -1,0 +1,19 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+______________ ERROR collecting tests/test_custom_route_class.py _______________
+ImportError while importing test module '/tmp/swegemma_sandbox_d56f2659-ee3_u30mrx_n/workspace/tests/test_custom_route_class.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_custom_route_class.py:5: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+=========================== short test summary info ============================
+ERROR tests/test_custom_route_class.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.87s
+
+STDERR:

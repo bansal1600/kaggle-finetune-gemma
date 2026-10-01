@@ -1,0 +1,151 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_compat_params_v1.py ________________
+ImportError while importing test module '/tmp/swegemma_sandbox_282fc2ef-ef1_gwxbpjt0/workspace/tests/test_compat_params_v1.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_compat_params_v1.py:26: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+_______ ERROR collecting tests/test_filter_pydantic_sub_model/app_pv1.py _______
+tests/test_filter_pydantic_sub_model/app_pv1.py:7: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:928: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:965: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_____ ERROR collecting tests/test_get_model_definitions_formfeed_escape.py _____
+ImportError while importing test module '/tmp/swegemma_sandbox_282fc2ef-ef1_gwxbpjt0/workspace/tests/test_get_model_definitions_formfeed_escape.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_get_model_definitions_formfeed_escape.py:6: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+_______________ ERROR collecting tests/test_pydantic_v1_v2_01.py _______________
+ImportError while importing test module '/tmp/swegemma_sandbox_282fc2ef-ef1_gwxbpjt0/workspace/tests/test_pydantic_v1_v2_01.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_pydantic_v1_v2_01.py:13: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+______________ ERROR collecting tests/test_pydantic_v1_v2_list.py ______________
+ImportError while importing test module '/tmp/swegemma_sandbox_282fc2ef-ef1_gwxbpjt0/workspace/tests/test_pydantic_v1_v2_list.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_pydantic_v1_v2_list.py:13: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+_____________ ERROR collecting tests/test_pydantic_v1_v2_mixed.py ______________
+ImportError while importing test module '/tmp/swegemma_sandbox_282fc2ef-ef1_gwxbpjt0/workspace/tests/test_pydantic_v1_v2_mixed.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_pydantic_v1_v2_mixed.py:13: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+_________ ERROR collecting tests/test_pydantic_v1_v2_multifile/main.py _________
+tests/test_pydantic_v1_v2_multifile/main.py:7: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:928: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:965: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+____________ ERROR collecting tests/test_pydantic_v1_v2_noneable.py ____________
+ImportError while importing test module '/tmp/swegemma_sandbox_282fc2ef-ef1_gwxbpjt0/workspace/tests/test_pydantic_v1_v2_noneable.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_pydantic_v1_v2_noneable.py:13: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+______ ERROR collecting tests/test_response_model_as_return_annotation.py ______
+tests/test_response_model_as_return_annotation.py:31: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:928: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:965: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_ ERROR collecting tests/test_tutorial/test_pydantic_v1_in_v2/test_tutorial002.py _
+ImportError while importing test module '/tmp/swegemma_sandbox_282fc2ef-ef1_gwxbpjt0/workspace/tests/test_tutorial/test_pydantic_v1_in_v2/test_tutorial002.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_pydantic_v1_in_v2/test_tutorial002.py:5: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+_ ERROR collecting tests/test_tutorial/test_pydantic_v1_in_v2/test_tutorial003.py _
+ImportError while importing test module '/tmp/swegemma_sandbox_282fc2ef-ef1_gwxbpjt0/workspace/tests/test_tutorial/test_pydantic_v1_in_v2/test_tutorial003.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_pydantic_v1_in_v2/test_tutorial003.py:5: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+_ ERROR collecting tests/test_tutorial/test_pydantic_v1_in_v2/test_tutorial004.py _
+ImportError while importing test module '/tmp/swegemma_sandbox_282fc2ef-ef1_gwxbpjt0/workspace/tests/test_tutorial/test_pydantic_v1_in_v2/test_tutorial004.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_pydantic_v1_in_v2/test_tutorial004.py:5: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+_ ERROR collecting tests/test_tutorial/test_schema_extra_example/test_tutorial001_pv1.py _
+ImportError while importing test module '/tmp/swegemma_sandbox_282fc2ef-ef1_gwxbpjt0/workspace/tests/test_tutorial/test_schema_extra_example/test_tutorial001_pv1.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_schema_extra_example/test_tutorial001_pv1.py:6: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+=========================== short test summary info ============================
+ERROR tests/test_compat_params_v1.py
+ERROR tests/test_filter_pydantic_sub_model/app_pv1.py - TypeError: Router.__i...
+ERROR tests/test_get_model_definitions_formfeed_escape.py
+ERROR tests/test_pydantic_v1_v2_01.py
+ERROR tests/test_pydantic_v1_v2_list.py
+ERROR tests/test_pydantic_v1_v2_mixed.py
+ERROR tests/test_pydantic_v1_v2_multifile/main.py - TypeError: Router.__init_...
+ERROR tests/test_pydantic_v1_v2_noneable.py
+ERROR tests/test_response_model_as_return_annotation.py - TypeError: Router._...
+ERROR tests/test_tutorial/test_pydantic_v1_in_v2/test_tutorial002.py
+ERROR tests/test_tutorial/test_pydantic_v1_in_v2/test_tutorial003.py
+ERROR tests/test_tutorial/test_pydantic_v1_in_v2/test_tutorial004.py
+ERROR tests/test_tutorial/test_schema_extra_example/test_tutorial001_pv1.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 13 errors during collection !!!!!!!!!!!!!!!!!!!
+1 skipped, 13 errors in 2.02s
+
+STDERR:

@@ -1,0 +1,30 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_ ERROR collecting tests/test_tutorial/test_custom_response/test_tutorial001.py _
+ImportError while importing test module '/tmp/swegemma_sandbox_c5bf19a4-f03_xy_rr05u/workspace/tests/test_tutorial/test_custom_response/test_tutorial001.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_custom_response/test_tutorial001.py:5: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+_ ERROR collecting tests/test_tutorial/test_custom_response/test_tutorial001b.py _
+ImportError while importing test module '/tmp/swegemma_sandbox_c5bf19a4-f03_xy_rr05u/workspace/tests/test_tutorial/test_custom_response/test_tutorial001b.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_tutorial/test_custom_response/test_tutorial001b.py:6: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+=========================== short test summary info ============================
+ERROR tests/test_tutorial/test_custom_response/test_tutorial001.py
+ERROR tests/test_tutorial/test_custom_response/test_tutorial001b.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 errors in 0.94s
+
+STDERR:

@@ -1,0 +1,19 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_____ ERROR collecting tests/test_get_model_definitions_formfeed_escape.py _____
+ImportError while importing test module '/tmp/swegemma_sandbox_190a4e9b-930_snko8xmd/workspace/tests/test_get_model_definitions_formfeed_escape.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_get_model_definitions_formfeed_escape.py:4: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+=========================== short test summary info ============================
+ERROR tests/test_get_model_definitions_formfeed_escape.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 1.22s
+
+STDERR:

@@ -1,0 +1,28 @@
+STDOUT:
+...F.................                                                    [100%]
+=================================== FAILURES ===================================
+__________________________ test_escape_backslash_end ___________________________
+
+    def test_escape_backslash_end():
+        # https://github.com/Textualize/rich/issues/2987
+        value = "C:\\"
+>       assert escape(value) == "C:\\\\"
+E       AssertionError: assert 'C:\\' == 'C:\\\\'
+E         
+E         - C:\\
+E         ?    -
+E         + C:\
+
+tests/test_markup.py:50: AssertionError
+=============================== warnings summary ===============================
+../../scorer_env/_pytest/config/__init__.py:1464
+  /tmp/scorer_env/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_markup.py::test_escape_backslash_end - AssertionError: asse...
+1 failed, 20 passed, 1 warning in 0.16s
+
+STDERR:

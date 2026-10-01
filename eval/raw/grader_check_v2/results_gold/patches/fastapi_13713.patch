@@ -1,0 +1,68 @@
+--- a/fastapi/applications.py
++++ b/fastapi/applications.py
+@@ -810,6 +810,32 @@ class Item(BaseModel):
+                 """
+             ),
+         ] = True,
++        openapi_external_docs: Annotated[
++            Optional[Dict[str, Any]],
++            Doc(
++                """
++                This field allows you to provide additional external documentation links.
++                If provided, it must be a dictionary containing:
++
++                * `description`: A brief description of the external documentation.
++                * `url`: The URL pointing to the external documentation. The value **MUST**
++                be a valid URL format.
++
++                **Example**:
++
++                ```python
++                from fastapi import FastAPI
++
++                external_docs = {
++                    "description": "Detailed API Reference",
++                    "url": "https://example.com/api-docs",
++                }
++
++                app = FastAPI(openapi_external_docs=external_docs)
++                ```
++                """
++            ),
++        ] = None,
+         **extra: Annotated[
+             Any,
+             Doc(
+@@ -838,6 +864,7 @@ class Item(BaseModel):
+         self.swagger_ui_parameters = swagger_ui_parameters
+         self.servers = servers or []
+         self.separate_input_output_schemas = separate_input_output_schemas
++        self.openapi_external_docs = openapi_external_docs
+         self.extra = extra
+         self.openapi_version: Annotated[
+             str,
+@@ -992,6 +1019,7 @@ def openapi(self) -> Dict[str, Any]:
+                 tags=self.openapi_tags,
+                 servers=self.servers,
+                 separate_input_output_schemas=self.separate_input_output_schemas,
++                external_docs=self.openapi_external_docs,
+             )
+         return self.openapi_schema
+ 
+--- a/fastapi/openapi/utils.py
++++ b/fastapi/openapi/utils.py
+@@ -488,6 +488,7 @@ def get_openapi(
+     contact: Optional[Dict[str, Union[str, Any]]] = None,
+     license_info: Optional[Dict[str, Union[str, Any]]] = None,
+     separate_input_output_schemas: bool = True,
++    external_docs: Optional[Dict[str, Any]] = None,
+ ) -> Dict[str, Any]:
+     info: Dict[str, Any] = {"title": title, "version": version}
+     if summary:
+@@ -565,4 +566,6 @@ def get_openapi(
+         output["webhooks"] = webhook_paths
+     if tags:
+         output["tags"] = tags
++    if external_docs:
++        output["externalDocs"] = external_docs
+     return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore

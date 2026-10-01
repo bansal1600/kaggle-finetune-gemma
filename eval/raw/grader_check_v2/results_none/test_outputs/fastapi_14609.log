@@ -1,0 +1,30 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_____ ERROR collecting tests/test_get_model_definitions_formfeed_escape.py _____
+ImportError while importing test module '/tmp/swegemma_sandbox_d8c2c407-50f_iei99iol/workspace/tests/test_get_model_definitions_formfeed_escape.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_get_model_definitions_formfeed_escape.py:4: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+_______________ ERROR collecting tests/test_jsonable_encoder.py ________________
+ImportError while importing test module '/tmp/swegemma_sandbox_d8c2c407-50f_iei99iol/workspace/tests/test_jsonable_encoder.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_jsonable_encoder.py:14: in <module>
+    from fastapi.exceptions import PydanticV1NotSupportedError
+E   ImportError: cannot import name 'PydanticV1NotSupportedError' from 'fastapi.exceptions' (/tmp/swegemma_sandbox_d8c2c407-50f_iei99iol/workspace/fastapi/exceptions.py)
+=========================== short test summary info ============================
+ERROR tests/test_get_model_definitions_formfeed_escape.py
+ERROR tests/test_jsonable_encoder.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 errors in 1.16s
+
+STDERR:

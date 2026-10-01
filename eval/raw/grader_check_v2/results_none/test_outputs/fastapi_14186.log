@@ -1,0 +1,45 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+____________________ ERROR collecting tests/test_compat.py _____________________
+ImportError while importing test module '/tmp/swegemma_sandbox_ef2a5e73-091_y_il5pfb/workspace/tests/test_compat.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_compat.py:4: in <module>
+    from fastapi._compat import (
+E   ImportError: cannot import name 'may_v1' from 'fastapi._compat' (/tmp/swegemma_sandbox_ef2a5e73-091_y_il5pfb/workspace/fastapi/_compat/__init__.py)
+_____ ERROR collecting tests/test_get_model_definitions_formfeed_escape.py _____
+ImportError while importing test module '/tmp/swegemma_sandbox_ef2a5e73-091_y_il5pfb/workspace/tests/test_get_model_definitions_formfeed_escape.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_get_model_definitions_formfeed_escape.py:11: in <module>
+    from .utils import needs_pydanticv1
+tests/utils.py:5: in <module>
+    from inline_snapshot import Snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+______ ERROR collecting tests/test_response_model_as_return_annotation.py ______
+ImportError while importing test module '/tmp/swegemma_sandbox_ef2a5e73-091_y_il5pfb/workspace/tests/test_response_model_as_return_annotation.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_response_model_as_return_annotation.py:10: in <module>
+    from tests.utils import needs_pydanticv1
+tests/utils.py:5: in <module>
+    from inline_snapshot import Snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+=========================== short test summary info ============================
+ERROR tests/test_compat.py
+ERROR tests/test_get_model_definitions_formfeed_escape.py
+ERROR tests/test_response_model_as_return_annotation.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 3 errors during collection !!!!!!!!!!!!!!!!!!!!
+3 errors in 1.07s
+
+STDERR:

@@ -1,0 +1,25 @@
+STDOUT:
+.....................................................F                   [100%]
+=================================== FAILURES ===================================
+________________________________ test_nerd_font ________________________________
+
+    def test_nerd_font():
+        """Regression test for https://github.com/Textualize/rich/issues/3943"""
+        # Not allocated by unicode, but used by nerd fonts
+>       assert cell_len("\U000f024d") == 1
+E       AssertionError: assert 0 == 1
+E        +  where 0 = cell_len('\U000f024d')
+
+tests/test_cells.py:189: AssertionError
+=============================== warnings summary ===============================
+../../scorer_env/_pytest/config/__init__.py:1464
+  /tmp/scorer_env/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_cells.py::test_nerd_font - AssertionError: assert 0 == 1
+1 failed, 53 passed, 1 warning in 0.22s
+
+STDERR:

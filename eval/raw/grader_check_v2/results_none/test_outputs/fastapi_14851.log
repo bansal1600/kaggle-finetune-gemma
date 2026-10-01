@@ -1,0 +1,2336 @@
+STDOUT:
+FFFFFFFFF                                                                [100%]
+=================================== FAILURES ===================================
+______________________________ test_router_events ______________________________
+
+state = State(app_startup=False, app_shutdown=False, router_startup=False, router_shutdown=False, sub_router_startup=False, sub_router_shutdown=False)
+
+    @pytest.mark.filterwarnings(
+        r"ignore:\s*on_event is deprecated, use lifespan event handlers instead.*:DeprecationWarning"
+    )
+    def test_router_events(state: State) -> None:
+>       app = FastAPI()
+              ^^^^^^^^^
+
+tests/test_router_events.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+fastapi/applications.py:931: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <fastapi.routing.APIRouter object at 0x7e7d3af23800>, prefix = ''
+tags = None, dependencies = None
+default_response_class = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93dd0>
+responses = None, callbacks = None, routes = None, redirect_slashes = True
+default = None, dependency_overrides_provider = None
+route_class = <class 'fastapi.routing.APIRoute'>, on_startup = None
+on_shutdown = None, lifespan = None, deprecated = None, include_in_schema = True
+generate_unique_id_function = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93e90>
+
+    def __init__(
+        self,
+        *,
+        prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
+        tags: Annotated[
+            Optional[list[Union[str, Enum]]],
+            Doc(
+                """
+                A list of tags to be applied to all the *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        dependencies: Annotated[
+            Optional[Sequence[params.Depends]],
+            Doc(
+                """
+                A list of dependencies (using `Depends()`) to be applied to all the
+                *path operations* in this router.
+    
+                Read more about it in the
+                [FastAPI docs for Bigger Applications - Multiple Files](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        default_response_class: Annotated[
+            type[Response],
+            Doc(
+                """
+                The default response class to be used.
+    
+                Read more in the
+                [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#default-response-class).
+                """
+            ),
+        ] = Default(JSONResponse),
+        responses: Annotated[
+            Optional[dict[Union[int, str], dict[str, Any]]],
+            Doc(
+                """
+                Additional responses to be shown in OpenAPI.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Additional Responses in OpenAPI](https://fastapi.tiangolo.com/advanced/additional-responses/).
+    
+                And in the
+                [FastAPI docs for Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        callbacks: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                OpenAPI callbacks that should apply to all *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
+                """
+            ),
+        ] = None,
+        routes: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                **Note**: you probably shouldn't use this parameter, it is inherited
+                from Starlette and supported for compatibility.
+    
+                ---
+    
+                A list of routes to serve incoming HTTP and WebSocket requests.
+                """
+            ),
+            deprecated(
+                """
+                You normally wouldn't use this parameter with FastAPI, it is inherited
+                from Starlette and supported for compatibility.
+    
+                In FastAPI, you normally would use the *path operation methods*,
+                like `router.get()`, `router.post()`, etc.
+                """
+            ),
+        ] = None,
+        redirect_slashes: Annotated[
+            bool,
+            Doc(
+                """
+                Whether to detect and redirect slashes in URLs when the client doesn't
+                use the same format.
+                """
+            ),
+        ] = True,
+        default: Annotated[
+            Optional[ASGIApp],
+            Doc(
+                """
+                Default function handler for this router. Used to handle
+                404 Not Found errors.
+                """
+            ),
+        ] = None,
+        dependency_overrides_provider: Annotated[
+            Optional[Any],
+            Doc(
+                """
+                Only used internally by FastAPI to handle dependency overrides.
+    
+                You shouldn't need to use it. It normally points to the `FastAPI` app
+                object.
+                """
+            ),
+        ] = None,
+        route_class: Annotated[
+            type[APIRoute],
+            Doc(
+                """
+                Custom route (*path operation*) class to be used by this router.
+    
+                Read more about it in the
+                [FastAPI docs for Custom Request and APIRoute class](https://fastapi.tiangolo.com/how-to/custom-request-and-route/#custom-apiroute-class-in-a-router).
+                """
+            ),
+        ] = APIRoute,
+        on_startup: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of startup event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        on_shutdown: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of shutdown event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        # the generic to Lifespan[AppType] is the type of the top level application
+        # which the router cannot know statically, so we use typing.Any
+        lifespan: Annotated[
+            Optional[Lifespan[Any]],
+            Doc(
+                """
+                A `Lifespan` context manager handler. This replaces `startup` and
+                `shutdown` functions with a single context manager.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        deprecated: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Mark all *path operations* in this router as deprecated.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        include_in_schema: Annotated[
+            bool,
+            Doc(
+                """
+                To include (or not) all the *path operations* in this router in the
+                generated OpenAPI.
+    
+                This affects the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
+                """
+            ),
+        ] = True,
+        generate_unique_id_function: Annotated[
+            Callable[[APIRoute], str],
+            Doc(
+                """
+                Customize the function used to generate unique IDs for the *path
+                operations* shown in the generated OpenAPI.
+    
+                This is particularly useful when automatically generating clients or
+                SDKs for your API.
+    
+                Read more about it in the
+                [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
+                """
+            ),
+        ] = Default(generate_unique_id),
+    ) -> None:
+>       super().__init__(
+            routes=routes,
+            redirect_slashes=redirect_slashes,
+            default=default,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
+            lifespan=lifespan,
+        )
+E       TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+
+fastapi/routing.py:906: TypeError
+___________________________ test_app_lifespan_state ____________________________
+
+state = State(app_startup=False, app_shutdown=False, router_startup=False, router_shutdown=False, sub_router_startup=False, sub_router_shutdown=False)
+
+    def test_app_lifespan_state(state: State) -> None:
+        @asynccontextmanager
+        async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+            state.app_startup = True
+            yield
+            state.app_shutdown = True
+    
+>       app = FastAPI(lifespan=lifespan)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_router_events.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+fastapi/applications.py:931: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <fastapi.routing.APIRouter object at 0x7e7d3ab9e570>, prefix = ''
+tags = None, dependencies = None
+default_response_class = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93dd0>
+responses = None, callbacks = None, routes = None, redirect_slashes = True
+default = None, dependency_overrides_provider = None
+route_class = <class 'fastapi.routing.APIRoute'>, on_startup = None
+on_shutdown = None, lifespan = None, deprecated = None, include_in_schema = True
+generate_unique_id_function = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93e90>
+
+    def __init__(
+        self,
+        *,
+        prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
+        tags: Annotated[
+            Optional[list[Union[str, Enum]]],
+            Doc(
+                """
+                A list of tags to be applied to all the *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        dependencies: Annotated[
+            Optional[Sequence[params.Depends]],
+            Doc(
+                """
+                A list of dependencies (using `Depends()`) to be applied to all the
+                *path operations* in this router.
+    
+                Read more about it in the
+                [FastAPI docs for Bigger Applications - Multiple Files](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        default_response_class: Annotated[
+            type[Response],
+            Doc(
+                """
+                The default response class to be used.
+    
+                Read more in the
+                [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#default-response-class).
+                """
+            ),
+        ] = Default(JSONResponse),
+        responses: Annotated[
+            Optional[dict[Union[int, str], dict[str, Any]]],
+            Doc(
+                """
+                Additional responses to be shown in OpenAPI.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Additional Responses in OpenAPI](https://fastapi.tiangolo.com/advanced/additional-responses/).
+    
+                And in the
+                [FastAPI docs for Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        callbacks: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                OpenAPI callbacks that should apply to all *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
+                """
+            ),
+        ] = None,
+        routes: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                **Note**: you probably shouldn't use this parameter, it is inherited
+                from Starlette and supported for compatibility.
+    
+                ---
+    
+                A list of routes to serve incoming HTTP and WebSocket requests.
+                """
+            ),
+            deprecated(
+                """
+                You normally wouldn't use this parameter with FastAPI, it is inherited
+                from Starlette and supported for compatibility.
+    
+                In FastAPI, you normally would use the *path operation methods*,
+                like `router.get()`, `router.post()`, etc.
+                """
+            ),
+        ] = None,
+        redirect_slashes: Annotated[
+            bool,
+            Doc(
+                """
+                Whether to detect and redirect slashes in URLs when the client doesn't
+                use the same format.
+                """
+            ),
+        ] = True,
+        default: Annotated[
+            Optional[ASGIApp],
+            Doc(
+                """
+                Default function handler for this router. Used to handle
+                404 Not Found errors.
+                """
+            ),
+        ] = None,
+        dependency_overrides_provider: Annotated[
+            Optional[Any],
+            Doc(
+                """
+                Only used internally by FastAPI to handle dependency overrides.
+    
+                You shouldn't need to use it. It normally points to the `FastAPI` app
+                object.
+                """
+            ),
+        ] = None,
+        route_class: Annotated[
+            type[APIRoute],
+            Doc(
+                """
+                Custom route (*path operation*) class to be used by this router.
+    
+                Read more about it in the
+                [FastAPI docs for Custom Request and APIRoute class](https://fastapi.tiangolo.com/how-to/custom-request-and-route/#custom-apiroute-class-in-a-router).
+                """
+            ),
+        ] = APIRoute,
+        on_startup: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of startup event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        on_shutdown: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of shutdown event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        # the generic to Lifespan[AppType] is the type of the top level application
+        # which the router cannot know statically, so we use typing.Any
+        lifespan: Annotated[
+            Optional[Lifespan[Any]],
+            Doc(
+                """
+                A `Lifespan` context manager handler. This replaces `startup` and
+                `shutdown` functions with a single context manager.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        deprecated: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Mark all *path operations* in this router as deprecated.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        include_in_schema: Annotated[
+            bool,
+            Doc(
+                """
+                To include (or not) all the *path operations* in this router in the
+                generated OpenAPI.
+    
+                This affects the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
+                """
+            ),
+        ] = True,
+        generate_unique_id_function: Annotated[
+            Callable[[APIRoute], str],
+            Doc(
+                """
+                Customize the function used to generate unique IDs for the *path
+                operations* shown in the generated OpenAPI.
+    
+                This is particularly useful when automatically generating clients or
+                SDKs for your API.
+    
+                Read more about it in the
+                [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
+                """
+            ),
+        ] = Default(generate_unique_id),
+    ) -> None:
+>       super().__init__(
+            routes=routes,
+            redirect_slashes=redirect_slashes,
+            default=default,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
+            lifespan=lifespan,
+        )
+E       TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+
+fastapi/routing.py:906: TypeError
+______________________ test_router_nested_lifespan_state _______________________
+
+state = State(app_startup=False, app_shutdown=False, router_startup=False, router_shutdown=False, sub_router_startup=False, sub_router_shutdown=False)
+
+    def test_router_nested_lifespan_state(state: State) -> None:
+        @asynccontextmanager
+        async def lifespan(app: FastAPI) -> AsyncGenerator[dict[str, bool], None]:
+            state.app_startup = True
+            yield {"app": True}
+            state.app_shutdown = True
+    
+        @asynccontextmanager
+        async def router_lifespan(app: FastAPI) -> AsyncGenerator[dict[str, bool], None]:
+            state.router_startup = True
+            yield {"router": True}
+            state.router_shutdown = True
+    
+        @asynccontextmanager
+        async def subrouter_lifespan(app: FastAPI) -> AsyncGenerator[dict[str, bool], None]:
+            state.sub_router_startup = True
+            yield {"sub_router": True}
+            state.sub_router_shutdown = True
+    
+>       sub_router = APIRouter(lifespan=subrouter_lifespan)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_router_events.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <fastapi.routing.APIRouter object at 0x7e7d3ab9e4e0>, prefix = ''
+tags = None, dependencies = None
+default_response_class = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93dd0>
+responses = None, callbacks = None, routes = None, redirect_slashes = True
+default = None, dependency_overrides_provider = None
+route_class = <class 'fastapi.routing.APIRoute'>, on_startup = None
+on_shutdown = None
+lifespan = <function test_router_nested_lifespan_state.<locals>.subrouter_lifespan at 0x7e7d3ac5e020>
+deprecated = None, include_in_schema = True
+generate_unique_id_function = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93e90>
+
+    def __init__(
+        self,
+        *,
+        prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
+        tags: Annotated[
+            Optional[list[Union[str, Enum]]],
+            Doc(
+                """
+                A list of tags to be applied to all the *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        dependencies: Annotated[
+            Optional[Sequence[params.Depends]],
+            Doc(
+                """
+                A list of dependencies (using `Depends()`) to be applied to all the
+                *path operations* in this router.
+    
+                Read more about it in the
+                [FastAPI docs for Bigger Applications - Multiple Files](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        default_response_class: Annotated[
+            type[Response],
+            Doc(
+                """
+                The default response class to be used.
+    
+                Read more in the
+                [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#default-response-class).
+                """
+            ),
+        ] = Default(JSONResponse),
+        responses: Annotated[
+            Optional[dict[Union[int, str], dict[str, Any]]],
+            Doc(
+                """
+                Additional responses to be shown in OpenAPI.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Additional Responses in OpenAPI](https://fastapi.tiangolo.com/advanced/additional-responses/).
+    
+                And in the
+                [FastAPI docs for Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        callbacks: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                OpenAPI callbacks that should apply to all *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
+                """
+            ),
+        ] = None,
+        routes: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                **Note**: you probably shouldn't use this parameter, it is inherited
+                from Starlette and supported for compatibility.
+    
+                ---
+    
+                A list of routes to serve incoming HTTP and WebSocket requests.
+                """
+            ),
+            deprecated(
+                """
+                You normally wouldn't use this parameter with FastAPI, it is inherited
+                from Starlette and supported for compatibility.
+    
+                In FastAPI, you normally would use the *path operation methods*,
+                like `router.get()`, `router.post()`, etc.
+                """
+            ),
+        ] = None,
+        redirect_slashes: Annotated[
+            bool,
+            Doc(
+                """
+                Whether to detect and redirect slashes in URLs when the client doesn't
+                use the same format.
+                """
+            ),
+        ] = True,
+        default: Annotated[
+            Optional[ASGIApp],
+            Doc(
+                """
+                Default function handler for this router. Used to handle
+                404 Not Found errors.
+                """
+            ),
+        ] = None,
+        dependency_overrides_provider: Annotated[
+            Optional[Any],
+            Doc(
+                """
+                Only used internally by FastAPI to handle dependency overrides.
+    
+                You shouldn't need to use it. It normally points to the `FastAPI` app
+                object.
+                """
+            ),
+        ] = None,
+        route_class: Annotated[
+            type[APIRoute],
+            Doc(
+                """
+                Custom route (*path operation*) class to be used by this router.
+    
+                Read more about it in the
+                [FastAPI docs for Custom Request and APIRoute class](https://fastapi.tiangolo.com/how-to/custom-request-and-route/#custom-apiroute-class-in-a-router).
+                """
+            ),
+        ] = APIRoute,
+        on_startup: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of startup event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        on_shutdown: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of shutdown event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        # the generic to Lifespan[AppType] is the type of the top level application
+        # which the router cannot know statically, so we use typing.Any
+        lifespan: Annotated[
+            Optional[Lifespan[Any]],
+            Doc(
+                """
+                A `Lifespan` context manager handler. This replaces `startup` and
+                `shutdown` functions with a single context manager.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        deprecated: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Mark all *path operations* in this router as deprecated.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        include_in_schema: Annotated[
+            bool,
+            Doc(
+                """
+                To include (or not) all the *path operations* in this router in the
+                generated OpenAPI.
+    
+                This affects the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
+                """
+            ),
+        ] = True,
+        generate_unique_id_function: Annotated[
+            Callable[[APIRoute], str],
+            Doc(
+                """
+                Customize the function used to generate unique IDs for the *path
+                operations* shown in the generated OpenAPI.
+    
+                This is particularly useful when automatically generating clients or
+                SDKs for your API.
+    
+                Read more about it in the
+                [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
+                """
+            ),
+        ] = Default(generate_unique_id),
+    ) -> None:
+>       super().__init__(
+            routes=routes,
+            redirect_slashes=redirect_slashes,
+            default=default,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
+            lifespan=lifespan,
+        )
+E       TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+
+fastapi/routing.py:906: TypeError
+____________ test_router_nested_lifespan_state_overriding_by_parent ____________
+
+    def test_router_nested_lifespan_state_overriding_by_parent() -> None:
+        @asynccontextmanager
+        async def lifespan(
+            app: FastAPI,
+        ) -> AsyncGenerator[dict[str, Union[str, bool]], None]:
+            yield {
+                "app_specific": True,
+                "overridden": "app",
+            }
+    
+        @asynccontextmanager
+        async def router_lifespan(
+            app: FastAPI,
+        ) -> AsyncGenerator[dict[str, Union[str, bool]], None]:
+            yield {
+                "router_specific": True,
+                "overridden": "router",  # should override parent
+            }
+    
+>       router = APIRouter(lifespan=router_lifespan)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_router_events.py:194: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <fastapi.routing.APIRouter object at 0x7e7d3aba04d0>, prefix = ''
+tags = None, dependencies = None
+default_response_class = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93dd0>
+responses = None, callbacks = None, routes = None, redirect_slashes = True
+default = None, dependency_overrides_provider = None
+route_class = <class 'fastapi.routing.APIRoute'>, on_startup = None
+on_shutdown = None
+lifespan = <function test_router_nested_lifespan_state_overriding_by_parent.<locals>.router_lifespan at 0x7e7d3ac5eac0>
+deprecated = None, include_in_schema = True
+generate_unique_id_function = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93e90>
+
+    def __init__(
+        self,
+        *,
+        prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
+        tags: Annotated[
+            Optional[list[Union[str, Enum]]],
+            Doc(
+                """
+                A list of tags to be applied to all the *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        dependencies: Annotated[
+            Optional[Sequence[params.Depends]],
+            Doc(
+                """
+                A list of dependencies (using `Depends()`) to be applied to all the
+                *path operations* in this router.
+    
+                Read more about it in the
+                [FastAPI docs for Bigger Applications - Multiple Files](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        default_response_class: Annotated[
+            type[Response],
+            Doc(
+                """
+                The default response class to be used.
+    
+                Read more in the
+                [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#default-response-class).
+                """
+            ),
+        ] = Default(JSONResponse),
+        responses: Annotated[
+            Optional[dict[Union[int, str], dict[str, Any]]],
+            Doc(
+                """
+                Additional responses to be shown in OpenAPI.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Additional Responses in OpenAPI](https://fastapi.tiangolo.com/advanced/additional-responses/).
+    
+                And in the
+                [FastAPI docs for Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        callbacks: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                OpenAPI callbacks that should apply to all *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
+                """
+            ),
+        ] = None,
+        routes: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                **Note**: you probably shouldn't use this parameter, it is inherited
+                from Starlette and supported for compatibility.
+    
+                ---
+    
+                A list of routes to serve incoming HTTP and WebSocket requests.
+                """
+            ),
+            deprecated(
+                """
+                You normally wouldn't use this parameter with FastAPI, it is inherited
+                from Starlette and supported for compatibility.
+    
+                In FastAPI, you normally would use the *path operation methods*,
+                like `router.get()`, `router.post()`, etc.
+                """
+            ),
+        ] = None,
+        redirect_slashes: Annotated[
+            bool,
+            Doc(
+                """
+                Whether to detect and redirect slashes in URLs when the client doesn't
+                use the same format.
+                """
+            ),
+        ] = True,
+        default: Annotated[
+            Optional[ASGIApp],
+            Doc(
+                """
+                Default function handler for this router. Used to handle
+                404 Not Found errors.
+                """
+            ),
+        ] = None,
+        dependency_overrides_provider: Annotated[
+            Optional[Any],
+            Doc(
+                """
+                Only used internally by FastAPI to handle dependency overrides.
+    
+                You shouldn't need to use it. It normally points to the `FastAPI` app
+                object.
+                """
+            ),
+        ] = None,
+        route_class: Annotated[
+            type[APIRoute],
+            Doc(
+                """
+                Custom route (*path operation*) class to be used by this router.
+    
+                Read more about it in the
+                [FastAPI docs for Custom Request and APIRoute class](https://fastapi.tiangolo.com/how-to/custom-request-and-route/#custom-apiroute-class-in-a-router).
+                """
+            ),
+        ] = APIRoute,
+        on_startup: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of startup event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        on_shutdown: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of shutdown event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        # the generic to Lifespan[AppType] is the type of the top level application
+        # which the router cannot know statically, so we use typing.Any
+        lifespan: Annotated[
+            Optional[Lifespan[Any]],
+            Doc(
+                """
+                A `Lifespan` context manager handler. This replaces `startup` and
+                `shutdown` functions with a single context manager.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        deprecated: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Mark all *path operations* in this router as deprecated.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        include_in_schema: Annotated[
+            bool,
+            Doc(
+                """
+                To include (or not) all the *path operations* in this router in the
+                generated OpenAPI.
+    
+                This affects the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
+                """
+            ),
+        ] = True,
+        generate_unique_id_function: Annotated[
+            Callable[[APIRoute], str],
+            Doc(
+                """
+                Customize the function used to generate unique IDs for the *path
+                operations* shown in the generated OpenAPI.
+    
+                This is particularly useful when automatically generating clients or
+                SDKs for your API.
+    
+                Read more about it in the
+                [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
+                """
+            ),
+        ] = Default(generate_unique_id),
+    ) -> None:
+>       super().__init__(
+            routes=routes,
+            redirect_slashes=redirect_slashes,
+            default=default,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
+            lifespan=lifespan,
+        )
+E       TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+
+fastapi/routing.py:906: TypeError
+_________________ test_merged_no_return_lifespans_return_none __________________
+
+    def test_merged_no_return_lifespans_return_none() -> None:
+        @asynccontextmanager
+        async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+            yield
+    
+        @asynccontextmanager
+        async def router_lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+            yield
+    
+>       router = APIRouter(lifespan=router_lifespan)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_router_events.py:215: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <fastapi.routing.APIRouter object at 0x7e7d3aba1310>, prefix = ''
+tags = None, dependencies = None
+default_response_class = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93dd0>
+responses = None, callbacks = None, routes = None, redirect_slashes = True
+default = None, dependency_overrides_provider = None
+route_class = <class 'fastapi.routing.APIRoute'>, on_startup = None
+on_shutdown = None
+lifespan = <function test_merged_no_return_lifespans_return_none.<locals>.router_lifespan at 0x7e7d3ac5f380>
+deprecated = None, include_in_schema = True
+generate_unique_id_function = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93e90>
+
+    def __init__(
+        self,
+        *,
+        prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
+        tags: Annotated[
+            Optional[list[Union[str, Enum]]],
+            Doc(
+                """
+                A list of tags to be applied to all the *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        dependencies: Annotated[
+            Optional[Sequence[params.Depends]],
+            Doc(
+                """
+                A list of dependencies (using `Depends()`) to be applied to all the
+                *path operations* in this router.
+    
+                Read more about it in the
+                [FastAPI docs for Bigger Applications - Multiple Files](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        default_response_class: Annotated[
+            type[Response],
+            Doc(
+                """
+                The default response class to be used.
+    
+                Read more in the
+                [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#default-response-class).
+                """
+            ),
+        ] = Default(JSONResponse),
+        responses: Annotated[
+            Optional[dict[Union[int, str], dict[str, Any]]],
+            Doc(
+                """
+                Additional responses to be shown in OpenAPI.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Additional Responses in OpenAPI](https://fastapi.tiangolo.com/advanced/additional-responses/).
+    
+                And in the
+                [FastAPI docs for Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        callbacks: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                OpenAPI callbacks that should apply to all *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
+                """
+            ),
+        ] = None,
+        routes: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                **Note**: you probably shouldn't use this parameter, it is inherited
+                from Starlette and supported for compatibility.
+    
+                ---
+    
+                A list of routes to serve incoming HTTP and WebSocket requests.
+                """
+            ),
+            deprecated(
+                """
+                You normally wouldn't use this parameter with FastAPI, it is inherited
+                from Starlette and supported for compatibility.
+    
+                In FastAPI, you normally would use the *path operation methods*,
+                like `router.get()`, `router.post()`, etc.
+                """
+            ),
+        ] = None,
+        redirect_slashes: Annotated[
+            bool,
+            Doc(
+                """
+                Whether to detect and redirect slashes in URLs when the client doesn't
+                use the same format.
+                """
+            ),
+        ] = True,
+        default: Annotated[
+            Optional[ASGIApp],
+            Doc(
+                """
+                Default function handler for this router. Used to handle
+                404 Not Found errors.
+                """
+            ),
+        ] = None,
+        dependency_overrides_provider: Annotated[
+            Optional[Any],
+            Doc(
+                """
+                Only used internally by FastAPI to handle dependency overrides.
+    
+                You shouldn't need to use it. It normally points to the `FastAPI` app
+                object.
+                """
+            ),
+        ] = None,
+        route_class: Annotated[
+            type[APIRoute],
+            Doc(
+                """
+                Custom route (*path operation*) class to be used by this router.
+    
+                Read more about it in the
+                [FastAPI docs for Custom Request and APIRoute class](https://fastapi.tiangolo.com/how-to/custom-request-and-route/#custom-apiroute-class-in-a-router).
+                """
+            ),
+        ] = APIRoute,
+        on_startup: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of startup event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        on_shutdown: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of shutdown event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        # the generic to Lifespan[AppType] is the type of the top level application
+        # which the router cannot know statically, so we use typing.Any
+        lifespan: Annotated[
+            Optional[Lifespan[Any]],
+            Doc(
+                """
+                A `Lifespan` context manager handler. This replaces `startup` and
+                `shutdown` functions with a single context manager.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        deprecated: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Mark all *path operations* in this router as deprecated.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        include_in_schema: Annotated[
+            bool,
+            Doc(
+                """
+                To include (or not) all the *path operations* in this router in the
+                generated OpenAPI.
+    
+                This affects the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
+                """
+            ),
+        ] = True,
+        generate_unique_id_function: Annotated[
+            Callable[[APIRoute], str],
+            Doc(
+                """
+                Customize the function used to generate unique IDs for the *path
+                operations* shown in the generated OpenAPI.
+    
+                This is particularly useful when automatically generating clients or
+                SDKs for your API.
+    
+                Read more about it in the
+                [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
+                """
+            ),
+        ] = Default(generate_unique_id),
+    ) -> None:
+>       super().__init__(
+            routes=routes,
+            redirect_slashes=redirect_slashes,
+            default=default,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
+            lifespan=lifespan,
+        )
+E       TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+
+fastapi/routing.py:906: TypeError
+______________________ test_merged_mixed_state_lifespans _______________________
+
+    def test_merged_mixed_state_lifespans() -> None:
+        @asynccontextmanager
+        async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+            yield
+    
+        @asynccontextmanager
+        async def router_lifespan(app: FastAPI) -> AsyncGenerator[dict[str, bool], None]:
+            yield {"router": True}
+    
+        @asynccontextmanager
+        async def sub_router_lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+            yield
+    
+>       sub_router = APIRouter(lifespan=sub_router_lifespan)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_router_events.py:236: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <fastapi.routing.APIRouter object at 0x7e7d3ab9f080>, prefix = ''
+tags = None, dependencies = None
+default_response_class = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93dd0>
+responses = None, callbacks = None, routes = None, redirect_slashes = True
+default = None, dependency_overrides_provider = None
+route_class = <class 'fastapi.routing.APIRoute'>, on_startup = None
+on_shutdown = None
+lifespan = <function test_merged_mixed_state_lifespans.<locals>.sub_router_lifespan at 0x7e7d3ac5fe20>
+deprecated = None, include_in_schema = True
+generate_unique_id_function = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93e90>
+
+    def __init__(
+        self,
+        *,
+        prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
+        tags: Annotated[
+            Optional[list[Union[str, Enum]]],
+            Doc(
+                """
+                A list of tags to be applied to all the *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        dependencies: Annotated[
+            Optional[Sequence[params.Depends]],
+            Doc(
+                """
+                A list of dependencies (using `Depends()`) to be applied to all the
+                *path operations* in this router.
+    
+                Read more about it in the
+                [FastAPI docs for Bigger Applications - Multiple Files](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        default_response_class: Annotated[
+            type[Response],
+            Doc(
+                """
+                The default response class to be used.
+    
+                Read more in the
+                [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#default-response-class).
+                """
+            ),
+        ] = Default(JSONResponse),
+        responses: Annotated[
+            Optional[dict[Union[int, str], dict[str, Any]]],
+            Doc(
+                """
+                Additional responses to be shown in OpenAPI.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Additional Responses in OpenAPI](https://fastapi.tiangolo.com/advanced/additional-responses/).
+    
+                And in the
+                [FastAPI docs for Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        callbacks: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                OpenAPI callbacks that should apply to all *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
+                """
+            ),
+        ] = None,
+        routes: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                **Note**: you probably shouldn't use this parameter, it is inherited
+                from Starlette and supported for compatibility.
+    
+                ---
+    
+                A list of routes to serve incoming HTTP and WebSocket requests.
+                """
+            ),
+            deprecated(
+                """
+                You normally wouldn't use this parameter with FastAPI, it is inherited
+                from Starlette and supported for compatibility.
+    
+                In FastAPI, you normally would use the *path operation methods*,
+                like `router.get()`, `router.post()`, etc.
+                """
+            ),
+        ] = None,
+        redirect_slashes: Annotated[
+            bool,
+            Doc(
+                """
+                Whether to detect and redirect slashes in URLs when the client doesn't
+                use the same format.
+                """
+            ),
+        ] = True,
+        default: Annotated[
+            Optional[ASGIApp],
+            Doc(
+                """
+                Default function handler for this router. Used to handle
+                404 Not Found errors.
+                """
+            ),
+        ] = None,
+        dependency_overrides_provider: Annotated[
+            Optional[Any],
+            Doc(
+                """
+                Only used internally by FastAPI to handle dependency overrides.
+    
+                You shouldn't need to use it. It normally points to the `FastAPI` app
+                object.
+                """
+            ),
+        ] = None,
+        route_class: Annotated[
+            type[APIRoute],
+            Doc(
+                """
+                Custom route (*path operation*) class to be used by this router.
+    
+                Read more about it in the
+                [FastAPI docs for Custom Request and APIRoute class](https://fastapi.tiangolo.com/how-to/custom-request-and-route/#custom-apiroute-class-in-a-router).
+                """
+            ),
+        ] = APIRoute,
+        on_startup: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of startup event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        on_shutdown: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of shutdown event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        # the generic to Lifespan[AppType] is the type of the top level application
+        # which the router cannot know statically, so we use typing.Any
+        lifespan: Annotated[
+            Optional[Lifespan[Any]],
+            Doc(
+                """
+                A `Lifespan` context manager handler. This replaces `startup` and
+                `shutdown` functions with a single context manager.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        deprecated: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Mark all *path operations* in this router as deprecated.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        include_in_schema: Annotated[
+            bool,
+            Doc(
+                """
+                To include (or not) all the *path operations* in this router in the
+                generated OpenAPI.
+    
+                This affects the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
+                """
+            ),
+        ] = True,
+        generate_unique_id_function: Annotated[
+            Callable[[APIRoute], str],
+            Doc(
+                """
+                Customize the function used to generate unique IDs for the *path
+                operations* shown in the generated OpenAPI.
+    
+                This is particularly useful when automatically generating clients or
+                SDKs for your API.
+    
+                Read more about it in the
+                [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
+                """
+            ),
+        ] = Default(generate_unique_id),
+    ) -> None:
+>       super().__init__(
+            routes=routes,
+            redirect_slashes=redirect_slashes,
+            default=default,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
+            lifespan=lifespan,
+        )
+E       TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+
+fastapi/routing.py:906: TypeError
+______________________ test_router_async_shutdown_handler ______________________
+
+state = State(app_startup=False, app_shutdown=False, router_startup=False, router_shutdown=False, sub_router_startup=False, sub_router_shutdown=False)
+
+    @pytest.mark.filterwarnings(
+        r"ignore:\s*on_event is deprecated, use lifespan event handlers instead.*:DeprecationWarning"
+    )
+    def test_router_async_shutdown_handler(state: State) -> None:
+        """Test that async on_shutdown event handlers are called correctly, for coverage."""
+>       app = FastAPI()
+              ^^^^^^^^^
+
+tests/test_router_events.py:251: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+fastapi/applications.py:931: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <fastapi.routing.APIRouter object at 0x7e7d3b38eff0>, prefix = ''
+tags = None, dependencies = None
+default_response_class = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93dd0>
+responses = None, callbacks = None, routes = None, redirect_slashes = True
+default = None, dependency_overrides_provider = None
+route_class = <class 'fastapi.routing.APIRoute'>, on_startup = None
+on_shutdown = None, lifespan = None, deprecated = None, include_in_schema = True
+generate_unique_id_function = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93e90>
+
+    def __init__(
+        self,
+        *,
+        prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
+        tags: Annotated[
+            Optional[list[Union[str, Enum]]],
+            Doc(
+                """
+                A list of tags to be applied to all the *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        dependencies: Annotated[
+            Optional[Sequence[params.Depends]],
+            Doc(
+                """
+                A list of dependencies (using `Depends()`) to be applied to all the
+                *path operations* in this router.
+    
+                Read more about it in the
+                [FastAPI docs for Bigger Applications - Multiple Files](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        default_response_class: Annotated[
+            type[Response],
+            Doc(
+                """
+                The default response class to be used.
+    
+                Read more in the
+                [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#default-response-class).
+                """
+            ),
+        ] = Default(JSONResponse),
+        responses: Annotated[
+            Optional[dict[Union[int, str], dict[str, Any]]],
+            Doc(
+                """
+                Additional responses to be shown in OpenAPI.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Additional Responses in OpenAPI](https://fastapi.tiangolo.com/advanced/additional-responses/).
+    
+                And in the
+                [FastAPI docs for Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        callbacks: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                OpenAPI callbacks that should apply to all *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
+                """
+            ),
+        ] = None,
+        routes: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                **Note**: you probably shouldn't use this parameter, it is inherited
+                from Starlette and supported for compatibility.
+    
+                ---
+    
+                A list of routes to serve incoming HTTP and WebSocket requests.
+                """
+            ),
+            deprecated(
+                """
+                You normally wouldn't use this parameter with FastAPI, it is inherited
+                from Starlette and supported for compatibility.
+    
+                In FastAPI, you normally would use the *path operation methods*,
+                like `router.get()`, `router.post()`, etc.
+                """
+            ),
+        ] = None,
+        redirect_slashes: Annotated[
+            bool,
+            Doc(
+                """
+                Whether to detect and redirect slashes in URLs when the client doesn't
+                use the same format.
+                """
+            ),
+        ] = True,
+        default: Annotated[
+            Optional[ASGIApp],
+            Doc(
+                """
+                Default function handler for this router. Used to handle
+                404 Not Found errors.
+                """
+            ),
+        ] = None,
+        dependency_overrides_provider: Annotated[
+            Optional[Any],
+            Doc(
+                """
+                Only used internally by FastAPI to handle dependency overrides.
+    
+                You shouldn't need to use it. It normally points to the `FastAPI` app
+                object.
+                """
+            ),
+        ] = None,
+        route_class: Annotated[
+            type[APIRoute],
+            Doc(
+                """
+                Custom route (*path operation*) class to be used by this router.
+    
+                Read more about it in the
+                [FastAPI docs for Custom Request and APIRoute class](https://fastapi.tiangolo.com/how-to/custom-request-and-route/#custom-apiroute-class-in-a-router).
+                """
+            ),
+        ] = APIRoute,
+        on_startup: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of startup event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        on_shutdown: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of shutdown event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        # the generic to Lifespan[AppType] is the type of the top level application
+        # which the router cannot know statically, so we use typing.Any
+        lifespan: Annotated[
+            Optional[Lifespan[Any]],
+            Doc(
+                """
+                A `Lifespan` context manager handler. This replaces `startup` and
+                `shutdown` functions with a single context manager.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        deprecated: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Mark all *path operations* in this router as deprecated.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        include_in_schema: Annotated[
+            bool,
+            Doc(
+                """
+                To include (or not) all the *path operations* in this router in the
+                generated OpenAPI.
+    
+                This affects the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
+                """
+            ),
+        ] = True,
+        generate_unique_id_function: Annotated[
+            Callable[[APIRoute], str],
+            Doc(
+                """
+                Customize the function used to generate unique IDs for the *path
+                operations* shown in the generated OpenAPI.
+    
+                This is particularly useful when automatically generating clients or
+                SDKs for your API.
+    
+                Read more about it in the
+                [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
+                """
+            ),
+        ] = Default(generate_unique_id),
+    ) -> None:
+>       super().__init__(
+            routes=routes,
+            redirect_slashes=redirect_slashes,
+            default=default,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
+            lifespan=lifespan,
+        )
+E       TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+
+fastapi/routing.py:906: TypeError
+_____________________ test_router_sync_generator_lifespan ______________________
+
+state = State(app_startup=False, app_shutdown=False, router_startup=False, router_shutdown=False, sub_router_startup=False, sub_router_shutdown=False)
+
+    def test_router_sync_generator_lifespan(state: State) -> None:
+        """Test that a sync generator lifespan works via _wrap_gen_lifespan_context."""
+        from collections.abc import Generator
+    
+        def lifespan(app: FastAPI) -> Generator[None, None, None]:
+            state.app_startup = True
+            yield
+            state.app_shutdown = True
+    
+>       app = FastAPI(lifespan=lifespan)  # type: ignore[arg-type]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_router_events.py:278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+fastapi/applications.py:931: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <fastapi.routing.APIRouter object at 0x7e7d3b19c950>, prefix = ''
+tags = None, dependencies = None
+default_response_class = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93dd0>
+responses = None, callbacks = None, routes = None, redirect_slashes = True
+default = None, dependency_overrides_provider = None
+route_class = <class 'fastapi.routing.APIRoute'>, on_startup = None
+on_shutdown = None, lifespan = None, deprecated = None, include_in_schema = True
+generate_unique_id_function = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93e90>
+
+    def __init__(
+        self,
+        *,
+        prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
+        tags: Annotated[
+            Optional[list[Union[str, Enum]]],
+            Doc(
+                """
+                A list of tags to be applied to all the *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        dependencies: Annotated[
+            Optional[Sequence[params.Depends]],
+            Doc(
+                """
+                A list of dependencies (using `Depends()`) to be applied to all the
+                *path operations* in this router.
+    
+                Read more about it in the
+                [FastAPI docs for Bigger Applications - Multiple Files](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        default_response_class: Annotated[
+            type[Response],
+            Doc(
+                """
+                The default response class to be used.
+    
+                Read more in the
+                [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#default-response-class).
+                """
+            ),
+        ] = Default(JSONResponse),
+        responses: Annotated[
+            Optional[dict[Union[int, str], dict[str, Any]]],
+            Doc(
+                """
+                Additional responses to be shown in OpenAPI.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Additional Responses in OpenAPI](https://fastapi.tiangolo.com/advanced/additional-responses/).
+    
+                And in the
+                [FastAPI docs for Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        callbacks: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                OpenAPI callbacks that should apply to all *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
+                """
+            ),
+        ] = None,
+        routes: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                **Note**: you probably shouldn't use this parameter, it is inherited
+                from Starlette and supported for compatibility.
+    
+                ---
+    
+                A list of routes to serve incoming HTTP and WebSocket requests.
+                """
+            ),
+            deprecated(
+                """
+                You normally wouldn't use this parameter with FastAPI, it is inherited
+                from Starlette and supported for compatibility.
+    
+                In FastAPI, you normally would use the *path operation methods*,
+                like `router.get()`, `router.post()`, etc.
+                """
+            ),
+        ] = None,
+        redirect_slashes: Annotated[
+            bool,
+            Doc(
+                """
+                Whether to detect and redirect slashes in URLs when the client doesn't
+                use the same format.
+                """
+            ),
+        ] = True,
+        default: Annotated[
+            Optional[ASGIApp],
+            Doc(
+                """
+                Default function handler for this router. Used to handle
+                404 Not Found errors.
+                """
+            ),
+        ] = None,
+        dependency_overrides_provider: Annotated[
+            Optional[Any],
+            Doc(
+                """
+                Only used internally by FastAPI to handle dependency overrides.
+    
+                You shouldn't need to use it. It normally points to the `FastAPI` app
+                object.
+                """
+            ),
+        ] = None,
+        route_class: Annotated[
+            type[APIRoute],
+            Doc(
+                """
+                Custom route (*path operation*) class to be used by this router.
+    
+                Read more about it in the
+                [FastAPI docs for Custom Request and APIRoute class](https://fastapi.tiangolo.com/how-to/custom-request-and-route/#custom-apiroute-class-in-a-router).
+                """
+            ),
+        ] = APIRoute,
+        on_startup: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of startup event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        on_shutdown: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of shutdown event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        # the generic to Lifespan[AppType] is the type of the top level application
+        # which the router cannot know statically, so we use typing.Any
+        lifespan: Annotated[
+            Optional[Lifespan[Any]],
+            Doc(
+                """
+                A `Lifespan` context manager handler. This replaces `startup` and
+                `shutdown` functions with a single context manager.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        deprecated: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Mark all *path operations* in this router as deprecated.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        include_in_schema: Annotated[
+            bool,
+            Doc(
+                """
+                To include (or not) all the *path operations* in this router in the
+                generated OpenAPI.
+    
+                This affects the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
+                """
+            ),
+        ] = True,
+        generate_unique_id_function: Annotated[
+            Callable[[APIRoute], str],
+            Doc(
+                """
+                Customize the function used to generate unique IDs for the *path
+                operations* shown in the generated OpenAPI.
+    
+                This is particularly useful when automatically generating clients or
+                SDKs for your API.
+    
+                Read more about it in the
+                [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
+                """
+            ),
+        ] = Default(generate_unique_id),
+    ) -> None:
+>       super().__init__(
+            routes=routes,
+            redirect_slashes=redirect_slashes,
+            default=default,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
+            lifespan=lifespan,
+        )
+E       TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+
+fastapi/routing.py:906: TypeError
+_____________________ test_router_async_generator_lifespan _____________________
+
+state = State(app_startup=False, app_shutdown=False, router_startup=False, router_shutdown=False, sub_router_startup=False, sub_router_shutdown=False)
+
+    def test_router_async_generator_lifespan(state: State) -> None:
+        """Test that an async generator lifespan (not wrapped) works."""
+    
+        async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+            state.app_startup = True
+            yield
+            state.app_shutdown = True
+    
+>       app = FastAPI(lifespan=lifespan)  # type: ignore[arg-type]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_router_events.py:304: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+fastapi/applications.py:931: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <fastapi.routing.APIRouter object at 0x7e7d3b1bc0e0>, prefix = ''
+tags = None, dependencies = None
+default_response_class = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93dd0>
+responses = None, callbacks = None, routes = None, redirect_slashes = True
+default = None, dependency_overrides_provider = None
+route_class = <class 'fastapi.routing.APIRoute'>, on_startup = None
+on_shutdown = None, lifespan = None, deprecated = None, include_in_schema = True
+generate_unique_id_function = <fastapi.datastructures.DefaultPlaceholder object at 0x7e7d3ab93e90>
+
+    def __init__(
+        self,
+        *,
+        prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
+        tags: Annotated[
+            Optional[list[Union[str, Enum]]],
+            Doc(
+                """
+                A list of tags to be applied to all the *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        dependencies: Annotated[
+            Optional[Sequence[params.Depends]],
+            Doc(
+                """
+                A list of dependencies (using `Depends()`) to be applied to all the
+                *path operations* in this router.
+    
+                Read more about it in the
+                [FastAPI docs for Bigger Applications - Multiple Files](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        default_response_class: Annotated[
+            type[Response],
+            Doc(
+                """
+                The default response class to be used.
+    
+                Read more in the
+                [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#default-response-class).
+                """
+            ),
+        ] = Default(JSONResponse),
+        responses: Annotated[
+            Optional[dict[Union[int, str], dict[str, Any]]],
+            Doc(
+                """
+                Additional responses to be shown in OpenAPI.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Additional Responses in OpenAPI](https://fastapi.tiangolo.com/advanced/additional-responses/).
+    
+                And in the
+                [FastAPI docs for Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
+                """
+            ),
+        ] = None,
+        callbacks: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                OpenAPI callbacks that should apply to all *path operations* in this
+                router.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
+                """
+            ),
+        ] = None,
+        routes: Annotated[
+            Optional[list[BaseRoute]],
+            Doc(
+                """
+                **Note**: you probably shouldn't use this parameter, it is inherited
+                from Starlette and supported for compatibility.
+    
+                ---
+    
+                A list of routes to serve incoming HTTP and WebSocket requests.
+                """
+            ),
+            deprecated(
+                """
+                You normally wouldn't use this parameter with FastAPI, it is inherited
+                from Starlette and supported for compatibility.
+    
+                In FastAPI, you normally would use the *path operation methods*,
+                like `router.get()`, `router.post()`, etc.
+                """
+            ),
+        ] = None,
+        redirect_slashes: Annotated[
+            bool,
+            Doc(
+                """
+                Whether to detect and redirect slashes in URLs when the client doesn't
+                use the same format.
+                """
+            ),
+        ] = True,
+        default: Annotated[
+            Optional[ASGIApp],
+            Doc(
+                """
+                Default function handler for this router. Used to handle
+                404 Not Found errors.
+                """
+            ),
+        ] = None,
+        dependency_overrides_provider: Annotated[
+            Optional[Any],
+            Doc(
+                """
+                Only used internally by FastAPI to handle dependency overrides.
+    
+                You shouldn't need to use it. It normally points to the `FastAPI` app
+                object.
+                """
+            ),
+        ] = None,
+        route_class: Annotated[
+            type[APIRoute],
+            Doc(
+                """
+                Custom route (*path operation*) class to be used by this router.
+    
+                Read more about it in the
+                [FastAPI docs for Custom Request and APIRoute class](https://fastapi.tiangolo.com/how-to/custom-request-and-route/#custom-apiroute-class-in-a-router).
+                """
+            ),
+        ] = APIRoute,
+        on_startup: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of startup event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        on_shutdown: Annotated[
+            Optional[Sequence[Callable[[], Any]]],
+            Doc(
+                """
+                A list of shutdown event handler functions.
+    
+                You should instead use the `lifespan` handlers.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        # the generic to Lifespan[AppType] is the type of the top level application
+        # which the router cannot know statically, so we use typing.Any
+        lifespan: Annotated[
+            Optional[Lifespan[Any]],
+            Doc(
+                """
+                A `Lifespan` context manager handler. This replaces `startup` and
+                `shutdown` functions with a single context manager.
+    
+                Read more in the
+                [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+        ] = None,
+        deprecated: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Mark all *path operations* in this router as deprecated.
+    
+                It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
+                """
+            ),
+        ] = None,
+        include_in_schema: Annotated[
+            bool,
+            Doc(
+                """
+                To include (or not) all the *path operations* in this router in the
+                generated OpenAPI.
+    
+                This affects the generated OpenAPI (e.g. visible at `/docs`).
+    
+                Read more about it in the
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
+                """
+            ),
+        ] = True,
+        generate_unique_id_function: Annotated[
+            Callable[[APIRoute], str],
+            Doc(
+                """
+                Customize the function used to generate unique IDs for the *path
+                operations* shown in the generated OpenAPI.
+    
+                This is particularly useful when automatically generating clients or
+                SDKs for your API.
+    
+                Read more about it in the
+                [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
+                """
+            ),
+        ] = Default(generate_unique_id),
+    ) -> None:
+>       super().__init__(
+            routes=routes,
+            redirect_slashes=redirect_slashes,
+            default=default,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
+            lifespan=lifespan,
+        )
+E       TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+
+fastapi/routing.py:906: TypeError
+=========================== short test summary info ============================
+FAILED tests/test_router_events.py::test_router_events - TypeError: Router.__...
+FAILED tests/test_router_events.py::test_app_lifespan_state - TypeError: Rout...
+FAILED tests/test_router_events.py::test_router_nested_lifespan_state - TypeE...
+FAILED tests/test_router_events.py::test_router_nested_lifespan_state_overriding_by_parent
+FAILED tests/test_router_events.py::test_merged_no_return_lifespans_return_none
+FAILED tests/test_router_events.py::test_merged_mixed_state_lifespans - TypeE...
+FAILED tests/test_router_events.py::test_router_async_shutdown_handler - Type...
+FAILED tests/test_router_events.py::test_router_sync_generator_lifespan - Typ...
+FAILED tests/test_router_events.py::test_router_async_generator_lifespan - Ty...
+9 failed in 0.94s
+
+STDERR:

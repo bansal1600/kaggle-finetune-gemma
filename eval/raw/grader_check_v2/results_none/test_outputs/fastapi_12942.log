@@ -1,0 +1,19 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+___________ ERROR collecting tests/test_union_body_discriminator.py ____________
+ImportError while importing test module '/tmp/swegemma_sandbox_de821a95-f45_r0am0tcv/workspace/tests/test_union_body_discriminator.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_union_body_discriminator.py:3: in <module>
+    from dirty_equals import IsDict
+E   ModuleNotFoundError: No module named 'dirty_equals'
+=========================== short test summary info ============================
+ERROR tests/test_union_body_discriminator.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.25s
+
+STDERR:

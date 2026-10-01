@@ -1,0 +1,19 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+________________ ERROR collecting tests/test_arbitrary_types.py ________________
+ImportError while importing test module '/tmp/swegemma_sandbox_87887f22-176_vm0wpwv0/workspace/tests/test_arbitrary_types.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_arbitrary_types.py:6: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+=========================== short test summary info ============================
+ERROR tests/test_arbitrary_types.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.67s
+
+STDERR:

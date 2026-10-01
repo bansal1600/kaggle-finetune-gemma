@@ -1,0 +1,19 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+____________ ERROR collecting tests/test_schema_ref_pydantic_v2.py _____________
+ImportError while importing test module '/tmp/swegemma_sandbox_2023cae1-c01_b77lj29o/workspace/tests/test_schema_ref_pydantic_v2.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_schema_ref_pydantic_v2.py:6: in <module>
+    from inline_snapshot import snapshot
+E   ModuleNotFoundError: No module named 'inline_snapshot'
+=========================== short test summary info ============================
+ERROR tests/test_schema_ref_pydantic_v2.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.83s
+
+STDERR:

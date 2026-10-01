@@ -1,0 +1,45 @@
+STDOUT:
+....FF.                                                                  [100%]
+=================================== FAILURES ===================================
+_____ test_header_model_prefers_hyphenated_header_with_convert_underscores _____
+
+    def test_header_model_prefers_hyphenated_header_with_convert_underscores():
+        client = TestClient(app)
+    
+        resp = client.get(
+            "/header-requires-hyphen",
+            headers=[
+                ("x-user-id", "hyphenated-value"),
+                ("x_user_id", "underscore-value"),
+            ],
+        )
+    
+        assert resp.status_code == 200
+>       assert resp.json() == {"x_user_id": "hyphenated-value"}
+E       AssertionError: assert {'x_user_id':...rscore-value'} == {'x_user_id':...enated-value'}
+E         
+E         Differing items:
+E         {'x_user_id': 'underscore-value'} != {'x_user_id': 'hyphenated-value'}
+E         Use -v to get more diff
+
+tests/test_query_cookie_header_model_extra_params.py:115: AssertionError
+_____ test_header_model_rejects_underscore_header_with_convert_underscores _____
+
+    def test_header_model_rejects_underscore_header_with_convert_underscores():
+        client = TestClient(app)
+    
+        resp = client.get(
+            "/header-requires-hyphen", headers={"x_user_id": "underscore-value"}
+        )
+    
+>       assert resp.status_code == 422
+E       assert 200 == 422
+E        +  where 200 = <Response [200 OK]>.status_code
+
+tests/test_query_cookie_header_model_extra_params.py:125: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_query_cookie_header_model_extra_params.py::test_header_model_prefers_hyphenated_header_with_convert_underscores
+FAILED tests/test_query_cookie_header_model_extra_params.py::test_header_model_rejects_underscore_header_with_convert_underscores
+2 failed, 5 passed in 0.70s
+
+STDERR:

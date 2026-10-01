@@ -1,0 +1,32 @@
+STDOUT:
+...F....                                                                 [100%]
+=================================== FAILURES ===================================
+_____________________________ test_rich_repr_auto ______________________________
+
+    def test_rich_repr_auto() -> None:
+        assert repr(Egg("hello", egg=2)) == "Egg('hello', egg=2)"
+        stupid_class = StupidClass(9)
+        not_stupid = NotStupid()
+>       assert (
+            repr(Bird("penguin", ["fish"], another=stupid_class, extinct=not_stupid))
+            == f"Bird('penguin', ['fish'], another={repr(stupid_class)}, extinct={repr(not_stupid)})"
+        )
+E       assert "Bird('pengui...c5f68ea6570>)" == "Bird('pengui...c5f68ea6570>)"
+E         
+E         - Bird('penguin', ['fish'], another=<tests.test_repr.StupidClass object at 0x7c5f68ea5be0>, extinct=<tests.test_repr.NotStupid object at 0x7c5f68ea6570>)
+E         ?                           --------
+E         + Bird('penguin', ['fish'], <tests.test_repr.StupidClass object at 0x7c5f68ea5be0>, extinct=<tests.test_repr.NotStupid object at 0x7c5f68ea6570>)
+
+tests/test_repr.py:129: AssertionError
+=============================== warnings summary ===============================
+../../scorer_env/_pytest/config/__init__.py:1464
+  /tmp/scorer_env/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_repr.py::test_rich_repr_auto - assert "Bird('pengui...c5f68...
+1 failed, 7 passed, 1 warning in 0.12s
+
+STDERR:
