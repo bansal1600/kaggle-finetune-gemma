@@ -1,0 +1,19 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_____ ERROR collecting tests/test_top_level_security_scheme_in_openapi.py ______
+tests/test_top_level_security_scheme_in_openapi.py:9: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:916: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+=========================== short test summary info ============================
+ERROR tests/test_top_level_security_scheme_in_openapi.py - TypeError: Router....
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 1.22s
+
+STDERR:

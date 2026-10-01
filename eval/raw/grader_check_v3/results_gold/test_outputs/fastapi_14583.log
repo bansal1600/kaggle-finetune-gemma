@@ -1,0 +1,96 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_compat_params_v1.py ________________
+tests/test_compat_params_v1.py:35: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:928: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:981: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_______ ERROR collecting tests/test_filter_pydantic_sub_model/app_pv1.py _______
+tests/test_filter_pydantic_sub_model/app_pv1.py:7: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:928: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:981: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_______________ ERROR collecting tests/test_pydantic_v1_v2_01.py _______________
+tests/test_pydantic_v1_v2_01.py:28: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:928: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:981: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+______________ ERROR collecting tests/test_pydantic_v1_v2_list.py ______________
+tests/test_pydantic_v1_v2_list.py:28: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:928: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:981: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_____________ ERROR collecting tests/test_pydantic_v1_v2_mixed.py ______________
+tests/test_pydantic_v1_v2_mixed.py:41: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:928: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:981: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_________ ERROR collecting tests/test_pydantic_v1_v2_multifile/main.py _________
+tests/test_pydantic_v1_v2_multifile/main.py:7: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:928: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:981: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+____________ ERROR collecting tests/test_pydantic_v1_v2_noneable.py ____________
+tests/test_pydantic_v1_v2_noneable.py:41: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:928: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:981: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+______ ERROR collecting tests/test_response_model_as_return_annotation.py ______
+tests/test_response_model_as_return_annotation.py:31: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:928: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:981: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+=========================== short test summary info ============================
+ERROR tests/test_compat_params_v1.py - TypeError: Router.__init__() got an un...
+ERROR tests/test_filter_pydantic_sub_model/app_pv1.py - TypeError: Router.__i...
+ERROR tests/test_pydantic_v1_v2_01.py - TypeError: Router.__init__() got an u...
+ERROR tests/test_pydantic_v1_v2_list.py - TypeError: Router.__init__() got an...
+ERROR tests/test_pydantic_v1_v2_mixed.py - TypeError: Router.__init__() got a...
+ERROR tests/test_pydantic_v1_v2_multifile/main.py - TypeError: Router.__init_...
+ERROR tests/test_pydantic_v1_v2_noneable.py - TypeError: Router.__init__() go...
+ERROR tests/test_response_model_as_return_annotation.py - TypeError: Router._...
+!!!!!!!!!!!!!!!!!!! Interrupted: 8 errors during collection !!!!!!!!!!!!!!!!!!!!
+1 skipped, 8 errors in 2.73s
+
+STDERR:

@@ -1,0 +1,32 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+________________ ERROR collecting tests/test_no_schema_split.py ________________
+tests/test_no_schema_split.py:36: in <module>
+    app = FastAPI(title="Minimal FastAPI App", version="1.0.0")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:916: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+____ ERROR collecting tests/test_pydantic_v1_v2_multifile/test_multifile.py ____
+tests/test_pydantic_v1_v2_multifile/test_multifile.py:11: in <module>
+    from .main import app
+tests/test_pydantic_v1_v2_multifile/main.py:7: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:916: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+=========================== short test summary info ============================
+ERROR tests/test_no_schema_split.py - TypeError: Router.__init__() got an une...
+ERROR tests/test_pydantic_v1_v2_multifile/test_multifile.py - TypeError: Rout...
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 errors in 1.82s
+
+STDERR:

@@ -120,16 +120,29 @@ def use_scorer_environment(wheels_dir: Path, target: Path, extra_wheels: Path | 
 
     # Absolute host paths: in subprocess mode the harness copies wheels/ to /wheels/wheels/, so
     # "/wheels" itself is empty there (the Docker scorer is not affected).
-    links = f" --find-links={wheels_dir.resolve()}"
+    links = [f"--find-links={wheels_dir.resolve()}"]
     if extra_wheels and extra_wheels.is_dir():
-        links += f" --find-links={extra_wheels.resolve()}"
+        links.append(f"--find-links={extra_wheels.resolve()}")
 
     def install_editable_package(docker, container_id):
         # With dependencies (the scorer passes --no-deps): wheels/ holds many versions of e.g.
-        # starlette so each repo snapshot can get the one its pyproject allows. pip installs those
-        # into the task's own venv, which comes before the shared package set on the import path.
-        docker.exec(container_id, "pip install -q --no-index" + links +
-                                  " --no-build-isolation -e /workspace 2>/dev/null || true")
+        # starlette so each repo snapshot can get the one its pyproject allows. They go into the
+        # task's own venv, which comes before the shared package set on the import path.
+        # Run from the notebook, not through docker.exec, because (found in grader check v3):
+        #   - Kaggle's Python has no ensurepip, so task venvs have no pip of their own;
+        #   - exec rewrites every /tmp/... and /usr/local/bin path in a command to sandbox paths.
+        # --target also ignores what the notebook already has installed. The repo stays importable
+        # through PYTHONPATH=/workspace, ahead of site-packages, so pip's own copy of it is unused.
+        # PYTHONPATH=<package set> lets pip find the repo's build backend (pdm-backend).
+        paths = docker._sandboxes[container_id]
+        site_dir = next(paths["venv"].glob("lib/python*/site-packages"))
+        result = subprocess.run(
+            [sys.executable, "-m", "pip", "install", "-q", "--no-index", *links,
+             "--no-build-isolation", "--upgrade", "--target", str(site_dir), str(paths["workspace"])],
+            env={**os.environ, "PYTHONPATH": str(target)}, capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"  [{container_id[:12]}] repo dependency install failed: "
+                  f"{result.stderr.strip().splitlines()[-1:] or result.returncode}", flush=True)
 
     def install_test_dependencies(docker, container_id, repo="", *, fast_path=True, config=None):
         script = cs.resolve_sandbox_setup_script(config)

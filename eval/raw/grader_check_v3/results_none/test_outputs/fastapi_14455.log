@@ -1,0 +1,19 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_ ERROR collecting tests/test_security_oauth2_authorization_code_bearer_scopes_openapi.py _
+tests/test_security_oauth2_authorization_code_bearer_scopes_openapi.py:17: in <module>
+    app = FastAPI(dependencies=[Security(oauth2_scheme)])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+fastapi/applications.py:932: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:915: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+=========================== short test summary info ============================
+ERROR tests/test_security_oauth2_authorization_code_bearer_scopes_openapi.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 1.57s
+
+STDERR:

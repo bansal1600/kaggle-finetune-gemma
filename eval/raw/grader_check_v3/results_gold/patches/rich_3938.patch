@@ -1,0 +1,64 @@
+--- a/rich/console.py
++++ b/rich/console.py
+@@ -1723,12 +1723,16 @@ def print(
+                 for renderable in renderables:
+                     extend(render(renderable, render_options))
+             else:
++                render_style = self.get_style(style)
++                new_line = Segment.line()
+                 for renderable in renderables:
+-                    extend(
+-                        Segment.apply_style(
+-                            render(renderable, render_options), self.get_style(style)
+-                        )
+-                    )
++                    for line, add_new_line in Segment.split_lines_terminator(
++                        render(renderable, render_options)
++                    ):
++                        extend(Segment.apply_style(line, render_style))
++                        if add_new_line:
++                            new_segments.append(new_line)
++
+             if new_line_start:
+                 if (
+                     len("".join(segment.text for segment in new_segments).splitlines())
+--- a/rich/segment.py
++++ b/rich/segment.py
+@@ -275,6 +275,37 @@ def split_lines(cls, segments: Iterable["Segment"]) -> Iterable[List["Segment"]]
+         if line:
+             yield line
+ 
++    @classmethod
++    def split_lines_terminator(
++        cls, segments: Iterable["Segment"]
++    ) -> Iterable[Tuple[List["Segment"], bool]]:
++        """Split a sequence of segments in to a list of lines and a boolean to indicate if there was a new line.
++
++        Args:
++            segments (Iterable[Segment]): Segments potentially containing line feeds.
++
++        Yields:
++            Iterable[List[Segment]]: Iterable of segment lists, one per line.
++        """
++        line: List[Segment] = []
++        append = line.append
++
++        for segment in segments:
++            if "\n" in segment.text and not segment.control:
++                text, style, _ = segment
++                while text:
++                    _text, new_line, text = text.partition("\n")
++                    if _text:
++                        append(cls(_text, style))
++                    if new_line:
++                        yield (line, True)
++                        line = []
++                        append = line.append
++            else:
++                append(segment)
++        if line:
++            yield (line, False)
++
+     @classmethod
+     def split_and_crop_lines(
+         cls,

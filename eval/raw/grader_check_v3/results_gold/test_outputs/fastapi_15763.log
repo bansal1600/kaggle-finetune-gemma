@@ -1,0 +1,34 @@
+STDOUT:
+.......................F...F.....F                                       [100%]
+=================================== FAILURES ===================================
+________ test_included_api_route_without_app_scope_returns_405_response ________
+async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted
+______ test_included_unknown_route_is_ignored_and_can_return_default_404 _______
+async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted
+____________ test_apirouter_handle_fallback_without_include_context ____________
+async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted
+=========================== short test summary info ============================
+FAILED tests/test_router_include_context.py::test_included_api_route_without_app_scope_returns_405_response
+FAILED tests/test_router_include_context.py::test_included_unknown_route_is_ignored_and_can_return_default_404
+FAILED tests/test_router_include_context.py::test_apirouter_handle_fallback_without_include_context
+3 failed, 31 passed in 1.47s
+
+STDERR:

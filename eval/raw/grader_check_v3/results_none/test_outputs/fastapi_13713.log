@@ -1,0 +1,40 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+________________________ ERROR collecting tests/main.py ________________________
+tests/main.py:11: in <module>
+    app = FastAPI(openapi_external_docs=external_docs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+fastapi/applications.py:896: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:838: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+__________________ ERROR collecting tests/test_application.py __________________
+tests/test_application.py:5: in <module>
+    from .main import app
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+/tmp/scorer_env/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/main.py:11: in <module>
+    app = FastAPI(openapi_external_docs=external_docs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+fastapi/applications.py:896: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:838: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+=========================== short test summary info ============================
+ERROR tests/main.py - TypeError: Router.__init__() got an unexpected keyword ...
+ERROR tests/test_application.py - TypeError: Router.__init__() got an unexpec...
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 errors in 1.78s
+
+STDERR:

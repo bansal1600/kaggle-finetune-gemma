@@ -1,0 +1,63 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+_________ ERROR collecting tests/test_dependency_after_yield_raise.py __________
+tests/test_dependency_after_yield_raise.py:25: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:926: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:913: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_______ ERROR collecting tests/test_dependency_after_yield_streaming.py ________
+tests/test_dependency_after_yield_streaming.py:47: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:926: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:913: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_______ ERROR collecting tests/test_dependency_after_yield_websockets.py _______
+tests/test_dependency_after_yield_websockets.py:46: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:926: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:913: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+___________ ERROR collecting tests/test_dependency_contextmanager.py ___________
+tests/test_dependency_contextmanager.py:9: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:926: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:913: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+__________________ ERROR collecting tests/test_route_scope.py __________________
+tests/test_route_scope.py:6: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:926: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:913: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+=========================== short test summary info ============================
+ERROR tests/test_dependency_after_yield_raise.py - TypeError: Router.__init__...
+ERROR tests/test_dependency_after_yield_streaming.py - TypeError: Router.__in...
+ERROR tests/test_dependency_after_yield_websockets.py - TypeError: Router.__i...
+ERROR tests/test_dependency_contextmanager.py - TypeError: Router.__init__() ...
+ERROR tests/test_route_scope.py - TypeError: Router.__init__() got an unexpec...
+!!!!!!!!!!!!!!!!!!! Interrupted: 5 errors during collection !!!!!!!!!!!!!!!!!!!!
+5 errors in 2.09s
+
+STDERR:

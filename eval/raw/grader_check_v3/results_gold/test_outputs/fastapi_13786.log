@@ -1,0 +1,195 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+____________ ERROR collecting tests/test_security_api_key_cookie.py ____________
+tests/test_security_api_key_cookie.py:6: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+______ ERROR collecting tests/test_security_api_key_cookie_description.py ______
+tests/test_security_api_key_cookie_description.py:6: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+____________ ERROR collecting tests/test_security_api_key_header.py ____________
+tests/test_security_api_key_header.py:6: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+______ ERROR collecting tests/test_security_api_key_header_description.py ______
+tests/test_security_api_key_header_description.py:6: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+____________ ERROR collecting tests/test_security_api_key_query.py _____________
+tests/test_security_api_key_query.py:6: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+______ ERROR collecting tests/test_security_api_key_query_description.py _______
+tests/test_security_api_key_query_description.py:6: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+______________ ERROR collecting tests/test_security_http_base.py _______________
+tests/test_security_http_base.py:5: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+________ ERROR collecting tests/test_security_http_base_description.py _________
+tests/test_security_http_base_description.py:5: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_________ ERROR collecting tests/test_security_http_basic_optional.py __________
+tests/test_security_http_basic_optional.py:8: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+___________ ERROR collecting tests/test_security_http_basic_realm.py ___________
+tests/test_security_http_basic_realm.py:7: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_____ ERROR collecting tests/test_security_http_basic_realm_description.py _____
+tests/test_security_http_basic_realm_description.py:7: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_____________ ERROR collecting tests/test_security_http_bearer.py ______________
+tests/test_security_http_bearer.py:5: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_______ ERROR collecting tests/test_security_http_bearer_description.py ________
+tests/test_security_http_bearer_description.py:5: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_____________ ERROR collecting tests/test_security_http_digest.py ______________
+tests/test_security_http_digest.py:5: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+_______ ERROR collecting tests/test_security_http_digest_description.py ________
+tests/test_security_http_digest_description.py:5: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+________________ ERROR collecting tests/test_security_oauth2.py ________________
+tests/test_security_oauth2.py:8: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+____________ ERROR collecting tests/test_security_openid_connect.py ____________
+tests/test_security_openid_connect.py:6: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:927: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:921: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+=========================== short test summary info ============================
+ERROR tests/test_security_api_key_cookie.py - TypeError: Router.__init__() go...
+ERROR tests/test_security_api_key_cookie_description.py - TypeError: Router._...
+ERROR tests/test_security_api_key_header.py - TypeError: Router.__init__() go...
+ERROR tests/test_security_api_key_header_description.py - TypeError: Router._...
+ERROR tests/test_security_api_key_query.py - TypeError: Router.__init__() got...
+ERROR tests/test_security_api_key_query_description.py - TypeError: Router.__...
+ERROR tests/test_security_http_base.py - TypeError: Router.__init__() got an ...
+ERROR tests/test_security_http_base_description.py - TypeError: Router.__init...
+ERROR tests/test_security_http_basic_optional.py - TypeError: Router.__init__...
+ERROR tests/test_security_http_basic_realm.py - TypeError: Router.__init__() ...
+ERROR tests/test_security_http_basic_realm_description.py - TypeError: Router...
+ERROR tests/test_security_http_bearer.py - TypeError: Router.__init__() got a...
+ERROR tests/test_security_http_bearer_description.py - TypeError: Router.__in...
+ERROR tests/test_security_http_digest.py - TypeError: Router.__init__() got a...
+ERROR tests/test_security_http_digest_description.py - TypeError: Router.__in...
+ERROR tests/test_security_oauth2.py - TypeError: Router.__init__() got an une...
+ERROR tests/test_security_openid_connect.py - TypeError: Router.__init__() go...
+!!!!!!!!!!!!!!!!!!! Interrupted: 17 errors during collection !!!!!!!!!!!!!!!!!!!
+17 errors in 3.58s
+
+STDERR:

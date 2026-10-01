@@ -1,0 +1,15 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "agent": {
+    "name": "adk-eval-core",
+    "version": "1.0"
+  },
+  "steps": [],
+  "final_metrics": {
+    "total_prompt_tokens": 0,
+    "total_completion_tokens": 0,
+    "total_cached_tokens": 0,
+    "total_tokens": 0,
+    "total_steps": 0
+  }
+}

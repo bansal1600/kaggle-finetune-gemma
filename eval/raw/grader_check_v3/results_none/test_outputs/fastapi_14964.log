@@ -1,0 +1,27 @@
+STDOUT:
+.F.F.....                                                                [100%]
+=================================== FAILURES ===================================
+________________ test_orjson_response_emits_deprecation_warning ________________
+
+    def test_orjson_response_emits_deprecation_warning():
+>       with pytest.warns(FastAPIDeprecationWarning, match="ORJSONResponse is deprecated"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT WARN. No warnings of type (<class 'fastapi.exceptions.FastAPIDeprecationWarning'>,) were emitted.
+E        Emitted warnings: [].
+
+tests/test_deprecated_responses.py:42: Failed
+________________ test_ujson_response_emits_deprecation_warning _________________
+
+    def test_ujson_response_emits_deprecation_warning():
+>       with pytest.warns(FastAPIDeprecationWarning, match="UJSONResponse is deprecated"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT WARN. No warnings of type (<class 'fastapi.exceptions.FastAPIDeprecationWarning'>,) were emitted.
+E        Emitted warnings: [].
+
+tests/test_deprecated_responses.py:72: Failed
+=========================== short test summary info ============================
+FAILED tests/test_deprecated_responses.py::test_orjson_response_emits_deprecation_warning
+FAILED tests/test_deprecated_responses.py::test_ujson_response_emits_deprecation_warning
+2 failed, 7 passed in 1.98s
+
+STDERR:

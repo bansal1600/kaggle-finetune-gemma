@@ -1,0 +1,20 @@
+STDOUT:
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________________________ test_router_circular_import __________________________
+
+    def test_router_circular_import():
+        router = APIRouter()
+    
+>       with pytest.raises(
+            AssertionError,
+            match="Cannot include the same APIRouter instance into itself. Did you mean to include a different router?",
+        ):
+E       Failed: DID NOT RAISE AssertionError
+
+tests/test_router_circular_import.py:8: Failed
+=========================== short test summary info ============================
+FAILED tests/test_router_circular_import.py::test_router_circular_import - Fa...
+1 failed in 1.12s
+
+STDERR:

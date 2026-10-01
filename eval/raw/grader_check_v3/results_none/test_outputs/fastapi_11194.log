@@ -1,0 +1,19 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+________ ERROR collecting tests/test_file_and_form_order_issue_9116.py _________
+tests/test_file_and_form_order_issue_9116.py:14: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:923: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:844: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+=========================== short test summary info ============================
+ERROR tests/test_file_and_form_order_issue_9116.py - TypeError: Router.__init...
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 1.39s
+
+STDERR:

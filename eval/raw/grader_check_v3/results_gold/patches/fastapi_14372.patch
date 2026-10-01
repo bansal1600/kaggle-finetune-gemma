@@ -1,0 +1,34 @@
+--- a/fastapi/dependencies/utils.py
++++ b/fastapi/dependencies/utils.py
+@@ -1,3 +1,4 @@
++import dataclasses
+ import inspect
+ from contextlib import AsyncExitStack, contextmanager
+ from copy import copy, deepcopy
+@@ -428,7 +429,7 @@ def analyze_param(
+     if depends is not None and depends.dependency is None:
+         # Copy `depends` before mutating it
+         depends = copy(depends)
+-        depends.dependency = type_annotation
++        depends = dataclasses.replace(depends, dependency=type_annotation)
+ 
+     # Handle non-param type annotations like Request
+     if lenient_issubclass(
+--- a/fastapi/params.py
++++ b/fastapi/params.py
+@@ -762,13 +762,13 @@ def __init__(
+         )
+ 
+ 
+-@dataclass
++@dataclass(frozen=True)
+ class Depends:
+     dependency: Optional[Callable[..., Any]] = None
+     use_cache: bool = True
+     scope: Union[Literal["function", "request"], None] = None
+ 
+ 
+-@dataclass
++@dataclass(frozen=True)
+ class Security(Depends):
+     scopes: Optional[Sequence[str]] = None

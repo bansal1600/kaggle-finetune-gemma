@@ -1,0 +1,19 @@
+STDOUT:
+.............                                                            [100%]
+=============================== warnings summary ===============================
+../../scorer_env/_pytest/config/__init__.py:1464
+  /tmp/scorer_env/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+../../scorer_env/_pytest/python.py:124
+  /tmp/scorer_env/_pytest/python.py:124: PytestRemovedIn10Warning: Passing a non-Collection iterable to parametrize is deprecated.
+  Test: test_panel.py::test_render_panel, argvalues type: zip
+  Please convert to a list or tuple.
+  See https://docs.pytest.org/en/stable/deprecations.html#parametrize-iterators
+    metafunc.parametrize(*marker.args, **marker.kwargs, _param_mark=marker)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+13 passed, 2 warnings in 0.10s
+
+STDERR:

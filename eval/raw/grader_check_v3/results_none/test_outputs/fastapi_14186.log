@@ -1,0 +1,41 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+____________________ ERROR collecting tests/test_compat.py _____________________
+ImportError while importing test module '/tmp/swegemma_sandbox_19263f4b-fd3_fdsujcwd/workspace/tests/test_compat.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_compat.py:4: in <module>
+    from fastapi._compat import (
+E   ImportError: cannot import name 'may_v1' from 'fastapi._compat' (/tmp/swegemma_sandbox_19263f4b-fd3_fdsujcwd/workspace/fastapi/_compat/__init__.py)
+_____ ERROR collecting tests/test_get_model_definitions_formfeed_escape.py _____
+tests/test_get_model_definitions_formfeed_escape.py:31: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:926: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:915: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+______ ERROR collecting tests/test_response_model_as_return_annotation.py ______
+tests/test_response_model_as_return_annotation.py:30: in <module>
+    app = FastAPI()
+          ^^^^^^^^^
+fastapi/applications.py:926: in __init__
+    ] = webhooks or routing.APIRouter()
+                    ^^^^^^^^^^^^^^^^^^^
+fastapi/routing.py:915: in __init__
+    super().__init__(
+E   TypeError: Router.__init__() got an unexpected keyword argument 'on_startup'
+=========================== short test summary info ============================
+ERROR tests/test_compat.py
+ERROR tests/test_get_model_definitions_formfeed_escape.py - TypeError: Router...
+ERROR tests/test_response_model_as_return_annotation.py - TypeError: Router._...
+!!!!!!!!!!!!!!!!!!! Interrupted: 3 errors during collection !!!!!!!!!!!!!!!!!!!!
+3 errors in 2.17s
+
+STDERR:

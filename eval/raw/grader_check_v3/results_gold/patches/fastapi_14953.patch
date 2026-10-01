@@ -1,0 +1,135 @@
+--- a/docs_src/json_base64_bytes/tutorial001_py310.py
++++ b/docs_src/json_base64_bytes/tutorial001_py310.py
+@@ -0,0 +1,46 @@
++from fastapi import FastAPI
++from pydantic import BaseModel
++
++
++class DataInput(BaseModel):
++    description: str
++    data: bytes
++
++    model_config = {"val_json_bytes": "base64"}
++
++
++class DataOutput(BaseModel):
++    description: str
++    data: bytes
++
++    model_config = {"ser_json_bytes": "base64"}
++
++
++class DataInputOutput(BaseModel):
++    description: str
++    data: bytes
++
++    model_config = {
++        "val_json_bytes": "base64",
++        "ser_json_bytes": "base64",
++    }
++
++
++app = FastAPI()
++
++
++@app.post("/data")
++def post_data(body: DataInput):
++    content = body.data.decode("utf-8")
++    return {"description": body.description, "content": content}
++
++
++@app.get("/data")
++def get_data() -> DataOutput:
++    data = "hello".encode("utf-8")
++    return DataOutput(description="A plumbus", data=data)
++
++
++@app.post("/data-in-out")
++def post_data_in_out(body: DataInputOutput) -> DataInputOutput:
++    return body
+--- a/fastapi/_compat/v2.py
++++ b/fastapi/_compat/v2.py
+@@ -27,7 +27,7 @@
+ )
+ from pydantic._internal._typing_extra import eval_type_lenient
+ from pydantic.fields import FieldInfo as FieldInfo
+-from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
++from pydantic.json_schema import GenerateJsonSchema as _GenerateJsonSchema
+ from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
+ from pydantic_core import CoreSchema as CoreSchema
+ from pydantic_core import PydanticUndefined
+@@ -40,6 +40,23 @@
+ Undefined = PydanticUndefined
+ evaluate_forwardref = eval_type_lenient
+ 
++
++class GenerateJsonSchema(_GenerateJsonSchema):
++    # TODO: remove when this is merged (or equivalent): https://github.com/pydantic/pydantic/pull/12841
++    # and dropping support for any version of Pydantic before that one (so, in a very long time)
++    def bytes_schema(self, schema: CoreSchema) -> JsonSchemaValue:
++        json_schema = {"type": "string", "contentMediaType": "application/octet-stream"}
++        bytes_mode = (
++            self._config.ser_json_bytes
++            if self.mode == "serialization"
++            else self._config.val_json_bytes
++        )
++        if bytes_mode == "base64":
++            json_schema["contentEncoding"] = "base64"
++        self.update_with_validations(json_schema, schema, self.ValidationsMapping.bytes)
++        return json_schema
++
++
+ # TODO: remove when dropping support for Pydantic < v2.12.3
+ _Attrs = {
+     "default": ...,
+--- a/fastapi/datastructures.py
++++ b/fastapi/datastructures.py
+@@ -139,7 +139,7 @@ def _validate(cls, __input_value: Any, _: Any) -> "UploadFile":
+     def __get_pydantic_json_schema__(
+         cls, core_schema: Mapping[str, Any], handler: GetJsonSchemaHandler
+     ) -> dict[str, Any]:
+-        return {"type": "string", "format": "binary"}
++        return {"type": "string", "contentMediaType": "application/octet-stream"}
+ 
+     @classmethod
+     def __get_pydantic_core_schema__(
+--- a/scripts/playwright/json_base64_bytes/image01.py
++++ b/scripts/playwright/json_base64_bytes/image01.py
+@@ -0,0 +1,37 @@
++import subprocess
++import time
++
++import httpx
++from playwright.sync_api import Playwright, sync_playwright
++
++
++# Run playwright codegen to generate the code below, copy paste the sections in run()
++def run(playwright: Playwright) -> None:
++    browser = playwright.chromium.launch(headless=False)
++    # Update the viewport manually
++    context = browser.new_context(viewport={"width": 960, "height": 1080})
++    page = context.new_page()
++    page.goto("http://localhost:8000/docs")
++    page.get_by_role("button", name="POST /data Post Data").click()
++    # Manually add the screenshot
++    page.screenshot(path="docs/en/docs/img/tutorial/json-base64-bytes/image01.png")
++
++    # ---------------------
++    context.close()
++    browser.close()
++
++
++process = subprocess.Popen(
++    ["fastapi", "run", "docs_src/json_base64_bytes/tutorial001_py310.py"]
++)
++try:
++    for _ in range(3):
++        try:
++            response = httpx.get("http://localhost:8000/docs")
++        except httpx.ConnectError:
++            time.sleep(1)
++            break
++    with sync_playwright() as playwright:
++        run(playwright)
++finally:
++    process.terminate()
