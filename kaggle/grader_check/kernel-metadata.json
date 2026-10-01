@@ -1,0 +1,16 @@
+{
+  "id": "guaravbansal/gemma-agent-grader-check",
+  "title": "Gemma Agent Grader Check",
+  "code_file": "grader_check.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "dataset_sources": ["metric/gemma-4-developer-agent-wheelhouse"],
+  "competition_sources": ["gemma-4-developer-agent"],
+  "kernel_sources": [],
+  "model_sources": [],
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461"
+}

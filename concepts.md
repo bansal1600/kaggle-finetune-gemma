@@ -383,11 +383,47 @@ carry over to the private ~60. Prefer changes with a clear reason behind them, c
 own local evaluation once we have one (Step 2).
 
 ### Train / validation split
-**Used in:** planned for Step 2
+**Used in:** Step 2a (`scripts/make_split.py` → `eval/splits.json`)
 
 Hold back some of the 129 public tasks and never tune on them, so they give an honest estimate of
 how the agent does on unseen issues. This matters even more once we fine-tune, because training on
-a task and then testing on it measures memorization, not skill.
+a task and then testing on it measures memorization, not skill. Our **dev** set (~33 tasks) is
+only for testing; the **train** set is where Step 4's training data will come from.
+
+Two kinds of **leakage** can quietly break a split:
+- **Shared inputs:** two tasks built on the same repo snapshot must sit on the same side.
+- **Time:** if training data is newer than test data, the model "knows the future". Within each
+  repo, our train tasks are all older than our dev tasks.
+
+### Data contamination
+**Used in:** Step 2a
+
+A model may have seen a benchmark's answers during its original training: these public issues and
+their fixes are on GitHub. Then a high score can mean *remembering* instead of *solving*. The hidden
+tasks come from private repos, so they're uncontaminated. That's one reason other teams' local
+scores (0.18–0.24) beat their leaderboard scores (0.05–0.12). We reduce the problem by testing on
+the **newest** public issues, the least likely to be in Gemma's training data.
+
+### Controls (gold and none)
+**Used in:** Step 2b (`kaggle/grader_check/`)
+
+Before trusting a measuring instrument, check it on cases where you already know the answer:
+- **Gold control:** apply the task's *real* fix. The grader must say "pass".
+- **None control:** apply *nothing*. The grader must say "fail".
+
+A task that fails either control can't be scored fairly, no matter how good the agent is, so we
+exclude it. Example: `requests_6589` fails even with the real fix, because its tests need a pytest
+plugin (`pytest-httpbin`) that isn't installed in the offline sandbox.
+
+### Environment fidelity
+**Used in:** Step 2b
+
+The tests' result depends on the *environment* (Python version, package versions), not just on the
+code. The official scorer gives every task one fixed set of packages: the newest of each in the
+competition's `wheels/` folder. In notebook mode the harness instead let tasks use whatever the
+notebook had installed. So we rebuild the scorer's package set and give each task only that. Two
+small differences remain: Python 3.12 instead of 3.13, and pytest's exact version. When local and
+leaderboard results disagree, environment differences are the first suspect.
 
 ---
 

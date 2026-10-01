@@ -30,7 +30,7 @@ fine-tuning comes in. Full details: [docs/competition.md](docs/competition.md).
 |---|---|---|---|
 | 0 | Read the rules, harness and other teams' public findings | SWE-bench tasks, agents, tokens, context windows, quantization | ✅ done |
 | 1 | **v1 baseline:** single agent, tuned prompt, safe budgets; local validator + zip builder | Prompt engineering, sampling, tool calling, budgets | ✅ built, ⏳ submit and record the score |
-| 2 | Local evaluation on a Kaggle GPU notebook with the official harness, on a held-out set of the 129 public tasks | Evaluation methodology, noise, reading agent trajectories, failure analysis | next |
+| 2 | Local evaluation on Kaggle with the official harness: grader check, dev/train split, agent runs on the dev set ([docs/local-eval.md](docs/local-eval.md)) | Controls, environment fidelity, data contamination, train/dev splits, failure analysis | 🔄 in progress |
 | 3 | Scaffold experiments, one change at a time: analyzer sub-agent, prompt variants, skills | Multi-agent design, ablations | |
 | 4 | Fine-tuning dataset from our agent's own successful runs | Trajectories, rejection sampling, chat templates, train/val splits | |
 | 5 | Train a LoRA adapter, check it loads on the quantized model in vLLM, evaluate, submit | SFT, LoRA (rank, alpha, target modules), overfitting | |
@@ -63,12 +63,16 @@ of 0.02 are mostly noise.
 concepts.md                   every concept we use, explained (start here)
 docs/competition.md           rules, harness, tools and budgets, in our own words
 docs/experiments.md           log of every submission: what changed, what it scored
+docs/local-eval.md            how our local test bench works (Step 2)
 submission/                   exactly what goes into submission.zip
   agent.yaml                    root agent (model, tools, prompt, sampling)
   eval_config.yaml              per-task budgets (time, tool calls, turns)
   configs/sampling.yaml         temperature, top_p/top_k, output cap, thinking off
   prompts/system.md             the system prompt: our main lever in Step 1
 scripts/build_submission.py   validates submission/ against the rules, then builds dist/submission.zip
+scripts/make_split.py         splits healthy public tasks into dev / train (eval/splits.json)
+kaggle/                       Kaggle notebooks we push and run (grader check, agent eval)
+eval/                         small results we keep: grader check, splits, run summaries
 tests/                        tests for the build script
 ```
 
