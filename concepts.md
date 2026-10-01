@@ -53,6 +53,20 @@ How a fix is graded. The hidden `test_patch` adds tests that:
 Our patch goes into a *fresh* container, the hidden tests are added, and `pytest` must exit
 cleanly. Any test files our agent edited are reset first, so editing tests can't game the score.
 
+### Underspecified tasks (why scores are low)
+**Used in:** Step 1 (reading `tasks.jsonl`)
+
+Many issues don't fully say what the hidden test checks. Real example, `fastapi_14258`:
+
+- The issue only says: *"Show a clear error on attempt to include router into itself."*
+- The hidden test requires this **exact** text:
+  `pytest.raises(AssertionError, match="Cannot include the same APIRouter instance into itself. Did you mean to include a different router?")`
+
+A fix that raises a *different* clear error is correct in spirit, but it fails. No agent can
+reliably guess wording like that, which is part of why even the best scores are around 0.15.
+Our prompt's rule "match the exact names and messages in the issue" helps when the issue states
+them; when it doesn't, following the repo's existing message style is the best bet.
+
 ### Resolution rate (the metric)
 **Used in:** Step 1
 
@@ -303,9 +317,15 @@ arithmetic for us.
   times in a row).
 - `submit_patch` records `git diff` as the answer. Once the model's current turn ends after a
   submit, the task is over.
-- If the agent never submits, the harness takes whatever diff is in `/workspace` anyway. That is
-  not guaranteed (a context overflow can lose it), so our prompt says to submit as soon as the
-  fix works, and to submit again after any later change.
+- `submit_patch` does **not** end the task by itself. The task ends when the model next replies
+  with plain text. So the agent can submit, keep checking, and submit again; the last submit
+  counts.
+- If the agent runs out of time or turns without submitting, the harness takes whatever diff is in
+  `/workspace` anyway.
+- But if the conversation outgrows the [context window](#context-window), the run crashes and
+  the task scores 0. Even a patch already submitted is lost (we checked the harness code). The
+  only protection is keeping tool outputs short, which is why our prompt is strict about
+  `| head` and line ranges.
 
 ---
 
@@ -363,11 +383,47 @@ carry over to the private ~60. Prefer changes with a clear reason behind them, c
 own local evaluation once we have one (Step 2).
 
 ### Train / validation split
-**Used in:** planned for Step 2
+**Used in:** Step 2a (`scripts/make_split.py` → `eval/splits.json`)
 
 Hold back some of the 129 public tasks and never tune on them, so they give an honest estimate of
 how the agent does on unseen issues. This matters even more once we fine-tune, because training on
-a task and then testing on it measures memorization, not skill.
+a task and then testing on it measures memorization, not skill. Our **dev** set (~33 tasks) is
+only for testing; the **train** set is where Step 4's training data will come from.
+
+Two kinds of **leakage** can quietly break a split:
+- **Shared inputs:** two tasks built on the same repo snapshot must sit on the same side.
+- **Time:** if training data is newer than test data, the model "knows the future". Within each
+  repo, our train tasks are all older than our dev tasks.
+
+### Data contamination
+**Used in:** Step 2a
+
+A model may have seen a benchmark's answers during its original training: these public issues and
+their fixes are on GitHub. Then a high score can mean *remembering* instead of *solving*. The hidden
+tasks come from private repos, so they're uncontaminated. That's one reason other teams' local
+scores (0.18–0.24) beat their leaderboard scores (0.05–0.12). We reduce the problem by testing on
+the **newest** public issues, the least likely to be in Gemma's training data.
+
+### Controls (gold and none)
+**Used in:** Step 2b (`kaggle/grader_check/`)
+
+Before trusting a measuring instrument, check it on cases where you already know the answer:
+- **Gold control:** apply the task's *real* fix. The grader must say "pass".
+- **None control:** apply *nothing*. The grader must say "fail".
+
+A task that fails either control can't be scored fairly, no matter how good the agent is, so we
+exclude it. Example: `requests_6589` fails even with the real fix, because its tests need a pytest
+plugin (`pytest-httpbin`) that isn't installed in the offline sandbox.
+
+### Environment fidelity
+**Used in:** Step 2b
+
+The tests' result depends on the *environment* (Python version, package versions), not just on the
+code. The official scorer gives every task one fixed set of packages: the newest of each in the
+competition's `wheels/` folder. In notebook mode the harness instead let tasks use whatever the
+notebook had installed. So we rebuild the scorer's package set and give each task only that. Two
+small differences remain: Python 3.12 instead of 3.13, and pytest's exact version. When local and
+leaderboard results disagree, environment differences are the first suspect.
 
 ---
 
@@ -411,9 +467,9 @@ A weight file format that stores only numbers. The older `.bin`/`.pt` formats us
 ### Trajectories and rejection sampling
 Planned data recipe: run our agent many times on the 129 training tasks, **keep only the runs
 whose patch passes the tests**, and fine-tune on those. This is called rejection sampling or
-"expert iteration". The model learns from its own successes. The organizers have said training on
-data generated by `gemma-4-31b` itself is allowed; outputs from other models are a rules question
-to check before using.
+"expert iteration". The model learns from its own successes. Training on data generated by `gemma-4-31b` itself is
+allowed. Outputs from other models are allowed only if that model's license permits it, and many
+closed-model terms forbid training other models on their outputs.
 
 ### Reinforcement learning (stretch goal)
 Instead of copying good examples, let the model try, score the attempt (did the tests pass?), and

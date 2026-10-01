@@ -30,7 +30,7 @@ fine-tuning comes in. Full details: [docs/competition.md](docs/competition.md).
 |---|---|---|---|
 | 0 | Read the rules, harness and other teams' public findings | SWE-bench tasks, agents, tokens, context windows, quantization | ✅ done |
 | 1 | **v1 baseline:** single agent, tuned prompt, safe budgets; local validator + zip builder | Prompt engineering, sampling, tool calling, budgets | ✅ built, ⏳ submit and record the score |
-| 2 | Local evaluation on a Kaggle GPU notebook with the official harness, on a held-out set of the 129 public tasks | Evaluation methodology, noise, reading agent trajectories, failure analysis | next |
+| 2 | Local evaluation on Kaggle with the official harness: grader check, dev/train split, agent runs on the dev set ([docs/local-eval.md](docs/local-eval.md)) | Controls, environment fidelity, data contamination, train/dev splits, failure analysis | 🔄 in progress |
 | 3 | Scaffold experiments, one change at a time: analyzer sub-agent, prompt variants, skills | Multi-agent design, ablations | |
 | 4 | Fine-tuning dataset from our agent's own successful runs | Trajectories, rejection sampling, chat templates, train/val splits | |
 | 5 | Train a LoRA adapter, check it loads on the quantized model in vLLM, evaluate, submit | SFT, LoRA (rank, alpha, target modules), overfitting | |
@@ -42,7 +42,7 @@ Step 1 needs no GPU: Kaggle runs the model when it scores a submission. GPUs com
 
 | Resource | What we have | Use it for |
 |---|---|---|
-| Kaggle notebooks | Free weekly GPU quota; the organizers' starter notebook uses the `NvidiaL4` machine | Step 2 runs with the official harness, close to the real scorer |
+| Kaggle notebooks | Free weekly GPU quota. Notebooks attached to this competition can use **4×L4**, the scorer's own hardware (costs 2× quota, no internet) | Step 2 runs with the official harness, matching the real scorer |
 | [Lightning.ai](https://lightning.ai/) Studios | 80 free GPU hours | Step 2 evaluation runs and Step 5 LoRA training |
 
 Picking a GPU for this model (see concepts.md → "GPU choice"):
@@ -63,12 +63,16 @@ of 0.02 are mostly noise.
 concepts.md                   every concept we use, explained (start here)
 docs/competition.md           rules, harness, tools and budgets, in our own words
 docs/experiments.md           log of every submission: what changed, what it scored
+docs/local-eval.md            how our local test bench works (Step 2)
 submission/                   exactly what goes into submission.zip
   agent.yaml                    root agent (model, tools, prompt, sampling)
   eval_config.yaml              per-task budgets (time, tool calls, turns)
   configs/sampling.yaml         temperature, top_p/top_k, output cap, thinking off
   prompts/system.md             the system prompt: our main lever in Step 1
 scripts/build_submission.py   validates submission/ against the rules, then builds dist/submission.zip
+scripts/make_split.py         splits healthy public tasks into dev / train (eval/splits.json)
+kaggle/                       Kaggle notebooks we push and run (grader check, agent eval)
+eval/                         small results we keep: grader check, splits, run summaries
 tests/                        tests for the build script
 ```
 
@@ -102,10 +106,15 @@ before you spend a daily submission. The package isn't on PyPI; it ships in the 
 [`metric/gemma-4-developer-agent-wheelhouse`](https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse):
 
 ```bash
-kaggle datasets download metric/gemma-4-developer-agent-wheelhouse -f adk_submission-0.2.11-py3-none-any.whl -p vendor/
+# the same versions the scorer uses (updated 2026-09-30)
+for w in adk_submission-0.2.12-py3-none-any.whl google_adk-1.36.1-py3-none-any.whl; do
+  kaggle datasets download metric/gemma-4-developer-agent-wheelhouse -f $w -p vendor/
+done
 python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt "google-adk>=1.34,<2" vendor/adk_submission-0.2.11-py3-none-any.whl
+pip install -r requirements.txt vendor/google_adk-1.36.1-py3-none-any.whl vendor/adk_submission-0.2.12-py3-none-any.whl
 python scripts/build_submission.py        # now also prints "official compiler: OK"
 ```
 
-(If the file name differs, list the dataset with `kaggle datasets files metric/gemma-4-developer-agent-wheelhouse`.)
+The organizers update these packages from time to time. List the current files with
+`kaggle datasets files metric/gemma-4-developer-agent-wheelhouse`, and check the forum before
+submitting.

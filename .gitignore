@@ -17,3 +17,6 @@ venv/
 # OS / editor
 .DS_Store
 .ipynb_checkpoints/
+
+# Assembled Kaggle notebooks (scripts/kaggle_build.py)
+build/
