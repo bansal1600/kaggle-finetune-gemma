@@ -42,7 +42,7 @@ Step 1 needs no GPU: Kaggle runs the model when it scores a submission. GPUs com
 
 | Resource | What we have | Use it for |
 |---|---|---|
-| Kaggle notebooks | Free weekly GPU quota; the organizers' starter notebook uses the `NvidiaL4` machine | Step 2 runs with the official harness, close to the real scorer |
+| Kaggle notebooks | Free weekly GPU quota. Notebooks attached to this competition can use **4×L4**, the scorer's own hardware (costs 2× quota, no internet) | Step 2 runs with the official harness, matching the real scorer |
 | [Lightning.ai](https://lightning.ai/) Studios | 80 free GPU hours | Step 2 evaluation runs and Step 5 LoRA training |
 
 Picking a GPU for this model (see concepts.md → "GPU choice"):
@@ -102,10 +102,15 @@ before you spend a daily submission. The package isn't on PyPI; it ships in the 
 [`metric/gemma-4-developer-agent-wheelhouse`](https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse):
 
 ```bash
-kaggle datasets download metric/gemma-4-developer-agent-wheelhouse -f adk_submission-0.2.11-py3-none-any.whl -p vendor/
+# the same versions the scorer uses (updated 2026-09-30)
+for w in adk_submission-0.2.12-py3-none-any.whl google_adk-1.36.1-py3-none-any.whl; do
+  kaggle datasets download metric/gemma-4-developer-agent-wheelhouse -f $w -p vendor/
+done
 python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt "google-adk>=1.34,<2" vendor/adk_submission-0.2.11-py3-none-any.whl
+pip install -r requirements.txt vendor/google_adk-1.36.1-py3-none-any.whl vendor/adk_submission-0.2.12-py3-none-any.whl
 python scripts/build_submission.py        # now also prints "official compiler: OK"
 ```
 
-(If the file name differs, list the dataset with `kaggle datasets files metric/gemma-4-developer-agent-wheelhouse`.)
+The organizers update these packages from time to time. List the current files with
+`kaggle datasets files metric/gemma-4-developer-agent-wheelhouse`, and check the forum before
+submitting.
