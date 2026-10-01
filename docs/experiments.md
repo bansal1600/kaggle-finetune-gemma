@@ -8,7 +8,7 @@ are mostly noise.
 
 | # | Date (UTC) | Commit | Change vs previous | Public score | Notes |
 |---|---|---|---|---|---|
-| v1 | _to fill_ | _to fill_ | First submission: single agent, our prompt, thinking off, temp 0.2, 4.5 min / 40 calls / 80 turns | _pending_ | Expected 0.06–0.12 from comparable public configs |
+| v1 | 2026-10-01 20:50 | 41ab46b | First submission: single agent, our prompt, thinking off, temp 0.2, 4.5 min / 40 calls / 80 turns | _pending_ | Kaggle ref 56758822; zip sha256 369b1c64…. Validated with adk-submission 0.2.12 + google-adk 1.36.1. Expected 0.06–0.12 from comparable public configs |
 
 ## Ideas queue (one per submission)
 
