@@ -37,6 +37,24 @@ def install_harness(wheelhouse: Path, gpu: bool = False) -> None:
     importlib.invalidate_caches()
 
 
+def find_extra_wheels(expected: Path | None, marker: str = "annotated_doc-*.whl") -> Path | None:
+    """Locate our extra-wheels dataset; fail loudly instead of silently grading without it.
+
+    Kaggle's mount path for attached datasets has changed before (grader check v2 did not find it
+    at the expected path and quietly ran without the 7 packages), so search /kaggle/input as well.
+    """
+    if expected is None or (expected.is_dir() and any(expected.glob(marker))):
+        return expected
+    kaggle_input = Path("/kaggle/input")
+    if kaggle_input.is_dir():
+        for hit in sorted(kaggle_input.rglob(marker)):
+            print(f"Extra wheels not at {expected}; using {hit.parent}", flush=True)
+            return hit.parent
+        tree = sorted(str(p) for p in kaggle_input.glob("*/*"))
+        raise SystemExit(f"Extra wheels ({marker}) not found under /kaggle/input. Mounted: {tree}")
+    raise SystemExit(f"Extra wheels not found at {expected}")
+
+
 def use_scorer_environment(wheels_dir: Path, target: Path, extra_wheels: Path | None = None) -> None:
     """Give every task sandbox the same Python packages the real scorer gives it.
 
@@ -60,6 +78,7 @@ def use_scorer_environment(wheels_dir: Path, target: Path, extra_wheels: Path | 
     import swegemma.harness.verification as ver
     from swegemma.sandbox.subprocess import SubprocessManager
 
+    extra_wheels = find_extra_wheels(extra_wheels)
     supported = set(sys_tags())
     best: dict[str, tuple] = {}
     wheels = list(wheels_dir.glob("*.whl"))
@@ -80,7 +99,8 @@ def use_scorer_environment(wheels_dir: Path, target: Path, extra_wheels: Path | 
         if tags & supported and (name not in best or version > best[name][0]):
             best[name] = (version, whl)
     if not (target / ".done").exists():
-        print(f"Installing the scorer's package set ({len(best)} packages) into {target}...", flush=True)
+        print(f"Installing the scorer's package set ({len(best)} packages, extras from {extra_wheels}) "
+              f"into {target}...", flush=True)
         subprocess.run([sys.executable, "-m", "pip", "install", "-q", "--no-deps", "--no-index",
                         "--target", str(target), *[str(w) for _, w in best.values()]], check=True)
         (target / ".done").write_text("\n".join(sorted(f"{n}=={v}" for n, (v, _) in best.items())))
