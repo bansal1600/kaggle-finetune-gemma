@@ -1,0 +1,25 @@
+STDOUT:
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_____________________ test_security_scopes_dont_propagate ______________________
+
+    def test_security_scopes_dont_propagate():
+        response = client.get("/scopes")
+        assert response.status_code == 200
+>       assert response.json() == {
+            "dep1": ["scope3", "scope1"],
+            "dep2": ["scope3", "scope2"],
+        }
+E       AssertionError: assert {'dep1': ['sc...1', 'scope2']} == {'dep1': ['sc...3', 'scope2']}
+E         
+E         Differing items:
+E         {'dep2': ['scope3', 'scope1', 'scope2']} != {'dep2': ['scope3', 'scope2']}
+E         {'dep1': ['scope3', 'scope1', 'scope2']} != {'dep1': ['scope3', 'scope1']}
+E         Use -v to get more diff
+
+tests/test_security_scopes_dont_propagate.py:42: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_security_scopes_dont_propagate.py::test_security_scopes_dont_propagate
+1 failed in 1.59s
+
+STDERR:

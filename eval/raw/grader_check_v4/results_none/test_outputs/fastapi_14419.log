@@ -1,0 +1,39 @@
+STDOUT:
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_________________ test_security_scopes_dependency_called_once __________________
+
+client = <starlette.testclient.TestClient object at 0x7eca26a79730>
+call_counter = {'count': 2}
+
+    def test_security_scopes_dependency_called_once(
+        client: TestClient, call_counter: Dict[str, int]
+    ):
+        response = client.get("/")
+    
+        assert response.status_code == 200
+>       assert call_counter["count"] == 1
+E       assert 2 == 1
+
+tests/test_security_scopes.py:46: AssertionError
+_________________ test_security_scopes_sub_dependency_caching __________________
+
+client = <starlette.testclient.TestClient object at 0x7eca26a7b230>
+call_counts = {'get_db_session': 2, 'get_current_user': 2, 'get_user_me': 2, 'get_user_items': 1}
+
+    def test_security_scopes_sub_dependency_caching(
+        client: TestClient, call_counts: Dict[str, int]
+    ):
+        response = client.get("/")
+    
+        assert response.status_code == 200
+>       assert call_counts["get_db_session"] == 1
+E       assert 2 == 1
+
+tests/test_security_scopes_sub_dependency.py:83: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_security_scopes.py::test_security_scopes_dependency_called_once
+FAILED tests/test_security_scopes_sub_dependency.py::test_security_scopes_sub_dependency_caching
+2 failed in 1.65s
+
+STDERR:

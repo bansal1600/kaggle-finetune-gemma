@@ -1,0 +1,79 @@
+STDOUT:
+..FE                                                                     [100%]
+
+═══════════════════════════════ inline-snapshot ════════════════════════════════
+──────────────────────────────── Fix snapshots ─────────────────────────────────
+╭───────────── tests/test_top_level_security_scheme_in_openapi.py ─────────────╮
+│ @@ -49,12 +49,8 @@                                                           │
+│                                                                              │
+│                                  "content": {"application/json": {"schema":  │
+│ {}}},                                                                        │
+│                              }                                               │
+│                          },                                                  │
+│ -                        "security": [{"HTTPBearer": []}],                   │
+│                      }                                                       │
+│                  }                                                           │
+│              },                                                              │
+│ -            "components": {                                                 │
+│ -                "securitySchemes": {"HTTPBearer": {"type": "http",          │
+│ "scheme": "bearer"}}                                                         │
+│ -            },                                                              │
+│          }                                                                   │
+│      )                                                                       │
+╰──────────────────────────────────────────────────────────────────────────────╯
+These changes are not applied.
+Use --inline-snapshot=fix to apply them, or use the interactive mode with 
+--inline-snapshot=review
+
+
+==================================== ERRORS ====================================
+___________________ ERROR at teardown of test_openapi_schema ___________________
+some snapshots in this test have incorrect values.
+If you just created this value with --inline-snapshot=create, the value is now created and you can ignore this message.
+=================================== FAILURES ===================================
+_____________________________ test_openapi_schema ______________________________
+
+    def test_openapi_schema():
+        response = client.get("/openapi.json")
+        assert response.status_code == 200, response.text
+>       assert response.json() == snapshot(
+            {
+                "openapi": "3.1.0",
+                "info": {"title": "FastAPI", "version": "0.1.0"},
+                "paths": {
+                    "/": {
+                        "get": {
+                            "summary": "Get Root",
+                            "operationId": "get_root__get",
+                            "responses": {
+                                "200": {
+                                    "description": "Successful Response",
+                                    "content": {"application/json": {"schema": {}}},
+                                }
+                            },
+                            "security": [{"HTTPBearer": []}],
+                        }
+                    }
+                },
+                "components": {
+                    "securitySchemes": {"HTTPBearer": {"type": "http", "scheme": "bearer"}}
+                },
+            }
+        )
+E       AssertionError: assert {'openapi': '...': {...}}}}}}} == {'openapi': '...: 'bearer'}}}}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'paths': {'/': {'get': {'summary': 'Get Root', 'operationId': 'get_root__get', 'responses': {'200': {'description': 'Successful Response', 'content': {...}}}}}}} != {'paths': {'/': {'get': {'summary': 'Get Root', 'operationId': 'get_root__get', 'responses': {'200': {'description': 'Successful Response', 'content': {...}}}, 'security': [{'HTTPBearer': []}]}}}}
+E         Right contains 1 more item:
+E         {'components': {'securitySchemes': {'HTTPBearer': {'scheme': 'bearer',
+E                                                            'type': 'http'}}}}
+E         Use -v to get more diff
+
+tests/test_top_level_security_scheme_in_openapi.py:37: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_top_level_security_scheme_in_openapi.py::test_openapi_schema
+ERROR tests/test_top_level_security_scheme_in_openapi.py::test_openapi_schema
+1 failed, 2 passed, 1 error in 1.94s
+
+STDERR:

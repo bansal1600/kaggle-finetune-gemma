@@ -1,0 +1,104 @@
+--- a/docs_src/custom_response/tutorial010_py310.py
++++ b/docs_src/custom_response/tutorial010_py310.py
+@@ -1,9 +1,9 @@
+ from fastapi import FastAPI
+-from fastapi.responses import ORJSONResponse
++from fastapi.responses import HTMLResponse
+ 
+-app = FastAPI(default_response_class=ORJSONResponse)
++app = FastAPI(default_response_class=HTMLResponse)
+ 
+ 
+ @app.get("/items/")
+ async def read_items():
+-    return [{"item_id": "Foo"}]
++    return "<h1>Items</h1><p>This is a list of items.</p>"
+--- a/fastapi/_compat/v2.py
++++ b/fastapi/_compat/v2.py
+@@ -199,6 +199,32 @@ def serialize(
+             exclude_none=exclude_none,
+         )
+ 
++    def serialize_json(
++        self,
++        value: Any,
++        *,
++        include: IncEx | None = None,
++        exclude: IncEx | None = None,
++        by_alias: bool = True,
++        exclude_unset: bool = False,
++        exclude_defaults: bool = False,
++        exclude_none: bool = False,
++    ) -> bytes:
++        # What calls this code passes a value that already called
++        # self._type_adapter.validate_python(value)
++        # This uses Pydantic's dump_json() which serializes directly to JSON
++        # bytes in one pass (via Rust), avoiding the intermediate Python dict
++        # step of dump_python(mode="json") + json.dumps().
++        return self._type_adapter.dump_json(
++            value,
++            include=include,
++            exclude=exclude,
++            by_alias=by_alias,
++            exclude_unset=exclude_unset,
++            exclude_defaults=exclude_defaults,
++            exclude_none=exclude_none,
++        )
++
+     def __hash__(self) -> int:
+         # Each ModelField is unique for our purposes, to allow making a dict from
+         # ModelField to its JSON Schema.
+--- a/fastapi/routing.py
++++ b/fastapi/routing.py
+@@ -271,6 +271,7 @@ async def serialize_response(
+     exclude_none: bool = False,
+     is_coroutine: bool = True,
+     endpoint_ctx: EndpointContext | None = None,
++    dump_json: bool = False,
+ ) -> Any:
+     if field:
+         if is_coroutine:
+@@ -286,8 +287,8 @@ async def serialize_response(
+                 body=response_content,
+                 endpoint_ctx=ctx,
+             )
+-
+-        return field.serialize(
++        serializer = field.serialize_json if dump_json else field.serialize
++        return serializer(
+             value,
+             include=include,
+             exclude=exclude,
+@@ -443,6 +444,14 @@ async def app(request: Request) -> Response:
+                     response_args["status_code"] = current_status_code
+                 if solved_result.response.status_code:
+                     response_args["status_code"] = solved_result.response.status_code
++                # Use the fast path (dump_json) when no custom response
++                # class was set and a response field with a TypeAdapter
++                # exists. Serializes directly to JSON bytes via Pydantic's
++                # Rust core, skipping the intermediate Python dict +
++                # json.dumps() step.
++                use_dump_json = response_field is not None and isinstance(
++                    response_class, DefaultPlaceholder
++                )
+                 content = await serialize_response(
+                     field=response_field,
+                     response_content=raw_response,
+@@ -454,8 +463,16 @@ async def app(request: Request) -> Response:
+                     exclude_none=response_model_exclude_none,
+                     is_coroutine=is_coroutine,
+                     endpoint_ctx=endpoint_ctx,
++                    dump_json=use_dump_json,
+                 )
+-                response = actual_response_class(content, **response_args)
++                if use_dump_json:
++                    response = Response(
++                        content=content,
++                        media_type="application/json",
++                        **response_args,
++                    )
++                else:
++                    response = actual_response_class(content, **response_args)
+                 if not is_body_allowed_for_status_code(response.status_code):
+                     response.body = b""
+                 response.headers.raw.extend(solved_result.response.headers.raw)

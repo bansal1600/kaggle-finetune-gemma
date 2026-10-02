@@ -1,0 +1,43 @@
+STDOUT:
+F                                                                        [100%]
+=================================== FAILURES ===================================
+________________________ test_discriminator_pydantic_v2 ________________________
+
+    @needs_pydanticv2
+    def test_discriminator_pydantic_v2() -> None:
+        from pydantic import Tag
+    
+        app = FastAPI()
+    
+        class FirstItem(BaseModel):
+            value: Literal["first"]
+            price: int
+    
+        class OtherItem(BaseModel):
+            value: Literal["other"]
+            price: float
+    
+        Item = Annotated[
+            Union[Annotated[FirstItem, Tag("first")], Annotated[OtherItem, Tag("other")]],
+            Field(discriminator="value"),
+        ]
+    
+        @app.post("/items/")
+        def save_union_body_discriminator(
+            item: Item, q: Annotated[str, Field(description="Query string")]
+        ) -> Dict[str, Any]:
+            return {"item": item}
+    
+        client = TestClient(app)
+        response = client.post("/items/?q=first", json={"value": "first", "price": 100})
+>       assert response.status_code == 200, response.text
+E       AssertionError: {"detail":[{"type":"missing","loc":["query","item"],"msg":"Field required","input":null}]}
+E       assert 422 == 200
+E        +  where 422 = <Response [422 Unprocessable Entity]>.status_code
+
+tests/test_union_body_discriminator.py:40: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_union_body_discriminator.py::test_discriminator_pydantic_v2
+1 failed in 1.39s
+
+STDERR:

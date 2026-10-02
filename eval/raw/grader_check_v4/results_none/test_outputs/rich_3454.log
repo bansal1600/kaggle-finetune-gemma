@@ -1,0 +1,37 @@
+STDOUT:
+.......................................F................................ [ 86%]
+...........                                                              [100%]
+=================================== FAILURES ===================================
+_____ test_highlight_regex[https://www.youtube.com/@LinusTechTips-spans38] _____
+
+test = 'https://www.youtube.com/@LinusTechTips'
+spans = [Span(0, 38, 'repr.url')]
+
+    @pytest.mark.parametrize("test, spans", highlight_tests)
+    def test_highlight_regex(test: str, spans: List[Span]):
+        """Tests for the regular expressions used in ReprHighlighter."""
+        text = Text(test)
+        highlighter = ReprHighlighter()
+        highlighter.highlight(text)
+        print(text.spans)
+>       assert text.spans == spans
+E       AssertionError: assert [Span(0, 24, 'repr.url')] == [Span(0, 38, 'repr.url')]
+E         
+E         At index 0 diff: Span(0, 24, 'repr.url') != Span(0, 38, 'repr.url')
+E         Use -v to get more diff
+
+tests/test_highlighter.py:167: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[Span(0, 24, 'repr.url')]
+=============================== warnings summary ===============================
+../../scorer_env/_pytest/config/__init__.py:1464
+  /tmp/scorer_env/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_highlighter.py::test_highlight_regex[https://www.youtube.com/@LinusTechTips-spans38]
+1 failed, 82 passed, 1 warning in 0.44s
+
+STDERR:

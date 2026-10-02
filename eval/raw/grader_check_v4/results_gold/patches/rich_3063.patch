@@ -1,0 +1,20 @@
+--- a/rich/markup.py
++++ b/rich/markup.py
+@@ -64,6 +64,9 @@ def escape_backslashes(match: Match[str]) -> str:
+         return f"{backslashes}{backslashes}\\{text}"
+ 
+     markup = _escape(escape_backslashes, markup)
++    if markup.endswith("\\") and not markup.endswith("\\\\"):
++        return markup + "\\"
++
+     return markup
+ 
+ 
+@@ -226,7 +229,6 @@ def pop_style(style_name: str) -> Tuple[int, Tag]:
+ 
+ 
+ if __name__ == "__main__":  # pragma: no cover
+-
+     MARKUP = [
+         "[red]Hello World[/red]",
+         "[magenta]Hello [b]World[/b]",

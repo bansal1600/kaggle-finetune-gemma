@@ -1,0 +1,29 @@
+STDOUT:
+.................F...................................................... [ 72%]
+............................                                             [100%]
+=================================== FAILURES ===================================
+__________________________ test_print_empty_with_end ___________________________
+
+    def test_print_empty_with_end() -> None:
+        console = Console(file=io.StringIO(), color_system="truecolor")
+        console.print(end="!")
+>       assert console.file.getvalue() == "!"
+E       AssertionError: assert '\n' == '!'
+E         
+E         Strings contain only whitespace, escaping them using repr()
+E         - '!'
+E         + '\n'
+
+tests/test_console.py:198: AssertionError
+=============================== warnings summary ===============================
+../../scorer_env/_pytest/config/__init__.py:1464
+  /tmp/scorer_env/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_console.py::test_print_empty_with_end - AssertionError: ass...
+1 failed, 99 passed, 1 warning in 2.38s
+
+STDERR:

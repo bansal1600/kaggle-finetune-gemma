@@ -1,0 +1,27 @@
+STDOUT:
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+________________________ test_form_default_url_encoded _________________________
+
+    def test_form_default_url_encoded():
+        response = client.post("/urlencoded", data={"age": ""})
+>       assert response.status_code == 200
+E       assert 422 == 200
+E        +  where 422 = <Response [422 Unprocessable Entity]>.status_code
+
+tests/test_form_default.py:28: AssertionError
+_________________________ test_form_default_multi_part _________________________
+
+    def test_form_default_multi_part():
+        response = client.post("/multipart", data={"age": ""})
+>       assert response.status_code == 200
+E       assert 422 == 200
+E        +  where 422 = <Response [422 Unprocessable Entity]>.status_code
+
+tests/test_form_default.py:34: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_form_default.py::test_form_default_url_encoded - assert 422...
+FAILED tests/test_form_default.py::test_form_default_multi_part - assert 422 ...
+2 failed in 1.48s
+
+STDERR:

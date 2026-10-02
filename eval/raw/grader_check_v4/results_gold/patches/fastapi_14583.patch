@@ -1,0 +1,70 @@
+--- a/fastapi/dependencies/utils.py
++++ b/fastapi/dependencies/utils.py
+@@ -1,6 +1,7 @@
+ import dataclasses
+ import inspect
+ import sys
++import warnings
+ from collections.abc import Coroutine, Mapping, Sequence
+ from contextlib import AsyncExitStack, contextmanager
+ from copy import copy, deepcopy
+@@ -322,6 +323,13 @@ def get_dependant(
+             )
+             continue
+         assert param_details.field is not None
++        if isinstance(param_details.field, may_v1.ModelField):
++            warnings.warn(
++                "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
++                f" Please update the param {param_name}: {param_details.type_annotation!r}.",
++                category=DeprecationWarning,
++                stacklevel=5,
++            )
+         if isinstance(
+             param_details.field.field_info, (params.Body, temp_pydantic_v1_params.Body)
+         ):
+--- a/fastapi/routing.py
++++ b/fastapi/routing.py
+@@ -2,6 +2,7 @@
+ import functools
+ import inspect
+ import json
++import warnings
+ from collections.abc import (
+     AsyncIterator,
+     Awaitable,
+@@ -28,6 +29,7 @@
+     _get_model_config,
+     _model_dump,
+     _normalize_errors,
++    annotation_is_pydantic_v1,
+     lenient_issubclass,
+     may_v1,
+ )
+@@ -634,6 +636,13 @@ def __init__(
+                 f"Status code {status_code} must not have a response body"
+             )
+             response_name = "Response_" + self.unique_id
++            if annotation_is_pydantic_v1(self.response_model):
++                warnings.warn(
++                    "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
++                    f" Please update the response model {self.response_model!r}.",
++                    category=DeprecationWarning,
++                    stacklevel=4,
++                )
+             self.response_field = create_model_field(
+                 name=response_name,
+                 type_=self.response_model,
+@@ -667,6 +676,13 @@ def __init__(
+                     f"Status code {additional_status_code} must not have a response body"
+                 )
+                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
++                if annotation_is_pydantic_v1(model):
++                    warnings.warn(
++                        "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
++                        f" In responses={{}}, please update {model}.",
++                        category=DeprecationWarning,
++                        stacklevel=4,
++                    )
+                 response_field = create_model_field(
+                     name=response_name, type_=model, mode="serialization"
+                 )

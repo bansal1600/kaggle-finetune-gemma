@@ -1,0 +1,20 @@
+STDOUT:
+
+==================================== ERRORS ====================================
+____________ ERROR collecting tests/test_dependency_yield_scope.py _____________
+tests/test_dependency_yield_scope.py:23: in <module>
+    SessionFuncDep = Annotated[Session, Depends(dep_session, scope="function")]
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: Depends() got an unexpected keyword argument 'scope'
+_______ ERROR collecting tests/test_dependency_yield_scope_websockets.py _______
+tests/test_dependency_yield_scope_websockets.py:26: in <module>
+    SessionFuncDep = Annotated[Session, Depends(dep_session, scope="function")]
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: Depends() got an unexpected keyword argument 'scope'
+=========================== short test summary info ============================
+ERROR tests/test_dependency_yield_scope.py - TypeError: Depends() got an unex...
+ERROR tests/test_dependency_yield_scope_websockets.py - TypeError: Depends() ...
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 errors in 1.73s
+
+STDERR:

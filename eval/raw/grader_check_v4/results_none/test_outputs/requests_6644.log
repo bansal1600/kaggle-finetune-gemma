@@ -1,0 +1,22 @@
+STDOUT:
+F                                                                        [100%]
+=================================== FAILURES ===================================
+________________ test_request_url_trims_leading_path_separators ________________
+
+    def test_request_url_trims_leading_path_separators():
+        """See also https://github.com/psf/requests/issues/6643."""
+        a = requests.adapters.HTTPAdapter()
+        p = requests.Request(method="GET", url="http://127.0.0.1:10000//v:h").prepare()
+>       assert "/v:h" == a.request_url(p, {})
+E       AssertionError: assert '/v:h' == '//v:h'
+E         
+E         - //v:h
+E         ? -
+E         + /v:h
+
+tests/test_adapters.py:8: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_adapters.py::test_request_url_trims_leading_path_separators
+1 failed in 0.07s
+
+STDERR:

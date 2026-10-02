@@ -1,0 +1,22 @@
+STDOUT:
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________________________ test_vibe_raises _______________________________
+
+    def test_vibe_raises():
+        with pytest.raises(FastAPIError, match="Are you kidding me"):
+            app = FastAPI()
+    
+>           @app.vibe(
+             ^^^^^^^^
+                "/vibe/",
+                prompt="pls return json of users from database. make no mistakes",
+            )
+E           AttributeError: 'FastAPI' object has no attribute 'vibe'
+
+tests/test_vibe.py:12: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_vibe.py::test_vibe_raises - AttributeError: 'FastAPI' objec...
+1 failed in 1.30s
+
+STDERR:

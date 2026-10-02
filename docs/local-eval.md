@@ -14,7 +14,7 @@ Use the bench mainly to understand failures and catch breakage.
 |---|---|---|---|
 | 2b | Grader check: the official verifier runs every task with the real fix (must pass) and with no fix (must fail) | `kaggle/grader_check/` → `eval/grader_check.csv` | No |
 | 2a | Split healthy tasks into dev (newest, ~33) and train | `scripts/make_split.py` → `eval/splits.json` | No |
-| 2c | Run an agent config on the dev set with the scorer's model, hardware and budgets | `kaggle/agent_eval/` (next) | 4×L4 |
+| 2c | Run an agent config on the dev set with the scorer's model, hardware and budgets | `kaggle/agent_eval/` | 4×L4 |
 | 2d | Failure analysis of the run | `eval/runs/<run>/` | No |
 
 ## How a Kaggle run works
@@ -48,9 +48,21 @@ import whatever the notebook happens to have. `use_scorer_environment()` in
    unchanged from PyPI, with dependencies, via our private dataset
    `guaravbansal/gemma-agent-extra-wheels`, and only fill gaps.
 
-What the first grader run taught us (2026-10-01): without fixes 2 and 3, **0 of 67** fastapi
-tasks were gradable. With them, a fastapi sample passes. Other teams' audits report 114–119 of
-129 gradable.
+Grader check history (all on Kaggle, CPU, ~35 min each):
+
+| Run | Healthy | What it taught us |
+|---|---|---|
+| v1 | 45/129 | Out of the box, 0/67 fastapi tasks gradable: missing test packages, wrong starlette |
+| v2 | 54/129 | The extra-wheels dataset was mounted at `/kaggle/input/<slug>`, not where we looked, and the code silently ran without it. Now searched for, and missing = hard error |
+| v3 | 60/129 | Kaggle's Python has no `ensurepip`, so task venvs have no pip and the per-repo install never ran. Commands sent through the sandbox also get every `/tmp/...` path rewritten |
+| v4 | **105/129** | Per-repo install now runs from the notebook straight into the task venv. fastapi 60/67, rich 40/48, requests 5/13, httpx 0/1 |
+
+The 24 still excluded: 8 requests tasks need `pytest-httpbin` (see below), 8 rich tasks fail on
+exact terminal-rendering output, 7 fastapi tasks fail or pass with and without the fix, and the one
+httpx task. Other teams report 114–119; most of the gap is the httpbin tasks.
+
+Lesson: an environment problem that is silent (`2>/dev/null || true`, a missing folder treated
+as optional) costs a whole run to find. Fail loudly instead.
 
 Also found: in subprocess mode the harness copies `wheels/` to `/wheels/wheels/`, so `/wheels`
 is empty there. Our code uses the real host path instead. The Docker scorer is not affected.

@@ -1,0 +1,44 @@
+STDOUT:
+...................sF                                                    [100%]
+=================================== FAILURES ===================================
+________________________ test_traceback_finely_grained _________________________
+
+    @pytest.mark.skipif(
+        sys.version_info.minor < 11, reason="Not applicable before Python 3.11"
+    )
+    def test_traceback_finely_grained() -> None:
+        """Check that last instruction is populated."""
+        try:
+>           1 / 0
+E           ZeroDivisionError: division by zero
+
+tests/test_traceback.py:351: ZeroDivisionError
+
+During handling of the above exception, another exception occurred:
+
+    @pytest.mark.skipif(
+        sys.version_info.minor < 11, reason="Not applicable before Python 3.11"
+    )
+    def test_traceback_finely_grained() -> None:
+        """Check that last instruction is populated."""
+        try:
+            1 / 0
+        except:
+            traceback = Traceback()
+>           last_instruction = traceback.trace.stacks[-1].frames[-1].last_instruction
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AttributeError: 'Frame' object has no attribute 'last_instruction'
+
+tests/test_traceback.py:354: AttributeError
+=============================== warnings summary ===============================
+../../scorer_env/_pytest/config/__init__.py:1464
+  /tmp/scorer_env/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_traceback.py::test_traceback_finely_grained - AttributeErro...
+1 failed, 19 passed, 1 skipped, 1 warning in 1.82s
+
+STDERR:

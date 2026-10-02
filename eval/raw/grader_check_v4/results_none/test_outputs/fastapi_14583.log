@@ -1,0 +1,77 @@
+STDOUT:
+...........................................FFFF......................... [ 38%]
+........................................................................ [ 77%]
+.........................................                                [100%]
+=================================== FAILURES ===================================
+________________ test_warns_pydantic_v1_model_in_endpoint_param ________________
+
+    def test_warns_pydantic_v1_model_in_endpoint_param() -> None:
+        class ParamModelV1(BaseModel):
+            name: str
+    
+        app = FastAPI()
+    
+>       with pytest.warns(
+            DeprecationWarning,
+            match=r"pydantic\.v1 is deprecated.*Please update the param data:",
+        ):
+E       Failed: DID NOT WARN. No warnings of type (<class 'DeprecationWarning'>,) were emitted.
+E        Emitted warnings: [].
+
+tests/test_pydantic_v1_deprecation_warnings.py:21: Failed
+_________________ test_warns_pydantic_v1_model_in_return_type __________________
+
+    def test_warns_pydantic_v1_model_in_return_type() -> None:
+        class ReturnModelV1(BaseModel):
+            name: str
+    
+        app = FastAPI()
+    
+>       with pytest.warns(
+            DeprecationWarning,
+            match=r"pydantic\.v1 is deprecated.*Please update the response model",
+        ):
+E       Failed: DID NOT WARN. No warnings of type (<class 'DeprecationWarning'>,) were emitted.
+E        Emitted warnings: [].
+
+tests/test_pydantic_v1_deprecation_warnings.py:42: Failed
+________________ test_warns_pydantic_v1_model_in_response_model ________________
+
+    def test_warns_pydantic_v1_model_in_response_model() -> None:
+        class ResponseModelV1(BaseModel):
+            name: str
+    
+        app = FastAPI()
+    
+>       with pytest.warns(
+            DeprecationWarning,
+            match=r"pydantic\.v1 is deprecated.*Please update the response model",
+        ):
+E       Failed: DID NOT WARN. No warnings of type (<class 'DeprecationWarning'>,) were emitted.
+E        Emitted warnings: [].
+
+tests/test_pydantic_v1_deprecation_warnings.py:63: Failed
+__________ test_warns_pydantic_v1_model_in_additional_responses_model __________
+
+    def test_warns_pydantic_v1_model_in_additional_responses_model() -> None:
+        class ErrorModelV1(BaseModel):
+            detail: str
+    
+        app = FastAPI()
+    
+>       with pytest.warns(
+            DeprecationWarning,
+            match=r"pydantic\.v1 is deprecated.*In responses=\{\}, please update",
+        ):
+E       Failed: DID NOT WARN. No warnings of type (<class 'DeprecationWarning'>,) were emitted.
+E        Emitted warnings: [].
+
+tests/test_pydantic_v1_deprecation_warnings.py:84: Failed
+=========================== short test summary info ============================
+FAILED tests/test_pydantic_v1_deprecation_warnings.py::test_warns_pydantic_v1_model_in_endpoint_param
+FAILED tests/test_pydantic_v1_deprecation_warnings.py::test_warns_pydantic_v1_model_in_return_type
+FAILED tests/test_pydantic_v1_deprecation_warnings.py::test_warns_pydantic_v1_model_in_response_model
+FAILED tests/test_pydantic_v1_deprecation_warnings.py::test_warns_pydantic_v1_model_in_additional_responses_model
+4 failed, 181 passed, 1 skipped in 7.32s
+
+STDERR:
