@@ -1,0 +1,517 @@
+[{"stream_name":"stdout","time":0.915833652,"data":"Installing 41 harness wheels...\n"}
+,{"stream_name":"stdout","time":86.738344495,"data":"Installing the scorer's package set (48 packages, extras from /kaggle/input/datasets/guaravbansal/gemma-agent-extra-wheels) into /tmp/scorer_env...\n"}
+,{"stream_name":"stdout","time":459.026198999,"data":"vLLM ready on http://127.0.0.1:8000/v1 after 5.9 min (4 GPUs)\n"}
+,{"stream_name":"stderr","time":459.028746035,"data":"/usr/local/lib/python3.12/dist-packages/google/adk/features/_feature_decorator.py:72: UserWarning: [EXPERIMENTAL] feature FeatureName.AGENT_CONFIG is enabled.\n"}
+,{"stream_name":"stderr","time":459.028765064,"data":"  check_feature_enabled()\n"}
+,{"stream_name":"stderr","time":459.028798927,"data":"/kaggle/src/script.py:309: UserWarning: [EXPERIMENTAL] EventsCompactionConfig: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.\n"}
+,{"stream_name":"stderr","time":459.028819489,"data":"  events_compaction_config=EventsCompactionConfig(\n"}
+,{"stream_name":"stdout","time":459.028999495,"data":"Running 33 tasks with budgets {'max_time_minutes': 4.5, 'max_tool_calls': 40, 'max_turns': 80, 'timeout_seconds': 180}\n"}
+,{"stream_name":"stderr","time":459.192724325,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox cf588d81-b60, creating venv without pip: Command '['/tmp/swegemma_sandbox_cf588d81-b60_h8mvt3j8/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":530.712765804,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 1eb3513a-217, creating venv without pip: Command '['/tmp/swegemma_sandbox_1eb3513a-217_sd718dkf/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":542.979229459,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox a3492da4-fe5, creating venv without pip: Command '['/tmp/swegemma_sandbox_a3492da4-fe5_i8u_84cy/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":589.510337702,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox e082dc6b-ced, creating venv without pip: Command '['/tmp/swegemma_sandbox_e082dc6b-ced_bql6t76l/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":602.431961263,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 0c42c3d2-c77, creating venv without pip: Command '['/tmp/swegemma_sandbox_0c42c3d2-c77_zcu703mh/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":777.327948834,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 6760380c-bbe, creating venv without pip: Command '['/tmp/swegemma_sandbox_6760380c-bbe_g3vzk9f7/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":789.609233851,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox cbb51b6f-e32, creating venv without pip: Command '['/tmp/swegemma_sandbox_cbb51b6f-e32_q943umbm/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":842.009752773,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox edf4f0f1-555, creating venv without pip: Command '['/tmp/swegemma_sandbox_edf4f0f1-555_7gb_ju5z/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":854.147151891,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 81dc2b3e-353, creating venv without pip: Command '['/tmp/swegemma_sandbox_81dc2b3e-353_zeo3h7_y/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":918.377734264,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 7961a473-ff1, creating venv without pip: Command '['/tmp/swegemma_sandbox_7961a473-ff1_ap59rfke/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":930.792307169,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 03093820-211, creating venv without pip: Command '['/tmp/swegemma_sandbox_03093820-211_ehd1nwsz/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":988.493813822,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 8c828eb8-8d3, creating venv without pip: Command '['/tmp/swegemma_sandbox_8c828eb8-8d3_bxq1q9m2/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1000.53261453,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox f0f92007-c30, creating venv without pip: Command '['/tmp/swegemma_sandbox_f0f92007-c30_05m3e2gd/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1274.481349297,"data":"WARNING:swegemma.harness.agent_runner:Task fastapi_14964 agent timed out.\n"}
+,{"stream_name":"stderr","time":1274.740789962,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 0e60b900-487, creating venv without pip: Command '['/tmp/swegemma_sandbox_0e60b900-487_5kl02mx6/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1287.19849445,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 524a8b3f-213, creating venv without pip: Command '['/tmp/swegemma_sandbox_524a8b3f-213_84hlt4y_/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1343.846742566,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox e6614740-b98, creating venv without pip: Command '['/tmp/swegemma_sandbox_e6614740-b98_hqsm27i9/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1356.131736384,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 0a5ed75e-49a, creating venv without pip: Command '['/tmp/swegemma_sandbox_0a5ed75e-49a_uqcamzjk/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1630.238953964,"data":"WARNING:swegemma.harness.agent_runner:Task fastapi_14986 agent timed out.\n"}
+,{"stream_name":"stderr","time":1630.50584828,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 3ae0ba9c-b67, creating venv without pip: Command '['/tmp/swegemma_sandbox_3ae0ba9c-b67_ti8a8dg2/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1642.669264175,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 0686d041-04e, creating venv without pip: Command '['/tmp/swegemma_sandbox_0686d041-04e_9jp1oada/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1761.958028407,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 78da72c0-25a, creating venv without pip: Command '['/tmp/swegemma_sandbox_78da72c0-25a_3b0ug4wo/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1774.278594143,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 9f5285df-b02, creating venv without pip: Command '['/tmp/swegemma_sandbox_9f5285df-b02__h16rs_9/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1880.042648863,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 7cf839ba-dc5, creating venv without pip: Command '['/tmp/swegemma_sandbox_7cf839ba-dc5_mnoefb2l/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1895.703621771,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 9aab92d7-e1d, creating venv without pip: Command '['/tmp/swegemma_sandbox_9aab92d7-e1d_3q1zdofr/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1997.210662295,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox cfe64fc1-b26, creating venv without pip: Command '['/tmp/swegemma_sandbox_cfe64fc1-b26_q4yu07jz/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2012.347509284,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 46019894-1ee, creating venv without pip: Command '['/tmp/swegemma_sandbox_46019894-1ee_0t5v48_i/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2156.230480749,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 08064333-100, creating venv without pip: Command '['/tmp/swegemma_sandbox_08064333-100_06_c4gs9/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2167.219902261,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 4d3f8406-205, creating venv without pip: Command '['/tmp/swegemma_sandbox_4d3f8406-205_vvigpw4b/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2212.298794955,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox d33cc461-e92, creating venv without pip: Command '['/tmp/swegemma_sandbox_d33cc461-e92_ju8uqza0/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2223.258906879,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 531ecd36-3f8, creating venv without pip: Command '['/tmp/swegemma_sandbox_531ecd36-3f8_5wvevkmr/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2301.270956219,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox da164205-bfd, creating venv without pip: Command '['/tmp/swegemma_sandbox_da164205-bfd_xv7o59wn/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2313.328878739,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 28a0be8d-818, creating venv without pip: Command '['/tmp/swegemma_sandbox_28a0be8d-818_jc7s2ppz/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2521.758805357,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 3fce129d-89e, creating venv without pip: Command '['/tmp/swegemma_sandbox_3fce129d-89e_e1rpdq9p/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2711.512761272,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 1cd9b2a9-5d3, creating venv without pip: Command '['/tmp/swegemma_sandbox_1cd9b2a9-5d3_y346040m/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2774.889708879,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 899e767a-85a, creating venv without pip: Command '['/tmp/swegemma_sandbox_899e767a-85a_kta6q8fi/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2786.945180332,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 8ff5c22e-936, creating venv without pip: Command '['/tmp/swegemma_sandbox_8ff5c22e-936_nqkxiuf9/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2924.856555531,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 8253a084-164, creating venv without pip: Command '['/tmp/swegemma_sandbox_8253a084-164_xcmf84vv/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2936.655878928,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 51aac808-d0e, creating venv without pip: Command '['/tmp/swegemma_sandbox_51aac808-d0e_pvnx89nn/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3078.686646888,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 9b2f43e9-f29, creating venv without pip: Command '['/tmp/swegemma_sandbox_9b2f43e9-f29_q4yk2vwu/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3090.706301505,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 5bdea99b-5aa, creating venv without pip: Command '['/tmp/swegemma_sandbox_5bdea99b-5aa_yffdcx46/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3138.501592301,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox a2974c57-743, creating venv without pip: Command '['/tmp/swegemma_sandbox_a2974c57-743_s_77ezqa/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3150.534414748,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox e06569c1-840, creating venv without pip: Command '['/tmp/swegemma_sandbox_e06569c1-840_etz4r5ap/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3199.495545644,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 324d5f64-f99, creating venv without pip: Command '['/tmp/swegemma_sandbox_324d5f64-f99_ewnojfcy/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3211.53589955,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 89e66f61-d69, creating venv without pip: Command '['/tmp/swegemma_sandbox_89e66f61-d69_htslsec0/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3349.549894132,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox c8158c78-f31, creating venv without pip: Command '['/tmp/swegemma_sandbox_c8158c78-f31_m2q2b4no/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3360.635860175,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 184b5de2-d0d, creating venv without pip: Command '['/tmp/swegemma_sandbox_184b5de2-d0d_qzmu0f0t/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3605.498863887,"data":"WARNING:swegemma.harness.agent_runner:Task rich_3944 agent exceeded turns budget.\n"}
+,{"stream_name":"stderr","time":3605.513829207,"data":"WARNING:swegemma.harness.agent_runner:Task rich_3944 completed without explicit submit_patch call and no working tree modifications.\n"}
+,{"stream_name":"stderr","time":3605.674699159,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox ed11818f-11c, creating venv without pip: Command '['/tmp/swegemma_sandbox_ed11818f-11c_iwczkcs9/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3673.415432299,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 49b05516-bc7, creating venv without pip: Command '['/tmp/swegemma_sandbox_49b05516-bc7_hc7g4dyz/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3684.967399002,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 3d52d1ed-117, creating venv without pip: Command '['/tmp/swegemma_sandbox_3d52d1ed-117_r7r2x666/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3816.927511176,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 8eddee50-b4e, creating venv without pip: Command '['/tmp/swegemma_sandbox_8eddee50-b4e_3msaahr5/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3828.431670832,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 355df810-4dd, creating venv without pip: Command '['/tmp/swegemma_sandbox_355df810-4dd_aw3ukzdl/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3895.74862615,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 0f024344-87b, creating venv without pip: Command '['/tmp/swegemma_sandbox_0f024344-87b_rle02jb6/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3906.67425868,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 81ede583-54e, creating venv without pip: Command '['/tmp/swegemma_sandbox_81ede583-54e_kw7tgv8a/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3926.019691197,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox c958752b-9a4, creating venv without pip: Command '['/tmp/swegemma_sandbox_c958752b-9a4_855dikqs/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3937.017131783,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 6898f110-859, creating venv without pip: Command '['/tmp/swegemma_sandbox_6898f110-859_eoh2o3t5/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4049.635657611,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox da7d278b-cd9, creating venv without pip: Command '['/tmp/swegemma_sandbox_da7d278b-cd9_p3v0a4sv/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4060.765464314,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox f8d2657e-ab1, creating venv without pip: Command '['/tmp/swegemma_sandbox_f8d2657e-ab1_syfc61wb/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4082.955817747,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox f7b79aa1-24a, creating venv without pip: Command '['/tmp/swegemma_sandbox_f7b79aa1-24a_zgojo39e/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4094.315082924,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 7d0a76c6-265, creating venv without pip: Command '['/tmp/swegemma_sandbox_7d0a76c6-265_l9zt72_m/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4116.9405028,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 9c13afad-267, creating venv without pip: Command '['/tmp/swegemma_sandbox_9c13afad-267_7wi9zgh7/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4133.170858468,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 5c5003df-ac4, creating venv without pip: Command '['/tmp/swegemma_sandbox_5c5003df-ac4_dnqybym2/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4212.211701493,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox c9fe49d2-6ab, creating venv without pip: Command '['/tmp/swegemma_sandbox_c9fe49d2-6ab_f_vua4uw/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4225.378292602,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 39082d8e-2fb, creating venv without pip: Command '['/tmp/swegemma_sandbox_39082d8e-2fb_si1ilcq8/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4347.050973949,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox c217b597-267, creating venv without pip: Command '['/tmp/swegemma_sandbox_c217b597-267_trczszns/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4355.026662733,"data":"ERROR:swegemma.harness.verification:Failed to apply test patch on task fastapi_14953: git apply /tmp/swegemma_sandbox_c217b597-267_trczszns/tmp/tmpa5n6kbzr.patch failed (1):\n"}
+,{"stream_name":"stderr","time":4355.026686701,"data":"error: patch failed: tests/test_request_params/test_file/test_list.py:37\n"}
+,{"stream_name":"stderr","time":4355.026690093,"data":"error: tests/test_request_params/test_file/test_list.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026692691,"data":"error: patch failed: tests/test_request_params/test_file/test_optional.py:37\n"}
+,{"stream_name":"stderr","time":4355.026695147,"data":"error: tests/test_request_params/test_file/test_optional.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026697599,"data":"error: patch failed: tests/test_request_params/test_file/test_optional_list.py:41\n"}
+,{"stream_name":"stderr","time":4355.026700059,"data":"error: tests/test_request_params/test_file/test_optional_list.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026702433,"data":"error: patch failed: tests/test_request_params/test_file/test_required.py:35\n"}
+,{"stream_name":"stderr","time":4355.026704807,"data":"error: tests/test_request_params/test_file/test_required.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026714747,"data":"error: patch failed: tests/test_tutorial/test_request_files/test_tutorial001.py:162\n"}
+,{"stream_name":"stderr","time":4355.026716787,"data":"error: tests/test_tutorial/test_request_files/test_tutorial001.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026718595,"data":"error: patch failed: tests/test_tutorial/test_request_files/test_tutorial001_02.py:134\n"}
+,{"stream_name":"stderr","time":4355.026720558,"data":"error: tests/test_tutorial/test_request_files/test_tutorial001_02.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026722473,"data":"error: patch failed: tests/test_tutorial/test_request_files/test_tutorial001_03.py:123\n"}
+,{"stream_name":"stderr","time":4355.026724286,"data":"error: tests/test_tutorial/test_request_files/test_tutorial001_03.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026726196,"data":"error: patch failed: tests/test_tutorial/test_request_files/test_tutorial002.py:195\n"}
+,{"stream_name":"stderr","time":4355.02672795,"data":"error: tests/test_tutorial/test_request_files/test_tutorial002.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026729813,"data":"error: patch failed: tests/test_tutorial/test_request_files/test_tutorial003.py:165\n"}
+,{"stream_name":"stderr","time":4355.02673157,"data":"error: tests/test_tutorial/test_request_files/test_tutorial003.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026733352,"data":"error: patch failed: tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py:198\n"}
+,{"stream_name":"stderr","time":4355.026735355,"data":"error: tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026737357,"data":"\n"}
+,{"stream_name":"stderr","time":4355.026739076,"data":"\n"}
+,{"stream_name":"stderr","time":4355.026740703,"data":"git apply -3 /tmp/swegemma_sandbox_c217b597-267_trczszns/tmp/tmpa5n6kbzr.patch failed (1):\n"}
+,{"stream_name":"stderr","time":4355.026742619,"data":"error: tests/test_request_params/test_file/test_list.py: does not match index\n"}
+,{"stream_name":"stderr","time":4355.026745302,"data":"error: tests/test_request_params/test_file/test_optional.py: does not match index\n"}
+,{"stream_name":"stderr","time":4355.026747102,"data":"error: tests/test_request_params/test_file/test_optional_list.py: does not match index\n"}
+,{"stream_name":"stderr","time":4355.026748864,"data":"error: tests/test_request_params/test_file/test_required.py: does not match index\n"}
+,{"stream_name":"stderr","time":4355.02675083,"data":"error: tests/test_tutorial/test_json_base64_bytes/test_tutorial001.py: does not exist in index\n"}
+,{"stream_name":"stderr","time":4355.026752702,"data":"error: cannot read the current contents of 'tests/test_tutorial/test_json_base64_bytes/test_tutorial001.py'\n"}
+,{"stream_name":"stderr","time":4355.026754567,"data":"Falling back to direct application...\n"}
+,{"stream_name":"stderr","time":4355.026756313,"data":"error: tests/test_tutorial/test_request_files/test_tutorial001.py: does not match index\n"}
+,{"stream_name":"stderr","time":4355.026758093,"data":"error: tests/test_tutorial/test_request_files/test_tutorial001_02.py: does not match index\n"}
+,{"stream_name":"stderr","time":4355.026760176,"data":"error: tests/test_tutorial/test_request_files/test_tutorial001_03.py: does not match index\n"}
+,{"stream_name":"stderr","time":4355.026761967,"data":"error: tests/test_tutorial/test_request_files/test_tutorial002.py: does not match index\n"}
+,{"stream_name":"stderr","time":4355.026763741,"data":"error: tests/test_tutorial/test_request_files/test_tutorial003.py: does not match index\n"}
+,{"stream_name":"stderr","time":4355.026768076,"data":"error: tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py: does not match index\n"}
+,{"stream_name":"stderr","time":4355.026770108,"data":"\n"}
+,{"stream_name":"stderr","time":4355.02677171,"data":"\n"}
+,{"stream_name":"stderr","time":4355.026773378,"data":"git apply --ignore-space-change --ignore-whitespace /tmp/swegemma_sandbox_c217b597-267_trczszns/tmp/tmpa5n6kbzr.patch failed (1):\n"}
+,{"stream_name":"stderr","time":4355.026775364,"data":"error: patch failed: tests/test_request_params/test_file/test_list.py:37\n"}
+,{"stream_name":"stderr","time":4355.026777119,"data":"error: tests/test_request_params/test_file/test_list.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026778902,"data":"error: patch failed: tests/test_request_params/test_file/test_optional.py:37\n"}
+,{"stream_name":"stderr","time":4355.026780645,"data":"error: tests/test_request_params/test_file/test_optional.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026782489,"data":"error: patch failed: tests/test_request_params/test_file/test_optional_list.py:41\n"}
+,{"stream_name":"stderr","time":4355.026784281,"data":"error: tests/test_request_params/test_file/test_optional_list.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.02678607,"data":"error: patch failed: tests/test_request_params/test_file/test_required.py:35\n"}
+,{"stream_name":"stderr","time":4355.026787824,"data":"error: tests/test_request_params/test_file/test_required.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026789644,"data":"error: patch failed: tests/test_tutorial/test_request_files/test_tutorial001.py:162\n"}
+,{"stream_name":"stderr","time":4355.026791423,"data":"error: tests/test_tutorial/test_request_files/test_tutorial001.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026793464,"data":"error: patch failed: tests/test_tutorial/test_request_files/test_tutorial001_02.py:134\n"}
+,{"stream_name":"stderr","time":4355.02679527,"data":"error: tests/test_tutorial/test_request_files/test_tutorial001_02.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026797136,"data":"error: patch failed: tests/test_tutorial/test_request_files/test_tutorial001_03.py:123\n"}
+,{"stream_name":"stderr","time":4355.026798938,"data":"error: tests/test_tutorial/test_request_files/test_tutorial001_03.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026800736,"data":"error: patch failed: tests/test_tutorial/test_request_files/test_tutorial002.py:195\n"}
+,{"stream_name":"stderr","time":4355.026802528,"data":"error: tests/test_tutorial/test_request_files/test_tutorial002.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026804298,"data":"error: patch failed: tests/test_tutorial/test_request_files/test_tutorial003.py:165\n"}
+,{"stream_name":"stderr","time":4355.026806064,"data":"error: tests/test_tutorial/test_request_files/test_tutorial003.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026807853,"data":"error: patch failed: tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py:198\n"}
+,{"stream_name":"stderr","time":4355.026809705,"data":"error: tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026811608,"data":"\n"}
+,{"stream_name":"stderr","time":4355.026813252,"data":"\n"}
+,{"stream_name":"stderr","time":4355.026814866,"data":"git apply --recount /tmp/swegemma_sandbox_c217b597-267_trczszns/tmp/tmpa5n6kbzr.patch failed (1):\n"}
+,{"stream_name":"stderr","time":4355.026816689,"data":"error: patch failed: tests/test_request_params/test_file/test_list.py:37\n"}
+,{"stream_name":"stderr","time":4355.026820486,"data":"error: tests/test_request_params/test_file/test_list.py: patch does not apply\n"}
+,{"stream_name":"stderr","time":4355.026822395,"data":"\n"}
+,{"stream_name":"stderr","time":4355.026823976,"data":"\n"}
+,{"stream_name":"stderr","time":4355.026825557,"data":"git apply -p0 /tmp/swegemma_sandbox_c217b597-267_trczszns/tmp/tmpa5n6kbzr.patch failed (1):\n"}
+,{"stream_name":"stderr","time":4355.026827422,"data":"error: b/tests/test_request_params/test_file/test_list.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026829211,"data":"error: b/tests/test_request_params/test_file/test_optional.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026830995,"data":"error: b/tests/test_request_params/test_file/test_optional_list.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026832822,"data":"error: b/tests/test_request_params/test_file/test_required.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026834579,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial001.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026836379,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial001_02.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026838437,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial001_03.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026840322,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial002.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026842215,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial003.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026844434,"data":"error: b/tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026846314,"data":"\n"}
+,{"stream_name":"stderr","time":4355.026848042,"data":"\n"}
+,{"stream_name":"stderr","time":4355.026849622,"data":"git apply -p0 -3 /tmp/swegemma_sandbox_c217b597-267_trczszns/tmp/tmpa5n6kbzr.patch failed (1):\n"}
+,{"stream_name":"stderr","time":4355.026851562,"data":"error: b/tests/test_request_params/test_file/test_list.py: does not exist in index\n"}
+,{"stream_name":"stderr","time":4355.026853323,"data":"error: b/tests/test_request_params/test_file/test_optional.py: does not exist in index\n"}
+,{"stream_name":"stderr","time":4355.026855117,"data":"error: b/tests/test_request_params/test_file/test_optional_list.py: does not exist in index\n"}
+,{"stream_name":"stderr","time":4355.026857067,"data":"error: b/tests/test_request_params/test_file/test_required.py: does not exist in index\n"}
+,{"stream_name":"stderr","time":4355.026858896,"data":"error: b/tests/test_tutorial/test_json_base64_bytes/test_tutorial001.py: does not exist in index\n"}
+,{"stream_name":"stderr","time":4355.026860736,"data":"error: cannot read the current contents of 'b/tests/test_tutorial/test_json_base64_bytes/test_tutorial001.py'\n"}
+,{"stream_name":"stderr","time":4355.0268626,"data":"Falling back to direct application...\n"}
+,{"stream_name":"stderr","time":4355.026864314,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial001.py: does not exist in index\n"}
+,{"stream_name":"stderr","time":4355.026866118,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial001_02.py: does not exist in index\n"}
+,{"stream_name":"stderr","time":4355.026867888,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial001_03.py: does not exist in index\n"}
+,{"stream_name":"stderr","time":4355.026869684,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial002.py: does not exist in index\n"}
+,{"stream_name":"stderr","time":4355.026873198,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial003.py: does not exist in index\n"}
+,{"stream_name":"stderr","time":4355.026875184,"data":"error: b/tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py: does not exist in index\n"}
+,{"stream_name":"stderr","time":4355.02687705,"data":"\n"}
+,{"stream_name":"stderr","time":4355.02687871,"data":"\n"}
+,{"stream_name":"stderr","time":4355.026880346,"data":"git apply -p0 --ignore-space-change --ignore-whitespace /tmp/swegemma_sandbox_c217b597-267_trczszns/tmp/tmpa5n6kbzr.patch failed (1):\n"}
+,{"stream_name":"stderr","time":4355.026882222,"data":"error: b/tests/test_request_params/test_file/test_list.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026884018,"data":"error: b/tests/test_request_params/test_file/test_optional.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026885811,"data":"error: b/tests/test_request_params/test_file/test_optional_list.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026887699,"data":"error: b/tests/test_request_params/test_file/test_required.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026889516,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial001.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026891357,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial001_02.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026893425,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial001_03.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.02689524,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial002.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026897037,"data":"error: b/tests/test_tutorial/test_request_files/test_tutorial003.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026898837,"data":"error: b/tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026900675,"data":"\n"}
+,{"stream_name":"stderr","time":4355.026909125,"data":"\n"}
+,{"stream_name":"stderr","time":4355.026910878,"data":"git apply -p0 --recount /tmp/swegemma_sandbox_c217b597-267_trczszns/tmp/tmpa5n6kbzr.patch failed (1):\n"}
+,{"stream_name":"stderr","time":4355.026912702,"data":"error: b/tests/test_request_params/test_file/test_list.py: No such file or directory\n"}
+,{"stream_name":"stderr","time":4355.026914515,"data":"\n"}
+,{"stream_name":"stderr","time":4355.02691609,"data":"\n"}
+,{"stream_name":"stderr","time":4355.026917686,"data":"patch -p1 --batch --forward -i /tmp/swegemma_sandbox_c217b597-267_trczszns/tmp/tmpa5n6kbzr.patch --dry-run dry-run failed (1):\n"}
+,{"stream_name":"stderr","time":4355.026919522,"data":"\n"}
+,{"stream_name":"stderr","time":4355.026921191,"data":"checking file tests/test_request_params/test_file/test_list.py\n"}
+,{"stream_name":"stderr","time":4355.026922987,"data":"Hunk #1 FAILED at 37.\n"}
+,{"stream_name":"stderr","time":4355.026924714,"data":"Hunk #2 FAILED at 115.\n"}
+,{"stream_name":"stderr","time":4355.026926551,"data":"Hunk #3 FAILED at 221.\n"}
+,{"stream_name":"stderr","time":4355.026928219,"data":"Hunk #4 FAILED at 338.\n"}
+,{"stream_name":"stderr","time":4355.026929852,"data":"4 out of 4 hunks FAILED\n"}
+,{"stream_name":"stderr","time":4355.026931559,"data":"checking file tests/test_request_params/test_file/test_optional.py\n"}
+,{"stream_name":"stderr","time":4355.026933339,"data":"Reversed (or previously applied) patch detected!  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.026937362,"data":"4 out of 4 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.026939272,"data":"checking file tests/test_request_params/test_file/test_optional_list.py\n"}
+,{"stream_name":"stderr","time":4355.026941071,"data":"Hunk #1 FAILED at 41.\n"}
+,{"stream_name":"stderr","time":4355.026942747,"data":"Hunk #2 FAILED at 116.\n"}
+,{"stream_name":"stderr","time":4355.026944425,"data":"Hunk #3 FAILED at 205.\n"}
+,{"stream_name":"stderr","time":4355.026946065,"data":"Hunk #4 FAILED at 301.\n"}
+,{"stream_name":"stderr","time":4355.026947705,"data":"4 out of 4 hunks FAILED\n"}
+,{"stream_name":"stderr","time":4355.026949385,"data":"checking file tests/test_request_params/test_file/test_required.py\n"}
+,{"stream_name":"stderr","time":4355.026951199,"data":"Hunk #1 FAILED at 35.\n"}
+,{"stream_name":"stderr","time":4355.026952877,"data":"Hunk #2 FAILED at 109.\n"}
+,{"stream_name":"stderr","time":4355.026954566,"data":"Hunk #3 FAILED at 216.\n"}
+,{"stream_name":"stderr","time":4355.02695624,"data":"Hunk #4 FAILED at 329.\n"}
+,{"stream_name":"stderr","time":4355.026957912,"data":"4 out of 4 hunks FAILED\n"}
+,{"stream_name":"stderr","time":4355.026959588,"data":"checking file tests/test_tutorial/test_json_base64_bytes/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.026961458,"data":"checking file tests/test_tutorial/test_request_files/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.026963194,"data":"Hunk #1 FAILED at 162.\n"}
+,{"stream_name":"stderr","time":4355.026964997,"data":"Hunk #2 FAILED at 175.\n"}
+,{"stream_name":"stderr","time":4355.026966657,"data":"2 out of 2 hunks FAILED\n"}
+,{"stream_name":"stderr","time":4355.02696846,"data":"checking file tests/test_tutorial/test_request_files/test_tutorial001_02.py\n"}
+,{"stream_name":"stderr","time":4355.026970239,"data":"Hunk #1 FAILED at 134.\n"}
+,{"stream_name":"stderr","time":4355.026971983,"data":"Hunk #2 FAILED at 147.\n"}
+,{"stream_name":"stderr","time":4355.026973622,"data":"2 out of 2 hunks FAILED\n"}
+,{"stream_name":"stderr","time":4355.026975319,"data":"checking file tests/test_tutorial/test_request_files/test_tutorial001_03.py\n"}
+,{"stream_name":"stderr","time":4355.026977159,"data":"Reversed (or previously applied) patch detected!  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.026978962,"data":"2 out of 2 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.026980673,"data":"checking file tests/test_tutorial/test_request_files/test_tutorial002.py\n"}
+,{"stream_name":"stderr","time":4355.02698246,"data":"Hunk #1 FAILED at 195.\n"}
+,{"stream_name":"stderr","time":4355.026984139,"data":"Hunk #2 FAILED at 207.\n"}
+,{"stream_name":"stderr","time":4355.026986006,"data":"2 out of 2 hunks FAILED\n"}
+,{"stream_name":"stderr","time":4355.026987677,"data":"checking file tests/test_tutorial/test_request_files/test_tutorial003.py\n"}
+,{"stream_name":"stderr","time":4355.026989424,"data":"Hunk #1 FAILED at 165.\n"}
+,{"stream_name":"stderr","time":4355.026991097,"data":"Hunk #2 FAILED at 178.\n"}
+,{"stream_name":"stderr","time":4355.026992805,"data":"2 out of 2 hunks FAILED\n"}
+,{"stream_name":"stderr","time":4355.026994517,"data":"checking file tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.026996339,"data":"Hunk #1 FAILED at 198.\n"}
+,{"stream_name":"stderr","time":4355.026998005,"data":"1 out of 1 hunk FAILED\n"}
+,{"stream_name":"stderr","time":4355.026999679,"data":"\n"}
+,{"stream_name":"stderr","time":4355.027001291,"data":"patch -p1 -l --batch --forward -i /tmp/swegemma_sandbox_c217b597-267_trczszns/tmp/tmpa5n6kbzr.patch --dry-run dry-run failed (1):\n"}
+,{"stream_name":"stderr","time":4355.027007339,"data":"\n"}
+,{"stream_name":"stderr","time":4355.02700912,"data":"checking file tests/test_request_params/test_file/test_list.py\n"}
+,{"stream_name":"stderr","time":4355.027010912,"data":"Hunk #1 FAILED at 37.\n"}
+,{"stream_name":"stderr","time":4355.027012574,"data":"Hunk #2 FAILED at 115.\n"}
+,{"stream_name":"stderr","time":4355.0270144,"data":"Hunk #3 FAILED at 221.\n"}
+,{"stream_name":"stderr","time":4355.027016044,"data":"Hunk #4 FAILED at 338.\n"}
+,{"stream_name":"stderr","time":4355.027017774,"data":"4 out of 4 hunks FAILED\n"}
+,{"stream_name":"stderr","time":4355.027019449,"data":"checking file tests/test_request_params/test_file/test_optional.py\n"}
+,{"stream_name":"stderr","time":4355.027021202,"data":"Reversed (or previously applied) patch detected!  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027022911,"data":"4 out of 4 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027024724,"data":"checking file tests/test_request_params/test_file/test_optional_list.py\n"}
+,{"stream_name":"stderr","time":4355.02702651,"data":"Hunk #1 FAILED at 41.\n"}
+,{"stream_name":"stderr","time":4355.027028174,"data":"Hunk #2 FAILED at 116.\n"}
+,{"stream_name":"stderr","time":4355.02702984,"data":"Hunk #3 FAILED at 205.\n"}
+,{"stream_name":"stderr","time":4355.027031504,"data":"Hunk #4 FAILED at 301.\n"}
+,{"stream_name":"stderr","time":4355.027056754,"data":"4 out of 4 hunks FAILED\n"}
+,{"stream_name":"stderr","time":4355.027060234,"data":"checking file tests/test_request_params/test_file/test_required.py\n"}
+,{"stream_name":"stderr","time":4355.027063254,"data":"Hunk #1 FAILED at 35.\n"}
+,{"stream_name":"stderr","time":4355.027066575,"data":"Hunk #2 FAILED at 109.\n"}
+,{"stream_name":"stderr","time":4355.027069405,"data":"Hunk #3 FAILED at 216.\n"}
+,{"stream_name":"stderr","time":4355.027072151,"data":"Hunk #4 FAILED at 329.\n"}
+,{"stream_name":"stderr","time":4355.027074919,"data":"4 out of 4 hunks FAILED\n"}
+,{"stream_name":"stderr","time":4355.027077036,"data":"checking file tests/test_tutorial/test_json_base64_bytes/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.027078794,"data":"checking file tests/test_tutorial/test_request_files/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.02708054,"data":"Hunk #1 FAILED at 162.\n"}
+,{"stream_name":"stderr","time":4355.027082228,"data":"Hunk #2 FAILED at 175.\n"}
+,{"stream_name":"stderr","time":4355.027083962,"data":"2 out of 2 hunks FAILED\n"}
+,{"stream_name":"stderr","time":4355.027085639,"data":"checking file tests/test_tutorial/test_request_files/test_tutorial001_02.py\n"}
+,{"stream_name":"stderr","time":4355.027087392,"data":"Hunk #1 FAILED at 134.\n"}
+,{"stream_name":"stderr","time":4355.027089046,"data":"Hunk #2 FAILED at 147.\n"}
+,{"stream_name":"stderr","time":4355.027090745,"data":"2 out of 2 hunks FAILED\n"}
+,{"stream_name":"stderr","time":4355.027092414,"data":"checking file tests/test_tutorial/test_request_files/test_tutorial001_03.py\n"}
+,{"stream_name":"stderr","time":4355.027094182,"data":"Reversed (or previously applied) patch detected!  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027095967,"data":"2 out of 2 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027097742,"data":"checking file tests/test_tutorial/test_request_files/test_tutorial002.py\n"}
+,{"stream_name":"stderr","time":4355.0270995,"data":"Hunk #1 FAILED at 195.\n"}
+,{"stream_name":"stderr","time":4355.027101144,"data":"Hunk #2 FAILED at 207.\n"}
+,{"stream_name":"stderr","time":4355.027102815,"data":"2 out of 2 hunks FAILED\n"}
+,{"stream_name":"stderr","time":4355.027107308,"data":"checking file tests/test_tutorial/test_request_files/test_tutorial003.py\n"}
+,{"stream_name":"stderr","time":4355.027109193,"data":"Hunk #1 FAILED at 165.\n"}
+,{"stream_name":"stderr","time":4355.027110839,"data":"Hunk #2 FAILED at 178.\n"}
+,{"stream_name":"stderr","time":4355.027112534,"data":"2 out of 2 hunks FAILED\n"}
+,{"stream_name":"stderr","time":4355.027114308,"data":"checking file tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.027116148,"data":"Hunk #1 FAILED at 198.\n"}
+,{"stream_name":"stderr","time":4355.027118477,"data":"1 out of 1 hunk FAILED\n"}
+,{"stream_name":"stderr","time":4355.027120205,"data":"\n"}
+,{"stream_name":"stderr","time":4355.027121835,"data":"patch -p0 --batch --forward -i /tmp/swegemma_sandbox_c217b597-267_trczszns/tmp/tmpa5n6kbzr.patch --dry-run dry-run failed (1):\n"}
+,{"stream_name":"stderr","time":4355.027123676,"data":"\n"}
+,{"stream_name":"stderr","time":4355.02712528,"data":"can't find file to patch at input line 3\n"}
+,{"stream_name":"stderr","time":4355.027127076,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.02712888,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.0271306,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027132344,"data":"|--- a/tests/test_request_params/test_file/test_list.py\n"}
+,{"stream_name":"stderr","time":4355.027134111,"data":"|+++ b/tests/test_request_params/test_file/test_list.py\n"}
+,{"stream_name":"stderr","time":4355.027135815,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027137511,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027139193,"data":"4 out of 4 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027140939,"data":"can't find file to patch at input line 53\n"}
+,{"stream_name":"stderr","time":4355.027142663,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027144394,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027146146,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027147838,"data":"|--- a/tests/test_request_params/test_file/test_optional.py\n"}
+,{"stream_name":"stderr","time":4355.027149585,"data":"|+++ b/tests/test_request_params/test_file/test_optional.py\n"}
+,{"stream_name":"stderr","time":4355.027151417,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027153071,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027154821,"data":"4 out of 4 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027156503,"data":"can't find file to patch at input line 91\n"}
+,{"stream_name":"stderr","time":4355.027158227,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027159964,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027161688,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027163358,"data":"|--- a/tests/test_request_params/test_file/test_optional_list.py\n"}
+,{"stream_name":"stderr","time":4355.027165132,"data":"|+++ b/tests/test_request_params/test_file/test_optional_list.py\n"}
+,{"stream_name":"stderr","time":4355.027166875,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027168595,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027170304,"data":"4 out of 4 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027171994,"data":"can't find file to patch at input line 141\n"}
+,{"stream_name":"stderr","time":4355.027175536,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027177431,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027179137,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027180778,"data":"|--- a/tests/test_request_params/test_file/test_required.py\n"}
+,{"stream_name":"stderr","time":4355.027182497,"data":"|+++ b/tests/test_request_params/test_file/test_required.py\n"}
+,{"stream_name":"stderr","time":4355.027184282,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027185954,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027187677,"data":"4 out of 4 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027189373,"data":"checking file a/tests/test_tutorial/test_json_base64_bytes/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.027191199,"data":"can't find file to patch at input line 415\n"}
+,{"stream_name":"stderr","time":4355.027192888,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027194591,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027196355,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027198089,"data":"|--- a/tests/test_tutorial/test_request_files/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.027199903,"data":"|+++ b/tests/test_tutorial/test_request_files/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.027201686,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027203354,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027205064,"data":"2 out of 2 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027207308,"data":"can't find file to patch at input line 436\n"}
+,{"stream_name":"stderr","time":4355.027209045,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027210754,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027212525,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027214241,"data":"|--- a/tests/test_tutorial/test_request_files/test_tutorial001_02.py\n"}
+,{"stream_name":"stderr","time":4355.027216072,"data":"|+++ b/tests/test_tutorial/test_request_files/test_tutorial001_02.py\n"}
+,{"stream_name":"stderr","time":4355.027217843,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027219522,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027221213,"data":"2 out of 2 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027222867,"data":"can't find file to patch at input line 462\n"}
+,{"stream_name":"stderr","time":4355.027224557,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027226328,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027228045,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027229735,"data":"|--- a/tests/test_tutorial/test_request_files/test_tutorial001_03.py\n"}
+,{"stream_name":"stderr","time":4355.027231521,"data":"|+++ b/tests/test_tutorial/test_request_files/test_tutorial001_03.py\n"}
+,{"stream_name":"stderr","time":4355.027233276,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027234915,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027236598,"data":"2 out of 2 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027240042,"data":"can't find file to patch at input line 484\n"}
+,{"stream_name":"stderr","time":4355.02724196,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027243683,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027245396,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027247092,"data":"|--- a/tests/test_tutorial/test_request_files/test_tutorial002.py\n"}
+,{"stream_name":"stderr","time":4355.027248855,"data":"|+++ b/tests/test_tutorial/test_request_files/test_tutorial002.py\n"}
+,{"stream_name":"stderr","time":4355.027250597,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.02725225,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027253929,"data":"2 out of 2 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027255654,"data":"can't find file to patch at input line 510\n"}
+,{"stream_name":"stderr","time":4355.027257385,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.02725912,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027260833,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027262518,"data":"|--- a/tests/test_tutorial/test_request_files/test_tutorial003.py\n"}
+,{"stream_name":"stderr","time":4355.027264248,"data":"|+++ b/tests/test_tutorial/test_request_files/test_tutorial003.py\n"}
+,{"stream_name":"stderr","time":4355.027266023,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027267764,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.02726953,"data":"2 out of 2 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027271276,"data":"can't find file to patch at input line 536\n"}
+,{"stream_name":"stderr","time":4355.027273258,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027275,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027276711,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027278455,"data":"|--- a/tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.027280253,"data":"|+++ b/tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.027282026,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027283732,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027285507,"data":"1 out of 1 hunk ignored\n"}
+,{"stream_name":"stderr","time":4355.027287207,"data":"\n"}
+,{"stream_name":"stderr","time":4355.027288846,"data":"patch -p0 -l --batch --forward -i /tmp/swegemma_sandbox_c217b597-267_trczszns/tmp/tmpa5n6kbzr.patch --dry-run dry-run failed (1):\n"}
+,{"stream_name":"stderr","time":4355.027290763,"data":"\n"}
+,{"stream_name":"stderr","time":4355.027292447,"data":"can't find file to patch at input line 3\n"}
+,{"stream_name":"stderr","time":4355.027294339,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027296059,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.02729783,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027299495,"data":"|--- a/tests/test_request_params/test_file/test_list.py\n"}
+,{"stream_name":"stderr","time":4355.027301239,"data":"|+++ b/tests/test_request_params/test_file/test_list.py\n"}
+,{"stream_name":"stderr","time":4355.027302984,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027306403,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027308248,"data":"4 out of 4 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027309904,"data":"can't find file to patch at input line 53\n"}
+,{"stream_name":"stderr","time":4355.027311587,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027313358,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.02731507,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027316746,"data":"|--- a/tests/test_request_params/test_file/test_optional.py\n"}
+,{"stream_name":"stderr","time":4355.027318494,"data":"|+++ b/tests/test_request_params/test_file/test_optional.py\n"}
+,{"stream_name":"stderr","time":4355.027320248,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027321888,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027323595,"data":"4 out of 4 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027325246,"data":"can't find file to patch at input line 91\n"}
+,{"stream_name":"stderr","time":4355.027327005,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027328735,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027330448,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027332148,"data":"|--- a/tests/test_request_params/test_file/test_optional_list.py\n"}
+,{"stream_name":"stderr","time":4355.027333918,"data":"|+++ b/tests/test_request_params/test_file/test_optional_list.py\n"}
+,{"stream_name":"stderr","time":4355.027335651,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027337286,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027338963,"data":"4 out of 4 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027340689,"data":"can't find file to patch at input line 141\n"}
+,{"stream_name":"stderr","time":4355.027342419,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027344158,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027345871,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027347523,"data":"|--- a/tests/test_request_params/test_file/test_required.py\n"}
+,{"stream_name":"stderr","time":4355.027349241,"data":"|+++ b/tests/test_request_params/test_file/test_required.py\n"}
+,{"stream_name":"stderr","time":4355.027351029,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027352669,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027354428,"data":"4 out of 4 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027356129,"data":"checking file a/tests/test_tutorial/test_json_base64_bytes/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.027357929,"data":"can't find file to patch at input line 415\n"}
+,{"stream_name":"stderr","time":4355.027359649,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027361358,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027363039,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027364701,"data":"|--- a/tests/test_tutorial/test_request_files/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.027366454,"data":"|+++ b/tests/test_tutorial/test_request_files/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.027370054,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027371886,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027373598,"data":"2 out of 2 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027375269,"data":"can't find file to patch at input line 436\n"}
+,{"stream_name":"stderr","time":4355.027376986,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.02737876,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027380446,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027382371,"data":"|--- a/tests/test_tutorial/test_request_files/test_tutorial001_02.py\n"}
+,{"stream_name":"stderr","time":4355.027384252,"data":"|+++ b/tests/test_tutorial/test_request_files/test_tutorial001_02.py\n"}
+,{"stream_name":"stderr","time":4355.027386037,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027387709,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027389433,"data":"2 out of 2 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.02739111,"data":"can't find file to patch at input line 462\n"}
+,{"stream_name":"stderr","time":4355.0273928,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027394518,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027396204,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027397955,"data":"|--- a/tests/test_tutorial/test_request_files/test_tutorial001_03.py\n"}
+,{"stream_name":"stderr","time":4355.027399743,"data":"|+++ b/tests/test_tutorial/test_request_files/test_tutorial001_03.py\n"}
+,{"stream_name":"stderr","time":4355.0274015,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027403171,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027404892,"data":"2 out of 2 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027406542,"data":"can't find file to patch at input line 484\n"}
+,{"stream_name":"stderr","time":4355.027408223,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027409948,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027411696,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027413382,"data":"|--- a/tests/test_tutorial/test_request_files/test_tutorial002.py\n"}
+,{"stream_name":"stderr","time":4355.027415163,"data":"|+++ b/tests/test_tutorial/test_request_files/test_tutorial002.py\n"}
+,{"stream_name":"stderr","time":4355.027416913,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027418563,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027420257,"data":"2 out of 2 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027421909,"data":"can't find file to patch at input line 510\n"}
+,{"stream_name":"stderr","time":4355.027423601,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027425381,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027427258,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027428937,"data":"|--- a/tests/test_tutorial/test_request_files/test_tutorial003.py\n"}
+,{"stream_name":"stderr","time":4355.027430707,"data":"|+++ b/tests/test_tutorial/test_request_files/test_tutorial003.py\n"}
+,{"stream_name":"stderr","time":4355.027432472,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027435805,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027437624,"data":"2 out of 2 hunks ignored\n"}
+,{"stream_name":"stderr","time":4355.027439284,"data":"can't find file to patch at input line 536\n"}
+,{"stream_name":"stderr","time":4355.027441048,"data":"Perhaps you used the wrong -p or --strip option?\n"}
+,{"stream_name":"stderr","time":4355.027442787,"data":"The text leading up to this was:\n"}
+,{"stream_name":"stderr","time":4355.027444509,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027446201,"data":"|--- a/tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.027448022,"data":"|+++ b/tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py\n"}
+,{"stream_name":"stderr","time":4355.027449782,"data":"--------------------------\n"}
+,{"stream_name":"stderr","time":4355.027451476,"data":"No file to patch.  Skipping patch.\n"}
+,{"stream_name":"stderr","time":4355.027453165,"data":"1 out of 1 hunk ignored\n"}
+,{"stream_name":"stderr","time":4355.027454911,"data":"\n"}
+,{"stream_name":"stderr","time":4355.027456517,"data":"\n"}
+,{"stream_name":"stderr","time":4355.268965772,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 920b3a87-c91, creating venv without pip: Command '['/tmp/swegemma_sandbox_920b3a87-c91_3m_spas8/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4428.707349999,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox cf02ce86-5ec, creating venv without pip: Command '['/tmp/swegemma_sandbox_cf02ce86-5ec_p88tpy1u/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stdout","time":4440.693359057,"data":"fastapi_13920      fail  calls=30  2.6 min  \n"}
+,{"stream_name":"stdout","time":4440.693382396,"data":"fastapi_14258      fail  calls=7  1.3 min  \n"}
+,{"stream_name":"stdout","time":4440.693385793,"data":"fastapi_14616      fail  calls=40  1.4 min  \n"}
+,{"stream_name":"stdout","time":4440.693388396,"data":"fastapi_14786      PASS  calls=7  1.0 min  \n"}
+,{"stream_name":"stdout","time":4440.69339087,"data":"fastapi_14791      fail  calls=3  0.6 min  \n"}
+,{"stream_name":"stdout","time":4440.693393196,"data":"fastapi_14794      PASS  calls=11  1.0 min  \n"}
+,{"stream_name":"stdout","time":4440.693395618,"data":"fastapi_14873      fail  calls=40  2.5 min  \n"}
+,{"stream_name":"stdout","time":4440.693398001,"data":"fastapi_14953      fail  calls=40  2.2 min  Failed to apply test_patch: git apply /tmp/swegemma_sandbox_c217b597-267_trczszn\n"}
+,{"stream_name":"stdout","time":4440.693400562,"data":"fastapi_14962      fail  calls=36  1.3 min  \n"}
+,{"stream_name":"stdout","time":4440.693402875,"data":"fastapi_14964      fail  calls=20  4.8 min  Agent exceeded session timeout (4.5 min)\n"}
+,{"stream_name":"stdout","time":4440.693405196,"data":"fastapi_14978      fail  calls=35  2.2 min  \n"}
+,{"stream_name":"stdout","time":4440.69340752,"data":"fastapi_14986      fail  calls=38  4.8 min  Agent exceeded session timeout (4.5 min)\n"}
+,{"stream_name":"stdout","time":4440.693409873,"data":"fastapi_15023      fail  calls=39  1.1 min  \n"}
+,{"stream_name":"stdout","time":4440.693412145,"data":"fastapi_15030      fail  calls=39  1.1 min  \n"}
+,{"stream_name":"stdout","time":4440.693417636,"data":"fastapi_15280      fail  calls=39  1.2 min  \n"}
+,{"stream_name":"stdout","time":4440.693420063,"data":"fastapi_15588      fail  calls=7  1.0 min  \n"}
+,{"stream_name":"stdout","time":4440.693422568,"data":"fastapi_15589      fail  calls=36  3.1 min  \n"}
+,{"stream_name":"stdout","time":4440.69343319,"data":"fastapi_15661      fail  calls=33  1.4 min  \n"}
+,{"stream_name":"stdout","time":4440.693435182,"data":"fastapi_15800      fail  calls=38  1.5 min  \n"}
+,{"stream_name":"stdout","time":4440.693436915,"data":"requests_7315      PASS  calls=32  1.9 min  \n"}
+,{"stream_name":"stdout","time":4440.693438608,"data":"requests_7427      fail  calls=38  2.0 min  \n"}
+,{"stream_name":"stdout","time":4440.693440426,"data":"rich_3882          PASS  calls=18  1.3 min  \n"}
+,{"stream_name":"stdout","time":4440.693443313,"data":"rich_3894          PASS  calls=5  0.5 min  \n"}
+,{"stream_name":"stdout","time":4440.693445113,"data":"rich_3905          PASS  calls=7  0.6 min  \n"}
+,{"stream_name":"stdout","time":4440.693446887,"data":"rich_3935          fail  calls=40  2.1 min  \n"}
+,{"stream_name":"stdout","time":4440.69344873,"data":"rich_3938          fail  calls=39  2.4 min  \n"}
+,{"stream_name":"stdout","time":4440.693450443,"data":"rich_3942          fail  calls=29  1.3 min  \n"}
+,{"stream_name":"stdout","time":4440.693452191,"data":"rich_3944          fail  calls=32  4.1 min  Agent exceeded turns budget (80 turns)\n"}
+,{"stream_name":"stdout","time":4440.693464555,"data":"rich_3953          fail  calls=23  2.5 min  \n"}
+,{"stream_name":"stdout","time":4440.693479043,"data":"rich_4006          fail  calls=7  6.6 min  \n"}
+,{"stream_name":"stdout","time":4440.693484694,"data":"rich_4075          fail  calls=38  1.5 min  \n"}
+,{"stream_name":"stdout","time":4440.693486792,"data":"rich_4076          fail  calls=39  0.9 min  \n"}
+,{"stream_name":"stdout","time":4440.693503922,"data":"rich_4077          fail  calls=32  2.6 min  \n"}
+,{"stream_name":"stdout","time":4440.693958074,"data":"\n"}
+,{"stream_name":"stdout","time":4440.693966788,"data":"Resolved 6/33 (18.2%) in 1.11 h\n"}
+,{"stream_name":"stderr","time":4441.120818241,"data":"ERROR:asyncio:Unclosed client session\n"}
+,{"stream_name":"stderr","time":4441.120843684,"data":"client_session: \u003caiohttp.client.ClientSession object at 0x79ff70376a50\u003e\n"}
+,{"stream_name":"stderr","time":4444.963296247,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":4444.963320003,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":4445.147801116,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":4445.147824065,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":4445.887964618,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":4446.729864744,"data":"[NbConvertApp] Writing 357480 bytes to __results__.html\n"}
+]

@@ -425,6 +425,33 @@ notebook had installed. So we rebuild the scorer's package set and give each tas
 small differences remain: Python 3.12 instead of 3.13, and pytest's exact version. When local and
 leaderboard results disagree, environment differences are the first suspect.
 
+### Failure analysis (error analysis)
+**Used in:** Step 2d (`scripts/analyze_run.py`)
+
+A score tells you *how much* fails; only reading the transcripts tells you *why*. Sort every failed
+task into one category (loop, ran out of time, no patch, wrong fix, ...), count them, and fix the
+biggest category first. Our v1 baseline: 15 of its 27 failures were one category (loops), which
+no amount of prompt tweaking aimed elsewhere would have fixed.
+
+### Repetition loops (degeneration)
+**Used in:** Step 2d finding, Step 3
+
+A language model can get stuck repeating itself: it runs the same `grep` again, gets the same
+output, and the most likely next step is... the same `grep` again. Low temperature makes this
+worse (it always picks the single most likely continuation), and so does an identical error
+message that the model keeps "retrying" against. v1 (temperature 0.2) looped in 15 of 33 dev
+tasks, up to 44 identical calls in a row. Usual remedies: the model's recommended sampling
+settings (Gemma: temperature 1.0, top_p 0.95, top_k 64), a repetition/frequency penalty, and an
+explicit rule in the prompt ("never repeat a call; if something fails twice, change approach").
+
+### Malformed tool calls
+**Used in:** Step 2d finding
+
+The model writes tool calls as text, which a parser turns into function arguments. With long
+code strings full of quotes and newlines it sometimes produces broken arguments (in v1, keys like
+`"filepath": "fastapi/applications.py`,new_string:"`). The tool then rejects the call, and the
+model often repeats the same broken call. Smaller edits (short `old_string`) break less often.
+
 ---
 
 ## 7. Fine-tuning (preview)

@@ -1,0 +1,471 @@
+{
+  "counts": {
+    "loop": 15,
+    "wrong_fix": 6,
+    "pass": 6,
+    "budget_out": 1,
+    "touched_tests": 1,
+    "no_patch": 4
+  },
+  "tasks": [
+    {
+      "instance_id": "fastapi_13920",
+      "category": "loop",
+      "tool_calls": 42,
+      "longest_repeat": 11,
+      "repeated_call": "run_command {\"command\": \"cat > /tmp/repro.py << 'EOF'\\nimport sys\\nfrom fastapi._compat.shar",
+      "submits": 1,
+      "edits": 11,
+      "files": [],
+      "seconds": 153.9,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14258",
+      "category": "wrong_fix",
+      "tool_calls": 13,
+      "longest_repeat": 3,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 6,
+      "files": [
+        "fastapi/routing.py"
+      ],
+      "seconds": 75.3,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14616",
+      "category": "loop",
+      "tool_calls": 41,
+      "longest_repeat": 8,
+      "repeated_call": "run_command {\"command\": \"grep -rn \\\"Json\\\" fastapi/_compat/shared.py\"}",
+      "submits": 1,
+      "edits": 3,
+      "files": [
+        "fastapi/_compat/v2.py",
+        "repro.py"
+      ],
+      "seconds": 85.4,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14786",
+      "category": "pass",
+      "tool_calls": 8,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 2,
+      "files": [
+        "fastapi/security/utils.py"
+      ],
+      "seconds": 60.9,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14791",
+      "category": "wrong_fix",
+      "tool_calls": 4,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 2,
+      "files": [
+        "fastapi/openapi/utils.py"
+      ],
+      "seconds": 38.8,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14794",
+      "category": "pass",
+      "tool_calls": 12,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 3,
+      "files": [
+        "fastapi/dependencies/utils.py",
+        "repro.py"
+      ],
+      "seconds": 59.7,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14873",
+      "category": "budget_out",
+      "tool_calls": 42,
+      "longest_repeat": 2,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 7,
+      "files": [
+        "fastapi/routing.py",
+        "repro.py"
+      ],
+      "seconds": 149.6,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14953",
+      "category": "touched_tests",
+      "tool_calls": 42,
+      "longest_repeat": 2,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 5,
+      "files": [
+        "fastapi/datastructures.py",
+        "repro.py",
+        "tests/test_request_params/test_file/test_list.py",
+        "tests/test_request_params/test_file/test_optional.py",
+        "tests/test_request_params/test_file/test_optional_list.py",
+        "tests/test_request_params/test_file/test_required.py",
+        "tests/test_tutorial/test_request_files/test_tutorial001.py",
+        "tests/test_tutorial/test_request_files/test_tutorial001_02.py",
+        "tests/test_tutorial/test_request_files/test_tutorial001_03.py",
+        "tests/test_tutorial/test_request_files/test_tutorial002.py",
+        "tests/test_tutorial/test_request_files/test_tutorial003.py",
+        "tests/test_tutorial/test_request_forms_and_files/test_tutorial001.py"
+      ],
+      "seconds": 129.8,
+      "error": "Failed to apply test_patch: git apply /tmp/swegemma_sandbox_c217b597-267_trczszns/tmp/tmpa5n6kbzr.patch failed (1):\nerro"
+    },
+    {
+      "instance_id": "fastapi_14962",
+      "category": "loop",
+      "tool_calls": 37,
+      "longest_repeat": 9,
+      "repeated_call": "run_command {\"command\": \"grep -rn \\\"model_dump_json\\\" . | head -20\"}",
+      "submits": 1,
+      "edits": 0,
+      "files": [],
+      "seconds": 76.5,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14964",
+      "category": "loop",
+      "tool_calls": 57,
+      "longest_repeat": 15,
+      "repeated_call": "edit_file {\"def render(self, content\": \"Any) -> bytes:\\\\n        assert orjson is not None",
+      "submits": 0,
+      "edits": 40,
+      "files": [
+        "fastapi/responses.py"
+      ],
+      "seconds": 286.5,
+      "error": "Agent exceeded session timeout (4.5 min)"
+    },
+    {
+      "instance_id": "fastapi_14978",
+      "category": "loop",
+      "tool_calls": 36,
+      "longest_repeat": 5,
+      "repeated_call": "edit_file {\"filepath\": \"fastapi/param_functions.py\", \"new_string\": \"    strict_content_typ",
+      "submits": 1,
+      "edits": 11,
+      "files": [
+        "fastapi/param_functions.py",
+        "fastapi/params.py",
+        "fastapi/routing.py"
+      ],
+      "seconds": 131.5,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14986",
+      "category": "loop",
+      "tool_calls": 79,
+      "longest_repeat": 23,
+      "repeated_call": "edit_file {\"<|\\\"|>,old_string\": \"                if root_path not in server_urls:\\n       ",
+      "submits": 0,
+      "edits": 42,
+      "files": [
+        "fastapi/applications.py"
+      ],
+      "seconds": 286.4,
+      "error": "Agent exceeded session timeout (4.5 min)"
+    },
+    {
+      "instance_id": "fastapi_15023",
+      "category": "loop",
+      "tool_calls": 40,
+      "longest_repeat": 27,
+      "repeated_call": "run_command {\"command\": \"grep -rn \\\"StreamingResponse\\\" docs/en/docs/tutorial | head -20\"}",
+      "submits": 1,
+      "edits": 0,
+      "files": [],
+      "seconds": 68.8,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15030",
+      "category": "loop",
+      "tool_calls": 40,
+      "longest_repeat": 31,
+      "repeated_call": "run_command {\"command\": \"grep -rn \\\"EventSourceResponse\\\" /workspace/fastapi/responses.py\"}",
+      "submits": 1,
+      "edits": 0,
+      "files": [],
+      "seconds": 64.4,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15280",
+      "category": "loop",
+      "tool_calls": 40,
+      "longest_repeat": 37,
+      "repeated_call": "run_command {\"command\": \"grep -rn \\\"def get\\\" --include=\\\"*.py\\\" fastapi/ | grep \\\"app.\\\" | ",
+      "submits": 1,
+      "edits": 0,
+      "files": [],
+      "seconds": 69.6,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15588",
+      "category": "wrong_fix",
+      "tool_calls": 8,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 2,
+      "files": [
+        "fastapi/sse.py"
+      ],
+      "seconds": 59.3,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15589",
+      "category": "wrong_fix",
+      "tool_calls": 37,
+      "longest_repeat": 3,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 3,
+      "files": [
+        "repro.py",
+        "repro_simple.py"
+      ],
+      "seconds": 187.1,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15661",
+      "category": "no_patch",
+      "tool_calls": 34,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [],
+      "seconds": 83.7,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15800",
+      "category": "no_patch",
+      "tool_calls": 39,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [],
+      "seconds": 92.1,
+      "error": ""
+    },
+    {
+      "instance_id": "requests_7315",
+      "category": "pass",
+      "tool_calls": 33,
+      "longest_repeat": 13,
+      "repeated_call": "run_command {\"command\": \"python -c \\\"from requests.adapters import HTTPAdapter; from request",
+      "submits": 1,
+      "edits": 3,
+      "files": [
+        "repro.py",
+        "src/requests/adapters.py"
+      ],
+      "seconds": 116.6,
+      "error": ""
+    },
+    {
+      "instance_id": "requests_7427",
+      "category": "loop",
+      "tool_calls": 39,
+      "longest_repeat": 29,
+      "repeated_call": "run_command {\"command\": \"python3 -c \\\"from requests.utils import should_bypass_proxies; prin",
+      "submits": 1,
+      "edits": 2,
+      "files": [
+        "repro.py"
+      ],
+      "seconds": 121.4,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3882",
+      "category": "pass",
+      "tool_calls": 19,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 5,
+      "files": [
+        "repro.py",
+        "rich/prompt.py"
+      ],
+      "seconds": 78.2,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3894",
+      "category": "pass",
+      "tool_calls": 6,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 1,
+      "files": [
+        "rich/_inspect.py"
+      ],
+      "seconds": 30.3,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3905",
+      "category": "pass",
+      "tool_calls": 8,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 1,
+      "files": [
+        "rich/progress.py"
+      ],
+      "seconds": 33.5,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3935",
+      "category": "loop",
+      "tool_calls": 41,
+      "longest_repeat": 8,
+      "repeated_call": "run_command {\"command\": \"python -c \\\"from rich.console import Console; from rich.padding imp",
+      "submits": 1,
+      "edits": 2,
+      "files": [
+        "rich/padding.py"
+      ],
+      "seconds": 123.7,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3938",
+      "category": "no_patch",
+      "tool_calls": 40,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [],
+      "seconds": 143.4,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3942",
+      "category": "no_patch",
+      "tool_calls": 32,
+      "longest_repeat": 2,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [],
+      "seconds": 79.2,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3944",
+      "category": "loop",
+      "tool_calls": 80,
+      "longest_repeat": 44,
+      "repeated_call": "edit_file {\"'DejaVu Sans Mono',consolas,'Courier New',monospace\\\"><code style=\\\"font-famil",
+      "submits": 0,
+      "edits": 48,
+      "files": [],
+      "seconds": 245.0,
+      "error": "Agent exceeded turns budget (80 turns)"
+    },
+    {
+      "instance_id": "rich_3953",
+      "category": "wrong_fix",
+      "tool_calls": 24,
+      "longest_repeat": 2,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 3,
+      "files": [
+        "rich/cells.py"
+      ],
+      "seconds": 149.0,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_4006",
+      "category": "wrong_fix",
+      "tool_calls": 8,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 1,
+      "files": [
+        "rich/cells.py"
+      ],
+      "seconds": 398.1,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_4075",
+      "category": "loop",
+      "tool_calls": 39,
+      "longest_repeat": 14,
+      "repeated_call": "run_command {\"command\": \"python3 -c \\\"from rich.console import Console; from rich.text impor",
+      "submits": 1,
+      "edits": 1,
+      "files": [
+        "rich/text.py"
+      ],
+      "seconds": 90.0,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_4076",
+      "category": "loop",
+      "tool_calls": 40,
+      "longest_repeat": 20,
+      "repeated_call": "run_command {\"command\": \"grep -rn \\\"preserve\\\" rich/ | grep -i \\\"newline\\\" | head -20\"}",
+      "submits": 1,
+      "edits": 0,
+      "files": [],
+      "seconds": 56.0,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_4077",
+      "category": "loop",
+      "tool_calls": 33,
+      "longest_repeat": 8,
+      "repeated_call": "run_command {\"command\": \"cat > /tmp/repro_proxy_fileno_no_isatty_fixed.py << 'EOF'\\nfrom ric",
+      "submits": 1,
+      "edits": 1,
+      "files": [
+        "rich/console.py"
+      ],
+      "seconds": 154.8,
+      "error": ""
+    }
+  ]
+}

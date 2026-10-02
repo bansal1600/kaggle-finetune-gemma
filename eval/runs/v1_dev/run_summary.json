@@ -1,0 +1,306 @@
+{
+  "resolved": 6,
+  "total": 33,
+  "resolution_rate": 0.18181818181818182,
+  "hours": 1.11,
+  "python": "3.12.13",
+  "tasks": [
+    {
+      "instance_id": "fastapi_13920",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 30,
+      "llm_calls": 43,
+      "seconds": 153.9,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_14258",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 7,
+      "llm_calls": 14,
+      "seconds": 75.3,
+      "patch_chars": 508
+    },
+    {
+      "instance_id": "fastapi_14616",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 40,
+      "llm_calls": 42,
+      "seconds": 85.4,
+      "patch_chars": 1501
+    },
+    {
+      "instance_id": "fastapi_14786",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 7,
+      "llm_calls": 9,
+      "seconds": 60.9,
+      "patch_chars": 404
+    },
+    {
+      "instance_id": "fastapi_14791",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 3,
+      "llm_calls": 5,
+      "seconds": 38.8,
+      "patch_chars": 501
+    },
+    {
+      "instance_id": "fastapi_14794",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 11,
+      "llm_calls": 13,
+      "seconds": 59.7,
+      "patch_chars": 1694
+    },
+    {
+      "instance_id": "fastapi_14873",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 40,
+      "llm_calls": 43,
+      "seconds": 149.6,
+      "patch_chars": 2553
+    },
+    {
+      "instance_id": "fastapi_14953",
+      "resolved": false,
+      "error": "Failed to apply test_patch: git apply /tmp/swegemma_sandbox_c217b597-267_trczszns/tmp/tmpa5n6kbzr.patch failed (1):\nerror: patch failed: tests/test_request_params/test_file/test_list.py:37\nerror: tests/test_request_params/test_file/test_list.py: patch does not apply\nerror: patch failed: tests/test_r",
+      "tool_calls": 40,
+      "llm_calls": 43,
+      "seconds": 129.8,
+      "patch_chars": 16665
+    },
+    {
+      "instance_id": "fastapi_14962",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 36,
+      "llm_calls": 38,
+      "seconds": 76.5,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_14964",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (4.5 min)",
+      "tool_calls": 20,
+      "llm_calls": 57,
+      "seconds": 286.5,
+      "patch_chars": 930
+    },
+    {
+      "instance_id": "fastapi_14978",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 35,
+      "llm_calls": 37,
+      "seconds": 131.5,
+      "patch_chars": 2968
+    },
+    {
+      "instance_id": "fastapi_14986",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (4.5 min)",
+      "tool_calls": 38,
+      "llm_calls": 79,
+      "seconds": 286.4,
+      "patch_chars": 930
+    },
+    {
+      "instance_id": "fastapi_15023",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 41,
+      "seconds": 68.8,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_15030",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 41,
+      "seconds": 64.4,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_15280",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 41,
+      "seconds": 69.6,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_15588",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 7,
+      "llm_calls": 9,
+      "seconds": 59.3,
+      "patch_chars": 1016
+    },
+    {
+      "instance_id": "fastapi_15589",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 36,
+      "llm_calls": 38,
+      "seconds": 187.1,
+      "patch_chars": 2420
+    },
+    {
+      "instance_id": "fastapi_15661",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 33,
+      "llm_calls": 35,
+      "seconds": 83.7,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_15800",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 38,
+      "llm_calls": 41,
+      "seconds": 92.1,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "requests_7315",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 32,
+      "llm_calls": 34,
+      "seconds": 116.6,
+      "patch_chars": 1357
+    },
+    {
+      "instance_id": "requests_7427",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 38,
+      "llm_calls": 40,
+      "seconds": 121.4,
+      "patch_chars": 1277
+    },
+    {
+      "instance_id": "rich_3882",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 18,
+      "llm_calls": 20,
+      "seconds": 78.2,
+      "patch_chars": 2487
+    },
+    {
+      "instance_id": "rich_3894",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 5,
+      "llm_calls": 7,
+      "seconds": 30.3,
+      "patch_chars": 604
+    },
+    {
+      "instance_id": "rich_3905",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 7,
+      "llm_calls": 9,
+      "seconds": 33.5,
+      "patch_chars": 627
+    },
+    {
+      "instance_id": "rich_3935",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 40,
+      "llm_calls": 42,
+      "seconds": 123.7,
+      "patch_chars": 596
+    },
+    {
+      "instance_id": "rich_3938",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 41,
+      "seconds": 143.4,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_3942",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 29,
+      "llm_calls": 33,
+      "seconds": 79.2,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_3944",
+      "resolved": false,
+      "error": "Agent exceeded turns budget (80 turns)",
+      "tool_calls": 32,
+      "llm_calls": 80,
+      "seconds": 245.0,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_3953",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 23,
+      "llm_calls": 25,
+      "seconds": 149.0,
+      "patch_chars": 1058
+    },
+    {
+      "instance_id": "rich_4006",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 7,
+      "llm_calls": 9,
+      "seconds": 398.1,
+      "patch_chars": 456
+    },
+    {
+      "instance_id": "rich_4075",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 38,
+      "llm_calls": 40,
+      "seconds": 90.0,
+      "patch_chars": 411
+    },
+    {
+      "instance_id": "rich_4076",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 41,
+      "seconds": 56.0,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_4077",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 32,
+      "llm_calls": 34,
+      "seconds": 154.8,
+      "patch_chars": 541
+    }
+  ]
+}
