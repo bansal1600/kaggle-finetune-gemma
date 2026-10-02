@@ -1,0 +1,10 @@
+# Per-task budgets read by the scorer (only these four keys under `evaluation:` are used).
+# The whole run (~120 hidden tasks, run one after another) must finish in 12 hours or the
+# submission fails with "Notebook Exceeded Allowed Compute".
+#   120 tasks x (4.5 min agent + ~1 min sandbox setup) ~= 11 h worst case; most tasks end early.
+# See concepts.md -> "Budgets".
+evaluation:
+  max_time_minutes: 4.5   # wall-clock time for the agent loop on one task
+  max_tool_calls: 40      # submit_patch and get_status do not count
+  max_turns: 80           # model calls per task
+  timeout_seconds: 180    # per shell command; other teams report it also bounds the hidden-test run, so keep >= 180

@@ -1,0 +1,30 @@
+[
+  {
+    "variant": "v2c_both",
+    "resolved": 7,
+    "total": 33,
+    "resolution_rate": 0.21212121212121213,
+    "hours": 1.26
+  },
+  {
+    "variant": "v2a_sampling",
+    "resolved": 8,
+    "total": 33,
+    "resolution_rate": 0.24242424242424243,
+    "hours": 1.03
+  },
+  {
+    "variant": "v2b_prompt",
+    "resolved": 6,
+    "total": 33,
+    "resolution_rate": 0.18181818181818182,
+    "hours": 1.09
+  },
+  {
+    "variant": "v2d_both_t07",
+    "resolved": 7,
+    "total": 33,
+    "resolution_rate": 0.21212121212121213,
+    "hours": 1.05
+  }
+]

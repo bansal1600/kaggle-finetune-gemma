@@ -1,0 +1,307 @@
+{
+  "variant": "v2a_sampling",
+  "resolved": 8,
+  "total": 33,
+  "resolution_rate": 0.24242424242424243,
+  "hours": 1.03,
+  "python": "3.12.13",
+  "tasks": [
+    {
+      "instance_id": "fastapi_13920",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 36,
+      "llm_calls": 51,
+      "seconds": 163.2,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_14258",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 14,
+      "llm_calls": 16,
+      "seconds": 59.6,
+      "patch_chars": 509
+    },
+    {
+      "instance_id": "fastapi_14616",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 42,
+      "seconds": 103.4,
+      "patch_chars": 1638
+    },
+    {
+      "instance_id": "fastapi_14786",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 14,
+      "llm_calls": 16,
+      "seconds": 60.6,
+      "patch_chars": 404
+    },
+    {
+      "instance_id": "fastapi_14791",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 4,
+      "llm_calls": 6,
+      "seconds": 37.3,
+      "patch_chars": 501
+    },
+    {
+      "instance_id": "fastapi_14794",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 31,
+      "llm_calls": 39,
+      "seconds": 121.0,
+      "patch_chars": 1751
+    },
+    {
+      "instance_id": "fastapi_14873",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 37,
+      "llm_calls": 39,
+      "seconds": 135.4,
+      "patch_chars": 1683
+    },
+    {
+      "instance_id": "fastapi_14953",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 9,
+      "llm_calls": 11,
+      "seconds": 54.1,
+      "patch_chars": 560
+    },
+    {
+      "instance_id": "fastapi_14962",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 32,
+      "llm_calls": 34,
+      "seconds": 89.1,
+      "patch_chars": 1134
+    },
+    {
+      "instance_id": "fastapi_14964",
+      "resolved": false,
+      "error": "Agent exceeded turns budget (80 turns)",
+      "tool_calls": 18,
+      "llm_calls": 80,
+      "seconds": 177.0,
+      "patch_chars": 563
+    },
+    {
+      "instance_id": "fastapi_14978",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 36,
+      "llm_calls": 39,
+      "seconds": 78.7,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_14986",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 35,
+      "llm_calls": 38,
+      "seconds": 79.4,
+      "patch_chars": 855
+    },
+    {
+      "instance_id": "fastapi_15023",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 34,
+      "llm_calls": 36,
+      "seconds": 89.4,
+      "patch_chars": 788
+    },
+    {
+      "instance_id": "fastapi_15030",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 31,
+      "llm_calls": 33,
+      "seconds": 78.1,
+      "patch_chars": 1575
+    },
+    {
+      "instance_id": "fastapi_15280",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 40,
+      "llm_calls": 43,
+      "seconds": 144.5,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_15588",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 12,
+      "llm_calls": 16,
+      "seconds": 97.0,
+      "patch_chars": 1244
+    },
+    {
+      "instance_id": "fastapi_15589",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 36,
+      "llm_calls": 39,
+      "seconds": 148.8,
+      "patch_chars": 5349
+    },
+    {
+      "instance_id": "fastapi_15661",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 28,
+      "llm_calls": 30,
+      "seconds": 92.1,
+      "patch_chars": 987
+    },
+    {
+      "instance_id": "fastapi_15800",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 42,
+      "seconds": 122.8,
+      "patch_chars": 3563
+    },
+    {
+      "instance_id": "requests_7315",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 21,
+      "llm_calls": 23,
+      "seconds": 60.3,
+      "patch_chars": 1403
+    },
+    {
+      "instance_id": "requests_7427",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 41,
+      "seconds": 184.9,
+      "patch_chars": 2227
+    },
+    {
+      "instance_id": "rich_3882",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 12,
+      "llm_calls": 14,
+      "seconds": 47.8,
+      "patch_chars": 503
+    },
+    {
+      "instance_id": "rich_3894",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 7,
+      "llm_calls": 9,
+      "seconds": 38.9,
+      "patch_chars": 611
+    },
+    {
+      "instance_id": "rich_3905",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 13,
+      "llm_calls": 15,
+      "seconds": 49.5,
+      "patch_chars": 627
+    },
+    {
+      "instance_id": "rich_3935",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 35,
+      "llm_calls": 37,
+      "seconds": 159.4,
+      "patch_chars": 596
+    },
+    {
+      "instance_id": "rich_3938",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 48,
+      "seconds": 154.0,
+      "patch_chars": 559
+    },
+    {
+      "instance_id": "rich_3942",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 32,
+      "llm_calls": 34,
+      "seconds": 74.6,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_3944",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 17,
+      "llm_calls": 19,
+      "seconds": 177.7,
+      "patch_chars": 1339
+    },
+    {
+      "instance_id": "rich_3953",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 26,
+      "llm_calls": 28,
+      "seconds": 143.0,
+      "patch_chars": 1728
+    },
+    {
+      "instance_id": "rich_4006",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 38,
+      "llm_calls": 40,
+      "seconds": 265.3,
+      "patch_chars": 1045
+    },
+    {
+      "instance_id": "rich_4075",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 32,
+      "llm_calls": 34,
+      "seconds": 90.6,
+      "patch_chars": 576
+    },
+    {
+      "instance_id": "rich_4076",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 36,
+      "llm_calls": 38,
+      "seconds": 205.3,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_4077",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 34,
+      "llm_calls": 36,
+      "seconds": 106.4,
+      "patch_chars": 436
+    }
+  ]
+}

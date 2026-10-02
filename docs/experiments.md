@@ -20,14 +20,22 @@ the leaderboard (see concepts.md → "Data contamination"); use them to compare 
 |---|---|---|---|---|
 | v1_dev | 2026-10-02 02:20 | v1 (git 41ab46b `submission/`) | **6/33 = 18.2%** (1.1 h) | loop 15, wrong_fix 6, no_patch 4, touched_tests 1, budget_out 1 |
 
-| v2 batch | 2026-10-02 | 4 configs in one notebook (agent_eval v2), each in `experiments/`: | _running_ | |
-| ↳ v2c | | anti-loop prompt **and** Gemma sampling (temp 1.0, top_p 0.95, top_k 64) | | |
-| ↳ v2a | | Gemma sampling only (v1 prompt) | | |
-| ↳ v2b | | anti-loop prompt only (v1 sampling, temp 0.2) | | |
-| ↳ v2d | | anti-loop prompt + temp 0.7 (top_p 0.95, top_k 64) | | |
+| v2 batch | 2026-10-02 11:55–16:20 | 4 configs in one notebook (agent_eval v2), each in `experiments/` | | ~4.5 h incl. ~9 h queue before start |
+| ↳ v2c_both | | anti-loop prompt **and** Gemma sampling (temp 1.0, top_p 0.95, top_k 64) | 7/33 = 21.2% (1.26 h) | loop 6, wrong_fix 16, timeout 2, budget_out 2 |
+| ↳ v2a_sampling | | Gemma sampling only (v1 prompt) | **8/33 = 24.2%** (1.03 h) | loop 3, wrong_fix 14, no_patch 4, budget_out 4 |
+| ↳ v2b_prompt | | anti-loop prompt only (v1 sampling, temp 0.2) | 6/33 = 18.2% (1.09 h) | loop 14, wrong_fix 9, no_patch 2, budget_out 2 |
+| ↳ v2d_both_t07 | | anti-loop prompt + temp 0.7 (top_p 0.95, top_k 64) | 7/33 = 21.2% (1.05 h) | loop 8, wrong_fix 12, timeout 2, no_patch 2, budget_out 2 |
 
-Reading the v2 batch: v2a and v2b each change one thing vs v1, v2c both, v2d checks whether
-temp 1.0 is too random. With 33 tasks, ±2 tasks is within noise (concepts.md → "Noise").
+v2 findings:
+- **Sampling fixes the loops, the prompt does not.** Loop tasks: v1 15 → v2a 3, v2c 6, v2d 8, but v2b
+  (prompt rules at temp 0.2) still 14. Temperature is what breaks the repetition.
+- **But the score barely moved** (6 → 6–8, all within noise). The tasks that stopped looping now fail
+  as wrong fixes. Loops were a symptom; the real limit is fix quality.
+- **Pass matrix over 5 runs:** 5 tasks pass every time (fastapi_14786, fastapi_14794, requests_7315,
+  rich_3894, rich_3905), 4 pass sometimes (fastapi_14873, fastapi_15589, rich_3882, rich_4077), and
+  **24 never pass**. The union is 9/33: picking the best config alone cannot go much higher.
+- Time is not the constraint: the mean task takes ~2 min of the 4.5 allowed; the 40-call budget runs
+  out first.
 
 v1 findings:
 - **Loops are the #1 failure (15/27).** Same tool call repeated 5–44 times in a row: re-running an
