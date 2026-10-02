@@ -1,0 +1,307 @@
+{
+  "variant": "v3d_full",
+  "resolved": 8,
+  "total": 33,
+  "resolution_rate": 0.24242424242424243,
+  "hours": 1.52,
+  "python": "3.12.13",
+  "tasks": [
+    {
+      "instance_id": "fastapi_13920",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (4.5 min)",
+      "tool_calls": 29,
+      "llm_calls": 29,
+      "seconds": 287.4,
+      "patch_chars": 4499
+    },
+    {
+      "instance_id": "fastapi_14258",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 13,
+      "llm_calls": 17,
+      "seconds": 71.7,
+      "patch_chars": 594
+    },
+    {
+      "instance_id": "fastapi_14616",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 48,
+      "llm_calls": 52,
+      "seconds": 171.2,
+      "patch_chars": 754
+    },
+    {
+      "instance_id": "fastapi_14786",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 12,
+      "llm_calls": 15,
+      "seconds": 70.0,
+      "patch_chars": 1949
+    },
+    {
+      "instance_id": "fastapi_14791",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 5,
+      "llm_calls": 7,
+      "seconds": 51.4,
+      "patch_chars": 851
+    },
+    {
+      "instance_id": "fastapi_14794",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 49,
+      "llm_calls": 51,
+      "seconds": 250.7,
+      "patch_chars": 791
+    },
+    {
+      "instance_id": "fastapi_14873",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 48,
+      "llm_calls": 51,
+      "seconds": 154.4,
+      "patch_chars": 541
+    },
+    {
+      "instance_id": "fastapi_14953",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 12,
+      "llm_calls": 14,
+      "seconds": 62.2,
+      "patch_chars": 560
+    },
+    {
+      "instance_id": "fastapi_14962",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 47,
+      "llm_calls": 49,
+      "seconds": 153.5,
+      "patch_chars": 358
+    },
+    {
+      "instance_id": "fastapi_14964",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 15,
+      "llm_calls": 17,
+      "seconds": 104.1,
+      "patch_chars": 1617
+    },
+    {
+      "instance_id": "fastapi_14978",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 48,
+      "llm_calls": 50,
+      "seconds": 137.5,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_14986",
+      "resolved": false,
+      "error": "Sandbox execution error: Tool 'grep_rnI' not found.\nAvailable tools: run_command, edit_file, write_file, read_file, get_status, submit_patch, search_similar_code, get_code_neighbors, get_code_subgraph\n\nPossible causes:\n  1. LLM hallucinated the function name - review agent instruction clarity\n  2. T",
+      "tool_calls": 45,
+      "llm_calls": 47,
+      "seconds": 159.3,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_15023",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 47,
+      "llm_calls": 49,
+      "seconds": 224.5,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_15030",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 41,
+      "llm_calls": 43,
+      "seconds": 120.9,
+      "patch_chars": 726
+    },
+    {
+      "instance_id": "fastapi_15280",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 49,
+      "llm_calls": 54,
+      "seconds": 145.3,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_15588",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 20,
+      "llm_calls": 25,
+      "seconds": 201.5,
+      "patch_chars": 1735
+    },
+    {
+      "instance_id": "fastapi_15589",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 32,
+      "llm_calls": 32,
+      "seconds": 290.8,
+      "patch_chars": 634
+    },
+    {
+      "instance_id": "fastapi_15661",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 43,
+      "llm_calls": 48,
+      "seconds": 211.5,
+      "patch_chars": 2710
+    },
+    {
+      "instance_id": "fastapi_15800",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 47,
+      "llm_calls": 50,
+      "seconds": 143.5,
+      "patch_chars": 1414
+    },
+    {
+      "instance_id": "requests_7315",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 13,
+      "llm_calls": 15,
+      "seconds": 68.8,
+      "patch_chars": 522
+    },
+    {
+      "instance_id": "requests_7427",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 26,
+      "llm_calls": 28,
+      "seconds": 170.1,
+      "patch_chars": 1551
+    },
+    {
+      "instance_id": "rich_3882",
+      "resolved": false,
+      "error": "Agent exceeded turns budget (80 turns)",
+      "tool_calls": 16,
+      "llm_calls": 80,
+      "seconds": 165.2,
+      "patch_chars": 1407
+    },
+    {
+      "instance_id": "rich_3894",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 24,
+      "llm_calls": 26,
+      "seconds": 156.7,
+      "patch_chars": 1723
+    },
+    {
+      "instance_id": "rich_3905",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 11,
+      "llm_calls": 13,
+      "seconds": 51.9,
+      "patch_chars": 629
+    },
+    {
+      "instance_id": "rich_3935",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 48,
+      "llm_calls": 50,
+      "seconds": 201.5,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_3938",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 48,
+      "llm_calls": 50,
+      "seconds": 200.0,
+      "patch_chars": 544
+    },
+    {
+      "instance_id": "rich_3942",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 49,
+      "llm_calls": 51,
+      "seconds": 177.5,
+      "patch_chars": 1636
+    },
+    {
+      "instance_id": "rich_3944",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 47,
+      "llm_calls": 49,
+      "seconds": 165.4,
+      "patch_chars": 445
+    },
+    {
+      "instance_id": "rich_3953",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (4.5 min)",
+      "tool_calls": 44,
+      "llm_calls": 44,
+      "seconds": 284.5,
+      "patch_chars": 2707
+    },
+    {
+      "instance_id": "rich_4006",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 22,
+      "llm_calls": 24,
+      "seconds": 361.6,
+      "patch_chars": 709
+    },
+    {
+      "instance_id": "rich_4075",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 47,
+      "llm_calls": 49,
+      "seconds": 108.3,
+      "patch_chars": 691
+    },
+    {
+      "instance_id": "rich_4076",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 38,
+      "llm_calls": 40,
+      "seconds": 108.0,
+      "patch_chars": 448
+    },
+    {
+      "instance_id": "rich_4077",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 42,
+      "llm_calls": 44,
+      "seconds": 228.6,
+      "patch_chars": 3959
+    }
+  ]
+}

@@ -9,6 +9,7 @@ are mostly noise.
 | # | Date (UTC) | Commit | Change vs previous | Public score | Notes |
 |---|---|---|---|---|---|
 | v1 | 2026-10-01 20:50 | 41ab46b | First submission: single agent, our prompt, thinking off, temp 0.2, 4.5 min / 40 calls / 80 turns | **0.12** | Scored 2026-10-02 (~8 h after submitting). Dev set: 6/33 (18.2%). Kaggle ref 56758822; zip sha256 369b1c64…. Validated with adk-submission 0.2.12 + google-adk 1.36.1. Expected 0.06–0.12 from comparable public configs |
+| v3d_full | 2026-10-02 18:28 | e0a5646 | On v2a sampling: script edits via run_command, issue text pinned with {problem_description?}, list-source-files / reproduce / verify rules, get_code_subgraph declared, 50 tool calls (see docs/research-2026-10-02.md) | _pending_ | Kaggle ref 56780076; zip sha256 1de2fbdd…. Dev 8/33 (v1 6/33). Garbled calls 68 vs v1 143 |
 
 ## Local dev runs (Step 2c)
 
@@ -26,8 +27,16 @@ the leaderboard (see concepts.md → "Data contamination"); use them to compare 
 | ↳ v2b_prompt | | anti-loop prompt only (v1 sampling, temp 0.2) | 6/33 = 18.2% (1.09 h) | loop 14, wrong_fix 9, no_patch 2, budget_out 2 |
 | ↳ v2d_both_t07 | | anti-loop prompt + temp 0.7 (top_p 0.95, top_k 64) | 7/33 = 21.2% (1.05 h) | loop 8, wrong_fix 12, timeout 2, no_patch 2, budget_out 2 |
 
-| v3 run A | 2026-10-02, pushed 16:44 | `experiments/v3d_full`: all research fixes on v2a (see docs/research-2026-10-02.md) | _queued_ | submission candidate |
+| v3 run A | 2026-10-02 16:47–18:26 | `experiments/v3d_full`: all research fixes on v2a (see docs/research-2026-10-02.md) | **8/33 = 24.2%** (1.52 h) | budget_out 10, wrong_fix 6, no_patch 5, loop 2, timeout 2. Submitted |
 | v3 run B | 2026-10-02, pushed 16:44 | `v3a_hyg` (edit/tool mechanics), `v3c_loc` (localize/reproduce/verify), `v3b_noedit` (no edit_file/write_file), `v2a_rerun` (noise control) | _queued_ | notebook `gemma-agent-eval-b` |
+
+v3d_full vs v2a vs v1 (`scripts/compare_runs.py`): same 8/33 as v2a, but it solves 3 of the 12
+fixable tasks (v2a 2, v1 0): fastapi_15589, requests_7427 and rich_4077 (requests_7427 had never
+passed before). It lost one core task (rich_3882). Mechanisms moved as intended: garbled calls
+68 (v2a 91, v1 143), repeats 7.0% (11.6%, 33.9%), 32 script edits (0 before), with 2 failed
+asserts. Costs: mean 165 s per task (v2a 112 s), so a 120-task run projects to ~7 h of the 12 h;
+budget_out rose to 10, as the extra verify steps use calls. The union of passes over all six runs
+is 10/33.
 
 From v3 on, the dev bench installs the task repo in editable mode like the scorer, which matters
 for requests (src/ layout). Compare with `python scripts/compare_runs.py name=dir ...`, which

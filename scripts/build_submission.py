@@ -4,7 +4,10 @@
 Usage:
     python scripts/build_submission.py                      # submission/ -> dist/submission.zip
     python scripts/build_submission.py --check-only         # validate, do not write the zip
-    python scripts/build_submission.py --submission-dir experiments/v2 --out dist/v2.zip
+    python scripts/build_submission.py --submission-dir experiments/v2   # -> dist/v2/submission.zip
+
+Kaggle rejects any other file name ("Submission files must be named submission.zip"), so the zip
+is always called submission.zip; --out picks the folder for configs other than submission/.
 
 Two layers of checks run before anything is written:
 
@@ -493,7 +496,8 @@ def write_zip(sub: Path, files: list[Path], out: Path) -> None:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--submission-dir", type=Path, default=Path("submission"))
-    parser.add_argument("--out", type=Path, default=Path("dist/submission.zip"))
+    parser.add_argument("--out", type=Path, default=None,
+                        help="output folder (default: dist/ for submission/, dist/<name>/ otherwise)")
     parser.add_argument("--check-only", action="store_true", help="validate without writing the zip")
     parser.add_argument("--num-tasks", type=int, default=120, help="hidden test set size used for the time check")
     parser.add_argument("--overhead-minutes", type=float, default=1.0, help="sandbox setup time per task")
@@ -518,6 +522,10 @@ def main(argv: list[str] | None = None) -> int:
     if args.check_only:
         print("\nAll checks passed.")
         return 0
+    out_dir = args.out or (Path("dist") if sub.resolve() == Path("submission").resolve() else Path("dist") / sub.name)
+    if out_dir.suffix == ".zip":  # old style --out dist/x.zip: keep the folder, fix the name
+        out_dir = out_dir.with_suffix("")
+    args.out = out_dir / "submission.zip"
     write_zip(sub, files, args.out)
     print(f"\nWrote {args.out} ({args.out.stat().st_size / 1024:.1f} KiB). Upload it with:")
     print(f'  kaggle competitions submit -c gemma-4-developer-agent -f {args.out} -m "<what changed>"')

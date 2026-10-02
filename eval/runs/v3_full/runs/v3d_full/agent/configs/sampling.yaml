@@ -1,0 +1,12 @@
+# Generation (sampling) parameters for the root agent.
+# See concepts.md -> "Sampling parameters", "Thinking / reasoning tokens", "Context window".
+temperature: 1.0          # Gemma's recommended sampling (model card): temp 1.0, top_p 0.95, top_k 64
+top_p: 0.95
+top_k: 64
+# Output cap per model call. vLLM rejects a request when prompt + max_output_tokens > 32,768,
+# so a smaller cap leaves more room for conversation history. Edits are kept small on purpose.
+max_output_tokens: 4096
+thinking_config:
+  # Thinking off: every public config scoring 0.10-0.12 disables it. Thinking tokens eat the
+  # few minutes each task gets and fill the 32k context window.
+  include_thoughts: false
