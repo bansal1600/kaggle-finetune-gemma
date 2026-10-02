@@ -1,22 +1,30 @@
-"""Step 2c: run one of our agent configs on the dev tasks, the way the real scorer would.
+"""Step 2c: run our agent configs on the dev tasks, the way the real scorer would.
 
 Same model (gemma-4-31b-it-qat-w4a16-ct served by vLLM on 4x L4), same harness (swegemma), same
 per-task budgets (the config's eval_config.yaml), tasks run one at a time like the scorer, and each
 task sandbox gets the scorer's package set (kaggle_common.use_scorer_environment).
 
+Several configs (variants) can run in one notebook, one after another on the same model server,
+so the ~6-minute vLLM start-up is paid once. They run in the order given; each is saved as soon
+as it finishes, so a notebook that runs out of time still keeps the finished ones.
+
 Built and pushed with:
     python scripts/kaggle_build.py agent_eval --submission submission --split dev --push
+    python scripts/kaggle_build.py agent_eval --split dev --push \
+        --submission v2c=experiments/v2c_both --submission v2a=experiments/v2a_sampling
 
-Outputs in /kaggle/working (or OUT_DIR):
+Outputs in /kaggle/working (or OUT_DIR), per variant under runs/<variant>/:
+    agent/              the config that ran
     results/            the harness's own output: summary.json, task_results.jsonl, patches/,
                         test_outputs/, traces/ (full agent transcripts), logs/
     run_summary.json    one line per task: resolved, error, tool calls, time, patch size
+plus runs/overview.json with one line per variant.
 
 Environment variables for local testing (defaults match Kaggle):
     DATA_DIR, WHEELHOUSE, OUT_DIR   as in the grader check
     MODEL_URL       use an already-running OpenAI-compatible server (e.g. scripts/mock_llm.py)
                     instead of starting vLLM; skips the GPU packages
-    SUBMISSION_DIR  agent config folder to use when nothing is embedded
+    SUBMISSION_DIR  agent config folder to use when nothing is embedded (one variant, "local")
     TASK_IDS        comma-separated override of the embedded task list
 """
 
@@ -35,22 +43,29 @@ MODEL_PATH = Path(os.environ.get("MODEL_PATH", "/kaggle/input/models/google/gemm
 MODEL_URL = os.environ.get("MODEL_URL", "")
 TARGET_MODEL = "gemma-4-31b-it-qat-w4a16-ct"
 
-SUBMISSION_FILES: dict[str, str] = {}  # @embed submission
+VARIANTS: dict[str, dict[str, str]] = {}  # @embed variants
 EMBEDDED_TASK_IDS: list[str] = []  # @embed task_ids
 
 from kaggle_common import install_harness, use_scorer_environment  # inlined by scripts/kaggle_build.py
 
 
-def write_agent_config(dest: Path) -> None:
-    """Materialize the agent config: embedded files on Kaggle, SUBMISSION_DIR locally."""
-    if SUBMISSION_FILES:
-        for rel, text in SUBMISSION_FILES.items():
-            (dest / rel).parent.mkdir(parents=True, exist_ok=True)
-            (dest / rel).write_text(text, encoding="utf-8")
+def write_agent_configs(runs_dir: Path) -> dict[str, Path]:
+    """Materialize each variant's config: embedded files on Kaggle, SUBMISSION_DIR locally."""
+    dirs = {}
+    if VARIANTS:
+        for name, files in VARIANTS.items():
+            dest = runs_dir / name / "agent"
+            for rel, text in files.items():
+                (dest / rel).parent.mkdir(parents=True, exist_ok=True)
+                (dest / rel).write_text(text, encoding="utf-8")
+            dirs[name] = dest
     else:
         import shutil
 
+        dest = runs_dir / "local" / "agent"
         shutil.copytree(Path(os.environ["SUBMISSION_DIR"]), dest, dirs_exist_ok=True)
+        dirs["local"] = dest
+    return dirs
 
 
 def start_model(agent_dir: Path):
@@ -112,30 +127,54 @@ def main() -> None:
         os.environ.setdefault(key, value)
 
     install_harness(WHEELHOUSE, gpu=not MODEL_URL)
-    agent_dir = OUT_DIR / "agent"
-    write_agent_config(agent_dir)
+    runs_dir = OUT_DIR / "runs"
+    agent_dirs = write_agent_configs(runs_dir)
     use_scorer_environment(DATA_DIR / "wheels", Path(os.environ.get("SCORER_ENV", "/tmp/scorer_env")), EXTRA_WHEELS)
 
     import litellm
+
+    litellm.drop_params = True
+    # One server for all variants. Adapters (and the served model) come from the first variant;
+    # variants with different adapters need separate notebooks.
+    first = next(iter(agent_dirs.values()))
+    models, adapters = start_model(first)
+    task_ids = [t for t in os.environ.get("TASK_IDS", "").split(",") if t] or EMBEDDED_TASK_IDS
+    overview = asyncio.run(run_variants(agent_dirs, models, adapters, task_ids, runs_dir))
+    print("\n" + "\n".join(f"{o['variant']:20} {o['resolved']}/{o['total']} ({o['resolution_rate']:.1%}) "
+                           f"in {o['hours']:.2f} h" for o in overview))
+
+
+async def run_variants(agent_dirs: dict[str, Path], models, adapters, task_ids: list[str], runs_dir: Path) -> list:
+    """Run each variant on the same tasks, in order, inside one event loop (one model client)."""
+    from adk_submission import discover_adapters
+    from swegemma.config import ALLOWED_ADAPTER_EXTENSIONS
+
+    overview = []
+    for name, agent_dir in agent_dirs.items():
+        if discover_adapters(str(agent_dir), adapter_extensions=ALLOWED_ADAPTER_EXTENSIONS) != adapters:
+            raise SystemExit(f"variant {name} declares different adapters from the first variant")
+        summary = await run_one(name, agent_dir, models, adapters, task_ids, runs_dir / name)
+        overview.append({"variant": name, **{k: summary[k] for k in ("resolved", "total", "resolution_rate", "hours")}})
+        (runs_dir / "overview.json").write_text(json.dumps(overview, indent=2))
+    return overview
+
+
+async def run_one(name: str, agent_dir: Path, models, adapters, task_ids: list[str], out: Path) -> dict:
     import yaml
     from google.adk.agents.context_cache_config import ContextCacheConfig
     from google.adk.apps._configs import EventsCompactionConfig
     from swegemma.config import EvalConfig, build_submission_limits
     from swegemma.evaluate import Evaluator
 
-    litellm.drop_params = True
-    models, adapters = start_model(agent_dir)
-
     # Per-task budgets exactly as the scorer reads them from the config's eval_config.yaml.
     eval_cfg_path = agent_dir / "eval_config.yaml"
     raw = yaml.safe_load(eval_cfg_path.read_text()) if eval_cfg_path.exists() else {}
     section = (raw or {}).get("evaluation", raw or {})
-    task_ids = [t for t in os.environ.get("TASK_IDS", "").split(",") if t] or EMBEDDED_TASK_IDS
     limits, gen_constraints = build_submission_limits()
     config = EvalConfig(
         tasks_path=DATA_DIR / "tasks.jsonl",
         snapshots_dir=DATA_DIR / "snapshots",
-        results_dir=OUT_DIR / "results",
+        results_dir=out / "results",
         submission_dir=agent_dir,
         models=models,
         sandbox="subprocess",
@@ -157,9 +196,9 @@ def main() -> None:
         concurrency=1,  # the scorer runs tasks one after another on one model server
         display_mode="quiet",
     )
-    print(f"Running {len(task_ids) or 'all'} tasks with budgets {dict(section)}", flush=True)
+    print(f"\n=== {name}: {len(task_ids) or 'all'} tasks, budgets {dict(section)}", flush=True)
     start = time.time()
-    result = asyncio.run(Evaluator(config).run())
+    result = await Evaluator(config).run()
     hours = (time.time() - start) / 3600
 
     rows = []
@@ -175,11 +214,12 @@ def main() -> None:
         })
         print(f"{r.instance_id:18} {'PASS' if r.resolved else 'fail'}  calls={r.tool_calls}  "
               f"{(r.duration_seconds or 0) / 60:.1f} min  {(r.error or '')[:80]}", flush=True)
-    summary = {"resolved": result.resolved, "total": result.total,
+    summary = {"variant": name, "resolved": result.resolved, "total": result.total,
                "resolution_rate": result.resolution_rate, "hours": round(hours, 2),
                "python": sys.version.split()[0], "tasks": rows}
-    (OUT_DIR / "run_summary.json").write_text(json.dumps(summary, indent=2))
-    print(f"\nResolved {result.resolved}/{result.total} ({result.resolution_rate:.1%}) in {hours:.2f} h")
+    (out / "run_summary.json").write_text(json.dumps(summary, indent=2))
+    print(f"{name}: resolved {result.resolved}/{result.total} ({result.resolution_rate:.1%}) in {hours:.2f} h", flush=True)
+    return summary
 
 
 if __name__ == "__main__":

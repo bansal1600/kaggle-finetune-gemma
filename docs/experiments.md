@@ -20,6 +20,15 @@ the leaderboard (see concepts.md → "Data contamination"); use them to compare 
 |---|---|---|---|---|
 | v1_dev | 2026-10-02 02:20 | v1 (git 41ab46b `submission/`) | **6/33 = 18.2%** (1.1 h) | loop 15, wrong_fix 6, no_patch 4, touched_tests 1, budget_out 1 |
 
+| v2 batch | 2026-10-02 | 4 configs in one notebook (agent_eval v2), each in `experiments/`: | _running_ | |
+| ↳ v2c | | anti-loop prompt **and** Gemma sampling (temp 1.0, top_p 0.95, top_k 64) | | |
+| ↳ v2a | | Gemma sampling only (v1 prompt) | | |
+| ↳ v2b | | anti-loop prompt only (v1 sampling, temp 0.2) | | |
+| ↳ v2d | | anti-loop prompt + temp 0.7 (top_p 0.95, top_k 64) | | |
+
+Reading the v2 batch: v2a and v2b each change one thing vs v1, v2c both, v2d checks whether
+temp 1.0 is too random. With 33 tasks, ±2 tasks is within noise (concepts.md → "Noise").
+
 v1 findings:
 - **Loops are the #1 failure (15/27).** Same tool call repeated 5–44 times in a row: re-running an
   identical `grep`/`python -c` (10 tasks), or re-sending an `edit_file` call that failed, often

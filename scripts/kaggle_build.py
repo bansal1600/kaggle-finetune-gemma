@@ -3,7 +3,7 @@
 
 Kaggle runs one script file, so the build:
   - pastes kaggle/common/kaggle_common.py in place of the `from kaggle_common import ...` line,
-  - embeds the agent config files (`SUBMISSION_FILES = {}  # @embed submission`),
+  - embeds one or more agent configs (`VARIANTS = {}  # @embed variants`), name -> files,
   - embeds the task ids to run     (`EMBEDDED_TASK_IDS = []  # @embed task_ids`),
 and writes build/kaggle/<name>/ with the script and its kernel-metadata.json. Each pushed version
 is therefore a complete record of exactly what ran.
@@ -11,6 +11,8 @@ is therefore a complete record of exactly what ran.
 Usage:
     python scripts/kaggle_build.py grader_check --push
     python scripts/kaggle_build.py agent_eval --submission submission --split dev --push
+    python scripts/kaggle_build.py agent_eval --split dev --push \
+        --submission v2c=experiments/v2c_both --submission v2a=experiments/v2a_sampling
 """
 
 from __future__ import annotations
@@ -38,7 +40,20 @@ def embed_submission(sub: Path) -> dict[str, str]:
     return files
 
 
-def build(name: str, submission: Path | None, split: str | None, splits_file: Path) -> Path:
+def parse_variants(specs: list[str]) -> dict[str, Path]:
+    """`NAME=PATH` or just `PATH` (named after the folder), in run order."""
+    variants: dict[str, Path] = {}
+    for spec in specs:
+        name, _, path = spec.rpartition("=")
+        path = Path(path)
+        name = name or path.name
+        if name in variants:
+            raise SystemExit(f"variant name {name!r} used twice")
+        variants[name] = path
+    return variants
+
+
+def build(name: str, variants: dict[str, Path], split: str | None, splits_file: Path) -> Path:
     src_dir = ROOT / "kaggle" / name
     meta = json.loads((src_dir / "kernel-metadata.json").read_text())
     code = (src_dir / meta["code_file"]).read_text(encoding="utf-8")
@@ -50,10 +65,11 @@ def build(name: str, submission: Path | None, split: str | None, splits_file: Pa
             out_lines.append("# ---- begin kaggle/common/kaggle_common.py (inlined by scripts/kaggle_build.py) ----")
             out_lines.extend(common.splitlines())
             out_lines.append("# ---- end kaggle/common/kaggle_common.py ----")
-        elif line.rstrip().endswith("# @embed submission"):
-            if submission is None:
-                raise SystemExit(f"{name} embeds a submission: pass --submission")
-            out_lines.append(f"SUBMISSION_FILES = {embed_submission(submission)!r}")
+        elif line.rstrip().endswith("# @embed variants"):
+            if not variants:
+                raise SystemExit(f"{name} embeds agent configs: pass --submission")
+            embedded = {v: embed_submission(path) for v, path in variants.items()}
+            out_lines.append(f"VARIANTS = {embedded!r}  # from {', '.join(map(str, variants.values()))}")
         elif line.rstrip().endswith("# @embed task_ids"):
             if split is None:
                 raise SystemExit(f"{name} embeds task ids: pass --split")
@@ -75,13 +91,14 @@ def build(name: str, submission: Path | None, split: str | None, splits_file: Pa
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("name", help="folder under kaggle/, e.g. grader_check or agent_eval")
-    parser.add_argument("--submission", type=Path, help="agent config folder to embed")
+    parser.add_argument("--submission", action="append", default=[], metavar="[NAME=]PATH",
+                        help="agent config folder to embed; repeat to run several configs in one notebook")
     parser.add_argument("--split", help="which list from the splits file to embed (dev, train, ...)")
     parser.add_argument("--splits-file", type=Path, default=ROOT / "eval" / "splits.json")
     parser.add_argument("--push", action="store_true", help="push to Kaggle after building")
     args = parser.parse_args()
 
-    out_dir = build(args.name, args.submission, args.split, args.splits_file)
+    out_dir = build(args.name, parse_variants(args.submission), args.split, args.splits_file)
     print(f"built {out_dir}")
     if args.push:
         return subprocess.run(["kaggle", "kernels", "push", "-p", str(out_dir)]).returncode
