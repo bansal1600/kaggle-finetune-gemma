@@ -26,6 +26,13 @@ the leaderboard (see concepts.md → "Data contamination"); use them to compare 
 | ↳ v2b_prompt | | anti-loop prompt only (v1 sampling, temp 0.2) | 6/33 = 18.2% (1.09 h) | loop 14, wrong_fix 9, no_patch 2, budget_out 2 |
 | ↳ v2d_both_t07 | | anti-loop prompt + temp 0.7 (top_p 0.95, top_k 64) | 7/33 = 21.2% (1.05 h) | loop 8, wrong_fix 12, timeout 2, no_patch 2, budget_out 2 |
 
+| v3 run A | 2026-10-02, pushed 16:44 | `experiments/v3d_full`: all research fixes on v2a (see docs/research-2026-10-02.md) | _queued_ | submission candidate |
+| v3 run B | 2026-10-02, pushed 16:44 | `v3a_hyg` (edit/tool mechanics), `v3c_loc` (localize/reproduce/verify), `v3b_noedit` (no edit_file/write_file), `v2a_rerun` (noise control) | _queued_ | notebook `gemma-agent-eval-b` |
+
+From v3 on, the dev bench installs the task repo in editable mode like the scorer, which matters
+for requests (src/ layout). Compare with `python scripts/compare_runs.py name=dir ...`, which
+also shows core kept / fixable solved (`eval/fairness.json`) and the mechanism metrics.
+
 v2 findings:
 - **Sampling fixes the loops, the prompt does not.** Loop tasks: v1 15 → v2a 3, v2c 6, v2d 8, but v2b
   (prompt rules at temp 0.2) still 14. Temperature is what breaks the repetition.

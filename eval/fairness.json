@@ -1,0 +1,6 @@
+{
+  "_about": "Labels for the 33 dev tasks, from the per-task diagnoses of 2026-10-02 (docs/research-2026-10-02.md) and 5 runs (v1, v2a-v2d). core: passed in (almost) every run. unfair: the hidden tests check things the issue never states (exact strings, new modules, docs_src snapshots, linked issues); 0 of 75 runs passed them. fixable: failed, but a better agent could pass them from the issue text. Compare configs mainly on fixable, and check core is kept.",
+  "core": ["fastapi_14786", "fastapi_14794", "requests_7315", "rich_3882", "rich_3894", "rich_3905"],
+  "fixable": ["fastapi_13920", "fastapi_14616", "fastapi_14964", "fastapi_14986", "fastapi_14873", "fastapi_14791", "fastapi_15589", "requests_7427", "rich_3935", "rich_4075", "rich_4076", "rich_4077"],
+  "unfair": ["fastapi_14962", "fastapi_14978", "fastapi_15023", "fastapi_15030", "fastapi_15280", "fastapi_14258", "fastapi_15588", "fastapi_14953", "fastapi_15661", "fastapi_15800", "rich_3944", "rich_3953", "rich_4006", "rich_3938", "rich_3942"]
+}

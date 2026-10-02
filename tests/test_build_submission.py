@@ -133,3 +133,33 @@ def test_zip_is_deterministic(tmp_path):
     bs.write_zip(sub, files, a)
     bs.write_zip(sub, files, b)
     assert a.read_bytes() == b.read_bytes()
+
+
+GOOD_HEREDOC = """Edit with:
+python3 - << 'PY'
+import pathlib
+p = pathlib.Path('a.py')
+PY
+Done."""
+
+
+def test_flush_left_heredoc_passes(tmp_path):
+    assert errors_for(make_submission(tmp_path, GOOD_AGENT, GOOD_HEREDOC, GOOD_EVAL)) == []
+
+
+def test_indented_heredoc_is_rejected(tmp_path):
+    prompt = "\n".join("    " + line for line in GOOD_HEREDOC.splitlines())
+    errors = errors_for(make_submission(tmp_path, GOOD_AGENT, prompt, GOOD_EVAL))
+    assert any("heredoc" in e for e in errors)
+
+
+def test_unclosed_heredoc_is_rejected(tmp_path):
+    prompt = "cat > /tmp/r.py << 'EOF'\nprint(1)\n"
+    errors = errors_for(make_submission(tmp_path, GOOD_AGENT, prompt, GOOD_EVAL))
+    assert any("never closed" in e for e in errors)
+
+
+def test_experiment_configs_are_valid():
+    for sub in sorted((REPO_SUBMISSION.parent / "experiments").glob("*/agent.yaml")):
+        report, _ = bs.check_submission(sub.parent)
+        assert report.errors == [], (sub.parent.name, report.errors)

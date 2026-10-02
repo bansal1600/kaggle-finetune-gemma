@@ -122,8 +122,10 @@ example on Lightning), download only what a run needs.
   outgrows the context window, the error skips patch extraction entirely. Even a patch already sent
   with `submit_patch` is lost, not just unsaved edits. One team saw 12–33% of tasks overflow. The
   only defense is keeping tool outputs short and finishing early.
-- **LoRA adapters currently shrink the KV cache to ~7,600 tokens** on 4×L4, so long tasks stall.
-  An admin is patching it to size LoRA buffers from the submission. Re-check before Step 5.
+- **LoRA adapters used to shrink the KV cache to ~7,600 tokens** on 4×L4, so long tasks stalled.
+  Per the admin and the code (adk-submission 0.2.12 sizes LoRA from the submission: one adapter
+  slot, rank rounded up), this is fixed, but nobody has measured it on 4×L4 yet. Measure it in a
+  notebook (step FT-0 in docs/research-2026-10-02.md) before submitting an adapter.
 - Training on other models' outputs: the admin says it's allowed if you follow that model's
   license terms. Many closed-model terms forbid using outputs to train other models, so check
   before doing it.
@@ -134,7 +136,9 @@ example on Lightning), download only what a run needs.
 
 - Every public config scoring 0.10–0.12 uses **thinking off**, temperature 0.15–0.2 and an
   output cap of 4,096–8,192, and most add a read-only "analyzer" AgentTool. None of them use LoRA.
-- Per-task time: 3.5 min → 0.06, 4.5 min → 0.10, 5.0 min → 0.08, 5.5 min → exceeded 12 h.
+- Per-task time: 3.5 min → 0.06, 4.5 min → 0.10, 5.0 min → 0.08, 5.5 min → exceeded 12 h. The
+  5.5 min failure probably came from the 09-25/26 platform outage (unconfirmed). Our own
+  arithmetic puts the worst-case limit at about 5.0–5.25 min for 120 tasks.
   Differences of 1–2 tasks are within run-to-run noise.
 - The context window fills up after ~20 large tool outputs; nothing useful is compacted mid-task.
 - An AgentTool with `skip_summarization: true` ends the parent's turn after each call and

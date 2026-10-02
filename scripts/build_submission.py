@@ -179,6 +179,38 @@ def check_instruction(where: str, text: str, report: Report) -> None:
                 f"{where}: '{{{name}}}' would be read from session state and raise KeyError. "
                 "Avoid curly braces around single words in prompts."
             )
+    check_heredocs(where, text, report)
+
+
+HEREDOC_START = re.compile(r"<<-?\s*['\"]?(\w+)['\"]?\s*$")
+
+
+def check_heredocs(where: str, text: str, report: Report) -> None:
+    """Heredoc examples the model will copy must work verbatim: bash only ends a heredoc at a line
+    that is exactly the delimiter, so an indented closing line (or an indented Python body) breaks
+    the command. Three drafted prompts had this bug (docs/research-2026-10-02.md)."""
+    lines = text.splitlines()
+    i = 0
+    while i < len(lines):
+        start = HEREDOC_START.search(lines[i])
+        if not start:
+            i += 1
+            continue
+        delimiter, opener = start.group(1), i
+        if lines[i] != lines[i].lstrip():
+            report.errors.append(f"{where}:{i + 1}: heredoc example is indented; start it at column 0")
+        i += 1
+        while i < len(lines) and lines[i].strip() != delimiter:
+            i += 1
+        if i == len(lines):
+            report.errors.append(f"{where}:{opener + 1}: heredoc '{delimiter}' is never closed")
+        elif lines[i] != delimiter:
+            report.errors.append(f"{where}:{i + 1}: heredoc closing '{delimiter}' must be alone at column 0")
+        else:
+            body = lines[opener + 1:i]
+            if "python" in lines[opener] and body and all(b.startswith((" ", "\t")) for b in body if b):
+                report.errors.append(f"{where}:{opener + 2}: Python heredoc body is indented (IndentationError)")
+        i += 1
 
 
 def check_generation_config(where: str, cfg: Any, report: Report) -> None:

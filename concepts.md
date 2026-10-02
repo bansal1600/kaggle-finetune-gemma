@@ -176,8 +176,8 @@ conversation so far, and the reply it's writing. Here it is **32,768 tokens**.
 
 Three facts make it tight in this competition:
 1. The harness's first message (task, rules, file listing) already uses a few thousand tokens.
-2. Every tool output stays in the history for the rest of the task. Other teams found the
-   history is not usefully compressed mid-task, so it only grows.
+2. Every tool output stays in the history until the history reaches about 14k tokens. Then it
+   is *compacted* (see "Context compaction" below), which saves room but loses detail.
 3. vLLM rejects a request if `prompt tokens + max_output_tokens > 32,768`, so a big output cap
    *shrinks* the room left for history.
 
@@ -307,8 +307,10 @@ submission fails ("Notebook Exceeded Allowed Compute"). Per-task limits are ours
 | `timeout_seconds` | 180 | per shell command |
 
 Worst case: 120 × (4.5 + ~1 min sandbox setup) ≈ 11 h. Another team measured 3.5 min → 0.06,
-4.5 min → 0.10, and 5.5 min → over the 12 h limit. `scripts/build_submission.py` does this
-arithmetic for us.
+4.5 min → 0.10, and 5.5 min → over the 12 h limit (that last one may have been a platform outage).
+`scripts/build_submission.py` does this arithmetic for us. In practice tasks end early: the mean
+is about 2 minutes, so a 120-task run takes about 5.5 h. The tool-call budget runs out before the
+time does.
 
 ### Nudges, `submit_patch`, and the fallback diff
 **Used in:** Step 1
@@ -371,9 +373,11 @@ the reverse: remove one component to see how much it was contributing.
 ### Noise
 **Used in:** Step 1
 
-The public leaderboard has about 60 tasks, so **one task ≈ 0.017**. And with temperature > 0 the
-same submission can solve different tasks on different runs. Another team saw 0.10, 0.08 and 0.10
-from near-identical configs. **Differences of 1–2 tasks (≈0.02–0.03) are probably luck.**
+The public leaderboard has 58 tasks, so **one task ≈ 0.017**, and scores are cut off, not rounded
+(0.12 = 7 tasks). With temperature > 0 the same submission solves different tasks on different
+runs: identical copies of one public config scored anywhere from 0.06 to 0.15. A single submission
+varies by about ±2.5 tasks. **Differences of 1–2 tasks (≈0.02–0.03) are probably luck**, and on
+our 33-task dev set ±2 tasks is noise too. See "Pass matrix" for how we look past the noise.
 
 ### Overfitting to the public leaderboard
 **Used in:** Step 1
@@ -444,6 +448,62 @@ tasks, up to 44 identical calls in a row. Usual remedies: the model's recommende
 settings (Gemma: temperature 1.0, top_p 0.95, top_k 64), a repetition/frequency penalty, and an
 explicit rule in the prompt ("never repeat a call; if something fails twice, change approach").
 
+### Context compaction
+**Used in:** Step 3 (research, `{problem_description?}` in the v3 prompts)
+
+When the conversation passes a token threshold (14,336 in the organizers' setup), the harness asks
+the model to summarize it and replaces the old turns with that summary. Tool calls and their
+outputs are dropped, so the agent forgets which files it read and which edits it made, and often
+starts over. Compaction hit 13 of 33 v1 tasks and 20 of 33 v2a tasks, and almost none of those
+passed. We cannot tune it (the scorer sets it), but we can keep what matters outside the history:
+`{problem_description?}` in the system prompt makes ADK re-insert the issue text on every call. The
+`?` makes it optional, so a missing value gives an empty string instead of a crash.
+
+### Undeclared tool = task over
+**Used in:** Step 3 (`get_code_subgraph` in agent.yaml)
+
+If the model calls a tool the agent did not declare, ADK raises an error and the task scores 0.
+The harness's task message advertises all three code-graph tools, so we declare all three, even
+though we tell the model to prefer `grep`. The same reason makes removing `edit_file` (v3b) risky:
+if the model still calls it, that task is lost.
+
+### Heredoc
+**Used in:** Step 3 (the v3 edit template)
+
+A shell way to pass a block of text to a command:
+```
+python3 - << 'PY'
+print("this whole block is the program")
+PY
+```
+Everything up to a line that is exactly `PY` is fed to `python3`. Quoting the delimiter (`'PY'`)
+stops the shell from changing `$` and backslashes. Two traps: the closing line must start at
+column 0, and Python code inside must not be indented. Three drafted prompts had indented
+templates that fail when copied, so `scripts/build_submission.py` now rejects them.
+
+### Editable install and src/ layout
+**Used in:** Step 3 (dev-bench fix in `kaggle/common/kaggle_common.py`)
+
+`pip install -e .` ("editable") installs a project by pointing Python at its source folder instead
+of copying it, so edits are live. Some projects keep their code in `src/` (requests does), so plain
+`PYTHONPATH=/workspace` does not find it. The scorer uses an editable install. Our dev bench used a
+plain copy, so for requests both the agent's test scripts and the hidden tests ran against the
+unedited copy. Now the bench removes that copy and points a `.pth` file (a file listing extra import
+folders) at the live source.
+
+### Pass matrix and task fairness
+**Used in:** Step 3 (`scripts/compare_runs.py`, `eval/fairness.json`)
+
+Instead of comparing two scores, list every task against every run and mark which ones passed.
+Over 5 runs on our dev set:
+- 6 tasks pass almost always ("core");
+- 15 never pass, because their hidden tests check things the issue never states ("unfair");
+- 12 sometimes or never pass but could ("fixable").
+
+Configs really differ only on the fixable 12. So we check that a new config keeps the core tasks,
+count how many fixable ones it solves, and look at the mechanism it targets (fewer broken calls,
+fewer repeats). That signal is much less noisy than the headline score.
+
 ### Malformed tool calls
 **Used in:** Step 2d finding
 
@@ -451,6 +511,13 @@ The model writes tool calls as text, which a parser turns into function argument
 code strings full of quotes and newlines it sometimes produces broken arguments (in v1, keys like
 `"filepath": "fastapi/applications.py`,new_string:"`). The tool then rejects the call, and the
 model often repeats the same broken call. Smaller edits (short `old_string`) break less often.
+
+What triggers it: arguments full of quotes, such as dicts, docstrings, URLs and HTML. 143 of 183
+v1 `edit_file` calls were broken. A tool with a single string argument almost never breaks
+(`run_command`: 3 of 703). So v3 edits files with a small Python script run through
+`run_command` (see "Heredoc"), and v3b removes `edit_file` altogether. Telling the model "switch
+method after two failures" did not work: it followed that once in about 3,150 calls. A concrete
+template to copy works better than an abstract rule.
 
 ---
 
