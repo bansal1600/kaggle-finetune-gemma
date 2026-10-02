@@ -1,0 +1,307 @@
+{
+  "variant": "v3b_noedit",
+  "resolved": 11,
+  "total": 33,
+  "resolution_rate": 0.3333333333333333,
+  "hours": 1.03,
+  "python": "3.12.13",
+  "tasks": [
+    {
+      "instance_id": "fastapi_13920",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 17,
+      "llm_calls": 20,
+      "seconds": 103.1,
+      "patch_chars": 2066
+    },
+    {
+      "instance_id": "fastapi_14258",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 20,
+      "llm_calls": 22,
+      "seconds": 68.0,
+      "patch_chars": 539
+    },
+    {
+      "instance_id": "fastapi_14616",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 37,
+      "llm_calls": 40,
+      "seconds": 172.1,
+      "patch_chars": 664
+    },
+    {
+      "instance_id": "fastapi_14786",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 7,
+      "llm_calls": 10,
+      "seconds": 49.6,
+      "patch_chars": 404
+    },
+    {
+      "instance_id": "fastapi_14791",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 5,
+      "llm_calls": 7,
+      "seconds": 37.3,
+      "patch_chars": 483
+    },
+    {
+      "instance_id": "fastapi_14794",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 9,
+      "llm_calls": 11,
+      "seconds": 62.6,
+      "patch_chars": 791
+    },
+    {
+      "instance_id": "fastapi_14873",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 19,
+      "llm_calls": 21,
+      "seconds": 127.7,
+      "patch_chars": 1605
+    },
+    {
+      "instance_id": "fastapi_14953",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 12,
+      "llm_calls": 15,
+      "seconds": 65.8,
+      "patch_chars": 560
+    },
+    {
+      "instance_id": "fastapi_14962",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 34,
+      "llm_calls": 36,
+      "seconds": 94.4,
+      "patch_chars": 776
+    },
+    {
+      "instance_id": "fastapi_14964",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 16,
+      "llm_calls": 18,
+      "seconds": 102.3,
+      "patch_chars": 1796
+    },
+    {
+      "instance_id": "fastapi_14978",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 41,
+      "seconds": 155.3,
+      "patch_chars": 2111
+    },
+    {
+      "instance_id": "fastapi_14986",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 13,
+      "llm_calls": 16,
+      "seconds": 120.6,
+      "patch_chars": 1501
+    },
+    {
+      "instance_id": "fastapi_15023",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 32,
+      "llm_calls": 34,
+      "seconds": 74.9,
+      "patch_chars": 809
+    },
+    {
+      "instance_id": "fastapi_15030",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 33,
+      "llm_calls": 35,
+      "seconds": 125.7,
+      "patch_chars": 935
+    },
+    {
+      "instance_id": "fastapi_15280",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 41,
+      "seconds": 140.0,
+      "patch_chars": 1124
+    },
+    {
+      "instance_id": "fastapi_15588",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 10,
+      "llm_calls": 13,
+      "seconds": 74.1,
+      "patch_chars": 843
+    },
+    {
+      "instance_id": "fastapi_15589",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 41,
+      "seconds": 280.3,
+      "patch_chars": 1075
+    },
+    {
+      "instance_id": "fastapi_15661",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 35,
+      "llm_calls": 38,
+      "seconds": 66.3,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_15800",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 36,
+      "llm_calls": 38,
+      "seconds": 111.7,
+      "patch_chars": 1492
+    },
+    {
+      "instance_id": "requests_7315",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 13,
+      "llm_calls": 15,
+      "seconds": 72.3,
+      "patch_chars": 522
+    },
+    {
+      "instance_id": "requests_7427",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 41,
+      "seconds": 162.7,
+      "patch_chars": 868
+    },
+    {
+      "instance_id": "rich_3882",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 7,
+      "llm_calls": 9,
+      "seconds": 37.9,
+      "patch_chars": 503
+    },
+    {
+      "instance_id": "rich_3894",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 6,
+      "llm_calls": 8,
+      "seconds": 36.0,
+      "patch_chars": 596
+    },
+    {
+      "instance_id": "rich_3905",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 5,
+      "llm_calls": 7,
+      "seconds": 34.8,
+      "patch_chars": 521
+    },
+    {
+      "instance_id": "rich_3935",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 19,
+      "llm_calls": 21,
+      "seconds": 112.8,
+      "patch_chars": 686
+    },
+    {
+      "instance_id": "rich_3938",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 35,
+      "llm_calls": 37,
+      "seconds": 203.6,
+      "patch_chars": 1320
+    },
+    {
+      "instance_id": "rich_3942",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 32,
+      "llm_calls": 38,
+      "seconds": 102.7,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_3944",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 22,
+      "llm_calls": 24,
+      "seconds": 104.8,
+      "patch_chars": 445
+    },
+    {
+      "instance_id": "rich_3953",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 34,
+      "llm_calls": 36,
+      "seconds": 134.5,
+      "patch_chars": 1495
+    },
+    {
+      "instance_id": "rich_4006",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 16,
+      "llm_calls": 18,
+      "seconds": 336.6,
+      "patch_chars": 826
+    },
+    {
+      "instance_id": "rich_4075",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 38,
+      "llm_calls": 40,
+      "seconds": 223.6,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_4076",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 34,
+      "llm_calls": 36,
+      "seconds": 48.4,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_4077",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 28,
+      "llm_calls": 30,
+      "seconds": 67.1,
+      "patch_chars": 399
+    }
+  ]
+}

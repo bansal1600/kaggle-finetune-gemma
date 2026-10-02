@@ -1,0 +1,472 @@
+{
+  "counts": {
+    "wrong_fix": 14,
+    "budget_out": 1,
+    "loop": 5,
+    "pass": 8,
+    "no_patch": 4,
+    "timeout": 1
+  },
+  "tasks": [
+    {
+      "instance_id": "fastapi_13920",
+      "category": "wrong_fix",
+      "tool_calls": 32,
+      "longest_repeat": 2,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 4,
+      "files": [
+        "fastapi/_compat/shared.py"
+      ],
+      "seconds": 135.9,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14258",
+      "category": "budget_out",
+      "tool_calls": 40,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 8,
+      "files": [
+        "fastapi/routing.py",
+        "repro.py"
+      ],
+      "seconds": 118.7,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14616",
+      "category": "wrong_fix",
+      "tool_calls": 38,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 5,
+      "files": [
+        "fastapi/dependencies/utils.py",
+        "repro.py"
+      ],
+      "seconds": 133.0,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14786",
+      "category": "loop",
+      "tool_calls": 26,
+      "longest_repeat": 18,
+      "repeated_call": "write_file {\"content\": \"\\nfrom typing import Annotated\\nfrom fastapi import Depends, FastAP",
+      "submits": 0,
+      "edits": 21,
+      "files": [],
+      "seconds": 271.5,
+      "error": "Agent exceeded session timeout (4.5 min)"
+    },
+    {
+      "instance_id": "fastapi_14791",
+      "category": "wrong_fix",
+      "tool_calls": 4,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 1,
+      "files": [
+        "fastapi/openapi/utils.py"
+      ],
+      "seconds": 33.4,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14794",
+      "category": "pass",
+      "tool_calls": 10,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 2,
+      "files": [
+        "fastapi/dependencies/utils.py"
+      ],
+      "seconds": 55.5,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14873",
+      "category": "pass",
+      "tool_calls": 33,
+      "longest_repeat": 3,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 3,
+      "files": [
+        "fastapi/routing.py",
+        "repro.py"
+      ],
+      "seconds": 129.8,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14953",
+      "category": "wrong_fix",
+      "tool_calls": 12,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 4,
+      "files": [
+        "fastapi/datastructures.py",
+        "repro.py"
+      ],
+      "seconds": 58.0,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14962",
+      "category": "no_patch",
+      "tool_calls": 30,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 2,
+      "files": [],
+      "seconds": 118.2,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14964",
+      "category": "pass",
+      "tool_calls": 31,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 12,
+      "files": [
+        "fastapi/responses.py",
+        "repro.py"
+      ],
+      "seconds": 114.8,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14978",
+      "category": "wrong_fix",
+      "tool_calls": 27,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 4,
+      "files": [
+        "fastapi/params.py",
+        "fastapi/routing.py"
+      ],
+      "seconds": 143.2,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14986",
+      "category": "wrong_fix",
+      "tool_calls": 38,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 8,
+      "files": [
+        "fastapi/applications.py",
+        "fastapi/openapi/docs.py"
+      ],
+      "seconds": 103.0,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15023",
+      "category": "wrong_fix",
+      "tool_calls": 23,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 2,
+      "files": [
+        "docs/en/docs/advanced/stream-data.md"
+      ],
+      "seconds": 55.3,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15030",
+      "category": "wrong_fix",
+      "tool_calls": 39,
+      "longest_repeat": 2,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 4,
+      "files": [
+        "fastapi/responses.py"
+      ],
+      "seconds": 110.0,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15280",
+      "category": "wrong_fix",
+      "tool_calls": 39,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 3,
+      "files": [
+        "fastapi/routing.py",
+        "repro.py"
+      ],
+      "seconds": 81.4,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15588",
+      "category": "loop",
+      "tool_calls": 36,
+      "longest_repeat": 7,
+      "repeated_call": "edit_file {\"Doc(\\n            \\\"\\\"\\\"\\n            Raw string to send as the `data\": \"` fie",
+      "submits": 1,
+      "edits": 21,
+      "files": [
+        "fastapi/sse.py",
+        "repro.py"
+      ],
+      "seconds": 163.0,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15589",
+      "category": "no_patch",
+      "tool_calls": 36,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 1,
+      "files": [],
+      "seconds": 197.7,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15661",
+      "category": "loop",
+      "tool_calls": 42,
+      "longest_repeat": 8,
+      "repeated_call": "write_file {\"content\": \"\\\\\\\"\\\\\\\"\\\\\\\"Script to automate release preparation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\",
+      "submits": 0,
+      "edits": 12,
+      "files": [],
+      "seconds": 271.6,
+      "error": "Agent exceeded session timeout (4.5 min)"
+    },
+    {
+      "instance_id": "fastapi_15800",
+      "category": "wrong_fix",
+      "tool_calls": 39,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 5,
+      "files": [
+        "fastapi/applications.py",
+        "fastapi/routing.py"
+      ],
+      "seconds": 109.8,
+      "error": ""
+    },
+    {
+      "instance_id": "requests_7315",
+      "category": "pass",
+      "tool_calls": 8,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 3,
+      "files": [
+        "src/requests/adapters.py"
+      ],
+      "seconds": 45.9,
+      "error": ""
+    },
+    {
+      "instance_id": "requests_7427",
+      "category": "pass",
+      "tool_calls": 18,
+      "longest_repeat": 5,
+      "repeated_call": "edit_file {\"filepath\": \"src/requests/utils.py\", \"for host in no_proxy_hosts\": \"\\\\n        ",
+      "submits": 1,
+      "edits": 8,
+      "files": [
+        "repro.py",
+        "src/requests/utils.py"
+      ],
+      "seconds": 87.6,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3882",
+      "category": "pass",
+      "tool_calls": 43,
+      "longest_repeat": 7,
+      "repeated_call": "edit_file {\"def on_validate_error(self, value\": \"str\", \"error\": \"InvalidResponse) -> None:",
+      "submits": 1,
+      "edits": 17,
+      "files": [
+        "repro.py",
+        "rich/prompt.py"
+      ],
+      "seconds": 182.7,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3894",
+      "category": "pass",
+      "tool_calls": 11,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 1,
+      "files": [
+        "rich/_inspect.py"
+      ],
+      "seconds": 45.4,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3905",
+      "category": "pass",
+      "tool_calls": 12,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 3,
+      "files": [
+        "repro.py",
+        "rich/progress.py"
+      ],
+      "seconds": 46.6,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3935",
+      "category": "wrong_fix",
+      "tool_calls": 32,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 1,
+      "files": [
+        "rich/padding.py"
+      ],
+      "seconds": 185.0,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3938",
+      "category": "wrong_fix",
+      "tool_calls": 35,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 4,
+      "files": [
+        "repro.py",
+        "rich/segment.py"
+      ],
+      "seconds": 114.7,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3942",
+      "category": "no_patch",
+      "tool_calls": 35,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [],
+      "seconds": 187.8,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3944",
+      "category": "wrong_fix",
+      "tool_calls": 34,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 2,
+      "files": [
+        "rich/_export_format.py"
+      ],
+      "seconds": 155.5,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3953",
+      "category": "loop",
+      "tool_calls": 69,
+      "longest_repeat": 23,
+      "repeated_call": "edit_file {\"# zero width joiner\\\\n                index += 2\\\\n                if spans\": ",
+      "submits": 0,
+      "edits": 50,
+      "files": [],
+      "seconds": 271.0,
+      "error": "Agent exceeded session timeout (4.5 min)"
+    },
+    {
+      "instance_id": "rich_4006",
+      "category": "timeout",
+      "tool_calls": 9,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 0,
+      "edits": 0,
+      "files": [],
+      "seconds": 271.7,
+      "error": "Agent exceeded session timeout (4.5 min)"
+    },
+    {
+      "instance_id": "rich_4075",
+      "category": "wrong_fix",
+      "tool_calls": 32,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 2,
+      "files": [
+        "repro.py"
+      ],
+      "seconds": 91.6,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_4076",
+      "category": "no_patch",
+      "tool_calls": 36,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [],
+      "seconds": 189.7,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_4077",
+      "category": "loop",
+      "tool_calls": 79,
+      "longest_repeat": 22,
+      "repeated_call": "edit_file {\"def __getattr__(self, name\": \"str) -> Any:\\\\n        return getattr(self.__fil",
+      "submits": 0,
+      "edits": 54,
+      "files": [
+        "repro.py"
+      ],
+      "seconds": 276.1,
+      "error": "Agent exceeded turns budget (80 turns)"
+    }
+  ]
+}

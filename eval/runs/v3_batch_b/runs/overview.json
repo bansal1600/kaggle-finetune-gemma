@@ -1,0 +1,30 @@
+[
+  {
+    "variant": "v3a_hyg",
+    "resolved": 6,
+    "total": 33,
+    "resolution_rate": 0.18181818181818182,
+    "hours": 1.21
+  },
+  {
+    "variant": "v3c_loc",
+    "resolved": 8,
+    "total": 33,
+    "resolution_rate": 0.24242424242424243,
+    "hours": 1.27
+  },
+  {
+    "variant": "v3b_noedit",
+    "resolved": 11,
+    "total": 33,
+    "resolution_rate": 0.3333333333333333,
+    "hours": 1.03
+  },
+  {
+    "variant": "v2a_rerun",
+    "resolved": 11,
+    "total": 33,
+    "resolution_rate": 0.3333333333333333,
+    "hours": 1.13
+  }
+]

@@ -28,7 +28,11 @@ the leaderboard (see concepts.md → "Data contamination"); use them to compare 
 | ↳ v2d_both_t07 | | anti-loop prompt + temp 0.7 (top_p 0.95, top_k 64) | 7/33 = 21.2% (1.05 h) | loop 8, wrong_fix 12, timeout 2, no_patch 2, budget_out 2 |
 
 | v3 run A | 2026-10-02 16:47–18:26 | `experiments/v3d_full`: all research fixes on v2a (see docs/research-2026-10-02.md) | **8/33 = 24.2%** (1.52 h) | budget_out 10, wrong_fix 6, no_patch 5, loop 2, timeout 2. Submitted |
-| v3 run B | 2026-10-02, pushed 16:44 | `v3a_hyg` (edit/tool mechanics), `v3c_loc` (localize/reproduce/verify), `v3b_noedit` (no edit_file/write_file), `v2a_rerun` (noise control) | _queued_ | notebook `gemma-agent-eval-b` |
+| v3 run B | 2026-10-02 16:47–21:30 | notebook `gemma-agent-eval-b` | | |
+| ↳ v3a_hyg | | edit/tool mechanics only (script edits preferred, edit_file kept) | 6/33 (1.21 h) | garbled calls 12, but lost 1 core task |
+| ↳ v3c_loc | | localize / reproduce / verify rules only | 8/33 (1.27 h) | garbled calls 166 (edit_file advice unchanged) |
+| ↳ v3b_noedit | | v3a with `edit_file` and `write_file` removed | **11/33** (1.03 h) | **garbled calls 1**, repeats 3.3%, 0 stray files, core 6/6, fixable 5, 0 undeclared-tool calls |
+| ↳ v2a_rerun | | v2a again (noise control) | **11/33** (1.13 h) | same config scored 8/33 on 10-02 morning |
 
 v3d_full vs v2a vs v1 (`scripts/compare_runs.py`): same 8/33 as v2a, but it solves 3 of the 12
 fixable tasks (v2a 2, v1 0): fastapi_15589, requests_7427 and rich_4077 (requests_7427 had never
@@ -37,6 +41,19 @@ passed before). It lost one core task (rich_3882). Mechanisms moved as intended:
 asserts. Costs: mean 165 s per task (v2a 112 s), so a 120-task run projects to ~7 h of the 12 h;
 budget_out rose to 10, as the extra verify steps use calls. The union of passes over all six runs
 is 10/33.
+
+Run B findings:
+- **Noise is large.** The identical v2a config scored 8/33 and then 11/33. Part of the gap is the
+  editable-install bench fix (requests_7427 became passable for every post-fix run); most is
+  temperature-1.0 luck. Single-run gaps of ±3 tasks are noise, so decide on repeated runs and on
+  mechanism metrics.
+- **Removing edit_file is the one change that clearly works mechanically** (v3b): garbled calls
+  1 vs 125 for the v2a rerun, repeats 3.3%, 0 stray files, fastest mean (112 s). The model never
+  tried to call the removed tools. Its score ties the best.
+- Mechanics with edit_file still available (v3a) barely moved the model: it kept using edit_file
+  for most edits.
+- Union of passes across all 9 runs: 13/33.
+- Next: batch C runs v3e (v3d_full without edit_file/write_file) and v3b again, twice each.
 
 From v3 on, the dev bench installs the task repo in editable mode like the scorer, which matters
 for requests (src/ layout). Compare with `python scripts/compare_runs.py name=dir ...`, which
