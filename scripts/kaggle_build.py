@@ -53,9 +53,13 @@ def parse_variants(specs: list[str]) -> dict[str, Path]:
     return variants
 
 
-def build(name: str, variants: dict[str, Path], split: str | None, splits_file: Path) -> Path:
+def build(name: str, variants: dict[str, Path], split: str | None, splits_file: Path,
+          suffix: str = "") -> Path:
     src_dir = ROOT / "kaggle" / name
     meta = json.loads((src_dir / "kernel-metadata.json").read_text())
+    if suffix:  # a second Kaggle notebook, so two runs can be queued side by side
+        meta["id"] += f"-{suffix}"
+        meta["title"] += f" {suffix.upper()}"
     code = (src_dir / meta["code_file"]).read_text(encoding="utf-8")
     common = (ROOT / "kaggle" / "common" / "kaggle_common.py").read_text(encoding="utf-8")
 
@@ -78,7 +82,7 @@ def build(name: str, variants: dict[str, Path], split: str | None, splits_file: 
         else:
             out_lines.append(line)
 
-    out_dir = ROOT / "build" / "kaggle" / name
+    out_dir = ROOT / "build" / "kaggle" / (name + (f"-{suffix}" if suffix else ""))
     if out_dir.exists():
         shutil.rmtree(out_dir)
     out_dir.mkdir(parents=True)
@@ -95,10 +99,11 @@ def main() -> int:
                         help="agent config folder to embed; repeat to run several configs in one notebook")
     parser.add_argument("--split", help="which list from the splits file to embed (dev, train, ...)")
     parser.add_argument("--splits-file", type=Path, default=ROOT / "eval" / "splits.json")
+    parser.add_argument("--suffix", default="", help="push as a separate notebook <id>-<suffix>, e.g. b")
     parser.add_argument("--push", action="store_true", help="push to Kaggle after building")
     args = parser.parse_args()
 
-    out_dir = build(args.name, parse_variants(args.submission), args.split, args.splits_file)
+    out_dir = build(args.name, parse_variants(args.submission), args.split, args.splits_file, args.suffix)
     print(f"built {out_dir}")
     if args.push:
         return subprocess.run(["kaggle", "kernels", "push", "-p", str(out_dir)]).returncode

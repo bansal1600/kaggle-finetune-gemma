@@ -55,6 +55,39 @@ def find_extra_wheels(expected: Path | None, marker: str = "annotated_doc-*.whl"
     raise SystemExit(f"Extra wheels not found at {expected}")
 
 
+def make_workspace_editable(site_dir: Path, workspace: Path) -> None:
+    """Turn pip's copy of the task repo into an editable install, as the scorer's `pip install -e` is.
+
+    pip --target copies the repo at its base commit into site-packages. For src/ layouts (requests)
+    that copy shadowed /workspace/src: PYTHONPATH=/workspace does not reach src/, so the agent's
+    repro scripts and the hidden tests ran against the unedited copy. Remove the copied files (keep
+    the .dist-info metadata) and point a .pth file at the live source instead. "__editable__" sorts
+    before "__scorer_env", so the workspace also wins over the package set's release of the repo.
+    """
+    import json
+    from urllib.parse import unquote, urlparse
+
+    for dist_info in site_dir.glob("*.dist-info"):
+        direct_url = dist_info / "direct_url.json"
+        record = dist_info / "RECORD"
+        if not (direct_url.exists() and record.exists()):
+            continue
+        url = json.loads(direct_url.read_text()).get("url", "")
+        if Path(unquote(urlparse(url).path)).resolve() != workspace.resolve():
+            continue
+        for line in record.read_text().splitlines():
+            rel = line.split(",", 1)[0]
+            path = (site_dir / rel).resolve()
+            if rel and site_dir.resolve() in path.parents and dist_info.resolve() not in path.parents:
+                path.unlink(missing_ok=True)
+                parent = path.parent
+                while parent != site_dir.resolve() and parent.is_dir() and not any(parent.iterdir()):
+                    parent.rmdir()
+                    parent = parent.parent
+    src = workspace / "src"
+    (site_dir / "__editable__workspace.pth").write_text(f"{src if src.is_dir() else workspace}\n")
+
+
 def use_scorer_environment(wheels_dir: Path, target: Path, extra_wheels: Path | None = None) -> None:
     """Give every task sandbox the same Python packages the real scorer gives it.
 
@@ -131,8 +164,7 @@ def use_scorer_environment(wheels_dir: Path, target: Path, extra_wheels: Path | 
         # Run from the notebook, not through docker.exec, because (found in grader check v3):
         #   - Kaggle's Python has no ensurepip, so task venvs have no pip of their own;
         #   - exec rewrites every /tmp/... and /usr/local/bin path in a command to sandbox paths.
-        # --target also ignores what the notebook already has installed. The repo stays importable
-        # through PYTHONPATH=/workspace, ahead of site-packages, so pip's own copy of it is unused.
+        # --target also ignores what the notebook already has installed.
         # PYTHONPATH=<package set> lets pip find the repo's build backend (pdm-backend).
         paths = docker._sandboxes[container_id]
         site_dir = next(paths["venv"].glob("lib/python*/site-packages"))
@@ -143,6 +175,7 @@ def use_scorer_environment(wheels_dir: Path, target: Path, extra_wheels: Path | 
         if result.returncode != 0:
             print(f"  [{container_id[:12]}] repo dependency install failed: "
                   f"{result.stderr.strip().splitlines()[-1:] or result.returncode}", flush=True)
+        make_workspace_editable(site_dir, paths["workspace"])
 
     def install_test_dependencies(docker, container_id, repo="", *, fast_path=True, config=None):
         script = cs.resolve_sandbox_setup_script(config)
