@@ -10,7 +10,7 @@ are mostly noise.
 |---|---|---|---|---|---|
 | v1 | 2026-10-01 20:50 | 41ab46b | First submission: single agent, our prompt, thinking off, temp 0.2, 4.5 min / 40 calls / 80 turns | **0.12** | Scored 2026-10-02 (~8 h after submitting). Dev set: 6/33 (18.2%). Kaggle ref 56758822; zip sha256 369b1c64…. Validated with adk-submission 0.2.12 + google-adk 1.36.1. Expected 0.06–0.12 from comparable public configs |
 | v3d_full | 2026-10-02 18:28 | e0a5646 | On v2a sampling: script edits via run_command, issue text pinned with {problem_description?}, list-source-files / reproduce / verify rules, get_code_subgraph declared, 50 tool calls (see docs/research-2026-10-02.md) | **0.06** | Scored ~9 h after submitting. 0.06 ≈ 3–4 of 58 tasks, vs v1's 7: below v1 by ~1 standard deviation of the difference between two single submissions, so not conclusive either way. Kaggle ref 56780076; zip sha256 1de2fbdd…. Dev 8/33 (v1 6/33). Garbled calls 68 vs v1 143 |
-| v3b_noedit | 2026-10-03 01:44 | e0a5646 | On v2a sampling: edit_file and write_file removed, every edit through a Python script in run_command; tool-hygiene prompt; get_code_subgraph declared; 40 tool calls | _pending_ | Kaggle ref 56786866; zip sha256 3c017a16…. Dev 11, 10, 8 over 3 runs (mean 9.7), core 6/6 every run, 0–1 garbled calls |
+| v3b_noedit | 2026-10-03 01:44 | e0a5646 | On v2a sampling: edit_file and write_file removed, every edit through a Python script in run_command; tool-hygiene prompt; get_code_subgraph declared; 40 tool calls | **0.12** | Scored ~8 h after submitting. Same as v1 (≈ 7 of 58 tasks). Kaggle ref 56786866; zip sha256 3c017a16…. Dev 11, 10, 8 over 3 runs (mean 9.7), core 6/6 every run, 0–1 garbled calls |
 
 ### Reading the leaderboard (after v3d_full)
 
@@ -22,9 +22,19 @@ v3d_full scored 0.06 although it beat v1 on dev (8 vs 6 of 33). Two readings, no
    the longest prompt (7.1k chars) and kept edit_file. Hidden private repos may be larger, which
    makes slowness and extra steps costlier.
 
-v3b_noedit (pending) is shorter, faster (116 s/task) and has no edit_file, so it separates these
-somewhat. Until several leaderboard results line up with dev, decide on repeated dev runs, not
-on one leaderboard number.
+v3b_noedit then scored 0.12, the same as v1, although its dev mean is 9.7/33 against v1's 6/33.
+What the three scores say together:
+- The leaderboard has not moved beyond noise for any change so far (0.12, 0.06, 0.12). v3d's 0.06
+  looks more like a bad draw or a v3d-specific cost than a problem shared with v3b. v3b also uses
+  temperature 1.0 and script edits, and it did not drop.
+- **The dev gains have not transferred.** Two explanations:
+  1. v1's dev 6/33 was measured before the editable-install bench fix, so part of the apparent
+     dev gain may come from the bench, not the config. A v1 rerun on the fixed bench settles this.
+  2. Dev and the leaderboard may correlate weakly. Dev uses three public repos the model has
+     probably seen in training (contamination); the hidden set uses private repos. Other teams
+     report the same weak correlation (forum "How well do your CV and LB correlate?").
+- So: rerun v1 on the fixed bench before trusting any dev gain. Weigh mechanism fixes (garbled
+  calls, loops) by whether they plausibly carry over to unfamiliar repos, not by dev score alone.
 
 ## Local dev runs (Step 2c)
 
