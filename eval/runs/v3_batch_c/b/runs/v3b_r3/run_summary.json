@@ -1,0 +1,307 @@
+{
+  "variant": "v3b_r3",
+  "resolved": 8,
+  "total": 33,
+  "resolution_rate": 0.24242424242424243,
+  "hours": 1.09,
+  "python": "3.12.13",
+  "tasks": [
+    {
+      "instance_id": "fastapi_13920",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 36,
+      "llm_calls": 38,
+      "seconds": 108.1,
+      "patch_chars": 623
+    },
+    {
+      "instance_id": "fastapi_14258",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 12,
+      "llm_calls": 16,
+      "seconds": 44.7,
+      "patch_chars": 501
+    },
+    {
+      "instance_id": "fastapi_14616",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 42,
+      "seconds": 166.5,
+      "patch_chars": 869
+    },
+    {
+      "instance_id": "fastapi_14786",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 5,
+      "llm_calls": 7,
+      "seconds": 49.9,
+      "patch_chars": 404
+    },
+    {
+      "instance_id": "fastapi_14791",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 4,
+      "llm_calls": 6,
+      "seconds": 54.8,
+      "patch_chars": 501
+    },
+    {
+      "instance_id": "fastapi_14794",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 8,
+      "llm_calls": 10,
+      "seconds": 58.0,
+      "patch_chars": 791
+    },
+    {
+      "instance_id": "fastapi_14873",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 40,
+      "llm_calls": 44,
+      "seconds": 141.0,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_14953",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 9,
+      "llm_calls": 11,
+      "seconds": 52.5,
+      "patch_chars": 560
+    },
+    {
+      "instance_id": "fastapi_14962",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 32,
+      "llm_calls": 35,
+      "seconds": 79.7,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_14964",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 12,
+      "llm_calls": 14,
+      "seconds": 65.9,
+      "patch_chars": 1751
+    },
+    {
+      "instance_id": "fastapi_14978",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 38,
+      "llm_calls": 40,
+      "seconds": 184.6,
+      "patch_chars": 2611
+    },
+    {
+      "instance_id": "fastapi_14986",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 31,
+      "llm_calls": 34,
+      "seconds": 140.0,
+      "patch_chars": 1512
+    },
+    {
+      "instance_id": "fastapi_15023",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 32,
+      "llm_calls": 34,
+      "seconds": 81.6,
+      "patch_chars": 892
+    },
+    {
+      "instance_id": "fastapi_15030",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 37,
+      "llm_calls": 39,
+      "seconds": 192.9,
+      "patch_chars": 910
+    },
+    {
+      "instance_id": "fastapi_15280",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 32,
+      "llm_calls": 36,
+      "seconds": 201.6,
+      "patch_chars": 621
+    },
+    {
+      "instance_id": "fastapi_15588",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 15,
+      "llm_calls": 17,
+      "seconds": 91.4,
+      "patch_chars": 1328
+    },
+    {
+      "instance_id": "fastapi_15589",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 39,
+      "llm_calls": 43,
+      "seconds": 273.4,
+      "patch_chars": 634
+    },
+    {
+      "instance_id": "fastapi_15661",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 27,
+      "llm_calls": 29,
+      "seconds": 56.8,
+      "patch_chars": 533
+    },
+    {
+      "instance_id": "fastapi_15800",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 40,
+      "llm_calls": 42,
+      "seconds": 93.3,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "requests_7315",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 13,
+      "llm_calls": 15,
+      "seconds": 65.1,
+      "patch_chars": 522
+    },
+    {
+      "instance_id": "requests_7427",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 34,
+      "llm_calls": 36,
+      "seconds": 141.5,
+      "patch_chars": 948
+    },
+    {
+      "instance_id": "rich_3882",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 13,
+      "llm_calls": 15,
+      "seconds": 87.0,
+      "patch_chars": 503
+    },
+    {
+      "instance_id": "rich_3894",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 6,
+      "llm_calls": 9,
+      "seconds": 36.0,
+      "patch_chars": 595
+    },
+    {
+      "instance_id": "rich_3905",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 5,
+      "llm_calls": 7,
+      "seconds": 35.2,
+      "patch_chars": 521
+    },
+    {
+      "instance_id": "rich_3935",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (4.5 min)",
+      "tool_calls": 25,
+      "llm_calls": 25,
+      "seconds": 270.9,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_3938",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 35,
+      "llm_calls": 38,
+      "seconds": 98.6,
+      "patch_chars": 524
+    },
+    {
+      "instance_id": "rich_3942",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 18,
+      "llm_calls": 23,
+      "seconds": 234.4,
+      "patch_chars": 1146
+    },
+    {
+      "instance_id": "rich_3944",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 18,
+      "llm_calls": 20,
+      "seconds": 101.6,
+      "patch_chars": 1478
+    },
+    {
+      "instance_id": "rich_3953",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 21,
+      "llm_calls": 23,
+      "seconds": 113.3,
+      "patch_chars": 909
+    },
+    {
+      "instance_id": "rich_4006",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 12,
+      "llm_calls": 14,
+      "seconds": 313.7,
+      "patch_chars": 826
+    },
+    {
+      "instance_id": "rich_4075",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 38,
+      "llm_calls": 40,
+      "seconds": 101.0,
+      "patch_chars": 566
+    },
+    {
+      "instance_id": "rich_4076",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 37,
+      "llm_calls": 39,
+      "seconds": 149.1,
+      "patch_chars": 1088
+    },
+    {
+      "instance_id": "rich_4077",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 15,
+      "llm_calls": 17,
+      "seconds": 52.6,
+      "patch_chars": 485
+    }
+  ]
+}

@@ -55,6 +55,34 @@ Run B findings:
 - Union of passes across all 9 runs: 13/33.
 - Next: batch C runs v3e (v3d_full without edit_file/write_file) and v3b again, twice each.
 
+| Run | Date (UTC) | Config | Dev score | Notes |
+|---|---|---|---|---|
+| batch C | 2026-10-02 21:51 – 10-03 00:30 | two notebooks in parallel | | |
+| ↳ v3e_full_noedit | | v3d_full without edit_file/write_file | 9/33 (1.25 h) | core 6/6, garbled 1 |
+| ↳ v3b_r2 | | v3b_noedit again | 10/33 (1.07 h) | core 6/6, garbled 0 |
+| ↳ v3e_r2 | | v3e again | 8/33 (1.23 h) | core 6/6, garbled 0 |
+| ↳ v3b_r3 | | v3b_noedit again | 8/33 (1.09 h) | core 6/6, garbled 0 |
+
+Pooled over repeated runs (all after the editable-install bench fix):
+
+| Config | Runs | Scores | Mean | Core kept | Fixable solved | Garbled calls | Mean s/task |
+|---|---|---|---|---|---|---|---|
+| **v3b_noedit** | 3 | 11, 10, 8 | **9.7** | 6/6 in every run | 5, 4, 2 | 1, 0, 0 | ~116 |
+| v3e_full_noedit | 2 | 9, 8 | 8.5 | 6/6 in every run | 3, 2 | 1, 0 | ~135 |
+| v2a | 1 | 11 | 11 | 6/6 | 5 | 125 | 123 |
+| v3d_full | 1 | 8 | 8 | 5/6 | 3 | 68 | 165 |
+
+Batch C findings:
+- **v3b is the best-supported config.** It never lost a core task in 3 runs, has no garbled calls,
+  no stray files, and is the fastest. Its run-to-run range (8–11) shows the noise directly.
+- **The extra rules did not help on top of removing edit_file.** v3e (v3b plus the localize /
+  verify rules, issue pin and 50 calls) averaged 8.5 against v3b's 9.7, with a longer mean time.
+  The difference is within noise, but nothing suggests the rules add value. Shorter prompts did at
+  least as well, which matches other teams' reports.
+- v2a's single post-fix run (11) equals v3b's best. On the hidden set, v2a's 125 garbled calls
+  per 33 tasks are a risk v3b does not carry.
+- Union of passes across all post-fix runs: 14/33.
+
 From v3 on, the dev bench installs the task repo in editable mode like the scorer, which matters
 for requests (src/ layout). Compare with `python scripts/compare_runs.py name=dir ...`, which
 also shows core kept / fixable solved (`eval/fairness.json`) and the mechanism metrics.

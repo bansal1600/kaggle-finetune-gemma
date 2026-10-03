@@ -1,0 +1,475 @@
+{
+  "counts": {
+    "wrong_fix": 19,
+    "pass": 10,
+    "timeout": 1,
+    "budget_out": 2,
+    "no_patch": 1
+  },
+  "tasks": [
+    {
+      "instance_id": "fastapi_13920",
+      "category": "wrong_fix",
+      "tool_calls": 24,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/_compat/shared.py"
+      ],
+      "seconds": 111.4,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14258",
+      "category": "wrong_fix",
+      "tool_calls": 39,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/routing.py"
+      ],
+      "seconds": 137.8,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14616",
+      "category": "pass",
+      "tool_calls": 39,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/dependencies/utils.py"
+      ],
+      "seconds": 138.5,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14786",
+      "category": "pass",
+      "tool_calls": 8,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/security/utils.py"
+      ],
+      "seconds": 51.4,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14791",
+      "category": "pass",
+      "tool_calls": 6,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/openapi/utils.py"
+      ],
+      "seconds": 38.8,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14794",
+      "category": "pass",
+      "tool_calls": 11,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/dependencies/utils.py"
+      ],
+      "seconds": 71.5,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14873",
+      "category": "pass",
+      "tool_calls": 42,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 2,
+      "edits": 0,
+      "files": [
+        "fastapi/routing.py"
+      ],
+      "seconds": 265.1,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14953",
+      "category": "wrong_fix",
+      "tool_calls": 24,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/datastructures.py"
+      ],
+      "seconds": 78.6,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14962",
+      "category": "wrong_fix",
+      "tool_calls": 35,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/routing.py"
+      ],
+      "seconds": 78.7,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14964",
+      "category": "wrong_fix",
+      "tool_calls": 16,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/responses.py"
+      ],
+      "seconds": 117.1,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14978",
+      "category": "timeout",
+      "tool_calls": 29,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 0,
+      "edits": 0,
+      "files": [
+        "fastapi/param_functions.py",
+        "fastapi/params.py",
+        "fastapi/routing.py"
+      ],
+      "seconds": 284.3,
+      "error": "Agent exceeded session timeout (4.5 min)"
+    },
+    {
+      "instance_id": "fastapi_14986",
+      "category": "wrong_fix",
+      "tool_calls": 21,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/applications.py"
+      ],
+      "seconds": 124.7,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15023",
+      "category": "wrong_fix",
+      "tool_calls": 38,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "docs/en/docs/tutorial/stream-json-lines.md"
+      ],
+      "seconds": 98.3,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15030",
+      "category": "wrong_fix",
+      "tool_calls": 26,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/responses.py"
+      ],
+      "seconds": 103.1,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15280",
+      "category": "wrong_fix",
+      "tool_calls": 26,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/applications.py"
+      ],
+      "seconds": 98.3,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15588",
+      "category": "wrong_fix",
+      "tool_calls": 20,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/sse.py"
+      ],
+      "seconds": 123.3,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15589",
+      "category": "pass",
+      "tool_calls": 21,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/dependencies/utils.py"
+      ],
+      "seconds": 135.8,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15661",
+      "category": "wrong_fix",
+      "tool_calls": 19,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "scripts/release_prep.py"
+      ],
+      "seconds": 45.0,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15800",
+      "category": "wrong_fix",
+      "tool_calls": 39,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/applications.py",
+        "fastapi/routing.py",
+        "test_dist/index.html"
+      ],
+      "seconds": 157.6,
+      "error": ""
+    },
+    {
+      "instance_id": "requests_7315",
+      "category": "pass",
+      "tool_calls": 11,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "src/requests/adapters.py"
+      ],
+      "seconds": 85.0,
+      "error": ""
+    },
+    {
+      "instance_id": "requests_7427",
+      "category": "budget_out",
+      "tool_calls": 40,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "src/requests/utils.py"
+      ],
+      "seconds": 182.9,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3882",
+      "category": "pass",
+      "tool_calls": 14,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "rich/prompt.py"
+      ],
+      "seconds": 51.9,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3894",
+      "category": "pass",
+      "tool_calls": 9,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "rich/_inspect.py"
+      ],
+      "seconds": 39.8,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3905",
+      "category": "pass",
+      "tool_calls": 6,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "rich/progress.py"
+      ],
+      "seconds": 32.9,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3935",
+      "category": "wrong_fix",
+      "tool_calls": 22,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "rich/padding.py"
+      ],
+      "seconds": 122.2,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3938",
+      "category": "no_patch",
+      "tool_calls": 39,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [],
+      "seconds": 133.8,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3942",
+      "category": "wrong_fix",
+      "tool_calls": 24,
+      "longest_repeat": 2,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "rich/default_styles.py"
+      ],
+      "seconds": 87.2,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3944",
+      "category": "wrong_fix",
+      "tool_calls": 37,
+      "longest_repeat": 2,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "rich/_export_format.py"
+      ],
+      "seconds": 195.0,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3953",
+      "category": "wrong_fix",
+      "tool_calls": 24,
+      "longest_repeat": 2,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "rich/cells.py"
+      ],
+      "seconds": 158.3,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_4006",
+      "category": "wrong_fix",
+      "tool_calls": 15,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "rich/cells.py"
+      ],
+      "seconds": 262.2,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_4075",
+      "category": "wrong_fix",
+      "tool_calls": 36,
+      "longest_repeat": 3,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "rich/console.py"
+      ],
+      "seconds": 98.0,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_4076",
+      "category": "budget_out",
+      "tool_calls": 40,
+      "longest_repeat": 2,
+      "repeated_call": "",
+      "submits": 2,
+      "edits": 0,
+      "files": [
+        "rich/markdown.py"
+      ],
+      "seconds": 86.6,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_4077",
+      "category": "wrong_fix",
+      "tool_calls": 13,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "rich/console.py"
+      ],
+      "seconds": 57.2,
+      "error": ""
+    }
+  ]
+}

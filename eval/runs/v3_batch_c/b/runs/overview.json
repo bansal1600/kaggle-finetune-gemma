@@ -1,0 +1,16 @@
+[
+  {
+    "variant": "v3e_r2",
+    "resolved": 8,
+    "total": 33,
+    "resolution_rate": 0.24242424242424243,
+    "hours": 1.23
+  },
+  {
+    "variant": "v3b_r3",
+    "resolved": 8,
+    "total": 33,
+    "resolution_rate": 0.24242424242424243,
+    "hours": 1.09
+  }
+]
