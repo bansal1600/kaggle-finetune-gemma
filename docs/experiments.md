@@ -10,6 +10,7 @@ are mostly noise.
 |---|---|---|---|---|---|
 | v1 | 2026-10-01 20:50 | 41ab46b | First submission: single agent, our prompt, thinking off, temp 0.2, 4.5 min / 40 calls / 80 turns | **0.12** | Scored 2026-10-02 (~8 h after submitting). Dev set: 6/33 (18.2%). Kaggle ref 56758822; zip sha256 369b1c64…. Validated with adk-submission 0.2.12 + google-adk 1.36.1. Expected 0.06–0.12 from comparable public configs |
 | v3d_full | 2026-10-02 18:28 | e0a5646 | On v2a sampling: script edits via run_command, issue text pinned with {problem_description?}, list-source-files / reproduce / verify rules, get_code_subgraph declared, 50 tool calls (see docs/research-2026-10-02.md) | _pending_ | Kaggle ref 56780076; zip sha256 1de2fbdd…. Dev 8/33 (v1 6/33). Garbled calls 68 vs v1 143 |
+| v3b_noedit | 2026-10-03 01:44 | e0a5646 | On v2a sampling: edit_file and write_file removed, every edit through a Python script in run_command; tool-hygiene prompt; get_code_subgraph declared; 40 tool calls | _pending_ | Kaggle ref 56786866; zip sha256 3c017a16…. Dev 11, 10, 8 over 3 runs (mean 9.7), core 6/6 every run, 0–1 garbled calls |
 
 ## Local dev runs (Step 2c)
 
