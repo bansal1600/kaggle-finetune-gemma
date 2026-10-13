@@ -119,6 +119,10 @@ def find_file(hint: str, name: str) -> Path:
     raise SystemExit(f"{name} not found at {hint!r} or under /kaggle/input")
 
 
+def parity_file() -> Path:
+    return find_file(PARITY_DATA, Path(PARITY_DATA).name or "sft_val.jsonl")
+
+
 def real_submission() -> Path:
     """Copy exactly the two adapter files into a fresh submission dir, as the shipped zip has them."""
     src = find_file(ADAPTER_SRC, "adapter_config.json").parent
@@ -369,6 +373,8 @@ def prompt_nll(model: str, ids: list[int], labels: list[int] | None = None, time
         raise RuntimeError(f"{len(plp)} prompt_logprobs for {len(ids)} tokens")
     positions = [i for i in range(1, len(ids)) if labels is None or labels[i] != -100]
     nll = [-plp[i][str(ids[i])]["logprob"] for i in positions]
+    if not nll:  # a row with no labelled token carries no signal; the caller skips it
+        return {"nll": None, "tokens": 0}
     return {"nll": sum(nll) / len(nll), "tokens": len(nll)}
 
 
@@ -398,12 +404,15 @@ def test_prompt_logprobs(server, base, adapter) -> dict:
 
 def test_parity(server, base, adapter) -> dict:
     """E0: does training's val NLL drop survive serving (NF4 training vs W4A16 serving)?"""
-    path = find_file(PARITY_DATA, Path(PARITY_DATA).name or "sft_val.jsonl")
+    path = parity_file()
     rows = [json.loads(l) for l in path.read_text().splitlines() if l.strip()]
     rows = rows[:PARITY_MAX] if PARITY_MAX else rows
     seqs = []
     for i, row in enumerate(rows):
         ids, labels = row["input_ids"], row["labels"]
+        if not any(l != -100 for l in labels[1:]):  # no labelled token: nothing to measure on this row
+            print(f"    parity {i}: skipped (no labelled tokens)", flush=True)
+            continue
         seq = {"i": i, "meta": row.get("meta"), "len": len(ids),
                "label_mismatches": sum(1 for t, l in zip(ids, labels) if l not in (-100, t))}
         for label, model in (("base1", base), ("lora", adapter), ("base2", base)):
@@ -411,14 +420,21 @@ def test_parity(server, base, adapter) -> dict:
         seq["tokens"] = sum(1 for l in labels[1:] if l != -100)
         seqs.append(seq)
         print(f"    parity {i}: {seq}", flush=True)
+        # Written after every sequence: if a long one OOMs the engine, the shorter results survive.
+        (OUT_DIR / "parity.json").write_text(json.dumps({"summary": None, "sequences": seqs}, indent=1))
+    # Token-weighted means, like HF's loss over all labelled tokens.
     total = sum(s["tokens"] for s in seqs)
+    if not seqs or not total:
+        raise RuntimeError(f"{path}: no sequence with labelled tokens to compare")
     mean = {k: sum(s[k] * s["tokens"] for s in seqs) / total for k in ("base1", "lora", "base2")}
     summary = {"file": str(path), "sequences": len(seqs), "tokens": total, "mean_nll": mean,
                "base_instability": max(abs(s["base1"] - s["base2"]) for s in seqs),
                "vllm_drop": mean["base1"] - mean["lora"], "hf_drop": HF_NLL_DROP}
     summary["base_stable"] = summary["base_instability"] < 1e-3
     summary["drop_ratio"] = summary["vllm_drop"] / HF_NLL_DROP if HF_NLL_DROP else None
-    summary["ok"] = summary["base_stable"] and (summary["drop_ratio"] is None or summary["drop_ratio"] >= 0.5)
+    # Without HF_NLL_DROP the 50% rule cannot be checked; at least the adapter must lower the NLL.
+    summary["ok"] = summary["base_stable"] and summary["vllm_drop"] > 0 and (
+        summary["drop_ratio"] is None or summary["drop_ratio"] >= 0.5)
     (OUT_DIR / "parity.json").write_text(json.dumps({"summary": summary, "sequences": seqs}, indent=1))
     return summary
 
@@ -498,11 +514,16 @@ def main() -> None:
         if "S2b_r8_080" in servers:  # S2 failed for a non-warmup reason: r8 is the fallback rank
             RESULTS["verdict"]["train_r8_instead"] = RESULTS["verdict"]["S2b_r8_080"]["pass"]
         # Which way Stage 6 runs parity: full sequences, the 512-token prefill chunk flag, or 4k slices.
+        # Judged at gmu 0.80 (Stage 6's setting): S2, or the r8 fallback server if S2 did not start.
+        if e is None and "S2b_r8_080" in servers:
+            e = servers["S2b_r8_080"]["tests"].get("e")
         e_s2p = servers.get("S2p_r16_080", {}).get("tests", {}).get("e", {})
         RESULTS["verdict"]["parity_plan"] = (None if e is None else "full" if e.get("ok_16k") else
                                              "max_num_batched_tokens_512" if e_s2p.get("ok_16k") else "slices_4k")
     elif MODE == "real":
         name = f"R_main_lora_{round(GMU * 100):03d}"
+        if "parity" in TESTS:
+            parity_file()  # a wrong PARITY_DATA path should fail before the 7-minute server start
         run_server(name, real_submission(), GMU, TESTS)
         RESULTS["verdict"] = {name: verdict(servers[name])}
     else:

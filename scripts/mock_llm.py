@@ -9,6 +9,11 @@ It speaks the same /v1/chat/completions API that vLLM serves, and follows a fixe
 Every request is appended to --log (JSONL), which shows exactly what the real model would receive:
 system prompt, the harness's task message, tool definitions and tool results.
 
+If a request carries "return_token_ids": true (kaggle/common/capture_proxy.py adds it), the reply
+also has vLLM's extra fields: prompt_token_ids and choices[0].token_ids. The ids are fake, but the
+completion ends the way Gemma 4's does: 50 ('<|tool_response>') after a tool call, 106 ('<turn|>')
+after a text answer, so the capture-to-training-data path can be tested without a GPU.
+
 Usage:
     python scripts/mock_llm.py --port 8001 --log /tmp/mock_requests.jsonl
     MODEL_URL=http://127.0.0.1:8001/v1 python kaggle/agent_eval/agent_eval.py ...
@@ -21,6 +26,8 @@ import json
 import time
 import uuid
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+
+TOOL_CALL_STOP, TEXT_STOP = 50, 106  # Gemma 4 stop tokens: '<|tool_response>' and '<turn|>'
 
 SCRIPT = [
     ("run_command", {"command": "git status --short | head -5"}),
@@ -44,7 +51,7 @@ def reply(request: dict) -> dict:
     else:
         message["content"] = "Mock agent finished: made a small README edit and submitted it."
         finish = "stop"
-    return {
+    response = {
         "id": f"chatcmpl-{uuid.uuid4().hex[:12]}",
         "object": "chat.completion",
         "created": int(time.time()),
@@ -52,6 +59,13 @@ def reply(request: dict) -> dict:
         "choices": [{"index": 0, "message": message, "finish_reason": finish}],
         "usage": {"prompt_tokens": 100, "completion_tokens": 20, "total_tokens": 120},
     }
+    if request.get("return_token_ids"):
+        # Fake but well-formed: 2 = <bos>, then one id per message; the completion ends with the stop
+        # token vLLM would have sampled (it is not shown in the text, but it is in token_ids).
+        response["prompt_token_ids"] = [2] + [1000 + i for i in range(len(request.get("messages", [])))]
+        stop = TOOL_CALL_STOP if finish == "tool_calls" else TEXT_STOP
+        response["choices"][0]["token_ids"] = [3000 + tool_results, 3100, stop]
+    return response
 
 
 def make_handler(log_path: str | None):
