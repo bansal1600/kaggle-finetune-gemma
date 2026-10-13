@@ -1,0 +1,18 @@
+# Root agent config. This file must sit at the root of submission.zip.
+# Schema: Google ADK Agent Config, compiled by the competition's `adk-submission` package.
+# See concepts.md -> "Agent", "Tool calling", "Declarative agent config".
+name: swe_coder
+description: Fixes a GitHub issue in a Python repository with a small, verified source patch.
+model: gemma-4-31b-it-qat-w4a16-ct   # the only model the competition allows
+instruction: !include prompts/system.md
+generate_content_config: !include configs/sampling.yaml
+tools:
+  # Execution + lifecycle
+  - run_command
+  - read_file
+  - get_status        # free: does not count against the tool-call budget
+  - submit_patch      # free: captures `git diff` of /workspace as our answer
+  # Code-intelligence tools backed by the pre-computed code graph + embeddings
+  - search_similar_code
+  - get_code_neighbors
+  - get_code_subgraph   # advertised by the harness task prompt; an undeclared tool call ends the task with score 0

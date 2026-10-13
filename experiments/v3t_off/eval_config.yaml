@@ -1,0 +1,10 @@
+# Per-task budgets read by the scorer (only these four keys under `evaluation:` are used).
+# The whole run (~120 hidden tasks, one after another) must finish in 12 hours.
+#   Worst case: 120 x (5.0 min + ~0.5 min setup/verification) + startup ~= 11.2 h.
+# Thinking makes each model call slower (~8.7 s on Kaggle 4xL4, forum 746250), so fewer calls
+# fit in the time cap; 30 counted calls is about what 5 minutes allows.
+evaluation:
+  max_time_minutes: 5.0
+  max_tool_calls: 30
+  max_turns: 80
+  timeout_seconds: 180

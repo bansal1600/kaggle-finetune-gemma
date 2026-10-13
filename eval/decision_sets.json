@@ -1,0 +1,23 @@
+{
+ "_about": "Task sets for LoRA-vs-control decisions. dev_fair = core + fixable from eval/fairness.json (the 15 unfair dev tasks never pass). dev_dec (added after the thinking-on run) also drops fixable tasks that no run has ever solved.",
+ "dev_fair": [
+  "fastapi_13920",
+  "fastapi_14616",
+  "fastapi_14786",
+  "fastapi_14791",
+  "fastapi_14794",
+  "fastapi_14873",
+  "fastapi_14964",
+  "fastapi_14986",
+  "fastapi_15589",
+  "requests_7315",
+  "requests_7427",
+  "rich_3882",
+  "rich_3894",
+  "rich_3905",
+  "rich_3935",
+  "rich_4075",
+  "rich_4076",
+  "rich_4077"
+ ]
+}

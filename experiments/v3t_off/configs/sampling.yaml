@@ -1,0 +1,14 @@
+# Generation (sampling) parameters for the root agent.
+# See concepts.md -> "Sampling parameters", "Thinking / reasoning tokens", "Context window".
+temperature: 1.0          # Gemma's recommended sampling (model card): temp 1.0, top_p 0.95, top_k 64
+top_p: 0.95
+top_k: 64
+# Room for up to 4,096 thinking tokens plus the visible reply in one call. vLLM rejects a request
+# when prompt + max_output_tokens > 32,768, so this leaves ~24k tokens of history.
+max_output_tokens: 8192
+thinking_config:
+  # Thinking ON, with thought summaries kept. A 129-task public sweep (forum 746250) resolved
+  # 23/129 with thinking off vs 48-51/129 with thinking on (budget 2,048-4,096). Note: on
+  # adk_submission 0.2.13, include_thoughts: false alone no longer disables thinking.
+  include_thoughts: false
+  thinking_budget: 0       # thinking off: the only difference from v3t_think
