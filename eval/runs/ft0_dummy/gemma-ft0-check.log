@@ -1,0 +1,45 @@
+[{"stream_name":"stdout","time":1.659825293,"data":"Installing 41 harness wheels...\n"}
+,{"stream_name":"stdout","time":103.681064317,"data":"\n"}
+,{"stream_name":"stdout","time":103.681095052,"data":"=== S2_r16_080: --model /kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2 --host 127.0.0.1 --port 8000 --max-model-len 32768 --dtype bfloat16 --gpu-memory-utilization 0.8 --tensor-parallel-size 4 --enable-auto-tool-choice --tool-call-parser gemma4 --reasoning-parser gemma4 --reasoning-config {\"reasoning_start_str\": \"\u003c|channel\u003e\", \"reasoning_end_str\": \"\u003cchannel|\u003e\"} --no-scheduler-reserve-full-isl --enable-lora --max-loras 1 --max-lora-rank 16 --lora-modules ft0_r16=/tmp/ft0_sub/ft0_r16/adapters/ft0_r16\n"}
+,{"stream_name":"stdout","time":529.253682934,"data":"  d: {\"ok\": true, \"cache_config_info\": [\"vllm:cache_config_info{_block_size_resolved=\\\"True\\\",block_size=\\\"16\\\",cache_dtype=\\\"auto\\\",calculate_kv_scales=\\\"False\\\",cpu_kvcache_space_bytes=\\\"None\\\",enable_prefix_caching=\\\"True\\\",engine=\\\"0\\\",gpu_memory_utilization=\\\"0.8\\\",is_attention_free=\\\"False\\\",kv_cache_dtype_skip_layers=\\\"[]\\\",kv_cache_memory_bytes=\\\"None\\\",kv_offloading_backend=\\\"native\\\",kv_offlo\n"}
+,{"stream_name":"stdout","time":536.801560812,"data":"  c: {\"text\": {\"base1\": \"    \\\"\\\"\\\" own same same samethoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthought\", \"base2\": \"    \\\"\\\"\\\" own same same samethoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthought\", \"ad1\": \"     own////////////////////////////////////////////////////////////\", \"ad2\": \"     own/////////////////////////////\n"}
+,{"stream_name":"stdout","time":596.459994767,"data":"  a: {\"base\": {\"ok\": true, \"usage\": {\"prompt_tokens\": 28000, \"total_tokens\": 28256, \"completion_tokens\": 256, \"prompt_tokens_details\": null}, \"s\": 29}, \"adapter\": {\"ok\": true, \"usage\": {\"prompt_tokens\": 28000, \"total_tokens\": 28256, \"completion_tokens\": 256, \"prompt_tokens_details\": null}, \"s\": 30}, \"ok\": true, \"seconds\": 60}\n"}
+,{"stream_name":"stdout","time":728.737300047,"data":"  b: {\"base\": [{\"ttft_s\": 6.79, \"tokens\": 512, \"decode_tok_s\": 35.76}, {\"ttft_s\": 6.82, \"tokens\": 512, \"decode_tok_s\": 35.77}, {\"ttft_s\": 6.82, \"tokens\": 512, \"decode_tok_s\": 35.72}], \"adapter\": [{\"ttft_s\": 7.02, \"tokens\": 512, \"decode_tok_s\": 31.89}, {\"ttft_s\": 7.03, \"tokens\": 512, \"decode_tok_s\": 32.08}, {\"ttft_s\": 7.02, \"tokens\": 512, \"decode_tok_s\": 32.11}], \"median_tok_s\": {\"base\": 35.76, \"adapter\n"}
+,{"stream_name":"stdout","time":730.44656378,"data":"    16384_base: {'ok': False, 'error': 'RuntimeError(\\'HTTP 500: {\"error\":{\"message\":\"EngineCore encountered an issue. See stack trace (above) for the root cause.\",\"type\":\"InternalServerError\",\"param\":null,\"code\":500}}\\')', 's': 2, 'start_mib': [18875, 18875, 18875, 18875], 'peak_mib': [21175, 21175, 21175, 21175]}\n"}
+,{"stream_name":"stdout","time":730.448428356,"data":"  e: {\"16384_base\": {\"ok\": false, \"error\": \"RuntimeError('HTTP 500: {\\\"error\\\":{\\\"message\\\":\\\"EngineCore encountered an issue. See stack trace (above) for the root cause.\\\",\\\"type\\\":\\\"InternalServerError\\\",\\\"param\\\":null,\\\"code\\\":500}}')\", \"s\": 2, \"start_mib\": [18875, 18875, 18875, 18875], \"peak_mib\": [21175, 21175, 21175, 21175], \"engine_died\": true}, \"ok\": false, \"seconds\": 2}\n"}
+,{"stream_name":"stderr","time":740.454350653,"data":"WARNING:adk_submission.server:Inference server did not terminate within 10.0s; killing...\n"}
+,{"stream_name":"stdout","time":760.571232022,"data":"\n"}
+,{"stream_name":"stdout","time":760.571263453,"data":"=== S1_r16_090: --model /kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2 --host 127.0.0.1 --port 8000 --max-model-len 32768 --dtype bfloat16 --gpu-memory-utilization 0.9 --tensor-parallel-size 4 --enable-auto-tool-choice --tool-call-parser gemma4 --reasoning-parser gemma4 --reasoning-config {\"reasoning_start_str\": \"\u003c|channel\u003e\", \"reasoning_end_str\": \"\u003cchannel|\u003e\"} --no-scheduler-reserve-full-isl --enable-lora --max-loras 1 --max-lora-rank 16 --lora-modules ft0_r16=/tmp/ft0_sub/ft0_r16/adapters/ft0_r16\n"}
+,{"stream_name":"stdout","time":847.657494193,"data":"\n"}
+,{"stream_name":"stdout","time":847.657529625,"data":"=== S2p_r16_080: --model /kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2 --host 127.0.0.1 --port 8000 --max-model-len 32768 --dtype bfloat16 --gpu-memory-utilization 0.8 --tensor-parallel-size 4 --enable-auto-tool-choice --tool-call-parser gemma4 --reasoning-parser gemma4 --reasoning-config {\"reasoning_start_str\": \"\u003c|channel\u003e\", \"reasoning_end_str\": \"\u003cchannel|\u003e\"} --no-scheduler-reserve-full-isl --enable-lora --max-loras 1 --max-lora-rank 16 --lora-modules ft0_r16=/tmp/ft0_sub/ft0_r16/adapters/ft0_r16 --max-num-batched-tokens 512\n"}
+,{"stream_name":"stdout","time":942.755283136,"data":"\n"}
+,{"stream_name":"stdout","time":942.755312137,"data":"{\n"}
+,{"stream_name":"stdout","time":942.755315764,"data":" \"S2_r16_080\": {\n"}
+,{"stream_name":"stdout","time":942.755318667,"data":"  \"pass\": false,\n"}
+,{"stream_name":"stdout","time":942.755321293,"data":"  \"started\": true,\n"}
+,{"stream_name":"stdout","time":942.75532377,"data":"  \"lora_flags\": true,\n"}
+,{"stream_name":"stdout","time":942.755326207,"data":"  \"no_sampler_warmup_oom\": true,\n"}
+,{"stream_name":"stdout","time":942.755328683,"data":"  \"concurrency_32k_ge_1\": true,\n"}
+,{"stream_name":"stdout","time":942.755331389,"data":"  \"long_28k_both_names\": true,\n"}
+,{"stream_name":"stdout","time":942.755333712,"data":"  \"adapter_applied_and_deterministic\": false,\n"}
+,{"stream_name":"stdout","time":942.755336121,"data":"  \"adapter_decode_ge_85pct\": true\n"}
+,{"stream_name":"stdout","time":942.75533865,"data":" },\n"}
+,{"stream_name":"stdout","time":942.755340902,"data":" \"S1_r16_090\": {\n"}
+,{"stream_name":"stdout","time":942.755343204,"data":"  \"pass\": false,\n"}
+,{"stream_name":"stdout","time":942.755345503,"data":"  \"started\": false,\n"}
+,{"stream_name":"stdout","time":942.75534786,"data":"  \"lora_flags\": true,\n"}
+,{"stream_name":"stdout","time":942.75535012,"data":"  \"no_sampler_warmup_oom\": true,\n"}
+,{"stream_name":"stdout","time":942.755352542,"data":"  \"concurrency_32k_ge_1\": false,\n"}
+,{"stream_name":"stdout","time":942.75535491,"data":"  \"long_28k_both_names\": false,\n"}
+,{"stream_name":"stdout","time":942.75535733,"data":"  \"adapter_applied_and_deterministic\": false\n"}
+,{"stream_name":"stdout","time":942.755359685,"data":" },\n"}
+,{"stream_name":"stdout","time":942.755362015,"data":" \"FT0_PASS\": false,\n"}
+,{"stream_name":"stdout","time":942.755364412,"data":" \"parity_plan\": \"slices_4k\"\n"}
+,{"stream_name":"stdout","time":942.755366858,"data":"}\n"}
+,{"stream_name":"stderr","time":946.950916286,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":946.95096056,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":947.140295179,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":947.14031321,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":947.88707974,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":948.936213423,"data":"[NbConvertApp] Writing 556742 bytes to __results__.html\n"}
+]

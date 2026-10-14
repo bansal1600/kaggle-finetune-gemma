@@ -65,3 +65,28 @@ deadline is 2026-12-02.
 - **The sure gain is elsewhere.** Thinking-on (Stage 2) is the step most likely to raise the
   leaderboard score. The sure gain from fine-tuning is a working, measured pipeline and
   understanding how each stage works.
+
+## FT-0 results
+
+**Run 1 (2026-10-13, dummy rank-16 adapter, `eval/runs/ft0_dummy`): inconclusive, test bug found.**
+
+What it showed at `gpu_memory_utilization` 0.80, with `--enable-lora --max-loras 1 --max-lora-rank 16`:
+- The scorer's vLLM **starts** with a Gemma 4 adapter (about 7 minutes).
+- The adapter **is applied**. Greedy output and first-token logprobs differ from the base model
+  (up to 0.56 in the top 5). The dummy has random weights, so garbage text is expected.
+- **KV cache** holds 27,712 tokens but 5.2× concurrent 32k-token requests: Gemma 4's sliding-window
+  layers need much less cache than full attention. So the old "~7.6k tokens with any LoRA" bug is
+  not present. A **28k-token prompt completes** on both the base and adapter names.
+- **Decode speed** with the adapter is 32.1 tokens/s against 35.8 for base (90%).
+- A **16k-token `prompt_logprobs` request crashes the engine** (GPU memory peaks at 21.2 of 22.0 GiB).
+  That is the measurement trick we planned to use for the train/serve parity check, not something
+  the scorer does. The parity check will use shorter slices.
+
+What it did not show: 0.90 memory utilization (the adk default, possibly the scorer's value). The two
+later servers failed to start with "Free memory 1.14/22.03 GiB": the engine crash in test e left
+worker processes holding the GPUs. That is a bug in our test, not in LoRA. Also the strict
+"repeats exactly" threshold (1e-3) was too tight for LoRA kernels (measured noise 3e-3).
+
+**Fixes for run 2:** kill leftover processes and wait for empty GPUs between servers; test the
+0.90 server first and without test e; try `prompt_logprobs` from 2k up to 16k tokens and keep the
+largest size that works; allow 1e-2 repeat noise for adapter outputs.

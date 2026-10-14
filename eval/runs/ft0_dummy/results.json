@@ -1,0 +1,404 @@
+{
+ "mode": "dummy",
+ "servers": {
+  "S2_r16_080": {
+   "gmu": 0.8,
+   "started": true,
+   "tests": {
+    "d": {
+     "ok": true,
+     "cache_config_info": [
+      "vllm:cache_config_info{_block_size_resolved=\"True\",block_size=\"16\",cache_dtype=\"auto\",calculate_kv_scales=\"False\",cpu_kvcache_space_bytes=\"None\",enable_prefix_caching=\"True\",engine=\"0\",gpu_memory_utilization=\"0.8\",is_attention_free=\"False\",kv_cache_dtype_skip_layers=\"[]\",kv_cache_memory_bytes=\"None\",kv_offloading_backend=\"native\",kv_offloading_size=\"None\",kv_sharing_fast_prefill=\"False\",mamba_block_size=\"None\",mamba_cache_dtype=\"auto\",mamba_cache_mode=\"none\",mamba_page_size_padded=\"None\",mamba_ssm_cache_dtype=\"auto\",num_cpu_blocks=\"None\",num_gpu_blocks=\"10394\",num_gpu_blocks_override=\"None\",prefix_caching_hash_algo=\"sha256\",sliding_window=\"None\",user_specified_block_size=\"False\"} 1.0"
+     ],
+     "available_kv_gib": [
+      6.34
+     ],
+     "kv_tokens": [
+      27712
+     ],
+     "max_concurrency_32k": [
+      5.23
+     ],
+     "seconds": 0
+    },
+    "c": {
+     "text": {
+      "base1": "    \"\"\" own same same samethoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthought",
+      "base2": "    \"\"\" own same same samethoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthoughtthought",
+      "ad1": "     own////////////////////////////////////////////////////////////",
+      "ad2": "     own////////////////////////////////////////////////////////////"
+     },
+     "diff_base_base": 0.0,
+     "diff_ad_ad": 0.0029512643814086914,
+     "diff_base_ad": 0.06199723482131958,
+     "top5_max_diff_base_ad": 0.5619971752166748,
+     "same_text_base_ad": false,
+     "deterministic": false,
+     "applied": true,
+     "ok": false,
+     "seconds": 8
+    },
+    "a": {
+     "base": {
+      "ok": true,
+      "usage": {
+       "prompt_tokens": 28000,
+       "total_tokens": 28256,
+       "completion_tokens": 256,
+       "prompt_tokens_details": null
+      },
+      "s": 29
+     },
+     "adapter": {
+      "ok": true,
+      "usage": {
+       "prompt_tokens": 28000,
+       "total_tokens": 28256,
+       "completion_tokens": 256,
+       "prompt_tokens_details": null
+      },
+      "s": 30
+     },
+     "ok": true,
+     "seconds": 60
+    },
+    "b": {
+     "base": [
+      {
+       "ttft_s": 6.79,
+       "tokens": 512,
+       "decode_tok_s": 35.76
+      },
+      {
+       "ttft_s": 6.82,
+       "tokens": 512,
+       "decode_tok_s": 35.77
+      },
+      {
+       "ttft_s": 6.82,
+       "tokens": 512,
+       "decode_tok_s": 35.72
+      }
+     ],
+     "adapter": [
+      {
+       "ttft_s": 7.02,
+       "tokens": 512,
+       "decode_tok_s": 31.89
+      },
+      {
+       "ttft_s": 7.03,
+       "tokens": 512,
+       "decode_tok_s": 32.08
+      },
+      {
+       "ttft_s": 7.02,
+       "tokens": 512,
+       "decode_tok_s": 32.11
+      }
+     ],
+     "median_tok_s": {
+      "base": 35.76,
+      "adapter": 32.08
+     },
+     "ratio_adapter_base": 0.897,
+     "ok": true,
+     "seconds": 132
+    },
+    "e": {
+     "16384_base": {
+      "ok": false,
+      "error": "RuntimeError('HTTP 500: {\"error\":{\"message\":\"EngineCore encountered an issue. See stack trace (above) for the root cause.\",\"type\":\"InternalServerError\",\"param\":null,\"code\":500}}')",
+      "s": 2,
+      "start_mib": [
+       18875,
+       18875,
+       18875,
+       18875
+      ],
+      "peak_mib": [
+       21175,
+       21175,
+       21175,
+       21175
+      ],
+      "engine_died": true
+     },
+     "ok": false,
+     "seconds": 2
+    }
+   },
+   "adapters": {
+    "ft0_r16": 16
+   },
+   "cmd": "--model /kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2 --host 127.0.0.1 --port 8000 --max-model-len 32768 --dtype bfloat16 --gpu-memory-utilization 0.8 --tensor-parallel-size 4 --enable-auto-tool-choice --tool-call-parser gemma4 --reasoning-parser gemma4 --reasoning-config {\"reasoning_start_str\": \"<|channel>\", \"reasoning_end_str\": \"<channel|>\"} --no-scheduler-reserve-full-isl --enable-lora --max-loras 1 --max-lora-rank 16 --lora-modules ft0_r16=/tmp/ft0_sub/ft0_r16/adapters/ft0_r16",
+   "vllm_config": {
+    "model": "/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2",
+    "port": 8000,
+    "host": "127.0.0.1",
+    "tool_call_parser": "gemma4",
+    "reasoning_parser": "gemma4",
+    "reasoning_config": null,
+    "default_chat_template_kwargs": null,
+    "limit_mm_per_prompt": null,
+    "speculative_config": null,
+    "kv_cache_dtype": null,
+    "max_model_len": 32768,
+    "dtype": "bfloat16",
+    "gpu_memory_utilization": 0.8,
+    "enable_auto_tool_choice": true,
+    "enable_lora": true,
+    "max_loras": 8,
+    "max_lora_rank": 128,
+    "scheduler_reserve_full_isl": false,
+    "extra_args": [],
+    "startup_timeout": 1200,
+    "tensor_parallel_size": 4,
+    "health_check_interval": 1.0,
+    "nvidia_lib_dir": "/usr/local/nvidia/lib64"
+   },
+   "startup_s": 426,
+   "served_models": [
+    "/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2",
+    "ft0_r16"
+   ],
+   "engine_died_during": "e",
+   "available_kv_gib": [
+    6.34
+   ],
+   "kv_tokens": [
+    27712
+   ],
+   "max_concurrency_32k": [
+    5.23
+   ],
+   "sampler_warmup_oom": false,
+   "oom_lines": [
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "cated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)', please check the stack trace above for the root cause"
+   ],
+   "lora_lines": [
+    "ct/2', 'dtype': 'bfloat16', 'max_model_len': 32768, 'reasoning_parser': 'gemma4', 'tensor_parallel_size': 4, 'gpu_memory_utilization': 0.8, 'enable_lora': True, 'scheduler_reserve_full_isl': False, 'reasoning_config': ReasoningConfig(reasoning_start_str='<|channel>', reasoning_end_str='<channel|>')}",
+    "_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}",
+    "(Worker_TP1 pid=615) INFO 10-13 23:00:58 [model_manager.py:176] Gemma4ForConditionalGeneration supports adding LoRA to the tower modules. If needed, please set `enable_tower_connector_lora=True`.",
+    "(Worker_TP3 pid=617) INFO 10-13 23:00:58 [model_manager.py:176] Gemma4ForConditionalGeneration supports adding LoRA to the tower modules. If needed, please set `enable_tower_connector_lora=True`.",
+    "(Worker_TP0 pid=614) INFO 10-13 23:00:58 [model_manager.py:176] Gemma4ForConditionalGeneration supports adding LoRA to the tower modules. If needed, please set `enable_tower_connector_lora=True`.",
+    "(Worker_TP2 pid=616) INFO 10-13 23:00:58 [model_manager.py:176] Gemma4ForConditionalGeneration supports adding LoRA to the tower modules. If needed, please set `enable_tower_connector_lora=True`.",
+    "(Worker_TP0 pid=614) WARNING 10-13 23:03:18 [utils.py:267] Using default LoRA kernel configs",
+    "(APIServer pid=86) INFO 10-13 23:04:46 [serving.py:201] Loaded new LoRA adapter: name 'ft0_r16', path '/tmp/ft0_sub/ft0_r16/adapters/ft0_r16'",
+    " WARNING 10-13 23:05:11 [input_processor.py:149] vLLM has deprecated support for supporting different tokenizers for different LoRAs. By default, vLLM uses base model's tokenizer. If you are using a LoRA with its own tokenizer, consider specifying `--tokenizer [lora_path]` to use the LoRA tokenizer.",
+    "emm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}, ",
+    "mon_prefix_blocks=[0, 0, 0, 0, 0, 64], finished_req_ids=[], free_encoder_mm_hashes=[], preempted_req_ids=[], has_structured_output_requests=false, pending_structured_output_tokens=false, num_invalid_spec_tokens=null, kv_connector_metadata=null, ec_connector_metadata=null, new_block_ids_to_zero=null)",
+    ", requests=0, queries=0, hits=0, preempted_requests=0, preempted_queries=0, preempted_hits=0), connector_prefix_cache_stats=None, kv_cache_eviction_events=[], spec_decoding_stats=None, kv_connector_stats=None, waiting_lora_adapters={}, running_lora_adapters={}, cudagraph_stats=None, perf_stats=None)"
+   ],
+   "error_lines": [
+    "(Worker_TP3 pid=617) ERROR 10-13 23:08:26 [multiproc_executor.py:949] Traceback (most recent call last):",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "(Worker_TP3 pid=617) ERROR 10-13 23:08:26 [multiproc_executor.py:949] Traceback (most recent call last):",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "(Worker_TP1 pid=615) ERROR 10-13 23:08:26 [multiproc_executor.py:949] Traceback (most recent call last):",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "(Worker_TP1 pid=615) ERROR 10-13 23:08:26 [multiproc_executor.py:949] Traceback (most recent call last):",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "(Worker_TP0 pid=614) ERROR 10-13 23:08:26 [multiproc_executor.py:949] Traceback (most recent call last):",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "(Worker_TP0 pid=614) ERROR 10-13 23:08:26 [multiproc_executor.py:949] Traceback (most recent call last):",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "(Worker_TP2 pid=616) ERROR 10-13 23:08:26 [multiproc_executor.py:949] Traceback (most recent call last):",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "(Worker_TP2 pid=616) ERROR 10-13 23:08:26 [multiproc_executor.py:949] Traceback (most recent call last):",
+    "Graphs), and 86.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+    "(EngineCore pid=453) ERROR 10-13 23:08:26 [core.py:1110] Traceback (most recent call last):",
+    "(EngineCore pid=453) ERROR 10-13 23:08:26 [core.py:1110]     raise RuntimeError(",
+    "cated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)', please check the stack trace above for the root cause",
+    "(APIServer pid=86) ERROR 10-13 23:08:26 [async_llm.py:707] Traceback (most recent call last):",
+    "(APIServer pid=86) ERROR 10-13 23:08:26 [async_llm.py:707] vllm.v1.engine.exceptions.EngineDeadError: EngineCore encountered an issue. See stack trace (above) for the root cause.",
+    "(APIServer pid=86) INFO:     127.0.0.1:52538 - \"POST /v1/completions HTTP/1.1\" 500 Internal Server Error"
+   ]
+  },
+  "S1_r16_090": {
+   "gmu": 0.9,
+   "started": false,
+   "tests": {},
+   "adapters": {
+    "ft0_r16": 16
+   },
+   "cmd": "--model /kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2 --host 127.0.0.1 --port 8000 --max-model-len 32768 --dtype bfloat16 --gpu-memory-utilization 0.9 --tensor-parallel-size 4 --enable-auto-tool-choice --tool-call-parser gemma4 --reasoning-parser gemma4 --reasoning-config {\"reasoning_start_str\": \"<|channel>\", \"reasoning_end_str\": \"<channel|>\"} --no-scheduler-reserve-full-isl --enable-lora --max-loras 1 --max-lora-rank 16 --lora-modules ft0_r16=/tmp/ft0_sub/ft0_r16/adapters/ft0_r16",
+   "vllm_config": {
+    "model": "/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2",
+    "port": 8000,
+    "host": "127.0.0.1",
+    "tool_call_parser": "gemma4",
+    "reasoning_parser": "gemma4",
+    "reasoning_config": null,
+    "default_chat_template_kwargs": null,
+    "limit_mm_per_prompt": null,
+    "speculative_config": null,
+    "kv_cache_dtype": null,
+    "max_model_len": 32768,
+    "dtype": "bfloat16",
+    "gpu_memory_utilization": 0.9,
+    "enable_auto_tool_choice": true,
+    "enable_lora": true,
+    "max_loras": 8,
+    "max_lora_rank": 128,
+    "scheduler_reserve_full_isl": false,
+    "extra_args": [],
+    "startup_timeout": 1200,
+    "tensor_parallel_size": 4,
+    "health_check_interval": 1.0,
+    "nvidia_lib_dir": "/usr/local/nvidia/lib64"
+   },
+   "error": "^^^^\\n(APIServer pid=1948)   File \"/usr/lib/python3.12/contextlib.py\", line 210, in __aenter__\\n(APIServer pid=1948)     return await anext(self.gen)\\n(APIServer pid=1948)            ^^^^^^^^^^^^^^^^^^^^^\\n(APIServer pid=1948)   File \"/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py\", line 100, in build_async_engine_client\\n(APIServer pid=1948)     async with build_async_engine_client_from_engine_args(\\n(APIServer pid=1948)                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n(APIServer pid=1948)   File \"/usr/lib/python3.12/contextlib.py\", line 210, in __aenter__\\n(APIServer pid=1948)     return await anext(self.gen)\\n(APIServer pid=1948)            ^^^^^^^^^^^^^^^^^^^^^\\n(APIServer pid=1948)   File \"/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py\", line 136, in build_async_engine_client_from_engine_args\\n(APIServer pid=1948)     async_llm = AsyncLLM.from_vllm_config(\\n(APIServer pid=1948)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\\n(APIServer pid=1948)   File \"/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/async_llm.py\", line 225, in from_vllm_config\\n(APIServer pid=1948)     return cls(\\n(APIServer pid=1948)            ^^^^\\n(APIServer pid=1948)   File \"/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/async_llm.py\", line 154, in __init__\\n(APIServer pid=1948)     self.engine_core = EngineCoreClient.make_async_mp_client(\\n(APIServer pid=1948)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n(APIServer pid=1948)   File \"/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py\", line 130, in make_async_mp_client\\n(APIServer pid=1948)     return AsyncMPClient(*client_args)\\n(APIServer pid=1948)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n(APIServer pid=1948)   File \"/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py\", line 887, in __init__\\n(APIServer pid=1948)     super().__init__(\\n(APIServer pid=1948)   File \"/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py\", line 535, in __init__\\n(APIServer pid=1948)     with launch_core_engines(\\n(APIServer pid=1948)          ^^^^^^^^^^^^^^^^^^^^\\n(APIServer pid=1948)   File \"/usr/lib/python3.12/contextlib.py\", line 144, in __exit__\\n(APIServer pid=1948)     next(self.gen)\\n(APIServer pid=1948)   File \"/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/utils.py\", line 998, in launch_core_engines\\n(APIServer pid=1948)     wait_for_engine_startup(\\n(APIServer pid=1948)   File \"/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/utils.py\", line 1057, in wait_for_engine_startup\\n(APIServer pid=1948)     raise RuntimeError(\\n(APIServer pid=1948) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\\n/usr/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked shared_memory objects to clean up at shutdown\\n  warnings.warn(\\'resource_tracker: There appear to be %d \\'\\n')",
+   "available_kv_gib": [],
+   "kv_tokens": [],
+   "max_concurrency_32k": [],
+   "sampler_warmup_oom": false,
+   "oom_lines": [],
+   "lora_lines": [
+    "other/gemma-4-31b-it-qat-w4a16-ct/2', 'dtype': 'bfloat16', 'max_model_len': 32768, 'reasoning_parser': 'gemma4', 'tensor_parallel_size': 4, 'enable_lora': True, 'scheduler_reserve_full_isl': False, 'reasoning_config': ReasoningConfig(reasoning_start_str='<|channel>', reasoning_end_str='<channel|>')}",
+    "_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}"
+   ],
+   "error_lines": [
+    "(Worker pid=2323) ERROR 10-13 23:09:57 [multiproc_executor.py:857] Traceback (most recent call last):",
+    "(Worker pid=2323) ERROR 10-13 23:09:57 [multiproc_executor.py:857]     raise ValueError(",
+    "(Worker pid=2323) ERROR 10-13 23:09:57 [multiproc_executor.py:857] ValueError: Free memory on device cuda:2 (1.14/22.03 GiB) on startup is less than desired GPU memory utilization (0.9, 19.83 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.",
+    "(Worker pid=2324) ERROR 10-13 23:09:57 [multiproc_executor.py:857] Traceback (most recent call last):",
+    "(Worker pid=2324) ERROR 10-13 23:09:57 [multiproc_executor.py:857]     raise ValueError(",
+    "(Worker pid=2324) ERROR 10-13 23:09:57 [multiproc_executor.py:857] ValueError: Free memory on device cuda:3 (1.14/22.03 GiB) on startup is less than desired GPU memory utilization (0.9, 19.83 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.",
+    "(Worker pid=2321) ERROR 10-13 23:09:57 [multiproc_executor.py:857] Traceback (most recent call last):",
+    "(Worker pid=2321) ERROR 10-13 23:09:57 [multiproc_executor.py:857]     raise ValueError(",
+    "(Worker pid=2321) ERROR 10-13 23:09:57 [multiproc_executor.py:857] ValueError: Free memory on device cuda:0 (1.14/22.03 GiB) on startup is less than desired GPU memory utilization (0.9, 19.83 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.",
+    "(Worker pid=2322) ERROR 10-13 23:09:57 [multiproc_executor.py:857] Traceback (most recent call last):",
+    "(Worker pid=2322) ERROR 10-13 23:09:57 [multiproc_executor.py:857]     raise ValueError(",
+    "(Worker pid=2322) ERROR 10-13 23:09:57 [multiproc_executor.py:857] ValueError: Free memory on device cuda:1 (1.14/22.03 GiB) on startup is less than desired GPU memory utilization (0.9, 19.83 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.",
+    "(EngineCore pid=2160) ERROR 10-13 23:09:59 [core.py:1108] Traceback (most recent call last):",
+    "(EngineCore pid=2160) Traceback (most recent call last):",
+    "(APIServer pid=1948) Traceback (most recent call last):",
+    "(APIServer pid=1948)     raise RuntimeError(",
+    "(APIServer pid=1948) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}"
+   ]
+  },
+  "S2p_r16_080": {
+   "gmu": 0.8,
+   "started": false,
+   "tests": {},
+   "adapters": {
+    "ft0_r16": 16
+   },
+   "cmd": "--model /kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2 --host 127.0.0.1 --port 8000 --max-model-len 32768 --dtype bfloat16 --gpu-memory-utilization 0.8 --tensor-parallel-size 4 --enable-auto-tool-choice --tool-call-parser gemma4 --reasoning-parser gemma4 --reasoning-config {\"reasoning_start_str\": \"<|channel>\", \"reasoning_end_str\": \"<channel|>\"} --no-scheduler-reserve-full-isl --enable-lora --max-loras 1 --max-lora-rank 16 --lora-modules ft0_r16=/tmp/ft0_sub/ft0_r16/adapters/ft0_r16 --max-num-batched-tokens 512",
+   "vllm_config": {
+    "model": "/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2",
+    "port": 8000,
+    "host": "127.0.0.1",
+    "tool_call_parser": "gemma4",
+    "reasoning_parser": "gemma4",
+    "reasoning_config": null,
+    "default_chat_template_kwargs": null,
+    "limit_mm_per_prompt": null,
+    "speculative_config": null,
+    "kv_cache_dtype": null,
+    "max_model_len": 32768,
+    "dtype": "bfloat16",
+    "gpu_memory_utilization": 0.8,
+    "enable_auto_tool_choice": true,
+    "enable_lora": true,
+    "max_loras": 8,
+    "max_lora_rank": 128,
+    "scheduler_reserve_full_isl": false,
+    "extra_args": [
+     "--max-num-batched-tokens",
+     "512"
+    ],
+    "startup_timeout": 1200,
+    "tensor_parallel_size": 4,
+    "health_check_interval": 1.0,
+    "nvidia_lib_dir": "/usr/local/nvidia/lib64"
+   },
+   "error": "^^^^\\n(APIServer pid=2511)   File \"/usr/lib/python3.12/contextlib.py\", line 210, in __aenter__\\n(APIServer pid=2511)     return await anext(self.gen)\\n(APIServer pid=2511)            ^^^^^^^^^^^^^^^^^^^^^\\n(APIServer pid=2511)   File \"/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py\", line 100, in build_async_engine_client\\n(APIServer pid=2511)     async with build_async_engine_client_from_engine_args(\\n(APIServer pid=2511)                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n(APIServer pid=2511)   File \"/usr/lib/python3.12/contextlib.py\", line 210, in __aenter__\\n(APIServer pid=2511)     return await anext(self.gen)\\n(APIServer pid=2511)            ^^^^^^^^^^^^^^^^^^^^^\\n(APIServer pid=2511)   File \"/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py\", line 136, in build_async_engine_client_from_engine_args\\n(APIServer pid=2511)     async_llm = AsyncLLM.from_vllm_config(\\n(APIServer pid=2511)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\\n(APIServer pid=2511)   File \"/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/async_llm.py\", line 225, in from_vllm_config\\n(APIServer pid=2511)     return cls(\\n(APIServer pid=2511)            ^^^^\\n(APIServer pid=2511)   File \"/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/async_llm.py\", line 154, in __init__\\n(APIServer pid=2511)     self.engine_core = EngineCoreClient.make_async_mp_client(\\n(APIServer pid=2511)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n(APIServer pid=2511)   File \"/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py\", line 130, in make_async_mp_client\\n(APIServer pid=2511)     return AsyncMPClient(*client_args)\\n(APIServer pid=2511)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n(APIServer pid=2511)   File \"/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py\", line 887, in __init__\\n(APIServer pid=2511)     super().__init__(\\n(APIServer pid=2511)   File \"/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core_client.py\", line 535, in __init__\\n(APIServer pid=2511)     with launch_core_engines(\\n(APIServer pid=2511)          ^^^^^^^^^^^^^^^^^^^^\\n(APIServer pid=2511)   File \"/usr/lib/python3.12/contextlib.py\", line 144, in __exit__\\n(APIServer pid=2511)     next(self.gen)\\n(APIServer pid=2511)   File \"/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/utils.py\", line 998, in launch_core_engines\\n(APIServer pid=2511)     wait_for_engine_startup(\\n(APIServer pid=2511)   File \"/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/utils.py\", line 1057, in wait_for_engine_startup\\n(APIServer pid=2511)     raise RuntimeError(\\n(APIServer pid=2511) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\\n/usr/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked shared_memory objects to clean up at shutdown\\n  warnings.warn(\\'resource_tracker: There appear to be %d \\'\\n')",
+   "available_kv_gib": [],
+   "kv_tokens": [],
+   "max_concurrency_32k": [],
+   "sampler_warmup_oom": false,
+   "oom_lines": [],
+   "lora_lines": [
+    "x_model_len': 32768, 'reasoning_parser': 'gemma4', 'tensor_parallel_size': 4, 'gpu_memory_utilization': 0.8, 'enable_lora': True, 'max_num_batched_tokens': 512, 'scheduler_reserve_full_isl': False, 'reasoning_config': ReasoningConfig(reasoning_start_str='<|channel>', reasoning_end_str='<channel|>')}",
+    "_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}"
+   ],
+   "error_lines": [
+    "(Worker pid=2884) ERROR 10-13 23:11:32 [multiproc_executor.py:857] Traceback (most recent call last):",
+    "(Worker pid=2884) ERROR 10-13 23:11:32 [multiproc_executor.py:857]     raise ValueError(",
+    "(Worker pid=2884) ERROR 10-13 23:11:32 [multiproc_executor.py:857] ValueError: Free memory on device cuda:0 (1.14/22.03 GiB) on startup is less than desired GPU memory utilization (0.8, 17.63 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.",
+    "(Worker pid=2887) ERROR 10-13 23:11:32 [multiproc_executor.py:857] Traceback (most recent call last):",
+    "(Worker pid=2887) ERROR 10-13 23:11:32 [multiproc_executor.py:857]     raise ValueError(",
+    "(Worker pid=2887) ERROR 10-13 23:11:32 [multiproc_executor.py:857] ValueError: Free memory on device cuda:3 (1.14/22.03 GiB) on startup is less than desired GPU memory utilization (0.8, 17.63 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.",
+    "(Worker pid=2886) ERROR 10-13 23:11:32 [multiproc_executor.py:857] Traceback (most recent call last):",
+    "(Worker pid=2886) ERROR 10-13 23:11:32 [multiproc_executor.py:857]     raise ValueError(",
+    "(Worker pid=2886) ERROR 10-13 23:11:32 [multiproc_executor.py:857] ValueError: Free memory on device cuda:2 (1.14/22.03 GiB) on startup is less than desired GPU memory utilization (0.8, 17.63 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.",
+    "(Worker pid=2885) ERROR 10-13 23:11:32 [multiproc_executor.py:857] Traceback (most recent call last):",
+    "(Worker pid=2885) ERROR 10-13 23:11:32 [multiproc_executor.py:857]     raise ValueError(",
+    "(Worker pid=2885) ERROR 10-13 23:11:32 [multiproc_executor.py:857] ValueError: Free memory on device cuda:1 (1.14/22.03 GiB) on startup is less than desired GPU memory utilization (0.8, 17.63 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.",
+    "(EngineCore pid=2723) ERROR 10-13 23:11:34 [core.py:1108] Traceback (most recent call last):",
+    "(EngineCore pid=2723) Traceback (most recent call last):",
+    "(APIServer pid=2511) Traceback (most recent call last):",
+    "(APIServer pid=2511)     raise RuntimeError(",
+    "(APIServer pid=2511) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}"
+   ]
+  }
+ },
+ "adapters": {
+  "ft0_r16": {
+   "dir": "/tmp/ft0_sub/ft0_r16/adapters/ft0_r16",
+   "real": true,
+   "r": 16,
+   "lora_alpha": 32,
+   "max_lora_rank": 16,
+   "scaling": 2.0,
+   "n_tensors": 840,
+   "n_modules": 420,
+   "size_mib": 235.9,
+   "targets": [
+    "down_proj",
+    "gate_proj",
+    "k_proj",
+    "o_proj",
+    "q_proj",
+    "up_proj",
+    "v_proj"
+   ],
+   "ok": true,
+   "errors": [],
+   "warnings": []
+  }
+ },
+ "verdict": {
+  "S2_r16_080": {
+   "pass": false,
+   "started": true,
+   "lora_flags": true,
+   "no_sampler_warmup_oom": true,
+   "concurrency_32k_ge_1": true,
+   "long_28k_both_names": true,
+   "adapter_applied_and_deterministic": false,
+   "adapter_decode_ge_85pct": true
+  },
+  "S1_r16_090": {
+   "pass": false,
+   "started": false,
+   "lora_flags": true,
+   "no_sampler_warmup_oom": true,
+   "concurrency_32k_ge_1": false,
+   "long_28k_both_names": false,
+   "adapter_applied_and_deterministic": false
+  },
+  "FT0_PASS": false,
+  "parity_plan": "slices_4k"
+ }
+}

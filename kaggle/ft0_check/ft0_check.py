@@ -8,8 +8,8 @@ compared on identical memory settings.
 
 MODE=dummy (plan Stage 1, FT-0): a random r16 adapter on all 7 projections with the k_eq_v
 duplicate (adapter_tools.make_dummy; both A and B nonzero so its effect is visible). Servers:
-    S2_r16_080   gmu 0.80, the HARNESS_README value. PASS-critical.
-    S1_r16_090   gmu 0.90, the adk default.
+    S1_r16_090   gmu 0.90, the adk default (run first, without test e).
+    S2_r16_080   gmu 0.80, the HARNESS_README value. PASS-critical (run last: test e may crash it).
     S2p_r16_080  only if test e failed on S2: gmu 0.80 + --max-num-batched-tokens 512, test e only.
     S2b_r8_080   only if S2 did not start for a reason other than the sampler-warmup OOM.
 MODE=real (plan Stage 6, FT-0R + E0 parity): the trained adapter from ADAPTER_SRC as main_lora at
@@ -21,7 +21,7 @@ Tests, riskiest last so an engine crash loses nothing (letters as in the plan):
     c  adapter applied: temperature-0 top-5 logprobs, base name twice and adapter name twice
     a  a 28k-token prompt + 256 output tokens on both names (an old LoRA bug hung such prompts)
     b  streaming decode tok/s at a ~10k prompt, 512 tokens, 3 reps alternating names
-    e  prompt_logprobs on a 16,384- then a 4,096-token prompt, both names, sampling GPU memory:
+    e  prompt_logprobs on 2k, 4k, 8k then 16k-token prompts, both names, sampling GPU memory:
        full-vocabulary prompt logits are memory the vLLM profiler never reserved
     parity  (real mode) mean NLL over labelled tokens, base / adapter / base again
 
@@ -205,9 +205,29 @@ def run_server(name: str, sub: Path, gmu: float, tests: list[str], extra_args: l
         (OUT_DIR / "logs" / f"{name}.log").write_text(log)
         row.update(log_facts(log))
         server.stop()
+        row["gpu_free_after_stop"] = free_gpus()
         save()
-        time.sleep(20)  # let the GPUs free before the next start
     return row
+
+
+def free_gpus(timeout: float = 240.0, limit_mib: int = 1500) -> dict:
+    """Make sure no vLLM process still holds GPU memory before the next server starts.
+
+    The first FT-0 run learned this the hard way: test e crashed the engine, adk's stop() left worker
+    processes alive, and the next two servers died at start-up with "Free memory 1.14/22.03 GiB".
+    So kill any stragglers, then wait until every GPU is (almost) empty.
+    """
+    for pattern in ("VLLM", "vllm", "multiproc_executor"):
+        subprocess.run(["pkill", "-9", "-f", pattern], capture_output=True)
+    t0, used = time.time(), GpuMemory.sample()
+    while time.time() - t0 < timeout and (not used or max(used) > limit_mib):
+        if not used and not shutil.which("nvidia-smi"):
+            break  # no GPU tooling (local dry run)
+        time.sleep(3)
+        used = GpuMemory.sample()
+    ok = bool(used) and max(used) <= limit_mib
+    print(f"    GPUs after stop: used MiB {used} ({'free' if ok else 'STILL BUSY'}) after {time.time() - t0:.0f}s", flush=True)
+    return {"used_mib": used, "free": ok, "waited_s": round(time.time() - t0)}
 
 
 def alive(server) -> bool:
@@ -294,7 +314,7 @@ def test_kv(server, base, adapter) -> dict:
 
 
 def test_applied(server, base, adapter) -> dict:
-    """Same prompt at temperature 0: base twice and adapter twice must each agree (< 1e-3), and base
+    """Same prompt at temperature 0: base twice must agree (< 1e-3), adapter twice (< 1e-2), and base
     vs adapter must differ (text, or > 0.05 in a first-token logprob)."""
     prompt = 'def fibonacci(n):\n    """Return the n-th Fibonacci number."""\n'
     runs = {k: complete(m, prompt, 32, timeout=120, logprobs=5)["choices"][0]
@@ -310,7 +330,9 @@ def test_applied(server, base, adapter) -> dict:
         "top5_max_diff_base_ad": max((abs(top["base1"][t] - top["ad1"][t]) for t in common), default=None),
         "same_text_base_ad": runs["base1"]["text"] == runs["ad1"]["text"],
     }
-    res["deterministic"] = res["diff_base_base"] < 1e-3 and res["diff_ad_ad"] < 1e-3
+    # The dummy adapter's measured run-to-run noise was 3e-3 (bf16 LoRA kernels are not bitwise repeatable)
+    # against an effect of 6e-2, so 1e-2 separates them; the base model itself repeats exactly.
+    res["deterministic"] = res["diff_base_base"] < 1e-3 and res["diff_ad_ad"] < 1e-2
     res["applied"] = (not res["same_text_base_ad"]) or res["diff_base_ad"] > 0.05 \
         or (res["top5_max_diff_base_ad"] or 0) > 0.05
     res["ok"] = res["deterministic"] and res["applied"]
@@ -378,10 +400,14 @@ def prompt_nll(model: str, ids: list[int], labels: list[int] | None = None, time
     return {"nll": sum(nll) / len(nll), "tokens": len(nll)}
 
 
+PLP_SIZES = (2_048, 4_096, 8_192, 16_384)
+
+
 def test_prompt_logprobs(server, base, adapter) -> dict:
-    """Survives a 16k (then 4k) prompt_logprobs request? E0 parity needs it; it is not a PASS condition."""
-    res = {}
-    for n in (16_384, 4_096):
+    """Largest prompt_logprobs request that survives, tried small to large (the first failure usually
+    kills the engine, so the order keeps everything that works). E0 parity needs it; not a PASS condition."""
+    res: dict = {"max_ok_tokens": 0}
+    for n in PLP_SIZES:
         ids = corpus(base, n)
         for label, model in (("base", base), ("adapter", adapter)):
             key = f"{n}_{label}"
@@ -393,12 +419,14 @@ def test_prompt_logprobs(server, base, adapter) -> dict:
                     res[key] = {"ok": False, "error": repr(e)[:500]}
             res[key].update(s=round(time.time() - t0), start_mib=mem.start, peak_mib=mem.peak)
             print(f"    {key}: {res[key]}", flush=True)
-            if not alive(server):
-                res[key]["engine_died"] = True
+            if not res[key]["ok"]:
+                res["engine_died"] = not alive(server)
                 res["ok"] = False
+                res["ok_16k"] = False
                 return res
-    res["ok_16k"] = res["16384_base"]["ok"] and res["16384_adapter"]["ok"]
-    res["ok"] = all(v["ok"] for k, v in res.items() if isinstance(v, dict))
+        res["max_ok_tokens"] = n
+    res["ok_16k"] = res["max_ok_tokens"] >= 16_384
+    res["ok"] = res["ok_16k"]
     return res
 
 
@@ -502,8 +530,9 @@ def main() -> None:
 
     if MODE == "dummy":
         sub16 = dummy_submission("ft0_r16", 16)
+        # 0.90 first and without test e (which may kill the engine); 0.80, the PASS-critical one, last.
+        run_server("S1_r16_090", sub16, 0.90, [t for t in TESTS if t != "e"])
         s2 = run_server("S2_r16_080", sub16, 0.80, TESTS)
-        run_server("S1_r16_090", sub16, 0.90, TESTS)
         e = s2["tests"].get("e")
         if s2["started"] and e is not None and not e.get("ok_16k", False):
             run_server("S2p_r16_080", sub16, 0.80, ["e"], ["--max-num-batched-tokens", "512"])
@@ -519,7 +548,9 @@ def main() -> None:
             e = servers["S2b_r8_080"]["tests"].get("e")
         e_s2p = servers.get("S2p_r16_080", {}).get("tests", {}).get("e", {})
         RESULTS["verdict"]["parity_plan"] = (None if e is None else "full" if e.get("ok_16k") else
-                                             "max_num_batched_tokens_512" if e_s2p.get("ok_16k") else "slices_4k")
+                                             "max_num_batched_tokens_512" if e_s2p.get("ok_16k") else
+                                             f"slices_{e.get('max_ok_tokens', 0)}")
+        RESULTS["verdict"]["gmu_090_ok"] = RESULTS["verdict"].get("S1_r16_090", {}).get("pass")
     elif MODE == "real":
         name = f"R_main_lora_{round(GMU * 100):03d}"
         if "parity" in TESTS:
