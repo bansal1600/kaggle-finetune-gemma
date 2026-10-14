@@ -1,0 +1,366 @@
+[{"stream_name":"stdout","time":1.797783637,"data":"Installing 41 harness wheels...\n"}
+,{"stream_name":"stdout","time":105.012724704,"data":"Installing the scorer's package set (48 packages, extras from /kaggle/input/datasets/guaravbansal/gemma-agent-extra-wheels) into /tmp/scorer_env...\n"}
+,{"stream_name":"stdout","time":555.168686682,"data":"vLLM ready on http://127.0.0.1:8000/v1 after 7.1 min (4 GPUs)\n"}
+,{"stream_name":"stdout","time":555.169741094,"data":"capture proxy http://127.0.0.1:33129/v1 -\u003e http://127.0.0.1:8000/v1, records under /kaggle/working/captures\n"}
+,{"stream_name":"stderr","time":555.172926352,"data":"/usr/local/lib/python3.12/dist-packages/google/adk/features/_feature_decorator.py:72: UserWarning: [EXPERIMENTAL] feature FeatureName.AGENT_CONFIG is enabled.\n"}
+,{"stream_name":"stderr","time":555.172956752,"data":"  check_feature_enabled()\n"}
+,{"stream_name":"stderr","time":555.172963438,"data":"/kaggle/src/script.py:767: UserWarning: [EXPERIMENTAL] EventsCompactionConfig: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.\n"}
+,{"stream_name":"stderr","time":555.172967941,"data":"  events_compaction_config=EventsCompactionConfig(\n"}
+,{"stream_name":"stdout","time":555.17318411,"data":"\n"}
+,{"stream_name":"stdout","time":555.173192171,"data":"=== v3t_think: 33 tasks, budgets {'max_time_minutes': 5.0, 'max_tool_calls': 30, 'max_turns': 80, 'timeout_seconds': 180}\n"}
+,{"stream_name":"stderr","time":555.353086498,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox c4f46ffe-52e, creating venv without pip: Command '['/tmp/swegemma_sandbox_c4f46ffe-52e_jk966abt/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":862.475178401,"data":"WARNING:swegemma.harness.agent_runner:Task fastapi_15661 agent timed out.\n"}
+,{"stream_name":"stderr","time":862.499516681,"data":"WARNING:swegemma.harness.agent_runner:Task fastapi_15661 completed without explicit submit_patch call and no working tree modifications.\n"}
+,{"stream_name":"stderr","time":862.742829383,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox b3b7d0f3-c8f, creating venv without pip: Command '['/tmp/swegemma_sandbox_b3b7d0f3-c8f_4f8qca4h/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":883.93969674,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":883.939724576,"data":"Exception occurred during processing of request from ('127.0.0.1', 60898)\n"}
+,{"stream_name":"stderr","time":883.953048592,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":883.953269616,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 697, in process_request_thread\n"}
+,{"stream_name":"stderr","time":883.953287441,"data":"    self.finish_request(request, client_address)\n"}
+,{"stream_name":"stderr","time":883.953291063,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 362, in finish_request\n"}
+,{"stream_name":"stderr","time":883.953294112,"data":"    self.RequestHandlerClass(request, client_address, self)\n"}
+,{"stream_name":"stderr","time":883.953296819,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 766, in __init__\n"}
+,{"stream_name":"stderr","time":883.953299505,"data":"    self.handle()\n"}
+,{"stream_name":"stderr","time":883.953301935,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 442, in handle\n"}
+,{"stream_name":"stderr","time":883.953304544,"data":"    self.handle_one_request()\n"}
+,{"stream_name":"stderr","time":883.953306915,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 428, in handle_one_request\n"}
+,{"stream_name":"stderr","time":883.953319758,"data":"    method()\n"}
+,{"stream_name":"stderr","time":883.953322281,"data":"  File \"/kaggle/src/script.py\", line 381, in do_POST\n"}
+,{"stream_name":"stderr","time":883.953325545,"data":"    self._reply(*reply)\n"}
+,{"stream_name":"stderr","time":883.953328513,"data":"  File \"/kaggle/src/script.py\", line 367, in _reply\n"}
+,{"stream_name":"stderr","time":883.953331664,"data":"    self.wfile.write(data)\n"}
+,{"stream_name":"stderr","time":883.953334957,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 845, in write\n"}
+,{"stream_name":"stderr","time":883.953338422,"data":"    self._sock.sendall(b)\n"}
+,{"stream_name":"stderr","time":883.953341832,"data":"BrokenPipeError: [Errno 32] Broken pipe\n"}
+,{"stream_name":"stderr","time":883.953345337,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":1127.246710092,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 8330c516-e0d, creating venv without pip: Command '['/tmp/swegemma_sandbox_8330c516-e0d_juv5mupb/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1141.124813929,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 4fab2fdd-9f9, creating venv without pip: Command '['/tmp/swegemma_sandbox_4fab2fdd-9f9_nbxypyke/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1448.821046465,"data":"WARNING:swegemma.harness.agent_runner:Task fastapi_15589 agent timed out.\n"}
+,{"stream_name":"stderr","time":1448.845815467,"data":"WARNING:swegemma.harness.agent_runner:Task fastapi_15589 completed without explicit submit_patch call and no working tree modifications.\n"}
+,{"stream_name":"stderr","time":1449.089650012,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox d3d25d01-737, creating venv without pip: Command '['/tmp/swegemma_sandbox_d3d25d01-737_svgil1u7/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1533.698972388,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":1533.699002764,"data":"Exception occurred during processing of request from ('127.0.0.1', 50540)\n"}
+,{"stream_name":"stderr","time":1533.699215519,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":1533.699519003,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 697, in process_request_thread\n"}
+,{"stream_name":"stderr","time":1533.699525641,"data":"    self.finish_request(request, client_address)\n"}
+,{"stream_name":"stderr","time":1533.699528486,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 362, in finish_request\n"}
+,{"stream_name":"stderr","time":1533.69953125,"data":"    self.RequestHandlerClass(request, client_address, self)\n"}
+,{"stream_name":"stderr","time":1533.69953381,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 766, in __init__\n"}
+,{"stream_name":"stderr","time":1533.699536451,"data":"    self.handle()\n"}
+,{"stream_name":"stderr","time":1533.699538859,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 442, in handle\n"}
+,{"stream_name":"stderr","time":1533.69954142,"data":"    self.handle_one_request()\n"}
+,{"stream_name":"stderr","time":1533.699543827,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 428, in handle_one_request\n"}
+,{"stream_name":"stderr","time":1533.699546464,"data":"    method()\n"}
+,{"stream_name":"stderr","time":1533.699548985,"data":"  File \"/kaggle/src/script.py\", line 381, in do_POST\n"}
+,{"stream_name":"stderr","time":1533.69956016,"data":"    self._reply(*reply)\n"}
+,{"stream_name":"stderr","time":1533.699562357,"data":"  File \"/kaggle/src/script.py\", line 367, in _reply\n"}
+,{"stream_name":"stderr","time":1533.699564459,"data":"    self.wfile.write(data)\n"}
+,{"stream_name":"stderr","time":1533.699566333,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 845, in write\n"}
+,{"stream_name":"stderr","time":1533.69956838,"data":"    self._sock.sendall(b)\n"}
+,{"stream_name":"stderr","time":1533.69957022,"data":"BrokenPipeError: [Errno 32] Broken pipe\n"}
+,{"stream_name":"stderr","time":1533.699573509,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":1670.088537751,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox bf500aa9-227, creating venv without pip: Command '['/tmp/swegemma_sandbox_bf500aa9-227_c1plj905/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1682.491537694,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 3308acc6-e38, creating venv without pip: Command '['/tmp/swegemma_sandbox_3308acc6-e38_lohvbozq/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1973.84490925,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 18a5c738-866, creating venv without pip: Command '['/tmp/swegemma_sandbox_18a5c738-866_iwao29cx/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":1986.640473323,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 8e334c5f-dcc, creating venv without pip: Command '['/tmp/swegemma_sandbox_8e334c5f-dcc_szx_55yx/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2292.339763,"data":"WARNING:swegemma.harness.agent_runner:Task fastapi_15280 agent timed out.\n"}
+,{"stream_name":"stderr","time":2292.661522419,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox a41d4c53-d5b, creating venv without pip: Command '['/tmp/swegemma_sandbox_a41d4c53-d5b_gnj84xyt/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2292.871230608,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":2292.871251169,"data":"Exception occurred during processing of request from ('127.0.0.1', 53078)\n"}
+,{"stream_name":"stderr","time":2292.871417052,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":2292.871661506,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 697, in process_request_thread\n"}
+,{"stream_name":"stderr","time":2292.871667153,"data":"    self.finish_request(request, client_address)\n"}
+,{"stream_name":"stderr","time":2292.871669992,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 362, in finish_request\n"}
+,{"stream_name":"stderr","time":2292.871672716,"data":"    self.RequestHandlerClass(request, client_address, self)\n"}
+,{"stream_name":"stderr","time":2292.871675383,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 766, in __init__\n"}
+,{"stream_name":"stderr","time":2292.871678098,"data":"    self.handle()\n"}
+,{"stream_name":"stderr","time":2292.871680458,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 442, in handle\n"}
+,{"stream_name":"stderr","time":2292.871682992,"data":"    self.handle_one_request()\n"}
+,{"stream_name":"stderr","time":2292.871685415,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 428, in handle_one_request\n"}
+,{"stream_name":"stderr","time":2292.871697872,"data":"    method()\n"}
+,{"stream_name":"stderr","time":2292.871699989,"data":"  File \"/kaggle/src/script.py\", line 381, in do_POST\n"}
+,{"stream_name":"stderr","time":2292.871701951,"data":"    self._reply(*reply)\n"}
+,{"stream_name":"stderr","time":2292.87170385,"data":"  File \"/kaggle/src/script.py\", line 367, in _reply\n"}
+,{"stream_name":"stderr","time":2292.871705898,"data":"    self.wfile.write(data)\n"}
+,{"stream_name":"stderr","time":2292.87170781,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 845, in write\n"}
+,{"stream_name":"stderr","time":2292.871709792,"data":"    self._sock.sendall(b)\n"}
+,{"stream_name":"stderr","time":2292.871714135,"data":"BrokenPipeError: [Errno 32] Broken pipe\n"}
+,{"stream_name":"stderr","time":2292.871716082,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":2304.959757067,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox ef54f83f-ad6, creating venv without pip: Command '['/tmp/swegemma_sandbox_ef54f83f-ad6_xzgxkdm0/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2495.636943171,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 8f8421b7-bfa, creating venv without pip: Command '['/tmp/swegemma_sandbox_8f8421b7-bfa_fdbs060p/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2508.647348643,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox a614acb5-981, creating venv without pip: Command '['/tmp/swegemma_sandbox_a614acb5-981_v49q09ao/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2712.114654582,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox fe5fc958-2d7, creating venv without pip: Command '['/tmp/swegemma_sandbox_fe5fc958-2d7_ydkdro4l/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":2724.722037046,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 0c03623d-731, creating venv without pip: Command '['/tmp/swegemma_sandbox_0c03623d-731_9qu0i9vs/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3034.134972272,"data":"WARNING:swegemma.harness.agent_runner:Task fastapi_14986 agent timed out.\n"}
+,{"stream_name":"stderr","time":3034.398807057,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 39625138-5df, creating venv without pip: Command '['/tmp/swegemma_sandbox_39625138-5df_hindrs04/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3034.511509214,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":3034.511531802,"data":"Exception occurred during processing of request from ('127.0.0.1', 48782)\n"}
+,{"stream_name":"stderr","time":3034.511678778,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":3034.511934146,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 697, in process_request_thread\n"}
+,{"stream_name":"stderr","time":3034.511940441,"data":"    self.finish_request(request, client_address)\n"}
+,{"stream_name":"stderr","time":3034.511943289,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 362, in finish_request\n"}
+,{"stream_name":"stderr","time":3034.511945928,"data":"    self.RequestHandlerClass(request, client_address, self)\n"}
+,{"stream_name":"stderr","time":3034.511956533,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 766, in __init__\n"}
+,{"stream_name":"stderr","time":3034.511959001,"data":"    self.handle()\n"}
+,{"stream_name":"stderr","time":3034.511960942,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 442, in handle\n"}
+,{"stream_name":"stderr","time":3034.511963057,"data":"    self.handle_one_request()\n"}
+,{"stream_name":"stderr","time":3034.511964921,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 428, in handle_one_request\n"}
+,{"stream_name":"stderr","time":3034.511966982,"data":"    method()\n"}
+,{"stream_name":"stderr","time":3034.511968917,"data":"  File \"/kaggle/src/script.py\", line 381, in do_POST\n"}
+,{"stream_name":"stderr","time":3034.511971024,"data":"    self._reply(*reply)\n"}
+,{"stream_name":"stderr","time":3034.511972903,"data":"  File \"/kaggle/src/script.py\", line 367, in _reply\n"}
+,{"stream_name":"stderr","time":3034.511975026,"data":"    self.wfile.write(data)\n"}
+,{"stream_name":"stderr","time":3034.511976841,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 845, in write\n"}
+,{"stream_name":"stderr","time":3034.511978806,"data":"    self._sock.sendall(b)\n"}
+,{"stream_name":"stderr","time":3034.511980622,"data":"BrokenPipeError: [Errno 32] Broken pipe\n"}
+,{"stream_name":"stderr","time":3034.511983923,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":3046.749870178,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 6c0e9dc0-48b, creating venv without pip: Command '['/tmp/swegemma_sandbox_6c0e9dc0-48b_i601hze9/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3319.641343877,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox e63da2d6-bfd, creating venv without pip: Command '['/tmp/swegemma_sandbox_e63da2d6-bfd_8jf9ku_q/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3332.120015642,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox b3b0980c-186, creating venv without pip: Command '['/tmp/swegemma_sandbox_b3b0980c-186_2qgieia6/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3588.969463867,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 1a0f9dae-556, creating venv without pip: Command '['/tmp/swegemma_sandbox_1a0f9dae-556_rav_f_zd/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3604.759256116,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox ae3a4314-7c9, creating venv without pip: Command '['/tmp/swegemma_sandbox_ae3a4314-7c9_44f13dij/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3786.499516429,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox d348b4d6-52a, creating venv without pip: Command '['/tmp/swegemma_sandbox_d348b4d6-52a_fsuas0fp/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3801.740888207,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 18d131a7-d5a, creating venv without pip: Command '['/tmp/swegemma_sandbox_18d131a7-d5a_cge7_fw3/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3970.313581354,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 86a4d8d4-a30, creating venv without pip: Command '['/tmp/swegemma_sandbox_86a4d8d4-a30_imkngkme/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":3981.492554601,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 38135c3e-14e, creating venv without pip: Command '['/tmp/swegemma_sandbox_38135c3e-14e_0qd278ne/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4285.440251766,"data":"WARNING:swegemma.harness.agent_runner:Task rich_4076 agent timed out.\n"}
+,{"stream_name":"stderr","time":4285.454423097,"data":"WARNING:swegemma.harness.agent_runner:Task rich_4076 completed without explicit submit_patch call and no working tree modifications.\n"}
+,{"stream_name":"stderr","time":4285.624689926,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 319d0b56-fce, creating venv without pip: Command '['/tmp/swegemma_sandbox_319d0b56-fce_te2q_bux/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4315.426393863,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":4315.426422318,"data":"Exception occurred during processing of request from ('127.0.0.1', 35226)\n"}
+,{"stream_name":"stderr","time":4315.42656958,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":4315.426819507,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 697, in process_request_thread\n"}
+,{"stream_name":"stderr","time":4315.426825214,"data":"    self.finish_request(request, client_address)\n"}
+,{"stream_name":"stderr","time":4315.426827773,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 362, in finish_request\n"}
+,{"stream_name":"stderr","time":4315.426830533,"data":"    self.RequestHandlerClass(request, client_address, self)\n"}
+,{"stream_name":"stderr","time":4315.426832971,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 766, in __init__\n"}
+,{"stream_name":"stderr","time":4315.426835408,"data":"    self.handle()\n"}
+,{"stream_name":"stderr","time":4315.426837617,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 442, in handle\n"}
+,{"stream_name":"stderr","time":4315.426840095,"data":"    self.handle_one_request()\n"}
+,{"stream_name":"stderr","time":4315.426842497,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 428, in handle_one_request\n"}
+,{"stream_name":"stderr","time":4315.426845037,"data":"    method()\n"}
+,{"stream_name":"stderr","time":4315.426847306,"data":"  File \"/kaggle/src/script.py\", line 381, in do_POST\n"}
+,{"stream_name":"stderr","time":4315.426853771,"data":"    self._reply(*reply)\n"}
+,{"stream_name":"stderr","time":4315.426856135,"data":"  File \"/kaggle/src/script.py\", line 367, in _reply\n"}
+,{"stream_name":"stderr","time":4315.426858479,"data":"    self.wfile.write(data)\n"}
+,{"stream_name":"stderr","time":4315.426860741,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 845, in write\n"}
+,{"stream_name":"stderr","time":4315.426863276,"data":"    self._sock.sendall(b)\n"}
+,{"stream_name":"stderr","time":4315.426867865,"data":"BrokenPipeError: [Errno 32] Broken pipe\n"}
+,{"stream_name":"stderr","time":4315.426870837,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":4585.839745505,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox fd38c8e3-6fe, creating venv without pip: Command '['/tmp/swegemma_sandbox_fd38c8e3-6fe_r37ek3p9/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4598.061410999,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 854fcc47-f48, creating venv without pip: Command '['/tmp/swegemma_sandbox_854fcc47-f48_cv46dcx6/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4912.939862301,"data":"WARNING:swegemma.harness.agent_runner:Task rich_4006 agent timed out.\n"}
+,{"stream_name":"stderr","time":4912.954057127,"data":"WARNING:swegemma.harness.agent_runner:Task rich_4006 completed without explicit submit_patch call and no working tree modifications.\n"}
+,{"stream_name":"stderr","time":4913.112533448,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox e039b363-e11, creating venv without pip: Command '['/tmp/swegemma_sandbox_e039b363-e11_y_euey2m/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":4922.037266215,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":4922.037291395,"data":"Exception occurred during processing of request from ('127.0.0.1', 44684)\n"}
+,{"stream_name":"stderr","time":4922.037460599,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":4922.037708001,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 697, in process_request_thread\n"}
+,{"stream_name":"stderr","time":4922.037714093,"data":"    self.finish_request(request, client_address)\n"}
+,{"stream_name":"stderr","time":4922.037716921,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 362, in finish_request\n"}
+,{"stream_name":"stderr","time":4922.037719653,"data":"    self.RequestHandlerClass(request, client_address, self)\n"}
+,{"stream_name":"stderr","time":4922.037722876,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 766, in __init__\n"}
+,{"stream_name":"stderr","time":4922.03772541,"data":"    self.handle()\n"}
+,{"stream_name":"stderr","time":4922.037727759,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 442, in handle\n"}
+,{"stream_name":"stderr","time":4922.03773019,"data":"    self.handle_one_request()\n"}
+,{"stream_name":"stderr","time":4922.037732599,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 428, in handle_one_request\n"}
+,{"stream_name":"stderr","time":4922.037735164,"data":"    method()\n"}
+,{"stream_name":"stderr","time":4922.037737495,"data":"  File \"/kaggle/src/script.py\", line 381, in do_POST\n"}
+,{"stream_name":"stderr","time":4922.037740279,"data":"    self._reply(*reply)\n"}
+,{"stream_name":"stderr","time":4922.037742694,"data":"  File \"/kaggle/src/script.py\", line 367, in _reply\n"}
+,{"stream_name":"stderr","time":4922.037745111,"data":"    self.wfile.write(data)\n"}
+,{"stream_name":"stderr","time":4922.03774746,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 845, in write\n"}
+,{"stream_name":"stderr","time":4922.037749953,"data":"    self._sock.sendall(b)\n"}
+,{"stream_name":"stderr","time":4922.037755021,"data":"BrokenPipeError: [Errno 32] Broken pipe\n"}
+,{"stream_name":"stderr","time":4922.03775747,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":5131.498629281,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox bdd66c52-b04, creating venv without pip: Command '['/tmp/swegemma_sandbox_bdd66c52-b04_9ze5m05g/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":5143.857273286,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 1ca43ea9-d93, creating venv without pip: Command '['/tmp/swegemma_sandbox_1ca43ea9-d93_9vpbdpbs/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":5419.292552538,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 179c9898-255, creating venv without pip: Command '['/tmp/swegemma_sandbox_179c9898-255_gsjy_fkt/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":5431.696317168,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 41915a9f-6a5, creating venv without pip: Command '['/tmp/swegemma_sandbox_41915a9f-6a5_n_4rgu4p/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":5752.449814876,"data":"WARNING:swegemma.harness.agent_runner:Task fastapi_13920 agent timed out.\n"}
+,{"stream_name":"stderr","time":5752.704692065,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 28e18a8b-9e9, creating venv without pip: Command '['/tmp/swegemma_sandbox_28e18a8b-9e9_p5fr1d6i/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":5763.77132246,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":5763.771348622,"data":"Exception occurred during processing of request from ('127.0.0.1', 55564)\n"}
+,{"stream_name":"stderr","time":5763.771513923,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":5763.771760734,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 697, in process_request_thread\n"}
+,{"stream_name":"stderr","time":5763.771767037,"data":"    self.finish_request(request, client_address)\n"}
+,{"stream_name":"stderr","time":5763.77176985,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 362, in finish_request\n"}
+,{"stream_name":"stderr","time":5763.771772668,"data":"    self.RequestHandlerClass(request, client_address, self)\n"}
+,{"stream_name":"stderr","time":5763.771776225,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 766, in __init__\n"}
+,{"stream_name":"stderr","time":5763.771780123,"data":"    self.handle()\n"}
+,{"stream_name":"stderr","time":5763.771783363,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 442, in handle\n"}
+,{"stream_name":"stderr","time":5763.771786178,"data":"    self.handle_one_request()\n"}
+,{"stream_name":"stderr","time":5763.771788738,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 428, in handle_one_request\n"}
+,{"stream_name":"stderr","time":5763.771791425,"data":"    method()\n"}
+,{"stream_name":"stderr","time":5763.77179404,"data":"  File \"/kaggle/src/script.py\", line 381, in do_POST\n"}
+,{"stream_name":"stderr","time":5763.771796585,"data":"    self._reply(*reply)\n"}
+,{"stream_name":"stderr","time":5763.771798935,"data":"  File \"/kaggle/src/script.py\", line 367, in _reply\n"}
+,{"stream_name":"stderr","time":5763.771801414,"data":"    self.wfile.write(data)\n"}
+,{"stream_name":"stderr","time":5763.771803801,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 845, in write\n"}
+,{"stream_name":"stderr","time":5763.771806294,"data":"    self._sock.sendall(b)\n"}
+,{"stream_name":"stderr","time":5763.771811276,"data":"BrokenPipeError: [Errno 32] Broken pipe\n"}
+,{"stream_name":"stderr","time":5763.771813763,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":5765.158519908,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox b7a93bd2-5b3, creating venv without pip: Command '['/tmp/swegemma_sandbox_b7a93bd2-5b3_y7bkf3tz/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":5943.215748148,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 3548ca3e-b83, creating venv without pip: Command '['/tmp/swegemma_sandbox_3548ca3e-b83_m45tcayk/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":5955.501310637,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 642479d1-8b8, creating venv without pip: Command '['/tmp/swegemma_sandbox_642479d1-8b8_ophbg03u/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":6028.950352917,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox cd00a916-65f, creating venv without pip: Command '['/tmp/swegemma_sandbox_cd00a916-65f_0thb73xj/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":6041.237446963,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox d805d9c0-2ea, creating venv without pip: Command '['/tmp/swegemma_sandbox_d805d9c0-2ea_3d3cyor9/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":6344.961828953,"data":"WARNING:swegemma.harness.agent_runner:Task rich_3953 agent timed out.\n"}
+,{"stream_name":"stderr","time":6344.975864868,"data":"WARNING:swegemma.harness.agent_runner:Task rich_3953 completed without explicit submit_patch call and no working tree modifications.\n"}
+,{"stream_name":"stderr","time":6345.13646168,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 2741dacc-e4f, creating venv without pip: Command '['/tmp/swegemma_sandbox_2741dacc-e4f_8hxg1c9n/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":6376.740079659,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":6376.740115722,"data":"Exception occurred during processing of request from ('127.0.0.1', 49324)\n"}
+,{"stream_name":"stderr","time":6376.740281086,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":6376.740519336,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 697, in process_request_thread\n"}
+,{"stream_name":"stderr","time":6376.740525503,"data":"    self.finish_request(request, client_address)\n"}
+,{"stream_name":"stderr","time":6376.740528573,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 362, in finish_request\n"}
+,{"stream_name":"stderr","time":6376.74053145,"data":"    self.RequestHandlerClass(request, client_address, self)\n"}
+,{"stream_name":"stderr","time":6376.740534021,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 766, in __init__\n"}
+,{"stream_name":"stderr","time":6376.74053654,"data":"    self.handle()\n"}
+,{"stream_name":"stderr","time":6376.740538846,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 442, in handle\n"}
+,{"stream_name":"stderr","time":6376.740541284,"data":"    self.handle_one_request()\n"}
+,{"stream_name":"stderr","time":6376.740543793,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 428, in handle_one_request\n"}
+,{"stream_name":"stderr","time":6376.740546326,"data":"    method()\n"}
+,{"stream_name":"stderr","time":6376.740548702,"data":"  File \"/kaggle/src/script.py\", line 381, in do_POST\n"}
+,{"stream_name":"stderr","time":6376.740551274,"data":"    self._reply(*reply)\n"}
+,{"stream_name":"stderr","time":6376.74055357,"data":"  File \"/kaggle/src/script.py\", line 367, in _reply\n"}
+,{"stream_name":"stderr","time":6376.740555954,"data":"    self.wfile.write(data)\n"}
+,{"stream_name":"stderr","time":6376.740558246,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 845, in write\n"}
+,{"stream_name":"stderr","time":6376.740570842,"data":"    self._sock.sendall(b)\n"}
+,{"stream_name":"stderr","time":6376.740573013,"data":"BrokenPipeError: [Errno 32] Broken pipe\n"}
+,{"stream_name":"stderr","time":6376.740574878,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":6649.644279955,"data":"WARNING:swegemma.harness.agent_runner:Task rich_3944 agent timed out.\n"}
+,{"stream_name":"stderr","time":6649.81393031,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox d2bf6093-c31, creating venv without pip: Command '['/tmp/swegemma_sandbox_d2bf6093-c31_wmatrc65/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":6650.397654971,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":6650.397681861,"data":"Exception occurred during processing of request from ('127.0.0.1', 54578)\n"}
+,{"stream_name":"stderr","time":6650.397983918,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":6650.398345153,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 697, in process_request_thread\n"}
+,{"stream_name":"stderr","time":6650.398354353,"data":"    self.finish_request(request, client_address)\n"}
+,{"stream_name":"stderr","time":6650.398357171,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 362, in finish_request\n"}
+,{"stream_name":"stderr","time":6650.398360105,"data":"    self.RequestHandlerClass(request, client_address, self)\n"}
+,{"stream_name":"stderr","time":6650.398362747,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 766, in __init__\n"}
+,{"stream_name":"stderr","time":6650.398365413,"data":"    self.handle()\n"}
+,{"stream_name":"stderr","time":6650.398367812,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 442, in handle\n"}
+,{"stream_name":"stderr","time":6650.398370398,"data":"    self.handle_one_request()\n"}
+,{"stream_name":"stderr","time":6650.398372757,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 428, in handle_one_request\n"}
+,{"stream_name":"stderr","time":6650.398375273,"data":"    method()\n"}
+,{"stream_name":"stderr","time":6650.398377615,"data":"  File \"/kaggle/src/script.py\", line 381, in do_POST\n"}
+,{"stream_name":"stderr","time":6650.398380148,"data":"    self._reply(*reply)\n"}
+,{"stream_name":"stderr","time":6650.398382447,"data":"  File \"/kaggle/src/script.py\", line 367, in _reply\n"}
+,{"stream_name":"stderr","time":6650.398384923,"data":"    self.wfile.write(data)\n"}
+,{"stream_name":"stderr","time":6650.398387496,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 845, in write\n"}
+,{"stream_name":"stderr","time":6650.398390275,"data":"    self._sock.sendall(b)\n"}
+,{"stream_name":"stderr","time":6650.398392629,"data":"BrokenPipeError: [Errno 32] Broken pipe\n"}
+,{"stream_name":"stderr","time":6650.398395895,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":6661.171771498,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox e4e95f2e-d36, creating venv without pip: Command '['/tmp/swegemma_sandbox_e4e95f2e-d36_vtybefpz/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":6964.505016399,"data":"WARNING:swegemma.harness.agent_runner:Task rich_3942 agent timed out.\n"}
+,{"stream_name":"stderr","time":6964.673847575,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 78688aaa-91d, creating venv without pip: Command '['/tmp/swegemma_sandbox_78688aaa-91d_ryq0mwvh/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":6976.722674299,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 7148e939-e3e, creating venv without pip: Command '['/tmp/swegemma_sandbox_7148e939-e3e_lg45xmtf/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":6983.745227847,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":6983.745250424,"data":"Exception occurred during processing of request from ('127.0.0.1', 42836)\n"}
+,{"stream_name":"stderr","time":6983.745493016,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":6983.74580114,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 697, in process_request_thread\n"}
+,{"stream_name":"stderr","time":6983.745806037,"data":"    self.finish_request(request, client_address)\n"}
+,{"stream_name":"stderr","time":6983.74580816,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 362, in finish_request\n"}
+,{"stream_name":"stderr","time":6983.745810317,"data":"    self.RequestHandlerClass(request, client_address, self)\n"}
+,{"stream_name":"stderr","time":6983.745812362,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 766, in __init__\n"}
+,{"stream_name":"stderr","time":6983.74581439,"data":"    self.handle()\n"}
+,{"stream_name":"stderr","time":6983.745816232,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 442, in handle\n"}
+,{"stream_name":"stderr","time":6983.74581862,"data":"    self.handle_one_request()\n"}
+,{"stream_name":"stderr","time":6983.745820532,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 428, in handle_one_request\n"}
+,{"stream_name":"stderr","time":6983.745822549,"data":"    method()\n"}
+,{"stream_name":"stderr","time":6983.745824472,"data":"  File \"/kaggle/src/script.py\", line 381, in do_POST\n"}
+,{"stream_name":"stderr","time":6983.745826426,"data":"    self._reply(*reply)\n"}
+,{"stream_name":"stderr","time":6983.745828255,"data":"  File \"/kaggle/src/script.py\", line 367, in _reply\n"}
+,{"stream_name":"stderr","time":6983.745830203,"data":"    self.wfile.write(data)\n"}
+,{"stream_name":"stderr","time":6983.745832083,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 845, in write\n"}
+,{"stream_name":"stderr","time":6983.745834024,"data":"    self._sock.sendall(b)\n"}
+,{"stream_name":"stderr","time":6983.745835835,"data":"BrokenPipeError: [Errno 32] Broken pipe\n"}
+,{"stream_name":"stderr","time":6983.745837774,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":7238.775494255,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox bf7c69b5-2d4, creating venv without pip: Command '['/tmp/swegemma_sandbox_bf7c69b5-2d4_xwg43ajz/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":7250.464267956,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox a9a36f77-701, creating venv without pip: Command '['/tmp/swegemma_sandbox_a9a36f77-701_m7xbumfd/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":7428.029022409,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 0f28877b-ba4, creating venv without pip: Command '['/tmp/swegemma_sandbox_0f28877b-ba4_8ijp95kg/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":7439.099072649,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 893837c9-59d, creating venv without pip: Command '['/tmp/swegemma_sandbox_893837c9-59d_9ot_ah51/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":7552.53220292,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 0e8edd3b-d62, creating venv without pip: Command '['/tmp/swegemma_sandbox_0e8edd3b-d62_9rkzf7hq/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":7563.721152497,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox cea76da8-e38, creating venv without pip: Command '['/tmp/swegemma_sandbox_cea76da8-e38_3lqtpwi6/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":7868.240939288,"data":"WARNING:swegemma.harness.agent_runner:Task rich_3935 agent timed out.\n"}
+,{"stream_name":"stderr","time":7868.255211253,"data":"WARNING:swegemma.harness.agent_runner:Task rich_3935 completed without explicit submit_patch call and no working tree modifications.\n"}
+,{"stream_name":"stderr","time":7868.417896456,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 230eb57e-0eb, creating venv without pip: Command '['/tmp/swegemma_sandbox_230eb57e-0eb_tfndsr14/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":7919.376587411,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":7919.376618942,"data":"Exception occurred during processing of request from ('127.0.0.1', 42804)\n"}
+,{"stream_name":"stderr","time":7919.376754366,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":7919.376999528,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 697, in process_request_thread\n"}
+,{"stream_name":"stderr","time":7919.377005243,"data":"    self.finish_request(request, client_address)\n"}
+,{"stream_name":"stderr","time":7919.377008172,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 362, in finish_request\n"}
+,{"stream_name":"stderr","time":7919.377010865,"data":"    self.RequestHandlerClass(request, client_address, self)\n"}
+,{"stream_name":"stderr","time":7919.377013567,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 766, in __init__\n"}
+,{"stream_name":"stderr","time":7919.377016269,"data":"    self.handle()\n"}
+,{"stream_name":"stderr","time":7919.377018699,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 442, in handle\n"}
+,{"stream_name":"stderr","time":7919.377021199,"data":"    self.handle_one_request()\n"}
+,{"stream_name":"stderr","time":7919.377023585,"data":"  File \"/usr/lib/python3.12/http/server.py\", line 428, in handle_one_request\n"}
+,{"stream_name":"stderr","time":7919.377026101,"data":"    method()\n"}
+,{"stream_name":"stderr","time":7919.377028499,"data":"  File \"/kaggle/src/script.py\", line 381, in do_POST\n"}
+,{"stream_name":"stderr","time":7919.377030938,"data":"    self._reply(*reply)\n"}
+,{"stream_name":"stderr","time":7919.377033327,"data":"  File \"/kaggle/src/script.py\", line 367, in _reply\n"}
+,{"stream_name":"stderr","time":7919.37703579,"data":"    self.wfile.write(data)\n"}
+,{"stream_name":"stderr","time":7919.377038169,"data":"  File \"/usr/lib/python3.12/socketserver.py\", line 845, in write\n"}
+,{"stream_name":"stderr","time":7919.377040667,"data":"    self._sock.sendall(b)\n"}
+,{"stream_name":"stderr","time":7919.377042994,"data":"BrokenPipeError: [Errno 32] Broken pipe\n"}
+,{"stream_name":"stderr","time":7919.377047197,"data":"----------------------------------------\n"}
+,{"stream_name":"stderr","time":7944.476212017,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 7712d52f-6bf, creating venv without pip: Command '['/tmp/swegemma_sandbox_7712d52f-6bf_09a7mrb2/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":7956.12216882,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 0868a4c5-482, creating venv without pip: Command '['/tmp/swegemma_sandbox_0868a4c5-482_4je44tfh/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":8110.048805154,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox a8f4c22d-4b7, creating venv without pip: Command '['/tmp/swegemma_sandbox_a8f4c22d-4b7_uh4lxv_6/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":8124.877458149,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 186a475b-f0a, creating venv without pip: Command '['/tmp/swegemma_sandbox_186a475b-f0a_3lox42ry/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":8375.696837461,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox c7c74af0-8b7, creating venv without pip: Command '['/tmp/swegemma_sandbox_c7c74af0-8b7_qv8ft6r1/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":8389.15464561,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 05e55edd-4d7, creating venv without pip: Command '['/tmp/swegemma_sandbox_05e55edd-4d7_mt9bwjt3/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":8627.520721806,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 05674a9f-700, creating venv without pip: Command '['/tmp/swegemma_sandbox_05674a9f-700_5e4ohw7l/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":8641.303331738,"data":"WARNING:swegemma.sandbox.subprocess:ensurepip unavailable in sandbox 6c8fb3b1-ea5, creating venv without pip: Command '['/tmp/swegemma_sandbox_6c8fb3b1-ea5_nht1cirn/venv/bin/python3', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":8946.902716335,"data":"WARNING:swegemma.harness.agent_runner:Task fastapi_14616 agent timed out.\n"}
+,{"stream_name":"stderr","time":8946.925269531,"data":"WARNING:swegemma.harness.agent_runner:Task fastapi_14616 completed without explicit submit_patch call and no working tree modifications.\n"}
+,{"stream_name":"stdout","time":8947.036982212,"data":"fastapi_13920      fail  calls=30  5.6 min  Agent exceeded session timeout (5.0 min)\n"}
+,{"stream_name":"stdout","time":8947.037008747,"data":"fastapi_14258      fail  calls=30  3.8 min  \n"}
+,{"stream_name":"stdout","time":8947.037014191,"data":"fastapi_14616      fail  calls=21  5.1 min  Agent exceeded session timeout (5.0 min)\n"}
+,{"stream_name":"stdout","time":8947.037018266,"data":"fastapi_14786      PASS  calls=9  1.4 min  \n"}
+,{"stream_name":"stdout","time":8947.037022417,"data":"fastapi_14791      PASS  calls=10  2.8 min  \n"}
+,{"stream_name":"stdout","time":8947.037026655,"data":"fastapi_14794      PASS  calls=10  3.2 min  \n"}
+,{"stream_name":"stdout","time":8947.037030519,"data":"fastapi_14873      PASS  calls=30  4.8 min  \n"}
+,{"stream_name":"stdout","time":8947.037035211,"data":"fastapi_14953      fail  calls=27  4.2 min  \n"}
+,{"stream_name":"stdout","time":8947.037039373,"data":"fastapi_14962      fail  calls=22  5.1 min  \n"}
+,{"stream_name":"stdout","time":8947.037043394,"data":"fastapi_14964      fail  calls=22  3.4 min  \n"}
+,{"stream_name":"stdout","time":8947.037057748,"data":"fastapi_14978      fail  calls=25  4.8 min  \n"}
+,{"stream_name":"stdout","time":8947.037060232,"data":"fastapi_14986      fail  calls=28  5.4 min  Agent exceeded session timeout (5.0 min)\n"}
+,{"stream_name":"stdout","time":8947.037062238,"data":"fastapi_15023      fail  calls=28  3.6 min  \n"}
+,{"stream_name":"stdout","time":8947.037064059,"data":"fastapi_15030      fail  calls=14  3.9 min  \n"}
+,{"stream_name":"stdout","time":8947.037066022,"data":"fastapi_15280      fail  calls=29  5.3 min  Agent exceeded session timeout (5.0 min)\n"}
+,{"stream_name":"stdout","time":8947.037067949,"data":"fastapi_15588      fail  calls=13  4.6 min  \n"}
+,{"stream_name":"stdout","time":8947.037090877,"data":"fastapi_15589      fail  calls=25  5.1 min  Agent exceeded session timeout (5.0 min)\n"}
+,{"stream_name":"stdout","time":8947.037103871,"data":"fastapi_15661      fail  calls=19  5.1 min  Agent exceeded session timeout (5.0 min)\n"}
+,{"stream_name":"stdout","time":8947.037106441,"data":"fastapi_15800      fail  calls=30  4.4 min  \n"}
+,{"stream_name":"stdout","time":8947.037108461,"data":"requests_7315      PASS  calls=25  3.3 min  \n"}
+,{"stream_name":"stdout","time":8947.03711043,"data":"requests_7427      PASS  calls=22  4.5 min  \n"}
+,{"stream_name":"stdout","time":8947.037112281,"data":"rich_3882          PASS  calls=30  3.1 min  \n"}
+,{"stream_name":"stdout","time":8947.037114114,"data":"rich_3894          PASS  calls=12  2.1 min  \n"}
+,{"stream_name":"stdout","time":8947.037115976,"data":"rich_3905          PASS  calls=10  1.5 min  \n"}
+,{"stream_name":"stdout","time":8947.037117894,"data":"rich_3935          fail  calls=23  5.1 min  Agent exceeded session timeout (5.0 min)\n"}
+,{"stream_name":"stdout","time":8947.037119943,"data":"rich_3938          fail  calls=30  4.6 min  \n"}
+,{"stream_name":"stdout","time":8947.037121964,"data":"rich_3942          fail  calls=19  5.3 min  Agent exceeded session timeout (5.0 min)\n"}
+,{"stream_name":"stdout","time":8947.037126877,"data":"rich_3944          fail  calls=14  5.3 min  Agent exceeded session timeout (5.0 min)\n"}
+,{"stream_name":"stdout","time":8947.03712901,"data":"rich_3953          fail  calls=21  5.1 min  Agent exceeded session timeout (5.0 min)\n"}
+,{"stream_name":"stdout","time":8947.037130964,"data":"rich_4006          fail  calls=7  5.3 min  Agent exceeded session timeout (5.0 min)\n"}
+,{"stream_name":"stdout","time":8947.037132893,"data":"rich_4075          fail  calls=30  5.2 min  \n"}
+,{"stream_name":"stdout","time":8947.03713589,"data":"rich_4076          fail  calls=26  5.1 min  Agent exceeded session timeout (5.0 min)\n"}
+,{"stream_name":"stdout","time":8947.037137926,"data":"rich_4077          PASS  calls=16  3.0 min  \n"}
+,{"stream_name":"stdout","time":8947.037660663,"data":"v3t_think: resolved 10/33 (30.3%) in 2.33 h\n"}
+,{"stream_name":"stdout","time":8947.039826539,"data":"\n"}
+,{"stream_name":"stdout","time":8947.039835551,"data":"v3t_think            10/33 (30.3%) in 2.33 h\n"}
+,{"stream_name":"stderr","time":8947.458124608,"data":"ERROR:asyncio:Unclosed client session\n"}
+,{"stream_name":"stderr","time":8947.458177687,"data":"client_session: \u003caiohttp.client.ClientSession object at 0x7c19ca3917c0\u003e\n"}
+,{"stream_name":"stderr","time":8947.458212522,"data":"ERROR:asyncio:Unclosed client session\n"}
+,{"stream_name":"stderr","time":8947.458222653,"data":"client_session: \u003caiohttp.client.ClientSession object at 0x7c19c8df8230\u003e\n"}
+,{"stream_name":"stderr","time":8951.686607794,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":8951.686647126,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":8951.941666882,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":8951.941700603,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":8953.259379289,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":8954.225751152,"data":"[NbConvertApp] Writing 462290 bytes to __results__.html\n"}
+]

@@ -1,0 +1,461 @@
+{
+  "counts": {
+    "timeout": 12,
+    "budget_out": 2,
+    "pass": 10,
+    "wrong_fix": 7,
+    "no_patch": 2
+  },
+  "tasks": [
+    {
+      "instance_id": "fastapi_13920",
+      "category": "timeout",
+      "tool_calls": 30,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 0,
+      "edits": 0,
+      "files": [
+        "fastapi/_compat/__init__.py",
+        "fastapi/_compat/shared.py",
+        "fastapi/dependencies/utils.py"
+      ],
+      "seconds": 333.3,
+      "error": "Agent exceeded session timeout (5.0 min)"
+    },
+    {
+      "instance_id": "fastapi_14258",
+      "category": "budget_out",
+      "tool_calls": 32,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/routing.py"
+      ],
+      "seconds": 230.6,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14616",
+      "category": "timeout",
+      "tool_calls": 21,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 0,
+      "edits": 0,
+      "files": [],
+      "seconds": 305.9,
+      "error": "Agent exceeded session timeout (5.0 min)"
+    },
+    {
+      "instance_id": "fastapi_14786",
+      "category": "pass",
+      "tool_calls": 10,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/security/utils.py"
+      ],
+      "seconds": 85.6,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14791",
+      "category": "pass",
+      "tool_calls": 11,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/openapi/utils.py"
+      ],
+      "seconds": 168.6,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14794",
+      "category": "pass",
+      "tool_calls": 11,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/dependencies/utils.py"
+      ],
+      "seconds": 190.2,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14873",
+      "category": "pass",
+      "tool_calls": 31,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/routing.py"
+      ],
+      "seconds": 287.7,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14953",
+      "category": "wrong_fix",
+      "tool_calls": 28,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/_compat/v2.py",
+        "fastapi/datastructures.py"
+      ],
+      "seconds": 252.0,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14962",
+      "category": "wrong_fix",
+      "tool_calls": 23,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/_compat/v2.py",
+        "fastapi/routing.py"
+      ],
+      "seconds": 304.0,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14964",
+      "category": "wrong_fix",
+      "tool_calls": 23,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/responses.py"
+      ],
+      "seconds": 203.6,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14978",
+      "category": "wrong_fix",
+      "tool_calls": 26,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/params.py",
+        "fastapi/routing.py"
+      ],
+      "seconds": 285.2,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_14986",
+      "category": "timeout",
+      "tool_calls": 28,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 0,
+      "edits": 0,
+      "files": [
+        "fastapi/applications.py",
+        "fastapi/openapi/docs.py"
+      ],
+      "seconds": 321.9,
+      "error": "Agent exceeded session timeout (5.0 min)"
+    },
+    {
+      "instance_id": "fastapi_15023",
+      "category": "wrong_fix",
+      "tool_calls": 29,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "docs_src/stream_data/tutorial001_py310.py"
+      ],
+      "seconds": 216.0,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15030",
+      "category": "wrong_fix",
+      "tool_calls": 15,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/responses.py"
+      ],
+      "seconds": 233.3,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15280",
+      "category": "timeout",
+      "tool_calls": 29,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 0,
+      "edits": 0,
+      "files": [
+        "fastapi/routing.py"
+      ],
+      "seconds": 318.2,
+      "error": "Agent exceeded session timeout (5.0 min)"
+    },
+    {
+      "instance_id": "fastapi_15588",
+      "category": "wrong_fix",
+      "tool_calls": 14,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "fastapi/sse.py"
+      ],
+      "seconds": 278.3,
+      "error": ""
+    },
+    {
+      "instance_id": "fastapi_15589",
+      "category": "timeout",
+      "tool_calls": 25,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 0,
+      "edits": 0,
+      "files": [],
+      "seconds": 308.0,
+      "error": "Agent exceeded session timeout (5.0 min)"
+    },
+    {
+      "instance_id": "fastapi_15661",
+      "category": "timeout",
+      "tool_calls": 19,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 0,
+      "edits": 0,
+      "files": [],
+      "seconds": 307.4,
+      "error": "Agent exceeded session timeout (5.0 min)"
+    },
+    {
+      "instance_id": "fastapi_15800",
+      "category": "budget_out",
+      "tool_calls": 33,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 2,
+      "edits": 0,
+      "files": [
+        "static/index.html"
+      ],
+      "seconds": 264.1,
+      "error": ""
+    },
+    {
+      "instance_id": "requests_7315",
+      "category": "pass",
+      "tool_calls": 26,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "src/requests/adapters.py"
+      ],
+      "seconds": 197.0,
+      "error": ""
+    },
+    {
+      "instance_id": "requests_7427",
+      "category": "pass",
+      "tool_calls": 23,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "src/requests/utils.py"
+      ],
+      "seconds": 272.6,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3882",
+      "category": "pass",
+      "tool_calls": 31,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "rich/prompt.py"
+      ],
+      "seconds": 188.6,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3894",
+      "category": "pass",
+      "tool_calls": 13,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "rich/_inspect.py"
+      ],
+      "seconds": 124.6,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3905",
+      "category": "pass",
+      "tool_calls": 11,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "rich/progress.py"
+      ],
+      "seconds": 87.7,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3935",
+      "category": "timeout",
+      "tool_calls": 23,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 0,
+      "edits": 0,
+      "files": [],
+      "seconds": 304.7,
+      "error": "Agent exceeded session timeout (5.0 min)"
+    },
+    {
+      "instance_id": "rich_3938",
+      "category": "no_patch",
+      "tool_calls": 33,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [],
+      "seconds": 273.7,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_3942",
+      "category": "timeout",
+      "tool_calls": 19,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 0,
+      "edits": 0,
+      "files": [
+        "rich/default_styles.py"
+      ],
+      "seconds": 315.5,
+      "error": "Agent exceeded session timeout (5.0 min)"
+    },
+    {
+      "instance_id": "rich_3944",
+      "category": "timeout",
+      "tool_calls": 14,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 0,
+      "edits": 0,
+      "files": [
+        "rich/_export_format.py"
+      ],
+      "seconds": 316.0,
+      "error": "Agent exceeded session timeout (5.0 min)"
+    },
+    {
+      "instance_id": "rich_3953",
+      "category": "timeout",
+      "tool_calls": 21,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 0,
+      "edits": 0,
+      "files": [],
+      "seconds": 303.9,
+      "error": "Agent exceeded session timeout (5.0 min)"
+    },
+    {
+      "instance_id": "rich_4006",
+      "category": "timeout",
+      "tool_calls": 7,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 0,
+      "edits": 0,
+      "files": [],
+      "seconds": 315.0,
+      "error": "Agent exceeded session timeout (5.0 min)"
+    },
+    {
+      "instance_id": "rich_4075",
+      "category": "no_patch",
+      "tool_calls": 33,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [],
+      "seconds": 312.4,
+      "error": ""
+    },
+    {
+      "instance_id": "rich_4076",
+      "category": "timeout",
+      "tool_calls": 26,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 0,
+      "edits": 0,
+      "files": [],
+      "seconds": 304.1,
+      "error": "Agent exceeded session timeout (5.0 min)"
+    },
+    {
+      "instance_id": "rich_4077",
+      "category": "pass",
+      "tool_calls": 17,
+      "longest_repeat": 1,
+      "repeated_call": "",
+      "submits": 1,
+      "edits": 0,
+      "files": [
+        "rich/file_proxy.py"
+      ],
+      "seconds": 179.7,
+      "error": ""
+    }
+  ]
+}

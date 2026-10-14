@@ -36,6 +36,35 @@ What the three scores say together:
 - So: rerun v1 on the fixed bench before trusting any dev gain. Weigh mechanism fixes (garbled
   calls, loops) by whether they plausibly carry over to unfamiliar repos, not by dev score alone.
 
+### T0: thinking on (2026-10-13/14, harness 10-12: swegemma 0.2.11, adk_submission 0.2.13)
+
+`experiments/v3t_think` = v3b_noedit + `thinking_config {include_thoughts: true, thinking_budget: 4096}`,
+`max_output_tokens` 8192, 5.0 min / 30 calls / 80 turns. `eval/runs/t0_think`.
+
+| | v3b_noedit (3 runs, thinking off, old harness) | **v3t_think** |
+|---|---|---|
+| Dev score | 11, 10, 8 (mean 9.7) | **10 / 33** |
+| Core 6 kept | 6, 6, 6 | 6 |
+| Fixable solved | 5, 4, 2 | 4 |
+| Mean s/task (p90) | 112–119 (195–234) | **254 (316)** |
+| Tasks ending at the 5.0 min cap | 0–1 | **12** (6 fixable, 6 unfair; none resolved) |
+| Mean tool calls | | 21 (max 30) |
+| Projected 120-task run | 5.4–5.6 h | **10.1 h expected, 11.7 h worst case** (limit 12 h) |
+| Garbled calls / repeats | 0–1 / 1–3% | 0 / 0% |
+
+- **No dev gain from thinking** (10 vs 9.7 mean; the noise is ±2). It makes tasks 2.2× slower and
+  uses 10.1 of the 12 hours, so any submission needs the time risk accepted explicitly.
+- Thinking removed repeats and garbled calls entirely (0 of 33 tasks with a 5+ repeat).
+- The 12 timeouts are tasks that were not going to pass anyway: no solved task came close to the cap.
+- **Capture check passed:** 802 recorded model calls (770 agent, 32 summarizer), all HTTP 200, all
+  with prompt and completion token ids; every completion ends in 50 (tool call) or 106 (end of
+  turn); 795 contain thoughts; longest prompt 16,321 tokens (mean 8,820).
+- **Harness change to remember:** on adk_submission 0.2.13, `include_thoughts: false` alone no
+  longer disables thinking (it keeps thinking and strips the thoughts from the history). Our
+  earlier submissions v1 and v3b ran under the old harness. To get real "off" use
+  `thinking_budget: 0` (`experiments/v3t_off`). Re-submitting v3b unchanged would now run
+  thinking-on with stripped thoughts, which a public sweep found worse than either clean mode.
+
 ## Local dev runs (Step 2c)
 
 Our own bench: 33 dev tasks (`eval/splits.json`), scorer's model and budgets on Kaggle 4×L4.

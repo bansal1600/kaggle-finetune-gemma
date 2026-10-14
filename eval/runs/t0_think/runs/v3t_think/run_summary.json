@@ -1,0 +1,307 @@
+{
+  "variant": "v3t_think",
+  "resolved": 10,
+  "total": 33,
+  "resolution_rate": 0.30303030303030304,
+  "hours": 2.33,
+  "python": "3.12.13",
+  "tasks": [
+    {
+      "instance_id": "fastapi_13920",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (5.0 min)",
+      "tool_calls": 30,
+      "llm_calls": 30,
+      "seconds": 333.3,
+      "patch_chars": 1981
+    },
+    {
+      "instance_id": "fastapi_14258",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 30,
+      "llm_calls": 33,
+      "seconds": 230.6,
+      "patch_chars": 501
+    },
+    {
+      "instance_id": "fastapi_14616",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (5.0 min)",
+      "tool_calls": 21,
+      "llm_calls": 21,
+      "seconds": 305.9,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_14786",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 9,
+      "llm_calls": 11,
+      "seconds": 85.6,
+      "patch_chars": 404
+    },
+    {
+      "instance_id": "fastapi_14791",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 10,
+      "llm_calls": 12,
+      "seconds": 168.6,
+      "patch_chars": 483
+    },
+    {
+      "instance_id": "fastapi_14794",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 10,
+      "llm_calls": 12,
+      "seconds": 190.2,
+      "patch_chars": 791
+    },
+    {
+      "instance_id": "fastapi_14873",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 30,
+      "llm_calls": 32,
+      "seconds": 287.7,
+      "patch_chars": 1681
+    },
+    {
+      "instance_id": "fastapi_14953",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 27,
+      "llm_calls": 29,
+      "seconds": 252.0,
+      "patch_chars": 1584
+    },
+    {
+      "instance_id": "fastapi_14962",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 22,
+      "llm_calls": 24,
+      "seconds": 304.0,
+      "patch_chars": 1765
+    },
+    {
+      "instance_id": "fastapi_14964",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 22,
+      "llm_calls": 26,
+      "seconds": 203.6,
+      "patch_chars": 1901
+    },
+    {
+      "instance_id": "fastapi_14978",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 25,
+      "llm_calls": 27,
+      "seconds": 285.2,
+      "patch_chars": 1720
+    },
+    {
+      "instance_id": "fastapi_14986",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (5.0 min)",
+      "tool_calls": 28,
+      "llm_calls": 29,
+      "seconds": 321.9,
+      "patch_chars": 2585
+    },
+    {
+      "instance_id": "fastapi_15023",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 28,
+      "llm_calls": 30,
+      "seconds": 216.0,
+      "patch_chars": 724
+    },
+    {
+      "instance_id": "fastapi_15030",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 14,
+      "llm_calls": 16,
+      "seconds": 233.3,
+      "patch_chars": 1070
+    },
+    {
+      "instance_id": "fastapi_15280",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (5.0 min)",
+      "tool_calls": 29,
+      "llm_calls": 29,
+      "seconds": 318.2,
+      "patch_chars": 2819
+    },
+    {
+      "instance_id": "fastapi_15588",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 13,
+      "llm_calls": 15,
+      "seconds": 278.3,
+      "patch_chars": 1354
+    },
+    {
+      "instance_id": "fastapi_15589",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (5.0 min)",
+      "tool_calls": 25,
+      "llm_calls": 25,
+      "seconds": 308.0,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_15661",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (5.0 min)",
+      "tool_calls": 19,
+      "llm_calls": 19,
+      "seconds": 307.4,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "fastapi_15800",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 30,
+      "llm_calls": 34,
+      "seconds": 264.1,
+      "patch_chars": 99
+    },
+    {
+      "instance_id": "requests_7315",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 25,
+      "llm_calls": 28,
+      "seconds": 197.0,
+      "patch_chars": 522
+    },
+    {
+      "instance_id": "requests_7427",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 22,
+      "llm_calls": 24,
+      "seconds": 272.6,
+      "patch_chars": 1067
+    },
+    {
+      "instance_id": "rich_3882",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 30,
+      "llm_calls": 32,
+      "seconds": 188.6,
+      "patch_chars": 503
+    },
+    {
+      "instance_id": "rich_3894",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 12,
+      "llm_calls": 14,
+      "seconds": 124.6,
+      "patch_chars": 595
+    },
+    {
+      "instance_id": "rich_3905",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 10,
+      "llm_calls": 12,
+      "seconds": 87.7,
+      "patch_chars": 627
+    },
+    {
+      "instance_id": "rich_3935",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (5.0 min)",
+      "tool_calls": 23,
+      "llm_calls": 23,
+      "seconds": 304.7,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_3938",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 30,
+      "llm_calls": 34,
+      "seconds": 273.7,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_3942",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (5.0 min)",
+      "tool_calls": 19,
+      "llm_calls": 19,
+      "seconds": 315.5,
+      "patch_chars": 1587
+    },
+    {
+      "instance_id": "rich_3944",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (5.0 min)",
+      "tool_calls": 14,
+      "llm_calls": 14,
+      "seconds": 316.0,
+      "patch_chars": 1339
+    },
+    {
+      "instance_id": "rich_3953",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (5.0 min)",
+      "tool_calls": 21,
+      "llm_calls": 21,
+      "seconds": 303.9,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_4006",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (5.0 min)",
+      "tool_calls": 7,
+      "llm_calls": 7,
+      "seconds": 315.0,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_4075",
+      "resolved": false,
+      "error": "",
+      "tool_calls": 30,
+      "llm_calls": 34,
+      "seconds": 312.4,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_4076",
+      "resolved": false,
+      "error": "Agent exceeded session timeout (5.0 min)",
+      "tool_calls": 26,
+      "llm_calls": 26,
+      "seconds": 304.1,
+      "patch_chars": 0
+    },
+    {
+      "instance_id": "rich_4077",
+      "resolved": true,
+      "error": "",
+      "tool_calls": 16,
+      "llm_calls": 18,
+      "seconds": 179.7,
+      "patch_chars": 423
+    }
+  ]
+}
