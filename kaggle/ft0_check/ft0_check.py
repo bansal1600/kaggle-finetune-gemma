@@ -314,7 +314,7 @@ def test_kv(server, base, adapter) -> dict:
 
 
 def test_applied(server, base, adapter) -> dict:
-    """Same prompt at temperature 0: base twice must agree (< 1e-3), adapter twice (< 1e-2), and base
+    """Same prompt at temperature 0: base twice must agree (< 1e-3), adapter twice (< 3e-2), and base
     vs adapter must differ (text, or > 0.05 in a first-token logprob)."""
     prompt = 'def fibonacci(n):\n    """Return the n-th Fibonacci number."""\n'
     runs = {k: complete(m, prompt, 32, timeout=120, logprobs=5)["choices"][0]
@@ -330,9 +330,10 @@ def test_applied(server, base, adapter) -> dict:
         "top5_max_diff_base_ad": max((abs(top["base1"][t] - top["ad1"][t]) for t in common), default=None),
         "same_text_base_ad": runs["base1"]["text"] == runs["ad1"]["text"],
     }
-    # The dummy adapter's measured run-to-run noise was 3e-3 (bf16 LoRA kernels are not bitwise repeatable)
-    # against an effect of 6e-2, so 1e-2 separates them; the base model itself repeats exactly.
-    res["deterministic"] = res["diff_base_base"] < 1e-3 and res["diff_ad_ad"] < 1e-2
+    # The dummy adapter's measured run-to-run noise was 3e-3 to 1.5e-2 over three servers (bf16 LoRA kernels
+    # are not bitwise repeatable) against an effect of 6e-2 to 8e-2 in the first token and 0.57 in the top 5;
+    # the base model itself repeats exactly. 3e-2 is above the noise and still below the "applied" bar.
+    res["deterministic"] = res["diff_base_base"] < 1e-3 and res["diff_ad_ad"] < 3e-2
     res["applied"] = (not res["same_text_base_ad"]) or res["diff_base_ad"] > 0.05 \
         or (res["top5_max_diff_base_ad"] or 0) > 0.05
     res["ok"] = res["deterministic"] and res["applied"]

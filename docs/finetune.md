@@ -90,3 +90,26 @@ worker processes holding the GPUs. That is a bug in our test, not in LoRA. Also 
 **Fixes for run 2:** kill leftover processes and wait for empty GPUs between servers; test the
 0.90 server first and without test e; try `prompt_logprobs` from 2k up to 16k tokens and keep the
 largest size that works; allow 1e-2 repeat noise for adapter outputs.
+
+**Run 2 (2026-10-14, `eval/runs/ft0_dummy_r2`): PASS. The fine-tuning track is clear.**
+
+| Check | gmu 0.90 (adk default) | gmu 0.80 (README value) |
+|---|---|---|
+| Starts with `--enable-lora --max-loras 1 --max-lora-rank 16` | yes, 424 s | yes, 233 s |
+| KV cache | 37,328 tokens, 7.0× at 32k | 27,696 tokens, 5.2× at 32k |
+| Sampler-warmup OOM (forum 746503) | none | none |
+| Adapter applied (first token 0.079 / top-5 0.58 away from base) | yes | yes |
+| Adapter repeat noise (bf16 LoRA kernels) | 0.0068 | 0.0147 (flagged by the 0.01 cut-off I had set; now 0.03) |
+| 28k-token prompt on base and adapter names | yes, 29 s / 30 s | yes |
+| Decode speed with adapter vs base | 32.1 vs 35.8 tok/s (89.6%) | 31.8 vs 35.5 (89.6%) |
+
+- **LoRA costs ~10% decode speed.** The 120-task time projection has to include it (the model
+  time is ~88% of a task). Stage 7 measures it again on the trained adapter.
+- **`prompt_logprobs` (the parity check):** with the default 2,048-token prefill chunk even a 2k
+  prompt crashed the engine (all four GPUs at 21.2 of 22.0 GiB). With
+  `--max-num-batched-tokens 512` every size up to 16,384 passed on base and adapter, peak 19.6
+  GiB. Stage 6 therefore runs full-length sequences with `VLLM_EXTRA_ARGS='["--max-num-batched-tokens","512"]'`.
+  The scorer never sends such requests.
+- The "dummy" rank-16 adapter has 840 tensors (235.9 MiB): 7 projections on 60 layers, plus the
+  key-copied-to-value entries on the 10 shared-K/V layers.
+- **Gate result: FT-0 passed.** Next gates: thinking-on dev run (T0, running), then data generation.
